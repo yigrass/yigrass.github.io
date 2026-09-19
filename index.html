@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#008080">
+  <meta name="description" content="yigrass 的个人空间与作品。">
+  <title>yigrass — 个人桌面</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/site-config.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <main id="desktop" aria-label="个人桌面">
+    <div id="windows"></div>
+    <div id="effects" aria-hidden="true"></div>
+  </main>
+
+  <aside id="start-menu" class="start-menu" aria-label="开始菜单" hidden>
+    <div class="menu-brand" aria-hidden="true"><span id="menu-brand">yigrass</span><b>95</b></div>
+    <div class="menu-body">
+      <div class="menu-heading">我的空间</div>
+      <nav id="menu-items" aria-label="个人空间导航"></nav>
+      <div class="menu-divider"></div>
+      <details class="preferences">
+        <summary><span class="icon icon-settings" aria-hidden="true">⚙</span>桌面设置</summary>
+        <div class="preferences-body">
+          <label class="range-label" for="menu-transparency">菜单透明度 <output id="transparency-value" for="menu-transparency">0%</output></label>
+          <input id="menu-transparency" type="range" min="0" max="100" value="0" step="5">
+          <label class="check-label"><input id="custom-cursor" type="checkbox">自定义光标</label>
+          <label class="check-label"><input id="floating-stars" type="checkbox">漂浮星星</label>
+        </div>
+      </details>
+      <div class="menu-divider"></div>
+      <button id="close-menu" class="menu-item close-menu" type="button"><span class="icon icon-close-menu" aria-hidden="true">▱</span><span>收起菜单</span></button>
+    </div>
+  </aside>
+
+  <footer id="taskbar" class="taskbar" aria-label="任务栏">
+    <button id="start-button" class="classic-button start-button" type="button" aria-expanded="false" aria-controls="start-menu"><span class="start-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="start-label">开始</span></button>
+    <span class="taskbar-divider" aria-hidden="true"></span>
+    <div id="window-tabs" class="window-tabs" aria-label="已打开的窗口"></div>
+    <div class="tray"><span class="tray-light" title="个人空间" aria-hidden="true"></span><time id="clock" aria-label="当前时间"></time></div>
+  </footer>
+  <div id="announcer" class="sr-only" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">打开这个个人桌面需要启用 JavaScript。</p></noscript>
+</body>
+</html>
