@@ -12,9 +12,9 @@
   let activeId = null;
   let zIndex = 10;
   const windowTypes = {
-    profile: { title: "个人信息", render: profileContent, status: () => "个人资料" },
-    works: { title: "个人作品", render: worksContent, status: () => `${config.works.length} 个作品` },
-    settings: { title: "系统设置", render: settingsContent, status: () => "设置即时生效，仅保存于此浏览器" }
+    profile: { title: "我的电脑", icon: "v1.1.0/computer", render: profileContent, status: () => "个人系统属性" },
+    works: { title: "资源管理器", icon: "works", render: worksContent, status: () => `${config.explorer?.drives?.length || 0} 个对象` },
+    settings: { title: "系统设置", icon: "v1.1.0/control-panel", render: settingsContent, status: () => "设置即时生效，仅保存于此浏览器" }
   };
 
   const create = (tag, className, text) => {
@@ -145,7 +145,7 @@
     const button = create("button", "menu-item");
     button.type = "button";
     button.dataset.window = id;
-    const icon = pixelIcon(id, "menu-icon");
+    const icon = pixelIcon(windowTypes[id].icon, "menu-icon");
     if (id === "settings") {
       const divider = create("div", "menu-divider");
       divider.setAttribute("role", "separator");
@@ -215,58 +215,210 @@
   }
 
   function profileContent(body) {
-    const profile = config.profile;
-    const header = create("div", "profile-header");
+    body.classList.add("properties-body");
+    const profile = config.profile || {};
+    const tabs = create("div", "property-tabs");
+    tabs.setAttribute("role", "tablist");
+    tabs.setAttribute("aria-label", "个人系统属性");
+    const pages = create("div", "property-pages");
+    const buttons = [];
+    const panels = [];
+    const selectTab = (index, focus = false) => {
+      buttons.forEach((button, position) => {
+        button.setAttribute("aria-selected", String(position === index));
+        button.tabIndex = position === index ? 0 : -1;
+        panels[position].hidden = position !== index;
+      });
+      if (focus) buttons[index].focus();
+    };
+    for (const [index, [key, name]] of [["general", "常规"], ["about", "个人介绍"], ["contact", "联系信息"]].entries()) {
+      const tab = create("button", "property-tab", name);
+      tab.type = "button";
+      tab.id = `property-tab-${key}`;
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", `property-panel-${key}`);
+      tab.addEventListener("click", () => selectTab(index));
+      tab.addEventListener("keydown", (event) => {
+        const next = { ArrowRight: (index + 1) % 3, ArrowLeft: (index + 2) % 3, Home: 0, End: 2 }[event.key];
+        if (next !== undefined) { event.preventDefault(); selectTab(next, true); }
+      });
+      const panel = create("section", "property-panel");
+      panel.id = `property-panel-${key}`;
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", tab.id);
+      panel.tabIndex = 0;
+      tabs.append(tab);
+      pages.append(panel);
+      buttons.push(tab);
+      panels.push(panel);
+    }
+    const header = create("div", "properties-heading");
     const avatarURL = safeURL(profile.avatar);
-    const avatar = avatarURL ? create("img", "avatar") : create("div", "avatar", [...(profile.nickname || "Y")][0].toUpperCase());
-    if (avatarURL) { avatar.src = avatarURL; avatar.alt = `${profile.nickname}的头像`; }
-    else avatar.setAttribute("aria-hidden", "true");
-    const heading = create("div", "profile-heading");
-    heading.append(create("h1", "", profile.nickname));
-    if (profile.signature) heading.append(create("p", "signature", profile.signature));
+    const avatar = avatarURL ? create("img", "property-avatar") : pixelIcon("v1.1.0/computer", "property-computer");
+    if (avatarURL) { avatar.src = avatarURL; avatar.alt = `${profile.nickname || "个人"}的头像`; }
+    const heading = create("div");
+    heading.append(create("h1", "", titleOf("profile")), create("p", "", "个人系统属性"));
     header.append(avatar, heading);
-    body.append(header);
-    if (profile.introduction) body.append(create("p", "profile-intro", profile.introduction));
-    const links = create("div", "profile-links");
+    panels[0].append(header);
+    const identity = create("fieldset", "property-group");
+    identity.append(create("legend", "", "注册信息"));
+    const fields = create("dl", "property-fields");
+    for (const [label, value] of [["昵称", profile.nickname], ["个性签名", profile.signature]]) {
+      fields.append(create("dt", "", label), create("dd", value ? "" : "property-placeholder", value || "—"));
+    }
+    identity.append(fields);
+    panels[0].append(identity);
+    const about = create("fieldset", "property-group");
+    about.append(create("legend", "", "个人介绍"), create("p", profile.introduction ? "profile-intro" : "property-placeholder", profile.introduction || "暂未填写"));
+    panels[1].append(about);
+    const contact = create("fieldset", "property-group");
+    contact.append(create("legend", "", "联系方式与个人链接"));
+    const links = create("ul", "property-links");
     for (const link of profile.links || []) {
       const href = safeURL(link.href);
       if (!href) continue;
-      const anchor = create("a", "", link.label);
+      const item = create("li");
+      const anchor = create("a", "", link.label || href);
       anchor.href = href;
-      links.append(anchor);
+      item.append(anchor);
+      links.append(item);
     }
-    if (links.childElementCount) body.append(links);
+    contact.append(links.childElementCount ? links : create("p", "property-placeholder", "暂未填写"));
+    panels[2].append(contact);
+    body.append(tabs, pages);
+    selectTab(0);
   }
-  function worksContent(body) {
-    if (!config.works.length) {
-      const empty = create("div", "empty-works");
-      const icon = pixelIcon("works", "empty-icon");
-      empty.append(icon, create("h1", "", "这里还没有作品"), create("p", "", "下一段故事，正在路上。"));
-      body.append(empty);
-      return;
+  function worksContent(body, setStatus) {
+    body.classList.add("explorer-body");
+    const drives = config.explorer?.drives || [];
+    const rootLabel = titleOf("profile");
+    const driveLabel = (drive) => `${drive.label} (${drive.letter}:)`;
+    const driveIcon = (drive, className) => pixelIcon(`v1.1.0/${["hard-disk", "floppy", "cdrom"].includes(drive.type) ? drive.type : "hard-disk"}`, className);
+    let history = [null];
+    let historyIndex = 0;
+    const toolbar = create("div", "explorer-toolbar");
+    toolbar.setAttribute("role", "group");
+    toolbar.setAttribute("aria-label", "资源管理器工具栏");
+    function tool(label, icon, action) {
+      const button = create("button", "classic-button explorer-tool");
+      button.type = "button";
+      button.title = label;
+      button.append(pixelIcon(icon), create("span", "", label));
+      button.addEventListener("click", action);
+      toolbar.append(button);
+      return button;
     }
-    const list = create("div", "works-list");
-    for (const work of config.works) {
-      const card = create("article", "work-card");
-      const coverURL = safeURL(work.cover);
-      if (coverURL) {
-        const cover = create("img", "work-cover");
-        cover.src = coverURL;
-        cover.alt = `${work.title}封面`;
-        cover.loading = "lazy";
-        card.append(cover);
-      }
-      card.append(create("span", "work-type", work.type === "game" ? "游戏" : "小说"), create("h2", "", work.title));
-      if (work.description) card.append(create("p", "", work.description));
-      const href = safeURL(work.href);
-      if (href) {
-        const link = create("a", "", work.actionLabel || (work.type === "game" ? "开始游戏" : "阅读作品"));
-        link.href = href;
-        card.append(link);
-      }
-      list.append(card);
+    const back = tool("后退", "v1.1.0/back", () => { if (historyIndex > 0) { historyIndex--; render(); } });
+    const forward = tool("前进", "v1.1.0/forward", () => { if (historyIndex < history.length - 1) { historyIndex++; render(); } });
+    const up = tool("向上", "v1.1.0/up", () => navigate(null));
+    const folders = tool("文件夹", "works", () => {
+      sidebar.hidden = !sidebar.hidden;
+      folders.setAttribute("aria-pressed", String(!sidebar.hidden));
+    });
+    folders.setAttribute("aria-pressed", "true");
+    folders.setAttribute("aria-controls", "explorer-folders");
+    const addressRow = create("label", "explorer-address");
+    addressRow.htmlFor = "explorer-address";
+    const address = create("select");
+    address.id = "explorer-address";
+    const rootOption = create("option", "", rootLabel);
+    rootOption.value = "";
+    address.append(rootOption);
+    for (const drive of drives) {
+      const option = create("option", "", `${drive.letter}:\\ — ${drive.label}`);
+      option.value = drive.id;
+      address.append(option);
     }
-    body.append(list);
+    address.addEventListener("change", () => navigate(address.value || null));
+    addressRow.append(create("span", "", "地址"), address);
+    const panes = create("div", "explorer-panes");
+    const sidebar = create("nav", "explorer-sidebar");
+    sidebar.id = "explorer-folders";
+    sidebar.setAttribute("aria-label", "文件夹导航");
+    sidebar.append(create("div", "explorer-pane-label", "文件夹"));
+    const treeRoot = create("div", "explorer-tree-root");
+    const expand = create("button", "tree-expand", "−");
+    expand.type = "button";
+    expand.setAttribute("aria-expanded", "true");
+    expand.setAttribute("aria-controls", "explorer-drive-tree");
+    expand.setAttribute("aria-label", "收起驱动器列表");
+    const rootButton = create("button", "tree-location");
+    rootButton.type = "button";
+    rootButton.append(pixelIcon("v1.1.0/computer"), create("span", "", rootLabel));
+    rootButton.addEventListener("click", () => navigate(null));
+    treeRoot.append(expand, rootButton);
+    const tree = create("ul", "explorer-drive-tree");
+    tree.id = "explorer-drive-tree";
+    const locationButtons = new Map([[null, rootButton]]);
+    for (const drive of drives) {
+      const item = create("li");
+      const button = create("button", "tree-location");
+      button.type = "button";
+      button.title = driveLabel(drive);
+      button.append(driveIcon(drive), create("span", "", driveLabel(drive)));
+      button.addEventListener("click", () => navigate(drive.id));
+      item.append(button);
+      tree.append(item);
+      locationButtons.set(drive.id, button);
+    }
+    expand.addEventListener("click", () => {
+      tree.hidden = !tree.hidden;
+      expand.textContent = tree.hidden ? "+" : "−";
+      expand.setAttribute("aria-expanded", String(!tree.hidden));
+      expand.setAttribute("aria-label", `${tree.hidden ? "展开" : "收起"}驱动器列表`);
+    });
+    sidebar.append(treeRoot, tree);
+    const content = create("section", "explorer-files");
+    content.tabIndex = 0;
+    panes.append(sidebar, content);
+    body.append(toolbar, addressRow, panes);
+    function navigate(id) {
+      if (id !== null && !drives.some((drive) => drive.id === id)) return;
+      if (history[historyIndex] === id) return;
+      history = history.slice(0, historyIndex + 1);
+      history.push(id);
+      historyIndex++;
+      render();
+    }
+    function render() {
+      const id = history[historyIndex];
+      const drive = drives.find((item) => item.id === id);
+      const label = drive ? driveLabel(drive) : rootLabel;
+      // Moving into a drive removes its root tile; retain keyboard focus in the pane.
+      const restoreFocus = content.contains(document.activeElement);
+      back.disabled = historyIndex === 0;
+      forward.disabled = historyIndex === history.length - 1;
+      up.disabled = !drive;
+      address.value = id || "";
+      for (const [location, button] of locationButtons) {
+        if (location === id) button.setAttribute("aria-current", "location");
+        else button.removeAttribute("aria-current");
+      }
+      content.replaceChildren();
+      content.setAttribute("aria-label", `${label}内容`);
+      const caption = create("div", "explorer-location-heading");
+      caption.append(drive ? driveIcon(drive) : pixelIcon("v1.1.0/computer"), create("h1", "", label));
+      content.append(caption);
+      if (drive) {
+        const empty = create("div", "explorer-empty");
+        empty.append(create("p", "", "此文件夹为空。"));
+        content.append(empty);
+      } else {
+        const grid = create("div", "drive-grid");
+        for (const item of drives) {
+          const tile = create("button", "drive-tile");
+          tile.type = "button";
+          tile.title = `打开${driveLabel(item)}`;
+          tile.append(driveIcon(item, "drive-icon"), create("span", "", driveLabel(item)));
+          tile.addEventListener("click", () => navigate(item.id));
+          grid.append(tile);
+        }
+        content.append(grid);
+      }
+      setStatus(`${drive ? "0" : drives.length} 个对象${drive ? ` · ${drive.letter}:\\` : ""}`);
+      if (restoreFocus) content.focus({ preventScroll: true });
+    }
+    render();
   }
 
   function settingsContent(body) {
@@ -274,7 +426,7 @@
     const heading = create("div", "settings-heading");
     const copy = create("div");
     copy.append(create("h1", "", "桌面外观"), create("p", "", "调整个人空间的显示方式。"));
-    heading.append(pixelIcon("settings", "settings-icon"), copy);
+    heading.append(pixelIcon(windowTypes.settings.icon, "settings-icon"), copy);
     body.append(heading);
 
     const menuGroup = create("fieldset", "settings-group");
@@ -347,7 +499,7 @@
     element.style.left = `${Math.max(0, Math.min(desktop.clientWidth - width - 16, desktop.clientWidth * .24 + offset))}px`;
     element.style.top = `${Math.max(0, Math.min(desktop.clientHeight - height - 16, desktop.clientHeight * .12 + offset))}px`;
     const titlebar = create("div", "titlebar");
-    const titleIcon = pixelIcon(id, "title-icon");
+    const titleIcon = pixelIcon(windowTypes[id].icon, "title-icon");
     const label = create("span", "window-label", titleOf(id));
     label.id = `title-${id}`;
     const controls = create("div", "window-controls");
@@ -369,14 +521,18 @@
     const body = create("div", "window-body");
     body.tabIndex = 0;
     body.setAttribute("aria-label", `${titleOf(id)}内容`);
-    windowTypes[id].render(body);
     const status = create("div", "statusbar");
-    status.append(create("span", "", windowTypes[id].status()), pixelIcon("grip", "status-grip"));
-    element.append(titlebar, toolbar, body, status);
+    const statusText = create("span", "", windowTypes[id].status());
+    statusText.setAttribute("role", "status");
+    status.append(statusText, pixelIcon("grip", "status-grip"));
+    windowTypes[id].render(body, (text) => { statusText.textContent = text; });
+    element.append(titlebar);
+    if (id === "settings") element.append(toolbar);
+    element.append(body, status);
     const tab = create("button", "classic-button window-tab");
     tab.type = "button";
     tab.setAttribute("aria-controls", element.id);
-    tab.append(pixelIcon(id, "title-icon"), create("span", "", titleOf(id)));
+    tab.append(pixelIcon(windowTypes[id].icon, "title-icon"), create("span", "", titleOf(id)));
     tab.addEventListener("click", () => {
       const entry = openWindows.get(id);
       if (activeId === id && !entry.minimized) minimize(id); else activate(id, true);

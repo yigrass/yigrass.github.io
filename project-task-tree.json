@@ -40,15 +40,17 @@
         "JavaScript syntax compilation checked",
         "User reviewed initial desktop shell positively",
         "User integrated initial files into repository; local tracked files verified",
-        "System Settings and Pixel UI successor implementation completed"
+        "System Settings and Pixel UI successor implementation completed",
+        "Explorer and System Properties successor implementation completed"
       ],
       "remainingWork": [
-        "Review updated desktop after settings and pixel UI changes"
+        "Review Explorer navigation, property tabs and settings in a browser at wide and narrow viewport sizes"
       ],
       "blockers": [],
       "evidence": [
         "qa/mvp-preview-check.md",
-        "qa/system-settings-pixel-ui-review.md"
+        "qa/system-settings-pixel-ui-review.md",
+        "qa/explorer-system-properties-review.md"
       ]
     },
     {
@@ -65,6 +67,23 @@
         "Independent system settings window with three persisted controls",
         "14 verified 8-bit indexed pixel PNGs and editable Aseprite sources",
         "Syntax, resource, image format and diff checks passed"
+      ]
+    },
+    {
+      "id": "explorer-system-properties",
+      "name": "Explorer and System Properties",
+      "parent": "qq-space-mvp",
+      "status": "completed",
+      "dependencies": [],
+      "returnPoint": "QQ Space MVP / Review updated desktop",
+      "evidence": [
+        "qa/explorer-system-properties-review.md"
+      ],
+      "completedWork": [
+        "Explorer scaffold with four empty virtual drives and navigation history",
+        "My Computer personal system property tabs",
+        "Eight verified indexed pixel assets in version 1.1.0",
+        "JavaScript syntax, configuration, resource, PNG, hash and diff checks passed"
       ]
     }
   ]
