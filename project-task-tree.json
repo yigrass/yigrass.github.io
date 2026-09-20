@@ -41,16 +41,20 @@
         "User reviewed initial desktop shell positively",
         "User integrated initial files into repository; local tracked files verified",
         "System Settings and Pixel UI successor implementation completed",
-        "Explorer and System Properties successor implementation completed"
+        "Explorer and System Properties successor implementation completed",
+        "Window Interaction Refinement implementation and color candidate preview completed",
+        "User-selected Ink Black Palette applied"
       ],
       "remainingWork": [
-        "Review Explorer navigation, property tabs and settings in a browser at wide and narrow viewport sizes"
+        "Review window resizing, Explorer and selected palette in a browser",
+        "Define background artwork subject and composition"
       ],
       "blockers": [],
       "evidence": [
         "qa/mvp-preview-check.md",
         "qa/system-settings-pixel-ui-review.md",
-        "qa/explorer-system-properties-review.md"
+        "qa/explorer-system-properties-review.md",
+        "qa/window-interaction-refinement-review.md"
       ]
     },
     {
@@ -85,6 +89,48 @@
         "Eight verified indexed pixel assets in version 1.1.0",
         "JavaScript syntax, configuration, resource, PNG, hash and diff checks passed"
       ]
+    },
+    {
+      "id": "window-interaction-refinement",
+      "name": "Window Interaction Refinement",
+      "parent": "qq-space-mvp",
+      "status": "completed",
+      "dependencies": [],
+      "returnPoint": "QQ Space MVP / Review updated desktop",
+      "evidence": [
+        "qa/window-interaction-refinement-review.md"
+      ],
+      "completedWork": [
+        "Eight-direction window resizing without persisted dimensions",
+        "Explorer toolbar reduced to Up with permanent tree pane",
+        "Four black and gray color candidates previewed separately; website colors unchanged",
+        "JavaScript syntax and resize geometry checks passed"
+      ]
+    },
+    {
+      "id": "ink-black-palette",
+      "name": "Ink Black Palette",
+      "parent": "qq-space-mvp",
+      "status": "completed",
+      "dependencies": [],
+      "returnPoint": "QQ Space MVP / Review updated desktop",
+      "evidence": [
+        "assets/styles.css",
+        "qa/task-transitions.jsonl"
+      ],
+      "completedWork": [
+        "Candidate A #202020 applied to active title bars and selection highlights",
+        "Shared accent token and selector mappings verified"
+      ]
+    },
+    {
+      "id": "developer-mode",
+      "name": "Developer Mode",
+      "parent": "personal-website",
+      "status": "pending",
+      "dependencies": [],
+      "returnPoint": "Personal Website / Backlog review",
+      "note": "Recorded at user request only. Requirements are not defined. Do not start implementation until explicitly requested."
     }
   ]
 }

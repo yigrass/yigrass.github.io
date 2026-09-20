@@ -169,10 +169,7 @@
     if (!entry) return;
     entry.minimized = false;
     entry.element.hidden = false;
-    if (!entry.element.classList.contains("is-maximized")) {
-      entry.element.style.left = `${Math.max(0, Math.min(entry.element.offsetLeft, desktop.clientWidth - entry.element.offsetWidth))}px`;
-      entry.element.style.top = `${Math.max(0, Math.min(entry.element.offsetTop, desktop.clientHeight - entry.element.offsetHeight))}px`;
-    }
+    fitWindow(entry.element);
     if (zIndex > 900) {
       [...openWindows.values()].sort((a, b) => Number(a.element.style.zIndex) - Number(b.element.style.zIndex)).forEach((item, index) => { item.element.style.zIndex = 10 + index; });
       zIndex = 10 + openWindows.size;
@@ -189,6 +186,7 @@
   }
   function minimize(id) {
     const entry = openWindows.get(id);
+    entry.cancelResize();
     entry.minimized = true;
     entry.element.hidden = true;
     if (activeId === id) activateRemaining();
@@ -198,6 +196,7 @@
   }
   function closeWindow(id) {
     const entry = openWindows.get(id);
+    entry.cancelResize();
     entry.element.remove();
     entry.tab.remove();
     openWindows.delete(id);
@@ -207,6 +206,7 @@
   }
   function toggleMaximize(id) {
     const entry = openWindows.get(id);
+    entry.cancelResize();
     const maximized = entry.element.classList.toggle("is-maximized");
     $(".control-max", entry.element).setAttribute("aria-label", `${maximized ? "还原" : "最大化"}${titleOf(id)}`);
     $(".control-max img", entry.element).src = `assets/pixel-ui/${maximized ? "restore" : "maximize"}.png`;
@@ -294,8 +294,7 @@
     const rootLabel = titleOf("profile");
     const driveLabel = (drive) => `${drive.label} (${drive.letter}:)`;
     const driveIcon = (drive, className) => pixelIcon(`v1.1.0/${["hard-disk", "floppy", "cdrom"].includes(drive.type) ? drive.type : "hard-disk"}`, className);
-    let history = [null];
-    let historyIndex = 0;
+    let currentLocation = null;
     const toolbar = create("div", "explorer-toolbar");
     toolbar.setAttribute("role", "group");
     toolbar.setAttribute("aria-label", "资源管理器工具栏");
@@ -308,15 +307,7 @@
       toolbar.append(button);
       return button;
     }
-    const back = tool("后退", "v1.1.0/back", () => { if (historyIndex > 0) { historyIndex--; render(); } });
-    const forward = tool("前进", "v1.1.0/forward", () => { if (historyIndex < history.length - 1) { historyIndex++; render(); } });
     const up = tool("向上", "v1.1.0/up", () => navigate(null));
-    const folders = tool("文件夹", "works", () => {
-      sidebar.hidden = !sidebar.hidden;
-      folders.setAttribute("aria-pressed", String(!sidebar.hidden));
-    });
-    folders.setAttribute("aria-pressed", "true");
-    folders.setAttribute("aria-controls", "explorer-folders");
     const addressRow = create("label", "explorer-address");
     addressRow.htmlFor = "explorer-address";
     const address = create("select");
@@ -374,20 +365,16 @@
     body.append(toolbar, addressRow, panes);
     function navigate(id) {
       if (id !== null && !drives.some((drive) => drive.id === id)) return;
-      if (history[historyIndex] === id) return;
-      history = history.slice(0, historyIndex + 1);
-      history.push(id);
-      historyIndex++;
+      if (currentLocation === id) return;
+      currentLocation = id;
       render();
     }
     function render() {
-      const id = history[historyIndex];
+      const id = currentLocation;
       const drive = drives.find((item) => item.id === id);
       const label = drive ? driveLabel(drive) : rootLabel;
       // Moving into a drive removes its root tile; retain keyboard focus in the pane.
       const restoreFocus = content.contains(document.activeElement);
-      back.disabled = historyIndex === 0;
-      forward.disabled = historyIndex === history.length - 1;
       up.disabled = !drive;
       address.value = id || "";
       for (const [location, button] of locationButtons) {
@@ -466,6 +453,72 @@
     body.append(effectsGroup);
   }
 
+  function fitWindow(element) {
+    if (element.classList.contains("is-maximized") || matchMedia("(max-width:640px)").matches) return;
+    const width = Math.min(element.offsetWidth, desktop.clientWidth);
+    const height = Math.min(element.offsetHeight, desktop.clientHeight);
+    if (element.offsetWidth > width) element.style.width = `${width}px`;
+    if (element.offsetHeight > height) element.style.height = `${height}px`;
+    element.style.left = `${Math.max(0, Math.min(element.offsetLeft, desktop.clientWidth - width))}px`;
+    element.style.top = `${Math.max(0, Math.min(element.offsetTop, desktop.clientHeight - height))}px`;
+  }
+  function resizedBounds(origin, direction, dx, dy, bounds) {
+    const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
+    const right = origin.left + origin.width;
+    const bottom = origin.top + origin.height;
+    let { left, top, width, height } = origin;
+    if (direction.includes("e")) width = clamp(width + dx, Math.min(380, bounds.width - left), bounds.width - left);
+    if (direction.includes("s")) height = clamp(height + dy, Math.min(240, bounds.height - top), bounds.height - top);
+    if (direction.includes("w")) {
+      left = Math.round(clamp(left + dx, 0, Math.max(0, right - 380)));
+      width = right - left;
+    }
+    if (direction.includes("n")) {
+      top = Math.round(clamp(top + dy, 0, Math.max(0, bottom - 240)));
+      height = bottom - top;
+    }
+    return { left: Math.round(left), top: Math.round(top), width: Math.round(width), height: Math.round(height) };
+  }
+  function enableResize(id, element) {
+    let resizing = null;
+    const cancel = () => {
+      if (!resizing) return;
+      const { handle, pointerId } = resizing;
+      resizing = null;
+      document.body.classList.remove("is-resizing");
+      document.body.style.removeProperty("--resize-cursor");
+      if (handle.hasPointerCapture(pointerId)) handle.releasePointerCapture(pointerId);
+    };
+    for (const direction of ["n", "e", "s", "w", "ne", "se", "sw", "nw"]) {
+      const handle = create("div", `resize-handle resize-${direction}`);
+      handle.setAttribute("aria-hidden", "true");
+      handle.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0 || document.body.classList.contains("is-resizing") || element.classList.contains("is-maximized") || matchMedia("(max-width:640px)").matches) return;
+        activate(id);
+        const origin = { left: element.offsetLeft, top: element.offsetTop, width: element.offsetWidth, height: element.offsetHeight };
+        resizing = { handle, pointerId: event.pointerId, origin, x: event.clientX, y: event.clientY };
+        element.classList.add("is-resized");
+        // Freeze the computed size before dragging, including short-screen defaults.
+        Object.entries(origin).forEach(([key, value]) => { element.style[key] = `${value}px`; });
+        document.body.classList.add("is-resizing");
+        document.body.style.setProperty("--resize-cursor", `${direction}-resize`);
+        handle.setPointerCapture(event.pointerId);
+        event.preventDefault();
+        event.stopPropagation();
+      });
+      handle.addEventListener("pointermove", (event) => {
+        if (!resizing || event.pointerId !== resizing.pointerId) return;
+        const next = resizedBounds(resizing.origin, direction, event.clientX - resizing.x, event.clientY - resizing.y, { width: desktop.clientWidth, height: desktop.clientHeight });
+        Object.entries(next).forEach(([key, value]) => { element.style[key] = `${value}px`; });
+      });
+      const finish = (event) => { if (event.pointerId === resizing?.pointerId) cancel(); };
+      handle.addEventListener("pointerup", finish);
+      handle.addEventListener("pointercancel", finish);
+      handle.addEventListener("lostpointercapture", finish);
+      element.append(handle);
+    }
+    return cancel;
+  }
   function enableDrag(element, titlebar) {
     let drag = null;
     titlebar.addEventListener("pointerdown", (event) => {
@@ -539,7 +592,7 @@
     });
     windowsHost.append(element);
     tabsHost.append(tab);
-    openWindows.set(id, { element, tab, minimized: false });
+    openWindows.set(id, { element, tab, minimized: false, cancelResize: enableResize(id, element) });
     element.addEventListener("pointerdown", () => activate(id));
     element.addEventListener("focusin", () => { if (activeId !== id) activate(id); });
     enableDrag(element, titlebar);
@@ -547,10 +600,9 @@
     announce(`已打开${titleOf(id)}`);
   }
   window.addEventListener("resize", () => {
-    for (const { element } of openWindows.values()) {
-      if (element.hidden || element.classList.contains("is-maximized")) continue;
-      element.style.left = `${Math.max(0, Math.min(element.offsetLeft, desktop.clientWidth - element.offsetWidth))}px`;
-      element.style.top = `${Math.max(0, Math.min(element.offsetTop, desktop.clientHeight - element.offsetHeight))}px`;
+    for (const { element, cancelResize } of openWindows.values()) {
+      cancelResize();
+      if (!element.hidden) fitWindow(element);
     }
   });
   const updateClock = () => {

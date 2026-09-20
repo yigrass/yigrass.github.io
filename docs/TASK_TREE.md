@@ -12,6 +12,9 @@ Status: in_progress; current context: qq-space-mvp; delivery: local-changes-read
 | QQ Space MVP | Personal Website | in_progress | Personal Website / MVP acceptance |
 | System Settings and Pixel UI | QQ Space MVP | completed | QQ Space MVP / Review updated desktop |
 | Explorer and System Properties | QQ Space MVP | completed | QQ Space MVP / Review updated desktop |
+| Window Interaction Refinement | QQ Space MVP | completed | QQ Space MVP / Review updated desktop |
+| Ink Black Palette | QQ Space MVP | completed | QQ Space MVP / Review updated desktop |
+| Developer Mode | Personal Website | pending | Personal Website / Backlog review |
 
 ## Transitions
 
@@ -24,3 +27,8 @@ Status: in_progress; current context: qq-space-mvp; delivery: local-changes-read
 - 2026-09-20 / successor-task-completed / system-settings-pixel-ui / completed: System settings window and verified 8-bit indexed UI assets implemented directly in repository. Static and image checks passed. Actual browser review remains at parent task. No Git writes or remote operations.
 - 2026-09-20 / successor-task-started / explorer-system-properties / in_progress: User approved Explorer with four empty virtual drives, My Computer as personal system properties, and a period-style Control Panel icon. Prior completed work and reports retained.
 - 2026-09-20 / successor-task-completed / explorer-system-properties / completed: Explorer and personal System Properties implemented; eight original indexed pixel assets added as version 1.1.0. Static and asset checks passed. Browser acceptance remains in parent task. No Git writes or remote operations.
+- 2026-09-20 / successor-task-started / window-interaction-refinement / in_progress: User requested border resizing without persisted dimensions and Explorer with only Up and a permanent tree pane. Black/gray color candidates are preview-only; website colors remain unchanged.
+- 2026-09-20 / successor-task-completed / window-interaction-refinement / completed: Window border resizing and simplified Explorer implemented; syntax and geometry checks passed. Four color candidates remain preview-only. Browser review and color selection return to parent task. No Git writes or remote operations.
+- 2026-09-20 / successor-task-started / ink-black-palette / in_progress: User chose candidate A (#202020) for title bars and selection highlights.
+- 2026-09-20 / backlog-item-added / developer-mode / pending: Developer Mode recorded as a future task. User explicitly requested no implementation now; scope remains undefined.
+- 2026-09-20 / successor-task-completed / ink-black-palette / completed: Candidate A #202020 applied through shared accent token; active title, menu selection, tree selection and drive selection mappings verified. Developer Mode remains pending and unimplemented. No Git writes or remote operations.
