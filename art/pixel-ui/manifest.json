@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": "1.0.0",
+  "generator": "art/pixel-ui/generate-pixel-ui.lua",
+  "tool": "Aseprite 1.3.18.1-x64",
+  "nativeColorMode": "indexed",
+  "cursorScaleValidation": "exact 2x2 pixel replication",
+  "assets": [
+    {
+      "name": "profile",
+      "file": "assets/pixel-ui/profile.png",
+      "width": 16,
+      "height": 16,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 8,
+      "binaryAlpha": true,
+      "sha256": "C6C348F0F829D277483FB46A2824C9C0C3F153887543C40832A41C850126D5AE"
+    },
+    {
+      "name": "works",
+      "file": "assets/pixel-ui/works.png",
+      "width": 16,
+      "height": 16,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 5,
+      "binaryAlpha": true,
+      "sha256": "F0ABC202F8A1AE455B3A0D8EC16DE4E15BA8EA022901241828FBFE7F08C4B7F3"
+    },
+    {
+      "name": "settings",
+      "file": "assets/pixel-ui/settings.png",
+      "width": 16,
+      "height": 16,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 7,
+      "binaryAlpha": true,
+      "sha256": "B6B3418019BA5BCE40BF69BDED751CA3316B2D90EE089B509270DAB36351B754"
+    },
+    {
+      "name": "start",
+      "file": "assets/pixel-ui/start.png",
+      "width": 16,
+      "height": 16,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 6,
+      "binaryAlpha": true,
+      "sha256": "F5164611EB7346A457137B92BA1ED4211CED55FADD06E8D19BD05849C3C15640"
+    },
+    {
+      "name": "cursor",
+      "file": "assets/pixel-ui/cursor.png",
+      "width": 16,
+      "height": 16,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 3,
+      "binaryAlpha": true,
+      "sha256": "A1A87214796903E697411BC5C0B0D0C278D8B47AE8E14E9AB7E269C0489B4978"
+    },
+    {
+      "name": "cursor-2x",
+      "file": "assets/pixel-ui/cursor-2x.png",
+      "width": 32,
+      "height": 32,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 3,
+      "binaryAlpha": true,
+      "sha256": "98415B1021F18868277D478F7B47E4F741B207B4866B0430F5A0F68962CB2938"
+    },
+    {
+      "name": "star",
+      "file": "assets/pixel-ui/star.png",
+      "width": 8,
+      "height": 8,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 4,
+      "binaryAlpha": true,
+      "sha256": "987D34616A89C0DBFE47E34C132358C27FB83169ACC2E3A6E84CD24A64952D2D"
+    },
+    {
+      "name": "minimize",
+      "file": "assets/pixel-ui/minimize.png",
+      "width": 8,
+      "height": 8,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 2,
+      "binaryAlpha": true,
+      "sha256": "A5CA8E8DBC1698B90B775FC661A937B1E415C64589BB0BF0A29158F573F56C06"
+    },
+    {
+      "name": "maximize",
+      "file": "assets/pixel-ui/maximize.png",
+      "width": 8,
+      "height": 8,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 2,
+      "binaryAlpha": true,
+      "sha256": "578C9C4A069CC978D40F0232B0086B7B9AE65DC61305D1F246F66A688DEB64EB"
+    },
+    {
+      "name": "restore",
+      "file": "assets/pixel-ui/restore.png",
+      "width": 8,
+      "height": 8,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 3,
+      "binaryAlpha": true,
+      "sha256": "38146FB12325A6FEC4CEB2E7494E6BBD3EAF77899F17C8A8DCD34D403D04E618"
+    },
+    {
+      "name": "close",
+      "file": "assets/pixel-ui/close.png",
+      "width": 8,
+      "height": 8,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 2,
+      "binaryAlpha": true,
+      "sha256": "AA943E500EB195D5CD7892F56B737D9ACCB667C60EE7C76D572C195EA2A1051C"
+    },
+    {
+      "name": "check",
+      "file": "assets/pixel-ui/check.png",
+      "width": 8,
+      "height": 8,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 2,
+      "binaryAlpha": true,
+      "sha256": "E7E16C846E8C1F4989B935146590A915EA8FE08088FEFD89215BF84357A017CA"
+    },
+    {
+      "name": "grip",
+      "file": "assets/pixel-ui/grip.png",
+      "width": 8,
+      "height": 8,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 3,
+      "binaryAlpha": true,
+      "sha256": "D7374A97BF1B4067578D469E506108826F4CB7224F0DC561EA7CBEA70C23193B"
+    },
+    {
+      "name": "dither",
+      "file": "assets/pixel-ui/dither.png",
+      "width": 2,
+      "height": 2,
+      "pngBitDepth": 8,
+      "pngColorType": 3,
+      "usedColors": 2,
+      "binaryAlpha": true,
+      "sha256": "8DFE30F2829929818FC65B4560A813655E0FBE9EF40EB848B3AE2D24CA703E37"
+    }
+  ]
+}

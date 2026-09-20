@@ -11,6 +11,11 @@
   const storageKey = "yigrass.desktop.preferences.v1";
   let activeId = null;
   let zIndex = 10;
+  const windowTypes = {
+    profile: { title: "个人信息", render: profileContent, status: () => "个人资料" },
+    works: { title: "个人作品", render: worksContent, status: () => `${config.works.length} 个作品` },
+    settings: { title: "系统设置", render: settingsContent, status: () => "设置即时生效，仅保存于此浏览器" }
+  };
 
   const create = (tag, className, text) => {
     const element = document.createElement(tag);
@@ -26,7 +31,16 @@
     } catch { return ""; }
   };
   const announce = (text) => { $("#announcer").textContent = text; };
-  const titleOf = (id) => config.menuLabels[id] || (id === "profile" ? "个人信息" : "个人作品");
+  const titleOf = (id) => config.menuLabels?.[id] || windowTypes[id].title;
+  const pixelIcon = (name, className = "") => {
+    const icon = create("img", `pixel-icon ${className}`.trim());
+    icon.src = `assets/pixel-ui/${name}.png`;
+    icon.alt = "";
+    icon.width = 16;
+    icon.height = 16;
+    icon.draggable = false;
+    return icon;
+  };
 
   document.title = config.siteTitle;
   $("#start-label").textContent = config.startLabel;
@@ -45,38 +59,56 @@
     customCursor: typeof saved.customCursor === "boolean" ? saved.customCursor : Boolean(config.defaults?.customCursor),
     floatingStars: typeof saved.floatingStars === "boolean" ? saved.floatingStars : Boolean(config.defaults?.floatingStars)
   };
-  function applyPreferences() {
-    document.documentElement.style.setProperty("--menu-alpha", 1 - preferences.menuTransparency / 100);
-    $("#menu-transparency").value = preferences.menuTransparency;
-    $("#transparency-value").textContent = `${preferences.menuTransparency}%`;
-    $("#custom-cursor").checked = preferences.customCursor;
-    $("#floating-stars").checked = preferences.floatingStars;
-    document.body.classList.toggle("custom-cursor", preferences.customCursor);
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  let starAnimation = 0;
+  let starsRunning = false;
+  function updateStars() {
+    const enabled = preferences.floatingStars && !reducedMotion.matches;
+    if (enabled === starsRunning) return;
+    starsRunning = enabled;
+    cancelAnimationFrame(starAnimation);
     const effects = $("#effects");
     effects.replaceChildren();
-    if (preferences.floatingStars) {
-      for (let index = 0; index < 16; index++) {
-        const star = create("span", "floating-star", index % 3 === 0 ? "✦" : "✧");
-        star.style.left = `${(index * 37 + 7) % 100}%`;
-        star.style.setProperty("--duration", `${14 + index % 9}s`);
-        star.style.setProperty("--delay", `-${index * 2.1}s`);
-        effects.append(star);
+    if (!enabled) return;
+    const stars = Array.from({ length: 16 }, (_, index) => {
+      const star = pixelIcon("star", "floating-star");
+      effects.append(star);
+      return { element: star, offset: index * 89, speed: 12 + index % 7, x: (index * 37 + 7) % 100 };
+    });
+    let previousTick = -Infinity;
+    const animate = (time) => {
+      if (time - previousTick >= 80) {
+        const width = desktop.clientWidth;
+        const height = desktop.clientHeight + 32;
+        for (const star of stars) {
+          const x = Math.round((width * star.x / 100) / 2) * 2;
+          const y = Math.round(((time / 1000 * star.speed + star.offset) % height - 24) / 2) * 2;
+          star.element.style.transform = `translate(${x}px, ${y}px)`;
+        }
+        previousTick = time;
       }
-    }
-    try { localStorage.setItem(storageKey, JSON.stringify(preferences)); } catch { /* Site remains usable without storage. */ }
+      starAnimation = requestAnimationFrame(animate);
+    };
+    starAnimation = requestAnimationFrame(animate);
   }
-  $("#menu-transparency").addEventListener("input", (event) => {
-    preferences.menuTransparency = Number(event.target.value);
-    applyPreferences();
-  });
-  $("#custom-cursor").addEventListener("change", (event) => {
-    preferences.customCursor = event.target.checked;
-    applyPreferences();
-  });
-  $("#floating-stars").addEventListener("change", (event) => {
-    preferences.floatingStars = event.target.checked;
-    applyPreferences();
-  });
+  reducedMotion.addEventListener("change", updateStars);
+  function applyPreferences() {
+    document.documentElement.style.setProperty("--menu-alpha", 1 - preferences.menuTransparency / 100);
+    const settings = $("#window-settings");
+    if (settings) {
+      $("#menu-transparency", settings).value = preferences.menuTransparency;
+      $("#transparency-value", settings).textContent = `${preferences.menuTransparency}%`;
+      $("#custom-cursor", settings).checked = preferences.customCursor;
+      $("#floating-stars", settings).checked = preferences.floatingStars;
+    }
+    document.body.classList.toggle("custom-cursor", preferences.customCursor);
+    updateStars();
+    let status = "设置已保存，仅对此浏览器生效";
+    try { localStorage.setItem(storageKey, JSON.stringify(preferences)); }
+    catch { status = "设置已生效；此浏览器未允许保存设置"; }
+    const statusText = settings && $(".statusbar span", settings);
+    if (statusText) statusText.textContent = status;
+  }
   applyPreferences();
 
   function closeMenu(returnFocus = false) {
@@ -90,7 +122,6 @@
     if (keyboard) $("#menu-items button").focus();
   }
   start.addEventListener("click", (event) => menu.hidden ? openMenu(event.detail === 0) : closeMenu());
-  $("#close-menu").addEventListener("click", () => closeMenu(true));
   document.addEventListener("pointerdown", (event) => {
     if (!menu.hidden && !menu.contains(event.target) && !start.contains(event.target)) closeMenu();
   });
@@ -99,7 +130,7 @@
   });
   menu.addEventListener("keydown", (event) => {
     if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key) || event.target.matches("input")) return;
-    const items = [...menu.querySelectorAll("button,summary")].filter((item) => item.getClientRects().length);
+    const items = [...menu.querySelectorAll("button")].filter((item) => item.getClientRects().length);
     const current = items.indexOf(document.activeElement);
     let next = current;
     if (event.key === "ArrowDown") next = (current + 1) % items.length;
@@ -110,12 +141,16 @@
     event.preventDefault();
   });
 
-  for (const id of ["profile", "works"]) {
+  for (const id of Object.keys(windowTypes)) {
     const button = create("button", "menu-item");
     button.type = "button";
     button.dataset.window = id;
-    const icon = create("span", `icon icon-${id}`);
-    icon.setAttribute("aria-hidden", "true");
+    const icon = pixelIcon(id, "menu-icon");
+    if (id === "settings") {
+      const divider = create("div", "menu-divider");
+      divider.setAttribute("role", "separator");
+      $("#menu-items").append(divider);
+    }
     button.append(icon, create("span", "", titleOf(id)));
     button.addEventListener("click", () => { closeMenu(); openWindow(id); });
     $("#menu-items").append(button);
@@ -174,6 +209,8 @@
     const entry = openWindows.get(id);
     const maximized = entry.element.classList.toggle("is-maximized");
     $(".control-max", entry.element).setAttribute("aria-label", `${maximized ? "还原" : "最大化"}${titleOf(id)}`);
+    $(".control-max img", entry.element).src = `assets/pixel-ui/${maximized ? "restore" : "maximize"}.png`;
+    $(".control-max", entry.element).title = maximized ? "还原" : "最大化";
     activate(id);
   }
 
@@ -203,8 +240,7 @@
   function worksContent(body) {
     if (!config.works.length) {
       const empty = create("div", "empty-works");
-      const icon = create("span", "icon icon-works");
-      icon.setAttribute("aria-hidden", "true");
+      const icon = pixelIcon("works", "empty-icon");
       empty.append(icon, create("h1", "", "这里还没有作品"), create("p", "", "下一段故事，正在路上。"));
       body.append(empty);
       return;
@@ -233,6 +269,51 @@
     body.append(list);
   }
 
+  function settingsContent(body) {
+    body.classList.add("settings-body");
+    const heading = create("div", "settings-heading");
+    const copy = create("div");
+    copy.append(create("h1", "", "桌面外观"), create("p", "", "调整个人空间的显示方式。"));
+    heading.append(pixelIcon("settings", "settings-icon"), copy);
+    body.append(heading);
+
+    const menuGroup = create("fieldset", "settings-group");
+    menuGroup.append(create("legend", "", "开始菜单"));
+    const label = create("label", "range-label");
+    label.htmlFor = "menu-transparency";
+    const output = create("output", "", `${preferences.menuTransparency}%`);
+    output.id = "transparency-value";
+    output.setAttribute("for", "menu-transparency");
+    label.append(create("span", "", "底色透明度"), output);
+    const range = create("input");
+    Object.assign(range, { type: "range", id: "menu-transparency", min: "0", max: "100", step: "5", value: String(preferences.menuTransparency) });
+    range.addEventListener("input", () => { preferences.menuTransparency = Number(range.value); applyPreferences(); });
+    const endpoints = create("div", "range-endpoints");
+    endpoints.append(create("span", "", "不透明"), create("span", "", "透明"));
+    menuGroup.append(label, range, endpoints, create("p", "setting-hint", "文字和图标保持清晰。"));
+    body.append(menuGroup);
+
+    const effectsGroup = create("fieldset", "settings-group");
+    effectsGroup.append(create("legend", "", "桌面效果"));
+    for (const [id, key, title, description, icon] of [
+      ["custom-cursor", "customCursor", "自定义光标", "使用经典像素箭头，适用于鼠标操作。", "cursor"],
+      ["floating-stars", "floatingStars", "漂浮星星", "在桌面上显示缓缓飘落的像素星星。", "star"]
+    ]) {
+      const row = create("label", "setting-row");
+      row.htmlFor = id;
+      const input = create("input", "pixel-checkbox");
+      input.type = "checkbox";
+      input.id = id;
+      input.checked = preferences[key];
+      input.addEventListener("change", () => { preferences[key] = input.checked; applyPreferences(); });
+      const text = create("span", "setting-copy");
+      text.append(create("span", "setting-title", title), create("span", "setting-hint", description));
+      row.append(pixelIcon(icon, "setting-icon"), text, input);
+      effectsGroup.append(row);
+    }
+    body.append(effectsGroup);
+  }
+
   function enableDrag(element, titlebar) {
     let drag = null;
     titlebar.addEventListener("pointerdown", (event) => {
@@ -245,8 +326,8 @@
       if (!drag) return;
       const left = Math.min(Math.max(0, drag.left + event.clientX - drag.x), Math.max(0, desktop.clientWidth - element.offsetWidth));
       const top = Math.min(Math.max(0, drag.top + event.clientY - drag.y), Math.max(0, desktop.clientHeight - element.offsetHeight));
-      element.style.left = `${left}px`;
-      element.style.top = `${top}px`;
+      element.style.left = `${Math.round(left)}px`;
+      element.style.top = `${Math.round(top)}px`;
     });
     const end = () => { drag = null; };
     titlebar.addEventListener("pointerup", end);
@@ -266,8 +347,7 @@
     element.style.left = `${Math.max(0, Math.min(desktop.clientWidth - width - 16, desktop.clientWidth * .24 + offset))}px`;
     element.style.top = `${Math.max(0, Math.min(desktop.clientHeight - height - 16, desktop.clientHeight * .12 + offset))}px`;
     const titlebar = create("div", "titlebar");
-    const titleIcon = create("span", "title-icon", id === "profile" ? "▣" : "▤");
-    titleIcon.setAttribute("aria-hidden", "true");
+    const titleIcon = pixelIcon(id, "title-icon");
     const label = create("span", "window-label", titleOf(id));
     label.id = `title-${id}`;
     const controls = create("div", "window-controls");
@@ -276,6 +356,7 @@
       button.type = "button";
       button.setAttribute("aria-label", `${name}${titleOf(id)}`);
       button.title = name;
+      button.append(pixelIcon({ min: "minimize", max: "maximize", close: "close" }[type], "control-icon"));
       button.addEventListener("click", action);
       controls.append(button);
     }
@@ -288,14 +369,14 @@
     const body = create("div", "window-body");
     body.tabIndex = 0;
     body.setAttribute("aria-label", `${titleOf(id)}内容`);
-    if (id === "profile") profileContent(body); else worksContent(body);
+    windowTypes[id].render(body);
     const status = create("div", "statusbar");
-    status.append(create("span", "", id === "works" ? `${config.works.length} 个作品` : "个人资料"), create("span", "status-grip"));
+    status.append(create("span", "", windowTypes[id].status()), pixelIcon("grip", "status-grip"));
     element.append(titlebar, toolbar, body, status);
     const tab = create("button", "classic-button window-tab");
     tab.type = "button";
     tab.setAttribute("aria-controls", element.id);
-    tab.append(create("span", "title-icon", id === "profile" ? "▣" : "▤"), create("span", "", titleOf(id)));
+    tab.append(pixelIcon(id, "title-icon"), create("span", "", titleOf(id)));
     tab.addEventListener("click", () => {
       const entry = openWindows.get(id);
       if (activeId === id && !entry.minimized) minimize(id); else activate(id, true);

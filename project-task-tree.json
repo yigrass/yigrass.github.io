@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "projectName": "yigrass.github.io",
-  "status": "blocked",
+  "status": "in_progress",
   "rootTaskId": "personal-website",
   "currentContextTaskId": "qq-space-mvp",
   "currentWorkingBranchTaskId": null,
@@ -13,8 +13,8 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "local-preview-candidate",
-    "repositoryIntegrated": false,
+    "deliveryState": "local-changes-ready-for-review",
+    "repositoryIntegrated": true,
     "lastUpdated": "2026-09-20",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
@@ -23,7 +23,7 @@
       "id": "personal-website",
       "name": "Personal Website",
       "parent": null,
-      "status": "blocked",
+      "status": "in_progress",
       "dependencies": [],
       "returnPoint": "QQ Space MVP / Browser validation and repository integration"
     },
@@ -31,13 +31,41 @@
       "id": "qq-space-mvp",
       "name": "QQ Space MVP",
       "parent": "personal-website",
-      "status": "blocked",
+      "status": "in_progress",
       "dependencies": [],
       "returnPoint": "Personal Website / MVP acceptance",
-      "completedWork": ["Static desktop preview authored", "Configuration separated from behavior and styling", "JavaScript syntax compilation checked"],
-      "remainingWork": ["Browser interaction and responsive visual validation", "Copy accepted files into the actual repository"],
-      "blockers": ["Browser URL policy blocks file-based preview", "Actual repository is outside writable roots"],
-      "evidence": ["qa/mvp-preview-check.md"]
+      "completedWork": [
+        "Static desktop preview authored",
+        "Configuration separated from behavior and styling",
+        "JavaScript syntax compilation checked",
+        "User reviewed initial desktop shell positively",
+        "User integrated initial files into repository; local tracked files verified",
+        "System Settings and Pixel UI successor implementation completed"
+      ],
+      "remainingWork": [
+        "Review updated desktop after settings and pixel UI changes"
+      ],
+      "blockers": [],
+      "evidence": [
+        "qa/mvp-preview-check.md",
+        "qa/system-settings-pixel-ui-review.md"
+      ]
+    },
+    {
+      "id": "system-settings-pixel-ui",
+      "name": "System Settings and Pixel UI",
+      "parent": "qq-space-mvp",
+      "status": "completed",
+      "dependencies": [],
+      "returnPoint": "QQ Space MVP / Review updated desktop",
+      "evidence": [
+        "qa/system-settings-pixel-ui-review.md"
+      ],
+      "completedWork": [
+        "Independent system settings window with three persisted controls",
+        "14 verified 8-bit indexed pixel PNGs and editable Aseprite sources",
+        "Syntax, resource, image format and diff checks passed"
+      ]
     }
   ]
 }

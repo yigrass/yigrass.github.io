@@ -4,7 +4,7 @@ window.SITE_CONFIG = {
   siteTitle: "yigrass — 个人桌面",
   startLabel: "开始",
   menuBrand: "yigrass",
-  menuLabels: { profile: "个人信息", works: "个人作品" },
+  menuLabels: { profile: "个人信息", works: "个人作品", settings: "系统设置" },
   wallpaper: "assets/wallpaper.svg",
   wallpaperPosition: "center center",
   themeColor: "#008080",
