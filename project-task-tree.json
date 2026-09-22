@@ -13,9 +13,9 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "ocean-capsule-wallpaper-integrated",
+    "deliveryState": "ocean-capsule-4k-wallpaper-integrated",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review the updated homepage or define the next requirement",
+    "nextAction": "Review user-selected 3840x2160 wallpaper or define the next requirement",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-22",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
@@ -27,8 +27,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review homepage wallpaper",
-      "note": "The MVP remains completed. The user-processed ocean capsule pixel-art image is now the local homepage default; no implementation task is active."
+      "returnPoint": "Personal Website / Review 4K wallpaper",
+      "note": "The MVP remains completed. The user-selected 3840x2160 Aseprite resized wallpaper is integrated with centered contain sizing and soft white fill; no implementation task is active."
     },
     {
       "id": "qq-space-mvp",
@@ -303,6 +303,73 @@
         "Configuration and CSS default wallpaper updated; centered cover sizing retained",
         "Loading fallback and browser theme color aligned to sampled dark gray-green #383c39",
         "Image decode and copy hash, configuration execution, path and color consistency, preserved-art and diff checks passed"
+      ]
+    },
+    {
+      "id": "wallpaper-contain-layout",
+      "name": "Wallpaper Contain Layout",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "ocean-capsule-wallpaper-integration"
+      ],
+      "returnPoint": "Personal Website / Review wallpaper fit",
+      "note": "User requests the complete wallpaper with proportional contain sizing, centered white #ffffff fill and no cropping. Explain that the fill is a CSS color and wallpaper.svg is unused.",
+      "evidence": [
+        "qa/wallpaper-contain-layout.md"
+      ],
+      "completedOn": "2026-09-22",
+      "completedWork": [
+        "Centered contain background sizing with no repetition preserves the complete original image",
+        "Desktop fill, CSS and script fallback, and browser theme color set to #ffffff",
+        "README and configuration comment explain white fill and unused legacy wallpaper.svg",
+        "V8 configuration execution and app syntax, CSS and color checks, wallpaper SHA-256 and protected-art diff checks passed"
+      ]
+    },
+    {
+      "id": "soft-white-wallpaper-fill",
+      "name": "Soft White Wallpaper Fill",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "wallpaper-contain-layout"
+      ],
+      "returnPoint": "Personal Website / Review wallpaper fill",
+      "note": "User requested a softer white. Select #f2f1ed and align wallpaper fill, loading fallback and browser theme while retaining complete centered image display.",
+      "evidence": [
+        "assets/site-config.js",
+        "qa/task-transitions.jsonl"
+      ],
+      "completedOn": "2026-09-22",
+      "completedWork": [
+        "Selected slightly warm #f2f1ed for a softer wallpaper fill",
+        "Configuration, CSS and script fallback, HTML theme and README updated consistently",
+        "Color references and unchanged centered contain sizing inspected; diff check passed"
+      ]
+    },
+    {
+      "id": "ocean-capsule-4k-wallpaper-integration",
+      "name": "Ocean Capsule 4K Wallpaper Integration",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "ocean-capsule-wallpaper-integration",
+        "soft-white-wallpaper-fill"
+      ],
+      "returnPoint": "Personal Website / Review 4K wallpaper",
+      "referenceImages": [
+        "art/backgrounds/ocean-capsule-v2/draft-pixelart-ase.png"
+      ],
+      "note": "User selected their Aseprite resized 3840x2160 PNG. Copy its bytes unchanged into a new runtime asset, update wallpaper references and retain centered contain sizing and #f2f1ed fill.",
+      "evidence": [
+        "qa/ocean-capsule-4k-wallpaper-integration.md"
+      ],
+      "completedOn": "2026-09-22",
+      "completedWork": [
+        "User-selected 3840x2160 PNG copied unchanged to a new runtime wallpaper asset",
+        "Config and CSS references updated while preserving centered contain sizing and #f2f1ed fill",
+        "Source and runtime decode/hash, previous wallpaper hash, V8 config execution, exact reference-only changes and diff checks passed",
+        "README and successor QA record updated; pre-existing user changes and completed milestones preserved"
       ]
     }
   ]

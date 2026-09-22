@@ -26,7 +26,7 @@ UI 图标、窗口按钮、光标和星星采用原生小尺寸 8-bit 索引色 
 
 当前资料仅使用仓库已存在的信息：昵称为 `yigrass`，签名为 `Meet me here.`。头像、介绍和联系方式等待添加；未虚构小说、链接或游戏。头像为空时显示电脑图标，填写头像路径后以正常分辨率显示图片。
 
-默认背景采用用户选定的灰绿色海边舱室像素画，文件为 `assets/wallpapers/ocean-capsule-pixelart-v1.png`。来源是用户使用 Retro Diffusion 处理后的 `art/backgrounds/ocean-capsule-v2/draft-pixelart-4x.png`，尺寸为 2076×1132，接入时原样复制。背景等比例铺满桌面并居中裁剪，竖屏会隐藏部分左右景物；载入前底色及浏览器主题色为深灰绿 `#383c39`。可以把自己的图片放入 `assets/`，再修改 `wallpaper` 和 `wallpaperPosition`；CSS 中保留同一默认图片供脚本加载前显示。接入检查见 `qa/ocean-capsule-wallpaper-integration.md`，先前候选和检查记录继续保留。
+默认背景采用用户选定的灰绿色海边舱室像素画，文件为 `assets/wallpapers/ocean-capsule-pixelart-v2.png`。来源是用户在 Aseprite 中调整尺寸后的 `art/backgrounds/ocean-capsule-v2/draft-pixelart-ase.png`，实际尺寸为 3840×2160（16:9），文件大小为 215072 字节，接入时原样复制。背景在任务栏上方的桌面区域内等比例缩放、居中完整显示（`contain`），不裁剪、不平铺；桌面区域比图片更宽时左右留白，更窄时上下留白，比例相同时无留白。填充及载入前底色为偏暖的柔白 `#f2f1ed`，由 `assets/site-config.js` 的 `themeColor` 设置，CSS 的 `--desktop` 和脚本缺省值保留相同底色；浏览器主题色也设为相同的柔白。填充不使用图片。可以把自己的图片放入 `assets/`，再修改 `wallpaper` 和 `wallpaperPosition`；CSS 中保留同一默认图片供脚本加载前显示。最新接入检查见 `qa/ocean-capsule-4k-wallpaper-integration.md`，显示策略检查见 `qa/wallpaper-contain-layout.md`，首次接入检查见 `qa/ocean-capsule-wallpaper-integration.md`，先前候选和检查记录继续保留。
 
 `explorer.drives` 定义当前驱动器；各项 `id` 应唯一且非空，`letter`、`label` 和 `type` 分别定义盘符、名称和图标类型（`floppy`、`hard-disk`、`cdrom`）。本版按要求先搭建空目录，`works` 数组保留为后续作品数据入口，当前不渲染作品。小说、游戏及其目录组织留待后续接入。音乐播放和完整 JRPG 主题不属于本版。
 

@@ -45,7 +45,7 @@
   document.title = config.siteTitle;
   $("#start-label").textContent = config.startLabel;
   $("#menu-brand").textContent = config.menuBrand;
-  document.documentElement.style.setProperty("--desktop", config.themeColor || "#008080");
+  document.documentElement.style.setProperty("--desktop", config.themeColor || "#f2f1ed");
   const wallpaper = safeURL(config.wallpaper);
   if (wallpaper) desktop.style.backgroundImage = `url(${JSON.stringify(wallpaper)})`;
   desktop.style.backgroundPosition = config.wallpaperPosition || "center center";
