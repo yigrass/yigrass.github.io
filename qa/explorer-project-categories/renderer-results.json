@@ -1,0 +1,26 @@
+{
+  "passed": 20,
+  "checks": [
+    "Drive order is A,C,G,H",
+    "C is the only local disk",
+    "Production projects remain empty",
+    "Root lists four drives",
+    "Drive purpose labels match categories",
+    "Empty production drive a",
+    "Empty production drive c",
+    "Empty production drive g",
+    "Empty production drive h",
+    "A shows only novels with a single txt suffix",
+    "Novel entries use text-file pixel icons",
+    "Project entries carry safe separate-tab links",
+    "Novel count is accurate",
+    "Opening a focused root tile retains pane focus",
+    "Up returns to root",
+    "g contains only its assigned category",
+    "h contains only its assigned category",
+    "C stays empty even with populated project fixtures",
+    "Tree collapse remains functional",
+    "Tree navigation opens the category"
+  ],
+  "limitation": "Minimal DOM renderer test; safeURL is a fixture stand-in. No real browser layout or URL parser test."
+}

@@ -16,15 +16,17 @@ window.SITE_CONFIG = {
     introduction: "", // 显示在“个人介绍”页签，可用换行分隔段落。
     links: [] // 示例格式：{ label: "我的链接", href: "https://example.com" }
   },
-  // 这些是网站中的虚拟驱动器，不会读取访客电脑。当前仅提供空目录结构。
+  // 虚拟驱动器；category 将作品归入对应磁盘。C 盘暂不分配内容。
   explorer: {
     drives: [
-      { id: "a", letter: "A", label: "3.5 英寸软盘", type: "floppy" },
+      { id: "a", letter: "A", label: "3.5 英寸软盘", type: "floppy", category: "novel" },
       { id: "c", letter: "C", label: "本地磁盘", type: "hard-disk" },
-      { id: "d", letter: "D", label: "本地磁盘", type: "hard-disk" },
-      { id: "e", letter: "E", label: "光盘驱动器", type: "cdrom" }
+      { id: "g", letter: "G", label: "光盘驱动器", type: "cdrom", category: "game" },
+      { id: "h", letter: "H", label: "闪存盘", type: "flash-drive", category: "utility" }
     ]
   },
-  // 保留未来作品数据入口；本版资源管理器只展示驱动器，暂不渲染作品。
+  // 填入真实项目后显示对应入口；category 为 novel、game 或 utility。
+  // 每项格式：{ id: "唯一标识", title: "项目名称", category: "novel", url: "项目网页地址" }
+  // 小说名称会以 .txt 显示，但链接可以指向包含插图的完整项目网页。
   works: []
 };

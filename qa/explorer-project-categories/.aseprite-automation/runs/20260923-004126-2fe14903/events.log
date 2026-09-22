@@ -1,0 +1,4 @@
+﻿2026-09-23T00:41:26.9528811+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories profile_mode=Isolated
+2026-09-23T00:41:26.9728839+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\art\pixel-ui\v1.2.0\flash-drive.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\assets\pixel-ui\v1.2.0\flash-drive.png
+2026-09-23T00:41:27.1564192+08:00	INFO	finish step=export pid=19076 exit=0 seconds=0.175
+2026-09-23T00:41:27.2047306+08:00	ERROR	Expected file was not created: D:\01_SmallProjects\yigrass.github.io\assets\pixel-ui\v1.2.0\flash-drive.png

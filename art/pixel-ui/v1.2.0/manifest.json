@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": "1.2.0",
+  "previousVersion": "1.1.0",
+  "colorMode": "indexed",
+  "paletteSize": 256,
+  "assets": [
+    {
+      "name": "flash-drive",
+      "path": "assets/pixel-ui/v1.2.0/flash-drive.png",
+      "width": 16,
+      "height": 16,
+      "bitDepth": 8,
+      "colorType": 3,
+      "colors": 10,
+      "alpha": "binary",
+      "frames": 1,
+      "sha256": "65649E5A99E39129399A1FC933A822AB9AB7C2F34665C0793F6E7AA4EE3E46AF",
+      "sourceSha256": "A741B54317C19713FE97F7C852A3762F8ECFD481CACD158990578906F96D939B"
+    },
+    {
+      "name": "text-file",
+      "path": "assets/pixel-ui/v1.2.0/text-file.png",
+      "width": 16,
+      "height": 16,
+      "bitDepth": 8,
+      "colorType": 3,
+      "colors": 6,
+      "alpha": "binary",
+      "frames": 1,
+      "sha256": "6B67A662D66B637B2B970B99BA2C2978C27AC2766A7ED89FFB59B520D0A07B4D",
+      "sourceSha256": "3F0B7D2029AB594D2BEC9111E9378268A877917DC7C9514FF917BCF2F922C058"
+    }
+  ],
+  "automation": {
+    "version": "Aseprite 1.3.18.1-x64",
+    "profileMode": "Isolated",
+    "doctorRun": "qa/explorer-project-categories/.aseprite-automation/runs/20260923-003326-eb236406",
+    "generationRun": "qa/explorer-project-categories/.aseprite-automation/runs/20260923-004057-139e8703",
+    "exportRuns": [
+      "qa/explorer-project-categories/.aseprite-automation/runs/20260923-004148-01bff600",
+      "qa/explorer-project-categories/.aseprite-automation/runs/20260923-004149-ffd3182d",
+      "qa/explorer-project-categories/.aseprite-automation/runs/20260923-004149-6d13c071"
+    ]
+  }
+}

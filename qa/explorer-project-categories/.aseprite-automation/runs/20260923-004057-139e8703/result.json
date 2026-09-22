@@ -1,0 +1,23 @@
+﻿{
+    "ok":  true,
+    "mode":  "run-script",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-004057-139e8703\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-004057-139e8703",
+    "script":  "D:\\01_SmallProjects\\yigrass.github.io\\art\\pixel-ui\\v1.2.0\\generate-icons.lua",
+    "expected_paths":  [
+                           "D:/01_SmallProjects/yigrass.github.io/art/pixel-ui/v1.2.0/flash-drive.aseprite",
+                           "D:/01_SmallProjects/yigrass.github.io/art/pixel-ui/v1.2.0/text-file.aseprite",
+                           "D:/01_SmallProjects/yigrass.github.io/art/pixel-ui/v1.2.0/contact-sheet.aseprite"
+                       ],
+    "steps":  [
+                  {
+                      "step":  "lua-script",
+                      "pid":  33900,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.211,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-004057-139e8703\\lua-script.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-004057-139e8703\\lua-script.stderr.log"
+                  }
+              ]
+}

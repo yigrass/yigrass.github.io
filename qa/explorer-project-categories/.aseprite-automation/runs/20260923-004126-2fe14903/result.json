@@ -1,0 +1,18 @@
+﻿{
+    "ok":  false,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-004126-2fe14903\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-004126-2fe14903",
+    "error":  "Expected file was not created: D:\\01_SmallProjects\\yigrass.github.io\\assets\\pixel-ui\\v1.2.0\\flash-drive.png",
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  19076,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.175,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-004126-2fe14903\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-004126-2fe14903\\export.stderr.log"
+                  }
+              ]
+}

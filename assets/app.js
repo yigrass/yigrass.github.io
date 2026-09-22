@@ -291,9 +291,17 @@
   function worksContent(body, setStatus) {
     body.classList.add("explorer-body");
     const drives = config.explorer?.drives || [];
+    const categories = {
+      novel: { label: "小说", icon: "v1.2.0/text-file" },
+      game: { label: "游戏", icon: "v1.1.0/cdrom" },
+      utility: { label: "实用工具", icon: "v1.1.0/control-panel" }
+    };
+    const projects = (Array.isArray(config.works) ? config.works : [])
+      .filter((project) => project && Object.hasOwn(categories, project.category) && typeof project.title === "string" && project.title.trim() && safeURL(project.url))
+      .map((project) => ({ ...project, title: project.title.trim(), url: safeURL(project.url) }));
     const rootLabel = titleOf("profile");
     const driveLabel = (drive) => `${drive.label} (${drive.letter}:)`;
-    const driveIcon = (drive, className) => pixelIcon(`v1.1.0/${["hard-disk", "floppy", "cdrom"].includes(drive.type) ? drive.type : "hard-disk"}`, className);
+    const driveIcon = (drive, className) => pixelIcon(drive.type === "flash-drive" ? "v1.2.0/flash-drive" : `v1.1.0/${["hard-disk", "floppy", "cdrom"].includes(drive.type) ? drive.type : "hard-disk"}`, className);
     let currentLocation = null;
     const toolbar = create("div", "explorer-toolbar");
     toolbar.setAttribute("role", "group");
@@ -372,6 +380,8 @@
     function render() {
       const id = currentLocation;
       const drive = drives.find((item) => item.id === id);
+      const category = drive && Object.hasOwn(categories, drive.category) ? categories[drive.category] : null;
+      const entries = category ? projects.filter((project) => project.category === drive.category) : [];
       const label = drive ? driveLabel(drive) : rootLabel;
       // Moving into a drive removes its root tile; retain keyboard focus in the pane.
       const restoreFocus = content.contains(document.activeElement);
@@ -385,8 +395,23 @@
       content.setAttribute("aria-label", `${label}内容`);
       const caption = create("div", "explorer-location-heading");
       caption.append(drive ? driveIcon(drive) : pixelIcon("v1.1.0/computer"), create("h1", "", label));
+      if (category) caption.append(create("span", "explorer-category", category.label));
       content.append(caption);
-      if (drive) {
+      if (drive && entries.length) {
+        const grid = create("div", "drive-grid");
+        for (const project of entries) {
+          const name = drive.category === "novel" && !/\.txt$/i.test(project.title) ? `${project.title}.txt` : project.title;
+          const tile = create("a", "drive-tile project-tile");
+          tile.href = project.url;
+          tile.target = "_blank";
+          tile.rel = "noopener noreferrer";
+          tile.title = `打开${name}（新标签页）`;
+          tile.setAttribute("aria-label", tile.title);
+          tile.append(pixelIcon(category.icon, "drive-icon"), create("span", "", name));
+          grid.append(tile);
+        }
+        content.append(grid);
+      } else if (drive) {
         const empty = create("div", "explorer-empty");
         empty.append(create("p", "", "此文件夹为空。"));
         content.append(empty);
@@ -397,12 +422,13 @@
           tile.type = "button";
           tile.title = `打开${driveLabel(item)}`;
           tile.append(driveIcon(item, "drive-icon"), create("span", "", driveLabel(item)));
+          if (Object.hasOwn(categories, item.category)) tile.append(create("small", "drive-purpose", categories[item.category].label));
           tile.addEventListener("click", () => navigate(item.id));
           grid.append(tile);
         }
         content.append(grid);
       }
-      setStatus(`${drive ? "0" : drives.length} 个对象${drive ? ` · ${drive.letter}:\\` : ""}`);
+      setStatus(`${drive ? entries.length : drives.length} 个对象${drive ? ` · ${drive.letter}:\\` : ""}`);
       if (restoreFocus) content.focus({ preventScroll: true });
     }
     render();

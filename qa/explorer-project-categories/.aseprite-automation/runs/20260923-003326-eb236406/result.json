@@ -1,0 +1,49 @@
+﻿{
+    "ok":  true,
+    "mode":  "doctor",
+    "aseprite_version":  "Aseprite 1.3.18.1-x64",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406",
+    "lua_trace":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\doctor.trace.log",
+    "aseprite_file":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\doctor.aseprite",
+    "gif_file":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\doctor.gif",
+    "roundtrip_png":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\doctor-roundtrip.png",
+    "residual_process_ids":  [
+
+                             ],
+    "steps":  [
+                  {
+                      "step":  "version",
+                      "pid":  21340,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.197,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\version.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\version.stderr.log"
+                  },
+                  {
+                      "step":  "lua-create",
+                      "pid":  31592,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.191,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\lua-create.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\lua-create.stderr.log"
+                  },
+                  {
+                      "step":  "gif-export",
+                      "pid":  21408,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.154,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\gif-export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\gif-export.stderr.log"
+                  },
+                  {
+                      "step":  "gif-roundtrip",
+                      "pid":  11596,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.171,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\gif-roundtrip.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\explorer-project-categories\\.aseprite-automation\\runs\\20260923-003326-eb236406\\gif-roundtrip.stderr.log"
+                  }
+              ]
+}

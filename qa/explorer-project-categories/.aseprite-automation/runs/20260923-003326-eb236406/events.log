@@ -1,0 +1,10 @@
+﻿2026-09-23T00:33:26.1237766+08:00	INFO	mode=doctor workspace=D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories profile_mode=Isolated
+2026-09-23T00:33:26.1637988+08:00	INFO	start step=version args=--version
+2026-09-23T00:33:26.3711771+08:00	INFO	finish step=version pid=21340 exit=0 seconds=0.197
+2026-09-23T00:33:26.3803075+08:00	INFO	start step=lua-create args=-b --script-param trace=D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-003326-eb236406\doctor.trace.log --script-param output=D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-003326-eb236406\doctor.aseprite --script D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-003326-eb236406\doctor.lua
+2026-09-23T00:33:26.5775652+08:00	INFO	finish step=lua-create pid=31592 exit=0 seconds=0.191
+2026-09-23T00:33:26.6024774+08:00	INFO	start step=gif-export args=-b D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-003326-eb236406\doctor.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-003326-eb236406\doctor.gif
+2026-09-23T00:33:26.7576359+08:00	INFO	finish step=gif-export pid=21408 exit=0 seconds=0.154
+2026-09-23T00:33:26.7707562+08:00	INFO	start step=gif-roundtrip args=-b --oneframe D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-003326-eb236406\doctor.gif --save-as D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-003326-eb236406\doctor-roundtrip.png
+2026-09-23T00:33:26.9416415+08:00	INFO	finish step=gif-roundtrip pid=11596 exit=0 seconds=0.171
+2026-09-23T00:33:27.2540167+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-003326-eb236406\result.json

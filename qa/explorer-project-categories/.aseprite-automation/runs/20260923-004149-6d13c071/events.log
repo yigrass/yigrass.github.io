@@ -1,0 +1,4 @@
+﻿2026-09-23T00:41:49.9832919+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories profile_mode=Isolated
+2026-09-23T00:41:50.0047159+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\art\pixel-ui\v1.2.0\contact-sheet.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\art\pixel-ui\v1.2.0\contact-sheet.png
+2026-09-23T00:41:50.1980326+08:00	INFO	finish step=export pid=10312 exit=0 seconds=0.182
+2026-09-23T00:41:50.2400490+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\explorer-project-categories\.aseprite-automation\runs\20260923-004149-6d13c071\result.json

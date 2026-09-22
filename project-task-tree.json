@@ -13,9 +13,9 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "shell-transparency-classic-scrollbars-completed",
+    "deliveryState": "explorer-project-categories-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review shared transparency and classic scrollbar controls",
+    "nextAction": "Review project drives and define the next requirement",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-23",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
@@ -27,8 +27,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review desktop controls",
-      "note": "The MVP remains completed. Start menu and taskbar share background transparency, and native scrollbars have classic styling; no implementation task is active."
+      "returnPoint": "Personal Website / Review project drives",
+      "note": "The MVP remains completed. Explorer Project Categories implementation is completed; return to project drive review. Previous desktop controls were accepted by user browser testing."
     },
     {
       "id": "qq-space-mvp",
@@ -413,6 +413,28 @@
         "Setting group and hint updated to explain shared transparency",
         "Classic native scrollbar tracks, raised square thumbs and four-direction arrow buttons added with pressed/disabled states and native-color fallback",
         "V8 compilation/config execution, four transparency and persistence scenarios, SVG XML parsing and diff checks passed; browser verification unavailable due connection failure"
+      ]
+    },
+    {
+      "id": "explorer-project-categories",
+      "name": "Explorer Project Categories",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "explorer-system-properties",
+        "shell-transparency-classic-scrollbars"
+      ],
+      "returnPoint": "Personal Website / Review project drives",
+      "note": "User requests A floppy for novels shown as txt project entries, G optical drive for games, H flash drive for utilities, and only one empty C local disk. Build categories and configurable entry rendering without inventing projects.",
+      "evidence": [
+        "qa/explorer-project-categories.md"
+      ],
+      "completedOn": "2026-09-23",
+      "completedWork": [
+        "A novels, C empty local disk, G games and H utilities configured with purpose labels",
+        "Categorized project links added; novels use txt file icons and suffixes; production projects remain empty",
+        "Two original indexed pixel icons and editable Aseprite sources generated and validated in version 1.2.0",
+        "V8 compilation/config execution, 20 focused renderer checks, icon decode/hash/header/path checks and protected-path diff passed; no browser acceptance claimed"
       ]
     }
   ]

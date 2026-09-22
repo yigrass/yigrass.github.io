@@ -127,6 +127,8 @@ body.is-resizing,body.is-resizing *{cursor:var(--resize-cursor)!important;user-s
 .drive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;padding:16px 2px;align-content:start}
 .drive-tile{display:flex;flex-direction:column;align-items:center;gap:10px;justify-content:flex-start;padding:12px 5px;background:white;font-size:.8125rem;line-height:1.5;min-width:0;min-height:102px;overflow-wrap:anywhere}.drive-tile:hover{background:#eee}.drive-tile:focus-visible{background:var(--accent);color:white;outline:1px dotted #fff;outline-offset:-4px}.drive-tile:active{background:var(--accent);color:white}
 .drive-icon{width:32px;height:32px}.explorer-empty{display:grid;place-items:center;flex:1;min-height:90px;color:#666;font-size:.875rem;text-align:center}
+.drive-purpose{font-size:.75rem;color:#555}.drive-tile:focus-visible .drive-purpose,.drive-tile:active .drive-purpose{color:inherit}
+.explorer-category{margin-left:auto;font-size:.75rem;color:#555;white-space:nowrap}.project-tile{color:var(--ink);text-decoration:none}
 #effects{position:absolute;inset:0;pointer-events:none;z-index:1100;overflow:hidden}.floating-star{position:absolute;left:0;top:0;width:16px;height:16px}
 @media (pointer:fine){body.custom-cursor,body.custom-cursor *{cursor:url("pixel-ui/cursor-2x.png") 0 0,auto}}
 @media (pointer:fine){body.custom-cursor .resize-n{cursor:n-resize}body.custom-cursor .resize-e{cursor:e-resize}body.custom-cursor .resize-s{cursor:s-resize}body.custom-cursor .resize-w{cursor:w-resize}body.custom-cursor .resize-ne{cursor:ne-resize}body.custom-cursor .resize-se{cursor:se-resize}body.custom-cursor .resize-sw{cursor:sw-resize}body.custom-cursor .resize-nw{cursor:nw-resize}}
