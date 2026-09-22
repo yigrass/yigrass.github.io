@@ -1,0 +1,7 @@
+Edit the supplied image as an exact composition-preserving local color correction. The image is an edit target, not merely inspiration. The user likes the overall atmosphere but the reddish terracotta roofs clash with the landscape. The sea, sky and green plants seen in evening light must remain the dominant palette.
+
+Change ONLY the reddish/orange terracotta roof surfaces throughout the town, including small distant roofs and roof caps. Preserve every building silhouette, tile pattern and texture, geometry, stone wall, road, tree, plant, flower, coastline, sea reflection, cloud, sky color, camera view, crop and the warm illuminated window. Preserve the original image's fine pixel-art texture and dither-like edge treatment. Do not repaint the landscape or apply a global tint. Do not add/remove objects, text, borders or UI. Keep the same aspect ratio and framing.
+
+On the edited roofs retain believable discrete shadow and highlight steps, with a small amount of soft sunset warmth on light-facing edges. There should be no conspicuous red-orange roof planes left. Keep the roofs subordinate to the ocean and sky rather than creating a new dominant colored mass. Return one full landscape image, not a comparison sheet.
+
+The roof palette for THIS variant is: muted slate blue-gray, with cool desaturated medium blue-gray tile faces (roughly #52616A), deeper blue-gray shadows and restrained gray-taupe sunset highlights. Echo the slate blue of the water and distant mountains; no saturated cobalt or turquoise.

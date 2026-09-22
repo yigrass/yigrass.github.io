@@ -3,7 +3,7 @@
   "projectName": "yigrass.github.io",
   "status": "in_progress",
   "rootTaskId": "personal-website",
-  "currentContextTaskId": "qq-space-mvp",
+  "currentContextTaskId": "personal-website",
   "currentWorkingBranchTaskId": null,
   "activeExecutionBranches": [],
   "writeLeases": [],
@@ -13,9 +13,11 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "local-changes-ready-for-review",
+    "deliveryState": "mvp-accepted",
+    "developmentMode": "requirement-driven",
+    "nextAction": "Await the next user-defined requirement before starting an iteration task under Personal Website",
     "repositoryIntegrated": true,
-    "lastUpdated": "2026-09-20",
+    "lastUpdated": "2026-09-21",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
@@ -25,15 +27,24 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "QQ Space MVP / Browser validation and repository integration"
+      "returnPoint": "Personal Website / Next requirement definition",
+      "note": "The MVP milestone is completed. Continue development through separately scoped requirement-driven iteration tasks under Personal Website; no new iteration is active."
     },
     {
       "id": "qq-space-mvp",
       "name": "QQ Space MVP",
       "parent": "personal-website",
-      "status": "in_progress",
+      "status": "completed",
       "dependencies": [],
-      "returnPoint": "Personal Website / MVP acceptance",
+      "returnPoint": "Personal Website / Next requirement definition",
+      "completedOn": "2026-09-21",
+      "acceptance": {
+        "date": "2026-09-21",
+        "basis": "Explicit user confirmation that the MVP milestone has been achieved and is complete",
+        "evidence": "qa/mvp-milestone-closure.md",
+        "browserReviewDisposition": "Closed for MVP acceptance by user confirmation; no new agent-run browser validation is claimed",
+        "pixelCleanupDisposition": "Outside the accepted MVP scope; remains an optional future improvement requiring a specific user request"
+      },
       "completedWork": [
         "Static desktop preview authored",
         "Configuration separated from behavior and styling",
@@ -43,18 +54,23 @@
         "System Settings and Pixel UI successor implementation completed",
         "Explorer and System Properties successor implementation completed",
         "Window Interaction Refinement implementation and color candidate preview completed",
-        "User-selected Ink Black Palette applied"
+        "User-selected Ink Black Palette applied",
+        "Coastal Town Background Draft produced for visual review",
+        "Coastal Town Palette Variants produced for visual comparison",
+        "User-selected coastal town slate-blue wallpaper integrated",
+        "User confirmed MVP acceptance and requested milestone closure on 2026-09-21"
       ],
-      "remainingWork": [
-        "Review window resizing, Explorer and selected palette in a browser",
-        "Define background artwork subject and composition"
-      ],
+      "remainingWork": [],
       "blockers": [],
       "evidence": [
         "qa/mvp-preview-check.md",
         "qa/system-settings-pixel-ui-review.md",
         "qa/explorer-system-properties-review.md",
-        "qa/window-interaction-refinement-review.md"
+        "qa/window-interaction-refinement-review.md",
+        "art/backgrounds/coastal-town-v1/README.md",
+        "art/backgrounds/coastal-town-palette-v2/README.md",
+        "qa/coastal-town-wallpaper-integration.md",
+        "qa/mvp-milestone-closure.md"
       ]
     },
     {
@@ -130,7 +146,68 @@
       "status": "pending",
       "dependencies": [],
       "returnPoint": "Personal Website / Backlog review",
-      "note": "Recorded at user request only. Requirements are not defined. Do not start implementation until explicitly requested."
+      "note": "Future concept only: the discovered computer has a hidden side connected to its former owner; atmosphere is not horror. Requirements remain undefined. Do not implement until explicitly requested."
+    },
+    {
+      "id": "coastal-town-background-draft",
+      "name": "Coastal Town Background Draft",
+      "parent": "qq-space-mvp",
+      "status": "completed",
+      "dependencies": [],
+      "returnPoint": "QQ Space MVP / Review background draft",
+      "evidence": [
+        "art/backgrounds/coastal-town-v1/README.md"
+      ],
+      "completedWork": [
+        "One coastal town wallpaper draft generated with built-in image_gen",
+        "Original PNG, exact prompt and manifest saved without website integration",
+        "Image decoded, dimensions recorded and copy hash verified"
+      ]
+    },
+    {
+      "id": "chapter-backgrounds",
+      "name": "Chapter Backgrounds",
+      "parent": "personal-website",
+      "status": "pending",
+      "dependencies": [],
+      "returnPoint": "Personal Website / Backlog review",
+      "note": "Future concept only: select town backgrounds from novel locations, potentially changing with the chapter a visitor is reading. Do not implement now."
+    },
+    {
+      "id": "coastal-town-palette-variants",
+      "name": "Coastal Town Palette Variants",
+      "parent": "qq-space-mvp",
+      "status": "completed",
+      "dependencies": [
+        "coastal-town-background-draft"
+      ],
+      "returnPoint": "QQ Space MVP / Review background palette",
+      "evidence": [
+        "art/backgrounds/coastal-town-palette-v2/README.md"
+      ],
+      "completedWork": [
+        "Three low-chroma roof palette candidates generated from the original coastal town draft",
+        "Original PNG copies, exact prompts and manifest saved without website integration",
+        "All three images decoded; dimensions and copy SHA-256 verified; original draft hash unchanged"
+      ]
+    },
+    {
+      "id": "coastal-town-wallpaper-integration",
+      "name": "Coastal Town Wallpaper Integration",
+      "parent": "qq-space-mvp",
+      "status": "completed",
+      "dependencies": [
+        "coastal-town-palette-variants"
+      ],
+      "returnPoint": "QQ Space MVP / Review wallpaper",
+      "evidence": [
+        "qa/coastal-town-wallpaper-integration.md"
+      ],
+      "completedWork": [
+        "User-selected slate-blue candidate integrated as default wallpaper without changing image bytes",
+        "CSS loading fallback and browser theme color aligned to slate-blue",
+        "Image decode and hash, configuration execution, resource path, CSS sizing and diff checks passed"
+      ]
     }
   ]
 }

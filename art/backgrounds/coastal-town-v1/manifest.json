@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0-draft",
+  "status": "preview",
+  "file": "draft.png",
+  "width": 1672,
+  "height": 941,
+  "bitDepth": 8,
+  "colorType": 2,
+  "sha256": "8820F2754E313E90746B2CE9B68CE5B278E5551F6E200EE6B96338019413676B",
+  "generationMethod": "Built-in OpenAI image_gen tool",
+  "sourcePath": "C:\\Users\\a\\.codex\\generated_images\\01a0ba4a-dba9-77f0-a01e-3956931bce16\\exec-276d1459-0656-4105-9bc7-722cd9e34e4e.png",
+  "promptFile": "prompt.txt",
+  "websiteIntegrated": false,
+  "pixelGridValidated": false
+}

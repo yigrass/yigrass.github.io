@@ -5,9 +5,9 @@ window.SITE_CONFIG = {
   startLabel: "开始",
   menuBrand: "yigrass",
   menuLabels: { profile: "我的电脑", works: "资源管理器", settings: "系统设置" },
-  wallpaper: "assets/wallpaper.svg",
+  wallpaper: "assets/wallpapers/coastal-town-slate-blue-v2.png",
   wallpaperPosition: "center center",
-  themeColor: "#008080",
+  themeColor: "#52616a",
   defaults: { menuTransparency: 0, customCursor: false, floatingStars: false },
   profile: {
     nickname: "yigrass",
