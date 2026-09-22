@@ -13,9 +13,9 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "ocean-capsule-4k-wallpaper-integrated",
+    "deliveryState": "dithered-wallpaper-edges-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review user-selected 3840x2160 wallpaper or define the next requirement",
+    "nextAction": "Review shadow-gray fill and dithered wallpaper edges",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-22",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
@@ -27,8 +27,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review 4K wallpaper",
-      "note": "The MVP remains completed. The user-selected 3840x2160 Aseprite resized wallpaper is integrated with centered contain sizing and soft white fill; no implementation task is active."
+      "returnPoint": "Personal Website / Review wallpaper edge blend",
+      "note": "The MVP remains completed. The wallpaper uses sampled shadow-gray fill and responsive dithered edges; no implementation task is active."
     },
     {
       "id": "qq-space-mvp",
@@ -370,6 +370,27 @@
         "Config and CSS references updated while preserving centered contain sizing and #f2f1ed fill",
         "Source and runtime decode/hash, previous wallpaper hash, V8 config execution, exact reference-only changes and diff checks passed",
         "README and successor QA record updated; pre-existing user changes and completed milestones preserved"
+      ]
+    },
+    {
+      "id": "dithered-wallpaper-edges",
+      "name": "Dithered Wallpaper Edges",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "ocean-capsule-4k-wallpaper-integration"
+      ],
+      "returnPoint": "Personal Website / Review wallpaper edge blend",
+      "note": "User requests a shadow-like dark gray fill and pixel dithering between image edges and surrounding fill. Use sampled #2d2f2d and a responsive display overlay without modifying the 4K image.",
+      "evidence": [
+        "qa/dithered-wallpaper-edges.md"
+      ],
+      "completedOn": "2026-09-22",
+      "completedWork": [
+        "Sampled shadow gray #2d2f2d applied to desktop fill and fallback/theme colors",
+        "Responsive 2 CSS pixel ordered-dither overlay added to image borders with the center and original PNG preserved",
+        "V8 script/config checks, five geometry scenarios, resize behavior, source hash and diff checks passed",
+        "Captured actual draw commands and inspected desktop/portrait static previews; browser visual validation unavailable due connection failure"
       ]
     }
   ]

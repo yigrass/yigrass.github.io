@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f2f1ed">
+  <meta name="theme-color" content="#2d2f2d">
   <meta name="description" content="yigrass 的个人空间与作品。">
   <title>yigrass — 个人桌面</title>
   <link rel="icon" href="assets/pixel-ui/settings.png" type="image/png">
   <link rel="stylesheet" href="assets/styles.css">
   <script src="assets/site-config.js" defer></script>
   <script src="assets/app.js" defer></script>
+  <script src="assets/wallpaper-edges.js" defer></script>
 </head>
 <body>
   <main id="desktop" aria-label="个人桌面">
+    <canvas id="wallpaper-edges" aria-hidden="true"></canvas>
     <div id="windows"></div>
     <div id="effects" aria-hidden="true"></div>
   </main>

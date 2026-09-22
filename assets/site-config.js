@@ -7,7 +7,7 @@ window.SITE_CONFIG = {
   menuLabels: { profile: "我的电脑", works: "资源管理器", settings: "系统设置" },
   wallpaper: "assets/wallpapers/ocean-capsule-pixelart-v2.png",
   wallpaperPosition: "center center",
-  themeColor: "#f2f1ed", // 壁纸四周留白及加载前的桌面底色。
+  themeColor: "#2d2f2d", // 壁纸周围填充、边缘抖动过渡及加载前的桌面底色。
   defaults: { menuTransparency: 0, customCursor: false, floatingStars: false },
   profile: {
     nickname: "yigrass",
