@@ -13,11 +13,11 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "mvp-accepted",
+    "deliveryState": "ocean-capsule-wallpaper-integrated",
     "developmentMode": "requirement-driven",
-    "nextAction": "Await the next user-defined requirement before starting an iteration task under Personal Website",
+    "nextAction": "Review the updated homepage or define the next requirement",
     "repositoryIntegrated": true,
-    "lastUpdated": "2026-09-21",
+    "lastUpdated": "2026-09-22",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
@@ -27,8 +27,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Next requirement definition",
-      "note": "The MVP milestone is completed. Continue development through separately scoped requirement-driven iteration tasks under Personal Website; no new iteration is active."
+      "returnPoint": "Personal Website / Review homepage wallpaper",
+      "note": "The MVP remains completed. The user-processed ocean capsule pixel-art image is now the local homepage default; no implementation task is active."
     },
     {
       "id": "qq-space-mvp",
@@ -207,6 +207,102 @@
         "User-selected slate-blue candidate integrated as default wallpaper without changing image bytes",
         "CSS loading fallback and browser theme color aligned to slate-blue",
         "Image decode and hash, configuration execution, resource path, CSS sizing and diff checks passed"
+      ]
+    },
+    {
+      "id": "ocean-capsule-background-draft",
+      "name": "Ocean Capsule Background Draft",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [],
+      "returnPoint": "Personal Website / Review ocean capsule background",
+      "referenceImages": [
+        "assets/wallpapers/713e75899f6bfc9b66e4d9866e249e4d.jpg"
+      ],
+      "outputDirectory": "art/backgrounds/ocean-capsule-v1",
+      "note": "Create one larger, clearer pixel-art candidate preserving the reference structure, removing all characters, using desaturated pale green and emphasizing the empty sea and sky. No website integration requested.",
+      "evidence": [
+        "art/backgrounds/ocean-capsule-v1/README.md"
+      ],
+      "completedOn": "2026-09-22",
+      "completedWork": [
+        "One reference-based pale-green ocean capsule candidate generated with no characters",
+        "Native 1672x941 RGB PNG, exact prompt and manifest saved; 4K prompt target not achieved",
+        "Image decode, original-copy SHA-256 and visual composition checks completed"
+      ]
+    },
+    {
+      "id": "ocean-capsule-shoreline-refinement",
+      "name": "Ocean Capsule Shoreline Refinement",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "ocean-capsule-background-draft"
+      ],
+      "returnPoint": "Personal Website / Review ocean capsule shoreline",
+      "referenceImages": [
+        "art/backgrounds/ocean-capsule-v1/draft.png"
+      ],
+      "outputDirectory": "art/backgrounds/ocean-capsule-v2",
+      "note": "User selected a minimal worn coastal maintenance platform, irregular indoor and outdoor ground, and sky > ocean > land visual hierarchy. Use built-in image_gen only; attempt 2560x1440. No API fallback or website integration.",
+      "evidence": [
+        "art/backgrounds/ocean-capsule-v2/README.md"
+      ],
+      "completedOn": "2026-09-22",
+      "completedWork": [
+        "Minimal irregular coastal platform, rocks and thin foam added; indoor floor irregularity refined",
+        "Sky > ocean > land hierarchy, original machinery, palette and absence of characters preserved",
+        "Built-in 2560x1440 request attempted; actual native output remains 1672x941; no API fallback",
+        "PNG, exact prompt, manifest and review saved with decode, copy-hash and protected-file checks"
+      ]
+    },
+    {
+      "id": "ocean-capsule-resolution-trials",
+      "name": "Ocean Capsule Resolution Trials",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "ocean-capsule-shoreline-refinement"
+      ],
+      "returnPoint": "Personal Website / Review resolution trial results",
+      "referenceImages": [
+        "art/backgrounds/ocean-capsule-v2/draft.png"
+      ],
+      "outputDirectory": "art/backgrounds/ocean-capsule-resolution-v1",
+      "note": "User accepted the current visual content and requested two built-in generation attempts at 1920x1080 and 2560x1440. Use identical content-preservation instructions with only target dimensions changed. Save and inspect both original output files. No paid API fallback, resampling or website integration.",
+      "evidence": [
+        "art/backgrounds/ocean-capsule-resolution-v1/README.md"
+      ],
+      "completedOn": "2026-09-22",
+      "completedWork": [
+        "Two independent built-in image_gen attempts performed with the same approved v2 image and size-only prompt differences",
+        "Requested 1920x1080 and 2560x1440; both original PNG headers and image decoders report 1672x941",
+        "Both original outputs, exact prompts, manifest and comparison report saved; copy hashes and 37 protected-file hashes verified",
+        "No post-generation resize, paid API fallback or website integration"
+      ]
+    },
+    {
+      "id": "ocean-capsule-wallpaper-integration",
+      "name": "Ocean Capsule Wallpaper Integration",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "ocean-capsule-shoreline-refinement"
+      ],
+      "returnPoint": "Personal Website / Review homepage wallpaper",
+      "referenceImages": [
+        "art/backgrounds/ocean-capsule-v2/draft-pixelart-4x.png"
+      ],
+      "note": "User explicitly selected the image processed with Retro Diffusion for the homepage. Copy its bytes unchanged into runtime assets, update configuration and CSS fallback, and preserve centered cover sizing. No image reprocessing or remote operations.",
+      "evidence": [
+        "qa/ocean-capsule-wallpaper-integration.md"
+      ],
+      "completedOn": "2026-09-22",
+      "completedWork": [
+        "User-selected 2076x1132 processed PNG copied unchanged into runtime wallpaper assets",
+        "Configuration and CSS default wallpaper updated; centered cover sizing retained",
+        "Loading fallback and browser theme color aligned to sampled dark gray-green #383c39",
+        "Image decode and copy hash, configuration execution, path and color consistency, preserved-art and diff checks passed"
       ]
     }
   ]

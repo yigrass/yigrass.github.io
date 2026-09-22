@@ -1,0 +1,6 @@
+Use case: precise-object-edit.
+Image 1 is the approved final artwork. This is an OUTPUT RESOLUTION TEST, not a content revision.
+Produce ONE PNG whose actual raster canvas is exactly 2560 pixels wide by 1440 pixels high (2560x1440), landscape 16:9. The requested dimensions refer to the saved image file itself, not a label or text drawn in the image. Do not retain the input file's 1672x941 dimensions. Generate the final image at 2560x1440.
+Preserve the supplied artwork as closely as possible: the same framing, doorway geometry, equipment and cables, three screens, empty capsule interior, irregular floor, extremely narrow broken coastal apron and rocks, sea surface, horizon, cloud positions, pale desaturated green palette, tonal values and daylight. Sky remains largest, ocean second, and land only the tiny transition already present. No new objects and no compositional redesign. No people, robots or animals.
+Keep the existing visible pixel-art granularity at the same proportional scale in the larger image. Crisp square pixel clusters, stepped edges and restrained shading. No blur or smooth painterly restyling. No text, dimension labels, logos, watermarks or border.
+Final required output: one content-preserving version of the reference, exact canvas 2560x1440 pixels.

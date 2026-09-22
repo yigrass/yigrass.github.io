@@ -26,7 +26,7 @@ UI 图标、窗口按钮、光标和星星采用原生小尺寸 8-bit 索引色 
 
 当前资料仅使用仓库已存在的信息：昵称为 `yigrass`，签名为 `Meet me here.`。头像、介绍和联系方式等待添加；未虚构小说、链接或游戏。头像为空时显示电脑图标，填写头像路径后以正常分辨率显示图片。
 
-默认背景采用已选定的 A 蓝灰海边小镇，文件为 `assets/wallpapers/coastal-town-slate-blue-v2.png`；原始候选与提示词保存在 `art/backgrounds/coastal-town-palette-v2/`。背景等比例铺满桌面并居中裁剪，竖屏会隐藏部分左右景物。当前使用候选原图，尚未进行严格像素网格或索引色整理。可以把自己的图片放入 `assets/`，再修改 `wallpaper` 和 `wallpaperPosition`；CSS 中保留同一默认图片供脚本加载前显示。接入检查见 `qa/coastal-town-wallpaper-integration.md`。
+默认背景采用用户选定的灰绿色海边舱室像素画，文件为 `assets/wallpapers/ocean-capsule-pixelart-v1.png`。来源是用户使用 Retro Diffusion 处理后的 `art/backgrounds/ocean-capsule-v2/draft-pixelart-4x.png`，尺寸为 2076×1132，接入时原样复制。背景等比例铺满桌面并居中裁剪，竖屏会隐藏部分左右景物；载入前底色及浏览器主题色为深灰绿 `#383c39`。可以把自己的图片放入 `assets/`，再修改 `wallpaper` 和 `wallpaperPosition`；CSS 中保留同一默认图片供脚本加载前显示。接入检查见 `qa/ocean-capsule-wallpaper-integration.md`，先前候选和检查记录继续保留。
 
 `explorer.drives` 定义当前驱动器；各项 `id` 应唯一且非空，`letter`、`label` 和 `type` 分别定义盘符、名称和图标类型（`floppy`、`hard-disk`、`cdrom`）。本版按要求先搭建空目录，`works` 数组保留为后续作品数据入口，当前不渲染作品。小说、游戏及其目录组织留待后续接入。音乐播放和完整 JRPG 主题不属于本版。
 
@@ -50,6 +50,6 @@ UI 图标、窗口按钮、光标和星星采用原生小尺寸 8-bit 索引色 
 
 用户已查看并认可初始桌面外壳。首次预览检查保留在 `qa/mvp-preview-check.md`，设置窗口与像素 UI 修改的检查见 `qa/system-settings-pixel-ui-review.md`，资源管理器、系统属性及新图标的检查见 `qa/explorer-system-properties-review.md`，窗口缩放和工具栏精简见 `qa/window-interaction-refinement-review.md`。历史报告中的环境与接入状态记录其当时情况；当前状态以任务树和后继报告为准。
 
-项目进入按需求开发的后续迭代阶段。收到具体需求后，在 `Personal Website` 下建立有明确范围和验收条件的迭代任务；已完成的 MVP 记录保持不变。`Developer Mode` 与 `Chapter Backgrounds` 保留为待明确需求的 `pending` 项，当前尚未启动新迭代。
+项目进入按需求开发的后续迭代阶段。收到具体需求后，在 `Personal Website` 下建立有明确范围和验收条件的迭代任务；已完成的 MVP 记录保持不变。`Developer Mode` 与 `Chapter Backgrounds` 保留为待明确需求的 `pending` 项，各轮迭代的当前状态以任务树为准。
 
 任务当前状态以 `project-task-tree.json` 为准，`docs/TASK_TREE.md` 由项目脚本生成，不能手工修改。

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-:root{color-scheme:light;--desktop:#52616a;--silver:#c0c0c0;--ink:#111;--accent:#202020;--menu-alpha:1;--taskbar-height:48px;--raised:inset 1px 1px #fff,inset -1px -1px #000,inset 2px 2px #dfdfdf,inset -2px -2px #808080;--sunken:inset 1px 1px #808080,inset -1px -1px #fff,inset 2px 2px #000,inset -2px -2px #dfdfdf;font-family:Tahoma,"Microsoft YaHei","PingFang SC",sans-serif;font-size:16px;color:var(--ink)}
+:root{color-scheme:light;--desktop:#383c39;--silver:#c0c0c0;--ink:#111;--accent:#202020;--menu-alpha:1;--taskbar-height:48px;--raised:inset 1px 1px #fff,inset -1px -1px #000,inset 2px 2px #dfdfdf,inset -2px -2px #808080;--sunken:inset 1px 1px #808080,inset -1px -1px #fff,inset 2px 2px #000,inset -2px -2px #dfdfdf;font-family:Tahoma,"Microsoft YaHei","PingFang SC",sans-serif;font-size:16px;color:var(--ink)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;background:var(--desktop);overflow:hidden}
@@ -9,7 +9,7 @@ button{color:inherit;border:0;cursor:pointer}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px dashed var(--accent);outline-offset:3px}
 button:disabled{cursor:default;color:#737373;text-shadow:1px 1px #fff}
 a{color:#000080;text-underline-offset:3px}
-#desktop{position:fixed;inset:0 0 var(--taskbar-height);background-color:var(--desktop);background-image:url("wallpapers/coastal-town-slate-blue-v2.png");background-size:cover;background-position:center;overflow:hidden}
+#desktop{position:fixed;inset:0 0 var(--taskbar-height);background-color:var(--desktop);background-image:url("wallpapers/ocean-capsule-pixelart-v1.png");background-size:cover;background-position:center;overflow:hidden}
 #windows{position:absolute;inset:0;pointer-events:none}
 .classic-button{background:var(--silver);box-shadow:var(--raised);min-height:32px;padding:5px 12px}
 .classic-button:active,.classic-button[aria-pressed="true"],.start-button[aria-expanded="true"]{box-shadow:var(--sunken);padding-top:6px;padding-bottom:4px}
