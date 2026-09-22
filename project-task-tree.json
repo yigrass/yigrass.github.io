@@ -13,11 +13,11 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "dithered-wallpaper-edges-completed",
+    "deliveryState": "shell-transparency-classic-scrollbars-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review shadow-gray fill and dithered wallpaper edges",
+    "nextAction": "Review shared transparency and classic scrollbar controls",
     "repositoryIntegrated": true,
-    "lastUpdated": "2026-09-22",
+    "lastUpdated": "2026-09-23",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
@@ -27,8 +27,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review wallpaper edge blend",
-      "note": "The MVP remains completed. The wallpaper uses sampled shadow-gray fill and responsive dithered edges; no implementation task is active."
+      "returnPoint": "Personal Website / Review desktop controls",
+      "note": "The MVP remains completed. Start menu and taskbar share background transparency, and native scrollbars have classic styling; no implementation task is active."
     },
     {
       "id": "qq-space-mvp",
@@ -391,6 +391,28 @@
         "Responsive 2 CSS pixel ordered-dither overlay added to image borders with the center and original PNG preserved",
         "V8 script/config checks, five geometry scenarios, resize behavior, source hash and diff checks passed",
         "Captured actual draw commands and inspected desktop/portrait static previews; browser visual validation unavailable due connection failure"
+      ]
+    },
+    {
+      "id": "shell-transparency-classic-scrollbars",
+      "name": "Shell Transparency and Classic Scrollbars",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "system-settings-pixel-ui",
+        "dithered-wallpaper-edges"
+      ],
+      "returnPoint": "Personal Website / Review desktop controls",
+      "note": "User accepted the wallpaper edges and requested one background transparency setting for the Start menu and taskbar, plus Win95-style scrollbars with matching arrow buttons. Preserve stored preferences and native scrolling behavior.",
+      "evidence": [
+        "qa/shell-transparency-classic-scrollbars.md"
+      ],
+      "completedOn": "2026-09-23",
+      "completedWork": [
+        "Start menu and taskbar background opacity linked through --shell-alpha with existing saved values preserved",
+        "Setting group and hint updated to explain shared transparency",
+        "Classic native scrollbar tracks, raised square thumbs and four-direction arrow buttons added with pressed/disabled states and native-color fallback",
+        "V8 compilation/config execution, four transparency and persistence scenarios, SVG XML parsing and diff checks passed; browser verification unavailable due connection failure"
       ]
     }
   ]

@@ -93,7 +93,7 @@
   }
   reducedMotion.addEventListener("change", updateStars);
   function applyPreferences() {
-    document.documentElement.style.setProperty("--menu-alpha", 1 - preferences.menuTransparency / 100);
+    document.documentElement.style.setProperty("--shell-alpha", 1 - preferences.menuTransparency / 100);
     const settings = $("#window-settings");
     if (settings) {
       $("#menu-transparency", settings).value = preferences.menuTransparency;
@@ -417,7 +417,7 @@
     body.append(heading);
 
     const menuGroup = create("fieldset", "settings-group");
-    menuGroup.append(create("legend", "", "开始菜单"));
+    menuGroup.append(create("legend", "", "开始菜单与任务栏"));
     const label = create("label", "range-label");
     label.htmlFor = "menu-transparency";
     const output = create("output", "", `${preferences.menuTransparency}%`);
@@ -429,7 +429,7 @@
     range.addEventListener("input", () => { preferences.menuTransparency = Number(range.value); applyPreferences(); });
     const endpoints = create("div", "range-endpoints");
     endpoints.append(create("span", "", "不透明"), create("span", "", "透明"));
-    menuGroup.append(label, range, endpoints, create("p", "setting-hint", "文字和图标保持清晰。"));
+    menuGroup.append(label, range, endpoints, create("p", "setting-hint", "同时调整开始菜单和任务栏的底色，文字和图标保持清晰。"));
     body.append(menuGroup);
 
     const effectsGroup = create("fieldset", "settings-group");
