@@ -1,0 +1,322 @@
+{
+  "head": "9c97eac076f6a514fca39fa9d2090719b3d7b7f1",
+  "index": null,
+  "protectedFiles": [
+    {
+      "path": "art\\backgrounds\\ocean-capsule-v2\\draft-pixelart-ase.png",
+      "sha256": "B207F61EFB1897AA52C93C65E33D69D21B603AB8E747D890754954A1D82EEF75"
+    },
+    {
+      "path": "art\\backgrounds\\ocean-capsule-v2\\manifest.json",
+      "sha256": "AEE08EB4AF1BB9F70E7E0E3C9C8D80CB9B80BF0B11757CA2620A38B5EA33821B"
+    },
+    {
+      "path": "art\\backgrounds\\ocean-capsule-v2\\prompt.txt",
+      "sha256": "734391030401001F613319C4076368A43C8D422173E512597E3E4E1708396871"
+    },
+    {
+      "path": "art\\backgrounds\\ocean-capsule-v2\\README.md",
+      "sha256": "AF848D94C3CD99558DA2972C5A233FF719C0E7234C63AB8519013B3A978E70A5"
+    },
+    {
+      "path": "art\\pixel-ui\\check.aseprite",
+      "sha256": "076B561B8998BDE8E9D203212614AD49DAE73FAF0C8143055CFDC9034AD6B11E"
+    },
+    {
+      "path": "art\\pixel-ui\\close.aseprite",
+      "sha256": "D740A947412B3DE3BD6CC3B519549B4A352BAE26BB3F3DE55AC05D34D7501635"
+    },
+    {
+      "path": "art\\pixel-ui\\contact-sheet.png",
+      "sha256": "3B2D5465BB64384790E84E1CE220A8D97868D863304069884B4AACF130F9CD92"
+    },
+    {
+      "path": "art\\pixel-ui\\cursor-2x.aseprite",
+      "sha256": "27AFC494CE8D39A8080E2408303BE794410D67EE4127AB025100CC6BC0130A80"
+    },
+    {
+      "path": "art\\pixel-ui\\cursor.aseprite",
+      "sha256": "76FB24009D5D7D469EF10E55DCE51C2D0A9A7578E69DD10FF29B90E7667A0121"
+    },
+    {
+      "path": "art\\pixel-ui\\dither.aseprite",
+      "sha256": "4350C39B9DFC046039B25C58B3DE98D3A40ECADF4B0E28266B2B50F6824F68C8"
+    },
+    {
+      "path": "art\\pixel-ui\\generate-pixel-ui.lua",
+      "sha256": "9A24D81794FA4365DAF90F21B03CAA07666EDFCBC80F246D1ED1E081F3DF73A7"
+    },
+    {
+      "path": "art\\pixel-ui\\grip.aseprite",
+      "sha256": "7BBE040B36086BCA41A43746E9A9E797FC231D7CBE8855821307016AEC873DBC"
+    },
+    {
+      "path": "art\\pixel-ui\\manifest.json",
+      "sha256": "C9EABA90A0DC6DFEA9D044D29E8634D4F80846702AD3AFCE0B8F916AB9FA9F5E"
+    },
+    {
+      "path": "art\\pixel-ui\\maximize.aseprite",
+      "sha256": "97D92983B680DB70153DBF2F1D7BEC7144A3023C6BC573EFD5520CCDEE13F718"
+    },
+    {
+      "path": "art\\pixel-ui\\minimize.aseprite",
+      "sha256": "0FB157D3B3864171707061D3EE501E4E8F39B7C68A2A598161234D5625B9D0D0"
+    },
+    {
+      "path": "art\\pixel-ui\\profile.aseprite",
+      "sha256": "B36ADF634BB601D304CB53F44C1B46C33AB4FCDDE50143C51C57B1258A2C1D0A"
+    },
+    {
+      "path": "art\\pixel-ui\\README.md",
+      "sha256": "7BC64344A3EB0DB6EFA8812FAFB63291571F94525DB9F76B06E551C41E4A615B"
+    },
+    {
+      "path": "art\\pixel-ui\\restore.aseprite",
+      "sha256": "9E5290480FBF751DBF94C9C383B14D126306555471CE48960F4BF588AADFCFF9"
+    },
+    {
+      "path": "art\\pixel-ui\\settings.aseprite",
+      "sha256": "4C9A4562D0DE87FEEE7D1968FD0FA6D65447626A124FC11D03801DDEB7A96E76"
+    },
+    {
+      "path": "art\\pixel-ui\\star.aseprite",
+      "sha256": "B12882C1D45326052EF2D8477B37EE8D9613630A19D294829C1DA3F8D1DD653C"
+    },
+    {
+      "path": "art\\pixel-ui\\start.aseprite",
+      "sha256": "D175C3A4C9A9B06AFB1DAEA2B7A4D603C1964321409A4B4533D9E89A570DAF6F"
+    },
+    {
+      "path": "art\\pixel-ui\\works.aseprite",
+      "sha256": "4937D4205C3E1A70C3BC293C561F20B3B9FBBF4E2646F5B901BCDA03273C1273"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\back.aseprite",
+      "sha256": "12ADA29DBDC32DF48107FDD52E9C3AEC1F252E41156FD0C82C661E3421022911"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\cdrom.aseprite",
+      "sha256": "77211E7AD022B83438F47932D65115D706C87F0BEC2DF925B53A3DC2EC64C6B5"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\computer.aseprite",
+      "sha256": "B822F2725354545BAD9E9745C84620F19F98C46D5EAB0B664857C0804C9BEFFF"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\contact-sheet.aseprite",
+      "sha256": "3FFCE1E870C34C4CE44AB96546F643333AB6AF1D2CF6C86D9A69B3403B5E5ECB"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\contact-sheet.png",
+      "sha256": "4247459BDEEDC179CF987217E7F2B50E4D071AD69EE1A4267876CD5853B5F2F1"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\control-panel.aseprite",
+      "sha256": "FCA9890F7AABE1895A26C6758918C59DF8D40766F9E10EF27034A23C5C9CE33F"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\floppy.aseprite",
+      "sha256": "17ED1498B1791026A4BDB1012AA77B42C1FEE2287B9AD430704AD3F0D6B507D6"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\forward.aseprite",
+      "sha256": "CEC7239C056CAF379A8DC184A04E68CD53B47817B66FD22E7665DB6EAC8C5FE5"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\generate-icons.lua",
+      "sha256": "9969BD9CE89F01CD2C55D1AD626B9DFD9CD84190F96B102B8C754F170A869434"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\hard-disk.aseprite",
+      "sha256": "9C3CE05FD97A7FEA7B4E8E2694EEADEC220835AE717AC6A337B2B4E2051208F0"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\manifest.json",
+      "sha256": "3BD15113AA6A76C93400C1EAF7E077D29893F522D9B49B146575771D375721BF"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.1.0\\up.aseprite",
+      "sha256": "31D36BD03EFFC95472F6848EB00AB327076297BE810C8279EFE3B843F123E0F8"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.2.0\\contact-sheet.aseprite",
+      "sha256": "FA12CF96F8E53ACBC308E36004A827CEC7834E24B49B45C69C913AD57ECF224B"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.2.0\\contact-sheet.png",
+      "sha256": "757AF0F5C8847ACCEDD68266A7F3716D4E6147A7B1F6D9643392102A8B651918"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.2.0\\flash-drive.aseprite",
+      "sha256": "A741B54317C19713FE97F7C852A3762F8ECFD481CACD158990578906F96D939B"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.2.0\\generate-icons.lua",
+      "sha256": "945C03E2286E86EF161F889108096EC623402434B3E8D07845BA93B43AEBBB1D"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.2.0\\generation.log",
+      "sha256": "703757B74404F1EFF03E4DA8F27647C8149023817E3019863346F99A937E83FB"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.2.0\\manifest.json",
+      "sha256": "C4D95DC881264FA0076F2E1C457B82CF18A934CBE1631C08638A784BA829E947"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.2.0\\text-file.aseprite",
+      "sha256": "3F0B7D2029AB594D2BEC9111E9378268A877917DC7C9514FF917BCF2F922C058"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.3.0\\create-arrow.lua",
+      "sha256": "52F3D9FC34C88C045784E66878063A5CA62F2ECD3618D5B9A916B8D7E271357D"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.3.0\\derive-arrows.lua",
+      "sha256": "045965588C665425306BB15C4800511E607C9D90AD00ED3CC2B23D8F0D12C596"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.3.0\\generation.log",
+      "sha256": "97199053C2862FB1DF34AE856585542B9248310CDAD0F0F686E1F334C0AC8670"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.3.0\\README.md",
+      "sha256": "97474AAA87C64F77430DBDA42FA553C939F4E11A0E9AB9300F9928468C638C7C"
+    },
+    {
+      "path": "art\\pixel-ui\\v1.3.0\\scrollbar-arrow-initial.aseprite",
+      "sha256": "CE96884FD25B48CECAAB7D3C7EA708E397DBB45429E97493DE286605C16642B5"
+    },
+    {
+      "path": "assets\\pixel-ui\\check.png",
+      "sha256": "E7E16C846E8C1F4989B935146590A915EA8FE08088FEFD89215BF84357A017CA"
+    },
+    {
+      "path": "assets\\pixel-ui\\close.png",
+      "sha256": "AA943E500EB195D5CD7892F56B737D9ACCB667C60EE7C76D572C195EA2A1051C"
+    },
+    {
+      "path": "assets\\pixel-ui\\cursor-2x.png",
+      "sha256": "98415B1021F18868277D478F7B47E4F741B207B4866B0430F5A0F68962CB2938"
+    },
+    {
+      "path": "assets\\pixel-ui\\cursor.png",
+      "sha256": "A1A87214796903E697411BC5C0B0D0C278D8B47AE8E14E9AB7E269C0489B4978"
+    },
+    {
+      "path": "assets\\pixel-ui\\dither.png",
+      "sha256": "8DFE30F2829929818FC65B4560A813655E0FBE9EF40EB848B3AE2D24CA703E37"
+    },
+    {
+      "path": "assets\\pixel-ui\\grip.png",
+      "sha256": "D7374A97BF1B4067578D469E506108826F4CB7224F0DC561EA7CBEA70C23193B"
+    },
+    {
+      "path": "assets\\pixel-ui\\maximize.png",
+      "sha256": "578C9C4A069CC978D40F0232B0086B7B9AE65DC61305D1F246F66A688DEB64EB"
+    },
+    {
+      "path": "assets\\pixel-ui\\minimize.png",
+      "sha256": "A5CA8E8DBC1698B90B775FC661A937B1E415C64589BB0BF0A29158F573F56C06"
+    },
+    {
+      "path": "assets\\pixel-ui\\profile.png",
+      "sha256": "C6C348F0F829D277483FB46A2824C9C0C3F153887543C40832A41C850126D5AE"
+    },
+    {
+      "path": "assets\\pixel-ui\\restore.png",
+      "sha256": "38146FB12325A6FEC4CEB2E7494E6BBD3EAF77899F17C8A8DCD34D403D04E618"
+    },
+    {
+      "path": "assets\\pixel-ui\\settings.png",
+      "sha256": "B6B3418019BA5BCE40BF69BDED751CA3316B2D90EE089B509270DAB36351B754"
+    },
+    {
+      "path": "assets\\pixel-ui\\star.png",
+      "sha256": "987D34616A89C0DBFE47E34C132358C27FB83169ACC2E3A6E84CD24A64952D2D"
+    },
+    {
+      "path": "assets\\pixel-ui\\start.png",
+      "sha256": "F5164611EB7346A457137B92BA1ED4211CED55FADD06E8D19BD05849C3C15640"
+    },
+    {
+      "path": "assets\\pixel-ui\\works.png",
+      "sha256": "F0ABC202F8A1AE455B3A0D8EC16DE4E15BA8EA022901241828FBFE7F08C4B7F3"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.1.0\\back.png",
+      "sha256": "8E38A34F31D6B3218FE23BA7A63F04BBAF0C117A05A4A9C02A8D5EAAADF94613"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.1.0\\cdrom.png",
+      "sha256": "82CFE82F5F6603A981241A5E58C739B831684C1DB5DB5D916071FD7137C68F23"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.1.0\\computer.png",
+      "sha256": "062EA6DB53AE292BB82F7D6FCA5B65E4334919685FBBE5BF657359C7A8E4EA3C"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.1.0\\control-panel.png",
+      "sha256": "5B2EE4D6AD2C4C6D27C07ED5EE072A7D7968F712D6A75D46E4DD4F04097BE099"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.1.0\\floppy.png",
+      "sha256": "0548B42AAC0B77915E34108DDA2551F94787DEB1186B7C96D71E7DA9A382938A"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.1.0\\forward.png",
+      "sha256": "4A3376F304D7FD834DF765337CF9F9109DB0F9917F93AD41782789C4760E9C48"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.1.0\\hard-disk.png",
+      "sha256": "DF2B1F3307E9A1128138F3196FCCBD361E0351B7FB1BA56355D16FF524226830"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.1.0\\up.png",
+      "sha256": "FE2723BA7D8AABF3B523761D7366EEC18721DA76F2E8D471C1414716980FFB8D"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.2.0\\flash-drive.png",
+      "sha256": "65649E5A99E39129399A1FC933A822AB9AB7C2F34665C0793F6E7AA4EE3E46AF"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.2.0\\text-file.png",
+      "sha256": "6B67A662D66B637B2B970B99BA2C2978C27AC2766A7ED89FFB59B520D0A07B4D"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.3.0\\scrollbar-arrow-up.png",
+      "sha256": "85B23C2251236CBFC477C9682D5951578F4B89EC78C13CA3EC4725AA5CAA6028"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.3.0\\generated\\arrow-down-disabled.png",
+      "sha256": "156E2C25532328F36B2D5041454DCBB6321789DA3FC300A3F81E8930E91A0E1E"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.3.0\\generated\\arrow-down.png",
+      "sha256": "C1F3065628DE6BDA3035469AC067248BD41DD504ED08161CCDEA04890EBCF794"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.3.0\\generated\\arrow-left-disabled.png",
+      "sha256": "12FF1992FA7E574EDFBBDBCD5B2D7D02257DD0A5C4A2E20F201C01C833549869"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.3.0\\generated\\arrow-left.png",
+      "sha256": "04B33846877D6BBE15A510814BD6042BA99B200E06BDA0D88381A8691BAFB668"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.3.0\\generated\\arrow-right-disabled.png",
+      "sha256": "7502823F9E39DBD850AA9ACD7EEB2B5731711D59021A682E3DE2AC716F645EF5"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.3.0\\generated\\arrow-right.png",
+      "sha256": "1CEA5A4760FD18BE1811078EC3A73F164DF759CABADF011A8B299D246B392A68"
+    },
+    {
+      "path": "assets\\pixel-ui\\v1.3.0\\generated\\arrow-up-disabled.png",
+      "sha256": "E7919C0A153E629569B0BCF5588BAF15D0385F0BB1D01EF557136DAB47A30D95"
+    },
+    {
+      "path": "assets\\wallpapers\\ocean-capsule-pixelart-v2.png",
+      "sha256": "B207F61EFB1897AA52C93C65E33D69D21B603AB8E747D890754954A1D82EEF75"
+    }
+  ]
+}

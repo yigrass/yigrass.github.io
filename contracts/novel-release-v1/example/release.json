@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "kind": "novel",
+  "id": "example-book",
+  "title": "示例小说",
+  "author": "示例作者",
+  "language": "zh-CN",
+  "description": "用于检查导出格式的两章示例。",
+  "status": "ongoing",
+  "chapters": [
+    {
+      "id": "chapter-001",
+      "title": "第一章",
+      "file": "chapters/chapter-001.txt",
+      "illustrations": [{ "file": "images/scene-001.png", "alt": "用于格式演示的光盘图标", "afterParagraph": 1 }]
+    },
+    { "id": "chapter-002", "title": "第二章", "file": "chapters/chapter-002.txt" }
+  ]
+}

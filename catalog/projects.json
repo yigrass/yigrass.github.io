@@ -1,0 +1,18 @@
+[
+  {
+    "id": "story-a",
+    "title": "Story-A.txt",
+    "category": "novel",
+    "driveId": "a",
+    "slug": "story-a",
+    "release": "releases/story-a/"
+  },
+  {
+    "id": "game-b",
+    "title": "Game-B.exe",
+    "category": "game",
+    "driveId": "g",
+    "slug": "game-b",
+    "release": "releases/game-b/"
+  }
+]

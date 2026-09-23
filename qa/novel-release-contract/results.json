@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-23",
+  "testsPassed": 20,
+  "desktopAssertions": 175,
+  "protectedFilesUnchanged": 79,
+  "headUnchanged": true,
+  "indexUnchanged": true,
+  "zipSha256": "328683A6B853AE0C8574A9F637F744C118FF882CCC4D94048B6DF635B45C16B2",
+  "zipFiles": [
+    {
+      "path": "novel-release-v1/README.md",
+      "sha256": "D5F8A414A2DA722FD70B3092EB04B04A1E6D6DC8A2BAB7ADDF6263BBD455F27A",
+      "bytes": 9712
+    },
+    {
+      "path": "novel-release-v1/release.schema.json",
+      "sha256": "082FBF80FA1F853C71BCB6B33583EE3F6DA6419DA353254727492741DE6733CE",
+      "bytes": 1635
+    },
+    {
+      "path": "novel-release-v1/validate.mjs",
+      "sha256": "136DAB676646CCD7331474C952151BB4365169FC3D94EDACA62CDE311257896D",
+      "bytes": 6384
+    },
+    {
+      "path": "novel-release-v1/example/release.json",
+      "sha256": "B88AFD7E1D3D9C816A11D9291E8A2C19878A298BF21AFF4E6087AE70E3E05ED5",
+      "bytes": 574
+    },
+    {
+      "path": "novel-release-v1/example/chapters/chapter-001.txt",
+      "sha256": "9A787D032CDF70F60E314E65C92C7AFDA815AB1E78FCB7A56607ECBE9661597C",
+      "bytes": 174
+    },
+    {
+      "path": "novel-release-v1/example/chapters/chapter-002.txt",
+      "sha256": "7E4EF272C2B92E9D1E940B88B6CDAC90166508D6FD63B42EB07B4E79BADCA21F",
+      "bytes": 100
+    },
+    {
+      "path": "novel-release-v1/example/images/scene-001.png",
+      "sha256": "82CFE82F5F6603A981241A5E58C739B831684C1DB5DB5D916071FD7137C68F23",
+      "bytes": 1191
+    }
+  ],
+  "actualBrowserValidation": "unavailable: nodeRepl.fetch request failed",
+  "remotePublished": false
+}

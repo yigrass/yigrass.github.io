@@ -1,2 +1,7 @@
 # Local art originals, experiments and authoring records.
 /art/
+
+# Reproducible website output and local test/build staging.
+/dist/
+/.dist-build/
+/.test-work/

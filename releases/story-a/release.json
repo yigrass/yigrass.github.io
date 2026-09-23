@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "kind": "novel",
+  "id": "story-a",
+  "title": "Story-A",
+  "status": "ongoing",
+  "chapters": [
+    { "id": "placeholder", "title": "Story-A", "file": "chapters/placeholder.txt" }
+  ]
+}

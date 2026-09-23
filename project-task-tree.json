@@ -13,9 +13,9 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "art-untracking-source-layout-plan-completed",
+    "deliveryState": "source-release-separation-and-novel-contract-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review the source/output migration plan before implementing Source and Release Separation",
+    "nextAction": "Review the dist preview and portable novel contract; user handles Git and Pages deployment",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-23",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
@@ -25,21 +25,41 @@
       "id": "source-release-separation",
       "name": "Source and Release Separation",
       "parent": "personal-website",
-      "status": "pending",
-      "dependencies": ["art-untracking-source-layout-plan"],
+      "status": "completed",
+      "dependencies": [
+        "art-untracking-source-layout-plan"
+      ],
       "returnPoint": "Personal Website / Review source and release separation",
-      "note": "Plan prepared in docs/SOURCE_LAYOUT_PLAN.md. Await user review of the proposed workflow before migration. In one iteration separate source and dist output, split desktop/application/project modules, retain public routes, add HTTP preview/build checks and prepare a manually triggered Pages workflow. Git writes and remote operations require their own authorization.",
-      "references": ["docs/SOURCE_LAYOUT_PLAN.md"]
+      "note": "User approved implementation. Latest design supersedes the original plan: website-only source, current received releases without per-work source directories, single current novel release.json, standalone build/dev and manual Pages workflow. Preserve public routes, desktop interactions, image bytes and local art. No Git writes or remote operations.",
+      "references": [
+        "docs/SOURCE_LAYOUT_PLAN.md"
+      ],
+      "completedOn": "2026-09-23",
+      "evidence": [
+        "qa/source-release-separation/review.md",
+        "docs/ARCHITECTURE.md"
+      ],
+      "completedWork": [
+        "Separated website source, catalog and current received releases; removed obsolete root runtime entries",
+        "Implemented native modules, generic novel/web viewers, validated dist build and loopback preview with manual Pages workflow",
+        "Passed 19 tests including 175 desktop assertions, clean-copy build without art and HTTP checks; 79 protected files unchanged",
+        "No Git writes or remote actions; actual browser verification unavailable"
+      ]
     },
     {
       "id": "art-untracking-source-layout-plan",
       "name": "Art Untracking and Source Layout Plan",
       "parent": "personal-website",
       "status": "completed",
-      "dependencies": ["theme-presets-breaking-changes"],
+      "dependencies": [
+        "theme-presets-breaking-changes"
+      ],
       "returnPoint": "Personal Website / Review source layout plan",
       "note": "User authorized .gitignore creation and art-only index removal with local content untouched. Preserve the active arrow generator by copying its Lua dependency into tracked tooling. Explain historical erasure without rewriting history; produce the source/output directory and development plan without executing the migration.",
-      "evidence": ["qa/art-untracking-source-layout-plan/review.md", "docs/SOURCE_LAYOUT_PLAN.md"],
+      "evidence": [
+        "qa/art-untracking-source-layout-plan/review.md",
+        "docs/SOURCE_LAYOUT_PLAN.md"
+      ],
       "completedOn": "2026-09-23",
       "completedWork": [
         "Created /art/ ignore rule and removed exactly 46 art paths from the Git index with all local file paths, sizes and SHA-256 values unchanged",
@@ -53,10 +73,14 @@
       "name": "Theme Presets and Breaking Changes",
       "parent": "personal-website",
       "status": "completed",
-      "dependencies": ["desktop-address-hierarchy-theme-preview"],
+      "dependencies": [
+        "desktop-address-hierarchy-theme-preview"
+      ],
       "returnPoint": "Personal Website / Review theme presets",
       "note": "Implement five named preset themes, paired disclosure sections and a disabled custom-theme placeholder. Preserve wallpaper, dithering, icons and 20px scrollbars. Remove old route aliases and entry files; record breaking-change policy. Explain local art tracking and generated route layout without Git index changes or directory restructuring.",
-      "evidence": ["qa/theme-presets-breaking-changes/review.md"],
+      "evidence": [
+        "qa/theme-presets-breaking-changes/review.md"
+      ],
       "completedOn": "2026-09-23",
       "completedWork": [
         "Five named preset themes integrated with persistent selection, paired disclosure sections, RGB swatches and a disabled custom-theme placeholder",
@@ -71,7 +95,9 @@
       "name": "Custom Themes",
       "parent": "personal-website",
       "status": "pending",
-      "dependencies": ["theme-presets-breaking-changes"],
+      "dependencies": [
+        "theme-presets-breaking-changes"
+      ],
       "returnPoint": "Personal Website / Backlog review",
       "note": "Future custom-theme editing requested as a later feature. The current settings entry is a disabled placeholder only; define editing, validation and persistence requirements before implementation."
     },
@@ -80,11 +106,16 @@
       "name": "Desktop Address Hierarchy and Theme Preview",
       "parent": "personal-website",
       "status": "completed",
-      "dependencies": ["project-window-routing-demo", "scrollbar-arrow-assets"],
+      "dependencies": [
+        "project-window-routing-demo",
+        "scrollbar-arrow-assets"
+      ],
       "returnPoint": "Personal Website / Review desktop navigation and theme candidates",
       "note": "Set both scrollbar axes and buttons to 20px without changing artwork. Give applications, drives and projects hierarchical literal URLs with persistent desktop interactions. Preview night palettes only; preserve wallpaper, dithering and current production colors. Explain authoring assets versus deployment.",
       "previewPath": "C:/Users/a/.codex/visualizations/2026/09/21/01a0c47c-f257-7801-98ad-fb124ed3c2ef/desktop-night-palettes.html",
-      "evidence": ["qa/desktop-address-hierarchy-theme-preview/review.md"],
+      "evidence": [
+        "qa/desktop-address-hierarchy-theme-preview/review.md"
+      ],
       "completedOn": "2026-09-23",
       "completedWork": [
         "Both scrollbar axes and all arrow buttons set to 20px without changing arrow artwork or the 25px statusbar",
@@ -100,8 +131,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review source layout plan",
-      "note": "The MVP remains completed. Art has been ignored and untracked with local bytes preserved. Source and Release Separation is pending review of the delivered plan; current website source/output layout remains in place."
+      "returnPoint": "Personal Website / Review source and novel release contract",
+      "note": "MVP remains completed. Source and Release Separation and Novel Release Contract are completed locally. User review of the new dist preview and manual GitHub Pages setup/deployment remain separate user operations."
     },
     {
       "id": "qq-space-mvp",
@@ -550,6 +581,30 @@
         "One editable 15x15 upward PNG replaces embedded SVG definitions; three directions and four disabled states are generated from it",
         "Aseprite-based local generator, source editing instructions and dated generation evidence added without runtime image processing",
         "All eight PNGs decoded as single-frame indexed images with binary alpha; all rotation pixels match independent System.Drawing rotations; CSS references, static entries and protected files checked"
+      ]
+    },
+    {
+      "id": "novel-release-contract",
+      "name": "Novel Release Contract",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "source-release-separation"
+      ],
+      "returnPoint": "Personal Website / Review novel release contract",
+      "note": "After layout migration, deliver a portable authoritative contract, schema, example and validator for a complete current UTF-8 novel release. User explicitly chose replaceable current chapter files and release.json without retained release directories.",
+      "completedOn": "2026-09-23",
+      "evidence": [
+        "contracts/novel-release-v1/README.md",
+        "qa/novel-release-contract/review.md",
+        "qa/novel-release-contract/results.json",
+        "qa/novel-release-contract/novel-release-v1.zip"
+      ],
+      "completedWork": [
+        "Delivered current-only UTF-8 novel release contract with one complete release.json, optional illustrations and whole-directory replacement semantics",
+        "Portable schema, standalone validator and complete two-chapter example delivered as a seven-file hash-verified ZIP",
+        "20 tests including 175 desktop assertions passed; 79 protected files, Git HEAD and index unchanged",
+        "Local dist preview available; no remote publishing or real-browser visual acceptance claimed"
       ]
     }
   ]

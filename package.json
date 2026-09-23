@@ -1,0 +1,13 @@
+{
+  "name": "yigrass-desktop",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/check.mjs",
+    "validate:novel": "node contracts/novel-release-v1/validate.mjs"
+  }
+}
