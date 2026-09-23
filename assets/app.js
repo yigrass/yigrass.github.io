@@ -1,6 +1,9 @@
 (() => {
   "use strict";
   const config = window.SITE_CONFIG;
+  const themes = window.DESKTOP_THEMES;
+  const themeById = new Map(themes.map(theme => [theme.id, theme]));
+  const rgbChannels = color => color.slice(1).match(/../g).map(channel => parseInt(channel, 16));
   const $ = (selector, root = document) => root.querySelector(selector);
   const desktop = $("#desktop");
   const menu = $("#start-menu");
@@ -47,27 +50,28 @@
   const assetBase = $("base") || create("base");
   assetBase.href = siteRoot.href;
   if (!assetBase.parentNode) document.head.prepend(assetBase);
-  const projectRoutes = window.createProjectRoutes({ works: config.works, baseURI: siteRoot.href, location: window.location, history: window.history });
+  const desktopRoutes = window.createDesktopRoutes({ config, baseURI: siteRoot.href, location: window.location, history: window.history });
   const projectCategories = {
-    novel: { label: "小说", icon: "v1.2.0/text-file" },
-    game: { label: "游戏", icon: "v1.1.0/cdrom" },
-    utility: { label: "实用工具", icon: "v1.1.0/control-panel" }
+    novel: { icon: "v1.2.0/text-file" },
+    game: { icon: "v1.1.0/cdrom" },
+    utility: { icon: "v1.1.0/control-panel" }
   };
   const projectWindowId = (id) => `project-${id}`;
   let restoringAddress = false;
-  for (const project of projectRoutes.projects) {
+  for (const project of desktopRoutes.projects) {
     windowTypes[projectWindowId(project.id)] = {
       title: project.title, icon: projectCategories[project.category].icon, projectId: project.id,
       render: (body) => projectContent(body, project), status: () => "就绪"
     };
   }
   function syncAddress(mode = "replace") {
-    const projectId = windowTypes[activeId]?.projectId;
-    document.title = projectId ? `${titleOf(activeId)} — ${config.siteTitle}` : config.siteTitle;
-    if (!restoringAddress) projectRoutes.sync(projectId, mode);
+    const driveId = activeId === "works" ? openWindows.get("works")?.content?.getLocation() : null;
+    const routeId = driveId ? `drive-${driveId}` : activeId;
+    document.title = activeId ? `${titleOf(activeId)} — ${config.siteTitle}` : config.siteTitle;
+    if (!restoringAddress) desktopRoutes.sync(routeId, mode);
   }
   function openProject(id) {
-    if (!projectRoutes.get(id)) return;
+    if (!desktopRoutes.getProject(id)) return;
     const windowId = projectWindowId(id);
     openWindow(windowId, openWindows.has(windowId) ? "replace" : "push");
   }
@@ -75,12 +79,14 @@
     restoringAddress = true;
     closeMenu();
     try {
-      const project = projectRoutes.current();
-      if (project) openWindow(projectWindowId(project.id));
+      const route = desktopRoutes.current();
+      if (route) {
+        openWindow(route.windowId);
+        if (route.windowId === "works") openWindows.get("works").content.navigate(route.driveId || null, "replace");
+      }
       else {
-        // A desktop history entry hides project windows without destroying them.
-        for (const [id, entry] of openWindows) {
-          if (!windowTypes[id].projectId) continue;
+        // A desktop history entry hides every window without destroying its state.
+        for (const entry of openWindows.values()) {
           entry.cancelResize();
           entry.minimized = true;
           entry.element.hidden = true;
@@ -110,6 +116,7 @@
   const defaultTransparency = Number(config.defaults?.menuTransparency) || 0;
   const savedTransparency = Number(saved.menuTransparency ?? defaultTransparency);
   const preferences = {
+    themeId: themeById.has(saved.themeId) ? saved.themeId : themeById.has(config.defaults?.themeId) ? config.defaults.themeId : themes[0].id,
     menuTransparency: Number.isFinite(savedTransparency) ? Math.min(100, Math.max(0, savedTransparency)) : 0,
     customCursor: typeof saved.customCursor === "boolean" ? saved.customCursor : Boolean(config.defaults?.customCursor),
     floatingStars: typeof saved.floatingStars === "boolean" ? saved.floatingStars : Boolean(config.defaults?.floatingStars)
@@ -148,6 +155,13 @@
   }
   reducedMotion.addEventListener("change", updateStars);
   function applyPreferences() {
+    const theme = themeById.get(preferences.themeId);
+    const root = document.documentElement;
+    root.dataset.theme = theme.id;
+    root.dataset.colorScheme = theme.scheme;
+    root.style.setProperty("color-scheme", theme.scheme);
+    for (const [name, color] of Object.entries(theme.colors)) root.style.setProperty(`--${name}`, color);
+    root.style.setProperty("--shell-rgb", rgbChannels(theme.colors.silver).join(" "));
     document.documentElement.style.setProperty("--shell-alpha", 1 - preferences.menuTransparency / 100);
     const settings = $("#window-settings");
     if (settings) {
@@ -155,6 +169,10 @@
       $("#transparency-value", settings).textContent = `${preferences.menuTransparency}%`;
       $("#custom-cursor", settings).checked = preferences.customCursor;
       $("#floating-stars", settings).checked = preferences.floatingStars;
+      for (const choice of settings.querySelectorAll(".theme-radio")) {
+        choice.checked = choice.value === preferences.themeId;
+        choice.parentNode.classList.toggle("is-selected", choice.checked);
+      }
     }
     document.body.classList.toggle("custom-cursor", preferences.customCursor);
     updateStars();
@@ -207,7 +225,7 @@
       $("#menu-items").append(divider);
     }
     button.append(icon, create("span", "", titleOf(id)));
-    button.addEventListener("click", () => { closeMenu(); openWindow(id); });
+    button.addEventListener("click", () => { closeMenu(); openWindow(id, openWindows.has(id) ? "replace" : "push"); });
     $("#menu-items").append(button);
   }
 
@@ -350,8 +368,8 @@
     const drives = config.explorer?.drives || [];
     const categories = projectCategories;
     const projects = (Array.isArray(config.works) ? config.works : [])
-      .filter((project) => project && Object.hasOwn(categories, project.category) && typeof project.title === "string" && project.title.trim() && (projectRoutes.get(project.id) || safeURL(project.url)))
-      .map((project) => ({ ...project, title: project.title.trim(), internal: Boolean(projectRoutes.get(project.id)), url: projectRoutes.get(project.id) ? projectRoutes.address(project.id) : safeURL(project.url) }));
+      .filter((project) => project && Object.hasOwn(categories, project.category) && typeof project.title === "string" && project.title.trim() && (desktopRoutes.getProject(project.id) || safeURL(project.url)))
+      .map((project) => ({ ...project, title: project.title.trim(), internal: Boolean(desktopRoutes.getProject(project.id)), url: desktopRoutes.getProject(project.id) ? desktopRoutes.address(projectWindowId(project.id)) : safeURL(project.url) }));
     const rootLabel = titleOf("profile");
     const driveLabel = (drive) => `${drive.label} (${drive.letter}:)`;
     const driveIcon = (drive, className) => pixelIcon(drive.type === "flash-drive" ? "v1.2.0/flash-drive" : `v1.1.0/${["hard-disk", "floppy", "cdrom"].includes(drive.type) ? drive.type : "hard-disk"}`, className);
@@ -424,17 +442,17 @@
     content.tabIndex = 0;
     panes.append(sidebar, content);
     body.append(toolbar, addressRow, panes);
-    function navigate(id) {
+    function navigate(id, routeMode = "push") {
       if (id !== null && !drives.some((drive) => drive.id === id)) return;
       if (currentLocation === id) return;
       currentLocation = id;
       render();
+      if (activeId === "works") syncAddress(routeMode);
     }
     function render() {
       const id = currentLocation;
       const drive = drives.find((item) => item.id === id);
-      const category = drive && Object.hasOwn(categories, drive.category) ? categories[drive.category] : null;
-      const entries = category ? projects.filter((project) => project.category === drive.category) : [];
+      const entries = drive ? projects.filter((project) => project.driveId === drive.id) : [];
       const label = drive ? driveLabel(drive) : rootLabel;
       // Moving into a drive removes its root tile; retain keyboard focus in the pane.
       const restoreFocus = content.contains(document.activeElement);
@@ -448,12 +466,11 @@
       content.setAttribute("aria-label", `${label}内容`);
       const caption = create("div", "explorer-location-heading");
       caption.append(drive ? driveIcon(drive) : pixelIcon("v1.1.0/computer"), create("h1", "", label));
-      if (category) caption.append(create("span", "explorer-category", category.label));
       content.append(caption);
       if (drive && entries.length) {
         const grid = create("div", "drive-grid");
         for (const project of entries) {
-          const name = drive.category === "novel" && !/\.txt$/i.test(project.title) ? `${project.title}.txt` : project.title;
+          const name = project.title;
           const tile = create("a", "drive-tile project-tile");
           tile.href = project.url;
           if (project.internal) {
@@ -468,7 +485,7 @@
           }
           tile.title = `打开${name}${project.internal ? "" : "（新标签页）"}`;
           tile.setAttribute("aria-label", tile.title);
-          tile.append(pixelIcon(category.icon, "drive-icon"), create("span", "", name));
+          tile.append(pixelIcon(categories[project.category].icon, "drive-icon"), create("span", "", name));
           grid.append(tile);
         }
         content.append(grid);
@@ -483,7 +500,6 @@
           tile.type = "button";
           tile.title = `打开${driveLabel(item)}`;
           tile.append(driveIcon(item, "drive-icon"), create("span", "", driveLabel(item)));
-          if (Object.hasOwn(categories, item.category)) tile.append(create("small", "drive-purpose", categories[item.category].label));
           tile.addEventListener("click", () => navigate(item.id));
           grid.append(tile);
         }
@@ -493,6 +509,7 @@
       if (restoreFocus) content.focus({ preventScroll: true });
     }
     render();
+    return { getLocation: () => currentLocation, navigate };
   }
 
   function settingsContent(body) {
@@ -502,6 +519,71 @@
     copy.append(create("h1", "", "桌面外观"), create("p", "", "调整个人空间的显示方式。"));
     heading.append(pixelIcon(windowTypes.settings.icon, "settings-icon"), copy);
     body.append(heading);
+
+    const themeGroup = create("fieldset", "settings-group theme-group");
+    themeGroup.append(create("legend", "", "主题"));
+    const sections = [];
+    function expandThemeSection(id) {
+      for (const section of sections) {
+        const expanded = section.id === id;
+        section.button.setAttribute("aria-expanded", String(expanded));
+        section.panel.hidden = !expanded;
+      }
+    }
+    function themeSection(id, title) {
+      const button = create("button", "theme-disclosure");
+      button.type = "button";
+      button.id = `theme-${id}-toggle`;
+      button.setAttribute("aria-controls", `theme-${id}-panel`);
+      const arrow = pixelIcon("v1.3.0/scrollbar-arrow-up", "theme-disclosure-arrow");
+      button.append(arrow, create("span", "", title));
+      const panel = create("div", "theme-panel");
+      panel.id = `theme-${id}-panel`;
+      panel.setAttribute("role", "region");
+      panel.setAttribute("aria-labelledby", button.id);
+      button.addEventListener("click", () => expandThemeSection(button.getAttribute("aria-expanded") === "true" ? null : id));
+      sections.push({ id, button, panel });
+      themeGroup.append(button, panel);
+      return panel;
+    }
+    const presets = themeSection("presets", "预设");
+    for (const theme of themes) {
+      const row = create("label", `theme-option${theme.id === preferences.themeId ? " is-selected" : ""}`);
+      row.htmlFor = `theme-choice-${theme.id}`;
+      const input = create("input", "theme-radio");
+      Object.assign(input, { type: "radio", name: "desktop-theme", id: row.htmlFor, value: theme.id, checked: theme.id === preferences.themeId });
+      input.addEventListener("change", () => {
+        if (!input.checked) return;
+        preferences.themeId = theme.id;
+        applyPreferences();
+        expandThemeSection("presets");
+        announce(`已应用主题：${theme.name}`);
+      });
+      const details = create("span", "theme-option-details");
+      details.append(create("span", "theme-name", theme.name));
+      const palette = create("span", "theme-palette");
+      for (const [label, token] of [["控件背景", "silver"], ["内容背景", "content"], ["标题栏", "title-active"]]) {
+        const color = theme.colors[token];
+        const sample = create("span", "theme-color");
+        const swatch = create("span", "theme-swatch");
+        swatch.style.backgroundColor = color;
+        swatch.setAttribute("aria-hidden", "true");
+        const text = create("span", "theme-color-copy");
+        text.append(create("span", "theme-color-label", label), create("code", "", `RGB(${rgbChannels(color).join(", ")})`));
+        sample.append(swatch, text);
+        palette.append(sample);
+      }
+      details.append(palette);
+      row.append(input, details);
+      presets.append(row);
+    }
+    const custom = themeSection("custom", "自定义");
+    const unavailable = create("div", "theme-unavailable", "功能开发中");
+    unavailable.setAttribute("aria-disabled", "true");
+    custom.append(unavailable);
+    // Every current theme is a preset. Inspecting the placeholder never changes it.
+    expandThemeSection("presets");
+    body.append(themeGroup);
 
     const menuGroup = create("fieldset", "settings-group");
     menuGroup.append(create("legend", "", "开始菜单与任务栏"));
@@ -665,7 +747,7 @@
     const statusText = create("span", "", windowTypes[id].status());
     statusText.setAttribute("role", "status");
     status.append(statusText, pixelIcon("grip", "status-grip"));
-    windowTypes[id].render(body, (text) => { statusText.textContent = text; });
+    const content = windowTypes[id].render(body, (text) => { statusText.textContent = text; });
     element.append(titlebar);
     if (id === "settings") element.append(toolbar);
     element.append(body, status);
@@ -679,7 +761,7 @@
     });
     windowsHost.append(element);
     tabsHost.append(tab);
-    openWindows.set(id, { element, tab, minimized: false, cancelResize: enableResize(id, element) });
+    openWindows.set(id, { element, tab, content, minimized: false, cancelResize: enableResize(id, element) });
     element.addEventListener("pointerdown", () => activate(id));
     element.addEventListener("focusin", () => { if (activeId !== id) activate(id); });
     enableDrag(element, titlebar);

@@ -13,22 +13,95 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "scrollbar-arrow-assets-completed",
+    "deliveryState": "art-untracking-source-layout-plan-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review square scrollbar buttons and edit the canonical upward PNG if desired",
+    "nextAction": "Review the source/output migration plan before implementing Source and Release Separation",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-23",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
     {
+      "id": "source-release-separation",
+      "name": "Source and Release Separation",
+      "parent": "personal-website",
+      "status": "pending",
+      "dependencies": ["art-untracking-source-layout-plan"],
+      "returnPoint": "Personal Website / Review source and release separation",
+      "note": "Plan prepared in docs/SOURCE_LAYOUT_PLAN.md. Await user review of the proposed workflow before migration. In one iteration separate source and dist output, split desktop/application/project modules, retain public routes, add HTTP preview/build checks and prepare a manually triggered Pages workflow. Git writes and remote operations require their own authorization.",
+      "references": ["docs/SOURCE_LAYOUT_PLAN.md"]
+    },
+    {
+      "id": "art-untracking-source-layout-plan",
+      "name": "Art Untracking and Source Layout Plan",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": ["theme-presets-breaking-changes"],
+      "returnPoint": "Personal Website / Review source layout plan",
+      "note": "User authorized .gitignore creation and art-only index removal with local content untouched. Preserve the active arrow generator by copying its Lua dependency into tracked tooling. Explain historical erasure without rewriting history; produce the source/output directory and development plan without executing the migration.",
+      "evidence": ["qa/art-untracking-source-layout-plan/review.md", "docs/SOURCE_LAYOUT_PLAN.md"],
+      "completedOn": "2026-09-23",
+      "completedWork": [
+        "Created /art/ ignore rule and removed exactly 46 art paths from the Git index with all local file paths, sizes and SHA-256 values unchanged",
+        "Copied the active Lua arrow helper byte-for-byte into scripts and updated its caller so maintained tooling no longer depends on local art",
+        "Prepared the concrete source/output directory, module, preview and manual publication plan without executing the migration",
+        "Verified ignore coverage, art-only staged removals, unchanged HEAD, helper identity and PowerShell syntax; no commit, history rewrite or remote operation"
+      ]
+    },
+    {
+      "id": "theme-presets-breaking-changes",
+      "name": "Theme Presets and Breaking Changes",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": ["desktop-address-hierarchy-theme-preview"],
+      "returnPoint": "Personal Website / Review theme presets",
+      "note": "Implement five named preset themes, paired disclosure sections and a disabled custom-theme placeholder. Preserve wallpaper, dithering, icons and 20px scrollbars. Remove old route aliases and entry files; record breaking-change policy. Explain local art tracking and generated route layout without Git index changes or directory restructuring.",
+      "evidence": ["qa/theme-presets-breaking-changes/review.md"],
+      "completedOn": "2026-09-23",
+      "completedWork": [
+        "Five named preset themes integrated with persistent selection, paired disclosure sections, RGB swatches and a disabled custom-theme placeholder",
+        "Theme colors cover windows, controls, Start menu, taskbar and native scroll styling while preserving wallpaper, edge dithering and image assets",
+        "Legacy URL aliases and two entry files removed; default breaking-change policy recorded in README",
+        "239 simulated application checks, nine generated entry checks and 20 loopback HTTP checks passed; browser visual verification unavailable",
+        "Art tracking and source/output organization explained without Git writes or directory restructuring"
+      ]
+    },
+    {
+      "id": "custom-themes",
+      "name": "Custom Themes",
+      "parent": "personal-website",
+      "status": "pending",
+      "dependencies": ["theme-presets-breaking-changes"],
+      "returnPoint": "Personal Website / Backlog review",
+      "note": "Future custom-theme editing requested as a later feature. The current settings entry is a disabled placeholder only; define editing, validation and persistence requirements before implementation."
+    },
+    {
+      "id": "desktop-address-hierarchy-theme-preview",
+      "name": "Desktop Address Hierarchy and Theme Preview",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": ["project-window-routing-demo", "scrollbar-arrow-assets"],
+      "returnPoint": "Personal Website / Review desktop navigation and theme candidates",
+      "note": "Set both scrollbar axes and buttons to 20px without changing artwork. Give applications, drives and projects hierarchical literal URLs with persistent desktop interactions. Preview night palettes only; preserve wallpaper, dithering and current production colors. Explain authoring assets versus deployment.",
+      "previewPath": "C:/Users/a/.codex/visualizations/2026/09/21/01a0c47c-f257-7801-98ad-fb124ed3c2ef/desktop-night-palettes.html",
+      "evidence": ["qa/desktop-address-hierarchy-theme-preview/review.md"],
+      "completedOn": "2026-09-23",
+      "completedWork": [
+        "Both scrollbar axes and all arrow buttons set to 20px without changing arrow artwork or the 25px statusbar",
+        "Applications, drives and projects receive literal hierarchical URLs with shared route configuration and 11 static entry pages including two legacy links",
+        "Foreground, minimize, restore, close and history navigation preserve the continuous desktop and remembered Explorer drive",
+        "Three isolated night palette previews prepared; production colors, wallpaper and dithering unchanged",
+        "196 simulated DOM/history checks, 16 loopback HTTP checks, static entry consistency, preview script compilation and protected-file checks passed; browser tool unavailable"
+      ]
+    },
+    {
       "id": "personal-website",
       "name": "Personal Website",
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review scrollbar controls",
-      "note": "The MVP remains completed. Scrollbar Arrow Assets is implemented and locally checked; return to scrollbar control review."
+      "returnPoint": "Personal Website / Review source layout plan",
+      "note": "The MVP remains completed. Art has been ignored and untracked with local bytes preserved. Source and Release Separation is pending review of the delivered plan; current website source/output layout remains in place."
     },
     {
       "id": "qq-space-mvp",

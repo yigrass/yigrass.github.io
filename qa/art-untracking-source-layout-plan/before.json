@@ -1,0 +1,286 @@
+{
+  "date": "2026-09-23",
+  "head": "18da807cf41ca348ff1f1da861dbce7f6b241237",
+  "stagedPaths": [],
+  "trackedArt": [
+    "art/backgrounds/ocean-capsule-v2/README.md",
+    "art/backgrounds/ocean-capsule-v2/draft-pixelart-ase.png",
+    "art/backgrounds/ocean-capsule-v2/manifest.json",
+    "art/backgrounds/ocean-capsule-v2/prompt.txt",
+    "art/pixel-ui/README.md",
+    "art/pixel-ui/check.aseprite",
+    "art/pixel-ui/close.aseprite",
+    "art/pixel-ui/contact-sheet.png",
+    "art/pixel-ui/cursor-2x.aseprite",
+    "art/pixel-ui/cursor.aseprite",
+    "art/pixel-ui/dither.aseprite",
+    "art/pixel-ui/generate-pixel-ui.lua",
+    "art/pixel-ui/grip.aseprite",
+    "art/pixel-ui/manifest.json",
+    "art/pixel-ui/maximize.aseprite",
+    "art/pixel-ui/minimize.aseprite",
+    "art/pixel-ui/profile.aseprite",
+    "art/pixel-ui/restore.aseprite",
+    "art/pixel-ui/settings.aseprite",
+    "art/pixel-ui/star.aseprite",
+    "art/pixel-ui/start.aseprite",
+    "art/pixel-ui/v1.1.0/back.aseprite",
+    "art/pixel-ui/v1.1.0/cdrom.aseprite",
+    "art/pixel-ui/v1.1.0/computer.aseprite",
+    "art/pixel-ui/v1.1.0/contact-sheet.aseprite",
+    "art/pixel-ui/v1.1.0/contact-sheet.png",
+    "art/pixel-ui/v1.1.0/control-panel.aseprite",
+    "art/pixel-ui/v1.1.0/floppy.aseprite",
+    "art/pixel-ui/v1.1.0/forward.aseprite",
+    "art/pixel-ui/v1.1.0/generate-icons.lua",
+    "art/pixel-ui/v1.1.0/hard-disk.aseprite",
+    "art/pixel-ui/v1.1.0/manifest.json",
+    "art/pixel-ui/v1.1.0/up.aseprite",
+    "art/pixel-ui/v1.2.0/contact-sheet.aseprite",
+    "art/pixel-ui/v1.2.0/contact-sheet.png",
+    "art/pixel-ui/v1.2.0/flash-drive.aseprite",
+    "art/pixel-ui/v1.2.0/generate-icons.lua",
+    "art/pixel-ui/v1.2.0/generation.log",
+    "art/pixel-ui/v1.2.0/manifest.json",
+    "art/pixel-ui/v1.2.0/text-file.aseprite",
+    "art/pixel-ui/v1.3.0/README.md",
+    "art/pixel-ui/v1.3.0/create-arrow.lua",
+    "art/pixel-ui/v1.3.0/derive-arrows.lua",
+    "art/pixel-ui/v1.3.0/generation.log",
+    "art/pixel-ui/v1.3.0/scrollbar-arrow-initial.aseprite",
+    "art/pixel-ui/works.aseprite"
+  ],
+  "localFileCount": 46,
+  "localFiles": [
+    {
+      "path": "art/backgrounds/ocean-capsule-v2/draft-pixelart-ase.png",
+      "bytes": 215072,
+      "sha256": "B207F61EFB1897AA52C93C65E33D69D21B603AB8E747D890754954A1D82EEF75"
+    },
+    {
+      "path": "art/backgrounds/ocean-capsule-v2/manifest.json",
+      "bytes": 1498,
+      "sha256": "AEE08EB4AF1BB9F70E7E0E3C9C8D80CB9B80BF0B11757CA2620A38B5EA33821B"
+    },
+    {
+      "path": "art/backgrounds/ocean-capsule-v2/prompt.txt",
+      "bytes": 3448,
+      "sha256": "734391030401001F613319C4076368A43C8D422173E512597E3E4E1708396871"
+    },
+    {
+      "path": "art/backgrounds/ocean-capsule-v2/README.md",
+      "bytes": 2033,
+      "sha256": "AF848D94C3CD99558DA2972C5A233FF719C0E7234C63AB8519013B3A978E70A5"
+    },
+    {
+      "path": "art/pixel-ui/check.aseprite",
+      "bytes": 1813,
+      "sha256": "076B561B8998BDE8E9D203212614AD49DAE73FAF0C8143055CFDC9034AD6B11E"
+    },
+    {
+      "path": "art/pixel-ui/close.aseprite",
+      "bytes": 1814,
+      "sha256": "D740A947412B3DE3BD6CC3B519549B4A352BAE26BB3F3DE55AC05D34D7501635"
+    },
+    {
+      "path": "art/pixel-ui/contact-sheet.png",
+      "bytes": 2043,
+      "sha256": "3B2D5465BB64384790E84E1CE220A8D97868D863304069884B4AACF130F9CD92"
+    },
+    {
+      "path": "art/pixel-ui/cursor-2x.aseprite",
+      "bytes": 1871,
+      "sha256": "27AFC494CE8D39A8080E2408303BE794410D67EE4127AB025100CC6BC0130A80"
+    },
+    {
+      "path": "art/pixel-ui/cursor.aseprite",
+      "bytes": 1847,
+      "sha256": "76FB24009D5D7D469EF10E55DCE51C2D0A9A7578E69DD10FF29B90E7667A0121"
+    },
+    {
+      "path": "art/pixel-ui/dither.aseprite",
+      "bytes": 1797,
+      "sha256": "4350C39B9DFC046039B25C58B3DE98D3A40ECADF4B0E28266B2B50F6824F68C8"
+    },
+    {
+      "path": "art/pixel-ui/generate-pixel-ui.lua",
+      "bytes": 5125,
+      "sha256": "9A24D81794FA4365DAF90F21B03CAA07666EDFCBC80F246D1ED1E081F3DF73A7"
+    },
+    {
+      "path": "art/pixel-ui/grip.aseprite",
+      "bytes": 1809,
+      "sha256": "7BBE040B36086BCA41A43746E9A9E797FC231D7CBE8855821307016AEC873DBC"
+    },
+    {
+      "path": "art/pixel-ui/manifest.json",
+      "bytes": 4630,
+      "sha256": "C9EABA90A0DC6DFEA9D044D29E8634D4F80846702AD3AFCE0B8F916AB9FA9F5E"
+    },
+    {
+      "path": "art/pixel-ui/maximize.aseprite",
+      "bytes": 1802,
+      "sha256": "97D92983B680DB70153DBF2F1D7BEC7144A3023C6BC573EFD5520CCDEE13F718"
+    },
+    {
+      "path": "art/pixel-ui/minimize.aseprite",
+      "bytes": 1801,
+      "sha256": "0FB157D3B3864171707061D3EE501E4E8F39B7C68A2A598161234D5625B9D0D0"
+    },
+    {
+      "path": "art/pixel-ui/profile.aseprite",
+      "bytes": 1850,
+      "sha256": "B36ADF634BB601D304CB53F44C1B46C33AB4FCDDE50143C51C57B1258A2C1D0A"
+    },
+    {
+      "path": "art/pixel-ui/README.md",
+      "bytes": 2414,
+      "sha256": "7BC64344A3EB0DB6EFA8812FAFB63291571F94525DB9F76B06E551C41E4A615B"
+    },
+    {
+      "path": "art/pixel-ui/restore.aseprite",
+      "bytes": 1812,
+      "sha256": "9E5290480FBF751DBF94C9C383B14D126306555471CE48960F4BF588AADFCFF9"
+    },
+    {
+      "path": "art/pixel-ui/settings.aseprite",
+      "bytes": 1856,
+      "sha256": "4C9A4562D0DE87FEEE7D1968FD0FA6D65447626A124FC11D03801DDEB7A96E76"
+    },
+    {
+      "path": "art/pixel-ui/star.aseprite",
+      "bytes": 1818,
+      "sha256": "B12882C1D45326052EF2D8477B37EE8D9613630A19D294829C1DA3F8D1DD653C"
+    },
+    {
+      "path": "art/pixel-ui/start.aseprite",
+      "bytes": 1825,
+      "sha256": "D175C3A4C9A9B06AFB1DAEA2B7A4D603C1964321409A4B4533D9E89A570DAF6F"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/back.aseprite",
+      "bytes": 1831,
+      "sha256": "12ADA29DBDC32DF48107FDD52E9C3AEC1F252E41156FD0C82C661E3421022911"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/cdrom.aseprite",
+      "bytes": 1856,
+      "sha256": "77211E7AD022B83438F47932D65115D706C87F0BEC2DF925B53A3DC2EC64C6B5"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/computer.aseprite",
+      "bytes": 1861,
+      "sha256": "B822F2725354545BAD9E9745C84620F19F98C46D5EAB0B664857C0804C9BEFFF"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/contact-sheet.aseprite",
+      "bytes": 2430,
+      "sha256": "3FFCE1E870C34C4CE44AB96546F643333AB6AF1D2CF6C86D9A69B3403B5E5ECB"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/contact-sheet.png",
+      "bytes": 1916,
+      "sha256": "4247459BDEEDC179CF987217E7F2B50E4D071AD69EE1A4267876CD5853B5F2F1"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/control-panel.aseprite",
+      "bytes": 1865,
+      "sha256": "FCA9890F7AABE1895A26C6758918C59DF8D40766F9E10EF27034A23C5C9CE33F"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/floppy.aseprite",
+      "bytes": 1846,
+      "sha256": "17ED1498B1791026A4BDB1012AA77B42C1FEE2287B9AD430704AD3F0D6B507D6"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/forward.aseprite",
+      "bytes": 1834,
+      "sha256": "CEC7239C056CAF379A8DC184A04E68CD53B47817B66FD22E7665DB6EAC8C5FE5"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/generate-icons.lua",
+      "bytes": 4403,
+      "sha256": "9969BD9CE89F01CD2C55D1AD626B9DFD9CD84190F96B102B8C754F170A869434"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/hard-disk.aseprite",
+      "bytes": 1846,
+      "sha256": "9C3CE05FD97A7FEA7B4E8E2694EEADEC220835AE717AC6A337B2B4E2051208F0"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/manifest.json",
+      "bytes": 5414,
+      "sha256": "3BD15113AA6A76C93400C1EAF7E077D29893F522D9B49B146575771D375721BF"
+    },
+    {
+      "path": "art/pixel-ui/v1.1.0/up.aseprite",
+      "bytes": 1829,
+      "sha256": "31D36BD03EFFC95472F6848EB00AB327076297BE810C8279EFE3B843F123E0F8"
+    },
+    {
+      "path": "art/pixel-ui/v1.2.0/contact-sheet.aseprite",
+      "bytes": 1975,
+      "sha256": "FA12CF96F8E53ACBC308E36004A827CEC7834E24B49B45C69C913AD57ECF224B"
+    },
+    {
+      "path": "art/pixel-ui/v1.2.0/contact-sheet.png",
+      "bytes": 1333,
+      "sha256": "757AF0F5C8847ACCEDD68266A7F3716D4E6147A7B1F6D9643392102A8B651918"
+    },
+    {
+      "path": "art/pixel-ui/v1.2.0/flash-drive.aseprite",
+      "bytes": 1856,
+      "sha256": "A741B54317C19713FE97F7C852A3762F8ECFD481CACD158990578906F96D939B"
+    },
+    {
+      "path": "art/pixel-ui/v1.2.0/generate-icons.lua",
+      "bytes": 2342,
+      "sha256": "945C03E2286E86EF161F889108096EC623402434B3E8D07845BA93B43AEBBB1D"
+    },
+    {
+      "path": "art/pixel-ui/v1.2.0/generation.log",
+      "bytes": 166,
+      "sha256": "703757B74404F1EFF03E4DA8F27647C8149023817E3019863346F99A937E83FB"
+    },
+    {
+      "path": "art/pixel-ui/v1.2.0/manifest.json",
+      "bytes": 1577,
+      "sha256": "C4D95DC881264FA0076F2E1C457B82CF18A934CBE1631C08638A784BA829E947"
+    },
+    {
+      "path": "art/pixel-ui/v1.2.0/text-file.aseprite",
+      "bytes": 1842,
+      "sha256": "3F0B7D2029AB594D2BEC9111E9378268A877917DC7C9514FF917BCF2F922C058"
+    },
+    {
+      "path": "art/pixel-ui/v1.3.0/create-arrow.lua",
+      "bytes": 998,
+      "sha256": "52F3D9FC34C88C045784E66878063A5CA62F2ECD3618D5B9A916B8D7E271357D"
+    },
+    {
+      "path": "art/pixel-ui/v1.3.0/derive-arrows.lua",
+      "bytes": 3046,
+      "sha256": "045965588C665425306BB15C4800511E607C9D90AD00ED3CC2B23D8F0D12C596"
+    },
+    {
+      "path": "art/pixel-ui/v1.3.0/generation.log",
+      "bytes": 89,
+      "sha256": "97199053C2862FB1DF34AE856585542B9248310CDAD0F0F686E1F334C0AC8670"
+    },
+    {
+      "path": "art/pixel-ui/v1.3.0/README.md",
+      "bytes": 1319,
+      "sha256": "97474AAA87C64F77430DBDA42FA553C939F4E11A0E9AB9300F9928468C638C7C"
+    },
+    {
+      "path": "art/pixel-ui/v1.3.0/scrollbar-arrow-initial.aseprite",
+      "bytes": 1811,
+      "sha256": "CE96884FD25B48CECAAB7D3C7EA708E397DBB45429E97493DE286605C16642B5"
+    },
+    {
+      "path": "art/pixel-ui/works.aseprite",
+      "bytes": 1831,
+      "sha256": "4937D4205C3E1A70C3BC293C561F20B3B9FBBF4E2646F5B901BCDA03273C1273"
+    }
+  ]
+}

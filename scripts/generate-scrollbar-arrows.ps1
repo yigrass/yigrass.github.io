@@ -19,7 +19,7 @@ function Invoke-ArrowStep([string[]]$Arguments) {
   return $result
 }
 $runs+=Invoke-ArrowStep @('-Mode','doctor','-WorkspaceRoot',$workspace)
-$runs+=Invoke-ArrowStep @('-Mode','run-script','-WorkspaceRoot',$workspace,'-ScriptPath',(Join-Path $projectRoot 'art/pixel-ui/v1.3.0/derive-arrows.lua'),'-ScriptParamList',("input="+$source+";output="+$work),'-ExpectedPathList',(Join-Path $work 'contact-sheet.aseprite'))
+$runs+=Invoke-ArrowStep @('-Mode','run-script','-WorkspaceRoot',$workspace,'-ScriptPath',(Join-Path $projectRoot 'scripts/pixel-ui/derive-scrollbar-arrows.lua'),'-ScriptParamList',("input="+$source+";output="+$work),'-ExpectedPathList',(Join-Path $work 'contact-sheet.aseprite'))
 foreach ($name in @('arrow-right','arrow-down','arrow-left','arrow-up-disabled','arrow-right-disabled','arrow-down-disabled','arrow-left-disabled','contact-sheet')) {
   $output=if ($name -eq 'contact-sheet') { Join-Path $work 'contact-sheet.png' } else { Join-Path $destination ($name+'.png') }
   $runs+=Invoke-ArrowStep @('-Mode','export','-WorkspaceRoot',$workspace,'-InputPath',(Join-Path $work ($name+'.aseprite')),'-OutputPath',$output)
