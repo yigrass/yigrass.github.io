@@ -1,6 +1,7 @@
 @charset "UTF-8";
 :root{color-scheme:light;--desktop:#2d2f2d;--silver:#c0c0c0;--ink:#111;--accent:#202020;--shell-alpha:1;--taskbar-height:48px;--raised:inset 1px 1px #fff,inset -1px -1px #000,inset 2px 2px #dfdfdf,inset -2px -2px #808080;--sunken:inset 1px 1px #808080,inset -1px -1px #fff,inset 2px 2px #000,inset -2px -2px #dfdfdf;font-family:Tahoma,"Microsoft YaHei","PingFang SC",sans-serif;font-size:16px;color:var(--ink)}
 *{box-sizing:border-box}
+:root{--statusbar-size:25px}
 [hidden]{display:none!important}
 body{margin:0;background:var(--desktop);overflow:hidden}
 button,input,a{-webkit-tap-highlight-color:transparent}
@@ -12,11 +13,12 @@ a{color:#000080;text-underline-offset:3px}
 /* Native scroll behavior, with square Windows 95 controls in Chromium/WebKit. */
 @supports selector(::-webkit-scrollbar){
   *{scrollbar-width:auto;scrollbar-color:auto}
-  ::-webkit-scrollbar{width:16px;height:16px;background:#dfdfdf}
+  ::-webkit-scrollbar{width:var(--statusbar-size);height:16px;background:#dfdfdf}
   ::-webkit-scrollbar-track{background:#dfdfdf url("pixel-ui/dither.png") repeat;image-rendering:pixelated}
   ::-webkit-scrollbar-thumb{min-width:16px;min-height:16px;border:0;border-radius:0;background:var(--silver);box-shadow:var(--raised)}
   ::-webkit-scrollbar-button{display:none;width:16px;height:16px;border:0;border-radius:0;background-color:var(--silver);background-repeat:no-repeat;background-position:center;background-size:16px 16px;box-shadow:var(--raised);image-rendering:pixelated}
   ::-webkit-scrollbar-button:decrement:start,::-webkit-scrollbar-button:increment:end{display:block}
+  ::-webkit-scrollbar-button:vertical{width:var(--statusbar-size)}
   ::-webkit-scrollbar-button:active{box-shadow:var(--sunken);background-position:1px 1px}
   ::-webkit-scrollbar-corner{background:var(--silver)}
   ::-webkit-scrollbar-button:vertical:decrement{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(0%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
@@ -94,7 +96,7 @@ body.is-resizing,body.is-resizing *{cursor:var(--resize-cursor)!important;user-s
 .window-toolbar{display:flex;align-items:center;gap:6px;flex:none;padding:7px 10px;font-size:.8125rem;border-bottom:1px solid #808080;box-shadow:0 1px #fff}
 .window-toolbar span:last-child{color:#555;margin-left:auto;font-size:.75rem}
 .window-body{background:#fffdf5;box-shadow:var(--sunken);margin:7px 3px 5px;padding:28px;overflow:auto;flex:1;min-height:0;overscroll-behavior:contain;line-height:1.7}
-.statusbar{margin:0 3px 1px;min-height:25px;display:flex;align-items:center;gap:10px;box-shadow:inset 1px 1px #808080,inset -1px -1px #fff;font-size:.75rem;padding:3px 8px;color:#333;flex:none}
+.statusbar{margin:0 3px 1px;min-height:var(--statusbar-size);display:flex;align-items:center;gap:10px;box-shadow:inset 1px 1px #808080,inset -1px -1px #fff;font-size:.75rem;padding:3px 8px;color:#333;flex:none}
 .statusbar span:first-child{flex:1}.status-grip{width:8px;height:8px}
 .properties-body{background:var(--silver);box-shadow:none;padding:16px 14px;line-height:1.6}
 .property-tabs{display:flex;align-items:flex-end;padding-left:4px;position:relative;z-index:1;gap:2px}
@@ -129,6 +131,7 @@ body.is-resizing,body.is-resizing *{cursor:var(--resize-cursor)!important;user-s
 .drive-icon{width:32px;height:32px}.explorer-empty{display:grid;place-items:center;flex:1;min-height:90px;color:#666;font-size:.875rem;text-align:center}
 .drive-purpose{font-size:.75rem;color:#555}.drive-tile:focus-visible .drive-purpose,.drive-tile:active .drive-purpose{color:inherit}
 .explorer-category{margin-left:auto;font-size:.75rem;color:#555;white-space:nowrap}.project-tile{color:var(--ink);text-decoration:none}
+.project-preview-icon{width:64px;height:64px;margin-top:20px}
 #effects{position:absolute;inset:0;pointer-events:none;z-index:1100;overflow:hidden}.floating-star{position:absolute;left:0;top:0;width:16px;height:16px}
 @media (pointer:fine){body.custom-cursor,body.custom-cursor *{cursor:url("pixel-ui/cursor-2x.png") 0 0,auto}}
 @media (pointer:fine){body.custom-cursor .resize-n{cursor:n-resize}body.custom-cursor .resize-e{cursor:e-resize}body.custom-cursor .resize-s{cursor:s-resize}body.custom-cursor .resize-w{cursor:w-resize}body.custom-cursor .resize-ne{cursor:ne-resize}body.custom-cursor .resize-se{cursor:se-resize}body.custom-cursor .resize-sw{cursor:sw-resize}body.custom-cursor .resize-nw{cursor:nw-resize}}

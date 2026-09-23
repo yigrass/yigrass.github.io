@@ -13,9 +13,9 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "explorer-project-categories-completed",
+    "deliveryState": "project-window-routing-demo-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review project drives and define the next requirement",
+    "nextAction": "Review Story-A and Game-B window navigation in the browser",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-23",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
@@ -27,8 +27,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review project drives",
-      "note": "The MVP remains completed. Explorer Project Categories implementation is completed; return to project drive review. Previous desktop controls were accepted by user browser testing."
+      "returnPoint": "Personal Website / Review project window navigation",
+      "note": "The MVP remains completed. Project Window Routing Demo is implemented and locally checked; return to project window navigation review."
     },
     {
       "id": "qq-space-mvp",
@@ -435,6 +435,27 @@
         "Categorized project links added; novels use txt file icons and suffixes; production projects remain empty",
         "Two original indexed pixel icons and editable Aseprite sources generated and validated in version 1.2.0",
         "V8 compilation/config execution, 20 focused renderer checks, icon decode/hash/header/path checks and protected-path diff passed; no browser acceptance claimed"
+      ]
+    },
+    {
+      "id": "project-window-routing-demo",
+      "name": "Project Window Routing Demo",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "explorer-project-categories"
+      ],
+      "returnPoint": "Personal Website / Review project window navigation",
+      "note": "First widen vertical scrollbars to the 25px window statusbar, preserving arrow artwork for user editing. Then add Story-A.txt and Game-B.exe with same-tab project URLs and persistent desktop windows, including static deep-link entry pages.",
+      "evidence": [
+        "qa/project-window-routing-demo.md"
+      ],
+      "completedOn": "2026-09-23",
+      "completedWork": [
+        "Vertical scrollbars aligned to the 25px window statusbar before project work; arrow SVGs unchanged and locations supplied",
+        "Story-A.txt and Game-B.exe added with same-tab persistent windows, independent addresses, placeholder content and existing game icon",
+        "Window activation, minimize, restore, maximize, close and browser history connected to project routes; fixed shared asset base and static deep-link entries added",
+        "57 minimal-DOM/history checks, six loopback HTTP checks, syntax, generated entry consistency and protected-path checks passed; browser visual review unavailable because the browser tool connection failed"
       ]
     }
   ]

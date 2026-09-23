@@ -25,8 +25,11 @@ window.SITE_CONFIG = {
       { id: "h", letter: "H", label: "闪存盘", type: "flash-drive", category: "utility" }
     ]
   },
-  // 填入真实项目后显示对应入口；category 为 novel、game 或 utility。
-  // 每项格式：{ id: "唯一标识", title: "项目名称", category: "novel", url: "项目网页地址" }
-  // 小说名称会以 .txt 显示，但链接可以指向包含插图的完整项目网页。
-  works: []
+  // category 为 novel、game 或 utility。route 表示桌面内项目，使用相对站点根目录的路径。
+  // 增加或修改 route 后运行 scripts/generate-project-pages.cjs，生成可直接访问的静态入口。
+  // 外部作品仍可使用 url 字段；小说名称会自动补上 .txt 后缀。
+  works: [
+    { id: "story-a", title: "Story-A.txt", category: "novel", route: "novels/story-a/" },
+    { id: "game-b", title: "Game-B.exe", category: "game", route: "games/game-b/" }
+  ]
 };

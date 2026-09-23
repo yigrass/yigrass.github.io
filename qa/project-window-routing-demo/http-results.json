@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:11631",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "bytes": 2034
+    },
+    {
+      "route": "/novels/story-a/",
+      "status": 200,
+      "bytes": 2139
+    },
+    {
+      "route": "/games/game-b/",
+      "status": 200,
+      "bytes": 2139
+    },
+    {
+      "route": "/assets/app.js",
+      "status": 200,
+      "bytes": 35079
+    },
+    {
+      "route": "/assets/project-routes.js",
+      "status": 200,
+      "bytes": 2819
+    },
+    {
+      "route": "/assets/pixel-ui/v1.1.0/cdrom.png",
+      "status": 200,
+      "bytes": 1191
+    }
+  ],
+  "limitation": "Loopback HTTP checks only; no browser rendering verified."
+}

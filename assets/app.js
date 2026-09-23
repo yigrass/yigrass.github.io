@@ -42,6 +42,61 @@
     return icon;
   };
 
+  // Freeze asset resolution before History API changes the document URL.
+  const siteRoot = new URL(".", document.baseURI);
+  const assetBase = $("base") || create("base");
+  assetBase.href = siteRoot.href;
+  if (!assetBase.parentNode) document.head.prepend(assetBase);
+  const projectRoutes = window.createProjectRoutes({ works: config.works, baseURI: siteRoot.href, location: window.location, history: window.history });
+  const projectCategories = {
+    novel: { label: "小说", icon: "v1.2.0/text-file" },
+    game: { label: "游戏", icon: "v1.1.0/cdrom" },
+    utility: { label: "实用工具", icon: "v1.1.0/control-panel" }
+  };
+  const projectWindowId = (id) => `project-${id}`;
+  let restoringAddress = false;
+  for (const project of projectRoutes.projects) {
+    windowTypes[projectWindowId(project.id)] = {
+      title: project.title, icon: projectCategories[project.category].icon, projectId: project.id,
+      render: (body) => projectContent(body, project), status: () => "就绪"
+    };
+  }
+  function syncAddress(mode = "replace") {
+    const projectId = windowTypes[activeId]?.projectId;
+    document.title = projectId ? `${titleOf(activeId)} — ${config.siteTitle}` : config.siteTitle;
+    if (!restoringAddress) projectRoutes.sync(projectId, mode);
+  }
+  function openProject(id) {
+    if (!projectRoutes.get(id)) return;
+    const windowId = projectWindowId(id);
+    openWindow(windowId, openWindows.has(windowId) ? "replace" : "push");
+  }
+  function restoreAddress() {
+    restoringAddress = true;
+    closeMenu();
+    try {
+      const project = projectRoutes.current();
+      if (project) openWindow(projectWindowId(project.id));
+      else {
+        // A desktop history entry hides project windows without destroying them.
+        for (const [id, entry] of openWindows) {
+          if (!windowTypes[id].projectId) continue;
+          entry.cancelResize();
+          entry.minimized = true;
+          entry.element.hidden = true;
+        }
+        activateRemaining();
+        if (activeId) activate(activeId, true); else start.focus();
+      }
+    } finally { restoringAddress = false; }
+    syncAddress();
+  }
+  function projectContent(body, project) {
+    body.classList.add("project-body");
+    body.append(create("p", "", "施工中。"));
+    if (project.category === "game") body.append(pixelIcon(projectCategories.game.icon, "project-preview-icon"));
+  }
+
   document.title = config.siteTitle;
   $("#start-label").textContent = config.startLabel;
   $("#menu-brand").textContent = config.menuBrand;
@@ -141,7 +196,7 @@
     event.preventDefault();
   });
 
-  for (const id of Object.keys(windowTypes)) {
+  for (const id of ["profile", "works", "settings"]) {
     const button = create("button", "menu-item");
     button.type = "button";
     button.dataset.window = id;
@@ -164,7 +219,7 @@
       entry.tab.setAttribute("aria-label", `${titleOf(id)}${entry.minimized ? "，已最小化，点击还原" : active ? "，当前窗口，点击最小化" : "，点击切换"}`);
     }
   }
-  function activate(id, focus = false) {
+  function activate(id, focus = false, routeMode = "replace") {
     const entry = openWindows.get(id);
     if (!entry) return;
     entry.minimized = false;
@@ -177,12 +232,14 @@
     entry.element.style.zIndex = ++zIndex;
     activeId = id;
     updateActive();
+    syncAddress(routeMode);
     if (focus) $(".window-body", entry.element).focus({ preventScroll: true });
   }
   function activateRemaining() {
     const remaining = [...openWindows.entries()].filter(([, item]) => !item.minimized).sort((a, b) => Number(b[1].element.style.zIndex) - Number(a[1].element.style.zIndex));
     activeId = remaining[0]?.[0] || null;
     updateActive();
+    syncAddress();
   }
   function minimize(id) {
     const entry = openWindows.get(id);
@@ -291,14 +348,10 @@
   function worksContent(body, setStatus) {
     body.classList.add("explorer-body");
     const drives = config.explorer?.drives || [];
-    const categories = {
-      novel: { label: "小说", icon: "v1.2.0/text-file" },
-      game: { label: "游戏", icon: "v1.1.0/cdrom" },
-      utility: { label: "实用工具", icon: "v1.1.0/control-panel" }
-    };
+    const categories = projectCategories;
     const projects = (Array.isArray(config.works) ? config.works : [])
-      .filter((project) => project && Object.hasOwn(categories, project.category) && typeof project.title === "string" && project.title.trim() && safeURL(project.url))
-      .map((project) => ({ ...project, title: project.title.trim(), url: safeURL(project.url) }));
+      .filter((project) => project && Object.hasOwn(categories, project.category) && typeof project.title === "string" && project.title.trim() && (projectRoutes.get(project.id) || safeURL(project.url)))
+      .map((project) => ({ ...project, title: project.title.trim(), internal: Boolean(projectRoutes.get(project.id)), url: projectRoutes.get(project.id) ? projectRoutes.address(project.id) : safeURL(project.url) }));
     const rootLabel = titleOf("profile");
     const driveLabel = (drive) => `${drive.label} (${drive.letter}:)`;
     const driveIcon = (drive, className) => pixelIcon(drive.type === "flash-drive" ? "v1.2.0/flash-drive" : `v1.1.0/${["hard-disk", "floppy", "cdrom"].includes(drive.type) ? drive.type : "hard-disk"}`, className);
@@ -403,9 +456,17 @@
           const name = drive.category === "novel" && !/\.txt$/i.test(project.title) ? `${project.title}.txt` : project.title;
           const tile = create("a", "drive-tile project-tile");
           tile.href = project.url;
-          tile.target = "_blank";
-          tile.rel = "noopener noreferrer";
-          tile.title = `打开${name}（新标签页）`;
+          if (project.internal) {
+            tile.addEventListener("click", (event) => {
+              if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              openProject(project.id);
+            });
+          } else {
+            tile.target = "_blank";
+            tile.rel = "noopener noreferrer";
+          }
+          tile.title = `打开${name}${project.internal ? "" : "（新标签页）"}`;
           tile.setAttribute("aria-label", tile.title);
           tile.append(pixelIcon(category.icon, "drive-icon"), create("span", "", name));
           grid.append(tile);
@@ -565,8 +626,8 @@
     titlebar.addEventListener("pointercancel", end);
     titlebar.addEventListener("lostpointercapture", end);
   }
-  function openWindow(id) {
-    if (openWindows.has(id)) { activate(id, true); return; }
+  function openWindow(id, routeMode = "replace") {
+    if (openWindows.has(id)) { activate(id, true, routeMode); return; }
     const element = create("section", "window");
     element.id = `window-${id}`;
     element.setAttribute("role", "dialog");
@@ -622,7 +683,7 @@
     element.addEventListener("pointerdown", () => activate(id));
     element.addEventListener("focusin", () => { if (activeId !== id) activate(id); });
     enableDrag(element, titlebar);
-    activate(id, true);
+    activate(id, true, routeMode);
     announce(`已打开${titleOf(id)}`);
   }
   window.addEventListener("resize", () => {
@@ -639,4 +700,7 @@
   };
   updateClock();
   setInterval(updateClock, 15000);
+  window.addEventListener("popstate", restoreAddress);
+  if (window.location.protocol === "file:") window.addEventListener("hashchange", restoreAddress);
+  restoreAddress();
 })();
