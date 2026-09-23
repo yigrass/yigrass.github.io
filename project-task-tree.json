@@ -13,9 +13,9 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "project-window-routing-demo-completed",
+    "deliveryState": "scrollbar-arrow-assets-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review Story-A and Game-B window navigation in the browser",
+    "nextAction": "Review square scrollbar buttons and edit the canonical upward PNG if desired",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-23",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
@@ -27,8 +27,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review project window navigation",
-      "note": "The MVP remains completed. Project Window Routing Demo is implemented and locally checked; return to project window navigation review."
+      "returnPoint": "Personal Website / Review scrollbar controls",
+      "note": "The MVP remains completed. Scrollbar Arrow Assets is implemented and locally checked; return to scrollbar control review."
     },
     {
       "id": "qq-space-mvp",
@@ -456,6 +456,27 @@
         "Story-A.txt and Game-B.exe added with same-tab persistent windows, independent addresses, placeholder content and existing game icon",
         "Window activation, minimize, restore, maximize, close and browser history connected to project routes; fixed shared asset base and static deep-link entries added",
         "57 minimal-DOM/history checks, six loopback HTTP checks, syntax, generated entry consistency and protected-path checks passed; browser visual review unavailable because the browser tool connection failed"
+      ]
+    },
+    {
+      "id": "scrollbar-arrow-assets",
+      "name": "Scrollbar Arrow Assets",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "project-window-routing-demo"
+      ],
+      "returnPoint": "Personal Website / Review scrollbar controls",
+      "note": "Use one editable upward PNG, generate rotated normal and disabled assets offline, and make both axes and all buttons 25px. Retain native scrolling and local file compatibility.",
+      "evidence": [
+        "qa/scrollbar-arrow-assets.md"
+      ],
+      "completedOn": "2026-09-23",
+      "completedWork": [
+        "Both scrollbar axes and all arrow buttons now use 25px; pressed arrows retain a one-pixel offset from center",
+        "One editable 15x15 upward PNG replaces embedded SVG definitions; three directions and four disabled states are generated from it",
+        "Aseprite-based local generator, source editing instructions and dated generation evidence added without runtime image processing",
+        "All eight PNGs decoded as single-frame indexed images with binary alpha; all rotation pixels match independent System.Drawing rotations; CSS references, static entries and protected files checked"
       ]
     }
   ]

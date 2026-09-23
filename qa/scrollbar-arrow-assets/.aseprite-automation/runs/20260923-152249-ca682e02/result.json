@@ -1,0 +1,11 @@
+﻿{
+    "ok":  false,
+    "mode":  "run-script",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-152249-ca682e02\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-152249-ca682e02",
+    "error":  "Aseprite step \u0027lua-script\u0027 failed with exit code -1. See D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-152249-ca682e02\\lua-script.stderr.log",
+    "steps":  [
+
+              ]
+}

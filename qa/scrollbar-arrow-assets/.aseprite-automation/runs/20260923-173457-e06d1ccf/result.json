@@ -1,0 +1,20 @@
+﻿{
+    "ok":  true,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173457-e06d1ccf\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173457-e06d1ccf",
+    "input":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\derived\\20260923-173452-9c3578e2\\arrow-right-disabled.aseprite",
+    "output":  "D:\\01_SmallProjects\\yigrass.github.io\\assets\\pixel-ui\\v1.3.0\\generated\\arrow-right-disabled.png",
+    "output_bytes":  1155,
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  25916,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.191,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173457-e06d1ccf\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173457-e06d1ccf\\export.stderr.log"
+                  }
+              ]
+}

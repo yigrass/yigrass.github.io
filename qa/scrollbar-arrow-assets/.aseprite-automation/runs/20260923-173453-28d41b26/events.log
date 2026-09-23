@@ -1,0 +1,10 @@
+﻿2026-09-23T17:34:53.0567874+08:00	INFO	mode=doctor workspace=D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets profile_mode=Isolated
+2026-09-23T17:34:53.0940896+08:00	INFO	start step=version args=--version
+2026-09-23T17:34:53.3178304+08:00	INFO	finish step=version pid=19764 exit=0 seconds=0.207
+2026-09-23T17:34:53.3259623+08:00	INFO	start step=lua-create args=-b --script-param trace=D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173453-28d41b26\doctor.trace.log --script-param output=D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173453-28d41b26\doctor.aseprite --script D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173453-28d41b26\doctor.lua
+2026-09-23T17:34:53.4970885+08:00	INFO	finish step=lua-create pid=23852 exit=0 seconds=0.17
+2026-09-23T17:34:53.5050740+08:00	INFO	start step=gif-export args=-b D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173453-28d41b26\doctor.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173453-28d41b26\doctor.gif
+2026-09-23T17:34:53.6662017+08:00	INFO	finish step=gif-export pid=7788 exit=0 seconds=0.16
+2026-09-23T17:34:53.6805045+08:00	INFO	start step=gif-roundtrip args=-b --oneframe D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173453-28d41b26\doctor.gif --save-as D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173453-28d41b26\doctor-roundtrip.png
+2026-09-23T17:34:53.8424491+08:00	INFO	finish step=gif-roundtrip pid=10420 exit=0 seconds=0.162
+2026-09-23T17:34:54.1434806+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173453-28d41b26\result.json

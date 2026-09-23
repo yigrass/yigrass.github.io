@@ -1,0 +1,21 @@
+﻿{
+    "ok":  true,
+    "mode":  "run-script",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173454-a8e5d8d0\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173454-a8e5d8d0",
+    "script":  "D:\\01_SmallProjects\\yigrass.github.io\\art\\pixel-ui\\v1.3.0\\derive-arrows.lua",
+    "expected_paths":  [
+                           "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\derived\\20260923-173452-9c3578e2\\contact-sheet.aseprite"
+                       ],
+    "steps":  [
+                  {
+                      "step":  "lua-script",
+                      "pid":  32560,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.191,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173454-a8e5d8d0\\lua-script.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173454-a8e5d8d0\\lua-script.stderr.log"
+                  }
+              ]
+}

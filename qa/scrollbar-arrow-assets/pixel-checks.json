@@ -1,0 +1,86 @@
+{
+  "source": "assets/pixel-ui/v1.3.0/scrollbar-arrow-up.png",
+  "rotationChecks": "All pixels exactly match System.Drawing 90/180/270-degree rotation",
+  "assets": [
+    {
+      "path": "assets/pixel-ui/v1.3.0/scrollbar-arrow-up.png",
+      "width": 15,
+      "height": 15,
+      "bitDepth": 8,
+      "colorType": 3,
+      "frames": 1,
+      "colors": 2,
+      "sha256": "85B23C2251236CBFC477C9682D5951578F4B89EC78C13CA3EC4725AA5CAA6028"
+    },
+    {
+      "path": "assets/pixel-ui/v1.3.0/generated/arrow-down-disabled.png",
+      "width": 15,
+      "height": 15,
+      "bitDepth": 8,
+      "colorType": 3,
+      "frames": 1,
+      "colors": 3,
+      "sha256": "156E2C25532328F36B2D5041454DCBB6321789DA3FC300A3F81E8930E91A0E1E"
+    },
+    {
+      "path": "assets/pixel-ui/v1.3.0/generated/arrow-down.png",
+      "width": 15,
+      "height": 15,
+      "bitDepth": 8,
+      "colorType": 3,
+      "frames": 1,
+      "colors": 2,
+      "sha256": "C1F3065628DE6BDA3035469AC067248BD41DD504ED08161CCDEA04890EBCF794"
+    },
+    {
+      "path": "assets/pixel-ui/v1.3.0/generated/arrow-left-disabled.png",
+      "width": 15,
+      "height": 15,
+      "bitDepth": 8,
+      "colorType": 3,
+      "frames": 1,
+      "colors": 3,
+      "sha256": "12FF1992FA7E574EDFBBDBCD5B2D7D02257DD0A5C4A2E20F201C01C833549869"
+    },
+    {
+      "path": "assets/pixel-ui/v1.3.0/generated/arrow-left.png",
+      "width": 15,
+      "height": 15,
+      "bitDepth": 8,
+      "colorType": 3,
+      "frames": 1,
+      "colors": 2,
+      "sha256": "04B33846877D6BBE15A510814BD6042BA99B200E06BDA0D88381A8691BAFB668"
+    },
+    {
+      "path": "assets/pixel-ui/v1.3.0/generated/arrow-right-disabled.png",
+      "width": 15,
+      "height": 15,
+      "bitDepth": 8,
+      "colorType": 3,
+      "frames": 1,
+      "colors": 3,
+      "sha256": "7502823F9E39DBD850AA9ACD7EEB2B5731711D59021A682E3DE2AC716F645EF5"
+    },
+    {
+      "path": "assets/pixel-ui/v1.3.0/generated/arrow-right.png",
+      "width": 15,
+      "height": 15,
+      "bitDepth": 8,
+      "colorType": 3,
+      "frames": 1,
+      "colors": 2,
+      "sha256": "1CEA5A4760FD18BE1811078EC3A73F164DF759CABADF011A8B299D246B392A68"
+    },
+    {
+      "path": "assets/pixel-ui/v1.3.0/generated/arrow-up-disabled.png",
+      "width": 15,
+      "height": 15,
+      "bitDepth": 8,
+      "colorType": 3,
+      "frames": 1,
+      "colors": 3,
+      "sha256": "E7919C0A153E629569B0BCF5588BAF15D0385F0BB1D01EF557136DAB47A30D95"
+    }
+  ]
+}

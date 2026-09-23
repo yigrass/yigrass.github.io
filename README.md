@@ -20,9 +20,11 @@ UI 图标、窗口按钮、光标和星星采用原生小尺寸 8-bit 索引色 
 
 活动窗口标题栏、菜单选中条与目录选中条采用已选定的 A 方案墨黑 `#202020`，由 `assets/styles.css` 的 `--accent` 统一控制。
 
-滚动区域采用 Win95 风格：银灰方形滑块与箭头按钮、凹凸边框、黑白灰点阵轨道，以及按下和禁用状态。侧边竖向滚动条宽度为 25 像素，与窗口底部状态栏共用 `--statusbar-size`；横向滚动条高度保持 16 像素。箭头使用 `assets/styles.css` 内嵌的整数网格 SVG，竖向上、下箭头分别对应 `::-webkit-scrollbar-button:vertical:decrement` 和 `:vertical:increment`，各有普通及 `:disabled` 状态，本轮保留图案供用户手工调整。Chrome、Edge 等支持滚动条伪元素的浏览器显示完整样式；不支持这些伪元素的浏览器保留原生尺寸与对应灰色。滚轮、键盘、拖动滑块及点击箭头均继续由浏览器处理。首次共用透明度与滚动条检查见 `qa/shell-transparency-classic-scrollbars.md`。
+滚动区域采用 Win95 风格：银灰方形滑块与箭头按钮、凹凸边框、黑白灰点阵轨道，以及按下和禁用状态。竖向滚动条宽度与横向滚动条高度均为 25 像素，四个方向的箭头按钮均为 25×25 像素，与窗口底部状态栏共用 `--statusbar-size`。箭头使用一张独立的向上 PNG 原图，其他方向和禁用状态由它自动生成，编辑方法见下文。Chrome、Edge 等支持滚动条伪元素的浏览器显示完整样式；不支持这些伪元素的浏览器保留原生尺寸与对应灰色。滚轮、键盘、拖动滑块及点击箭头均继续由浏览器处理。首次共用透明度与滚动条检查见 `qa/shell-transparency-classic-scrollbars.md`，本轮资源整理见 `qa/scrollbar-arrow-assets.md`。
 
 ## 编辑网站
+
+箭头的唯一图像编辑入口是 `assets/pixel-ui/v1.3.0/scrollbar-arrow-up.png`，可直接用 Aseprite 打开修改。保持 15×15、单帧、透明背景和硬边像素；图案朝上，四周留出透明像素。保存后在项目根目录运行 `./scripts/generate-scrollbar-arrows.ps1`，再刷新网页。脚本通过已配置的 Aseprite 自动化启动器生成右、下、左三个旋转版本，以及四个方向的灰色禁用版本，输出到同级 `generated/`，不会覆盖原图；这些派生文件不要手工编辑。`art/pixel-ui/v1.3.0/` 中的 initial Aseprite 文件和 create 脚本只记录首次绘制，后续修改以该 PNG 为准。生成后的图片直接由 CSS 引用，本地文件预览不需要浏览器读取 canvas 像素，网站运行也不依赖 Aseprite。
 
 编辑 `assets/site-config.js`，可更改开始按钮文字、菜单名称、个人信息、虚拟驱动器名称、背景地址和默认设置。文件中的注释提供字段说明。菜单名称与模块身份分开，所以改名不会改变对应模块；内部 `profile`、`works` 和 `settings` 标识保留不变。
 

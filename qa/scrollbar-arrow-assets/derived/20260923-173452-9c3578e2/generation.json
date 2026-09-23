@@ -1,0 +1,58 @@
+{
+  "source": "assets/pixel-ui/v1.3.0/scrollbar-arrow-up.png",
+  "sourceSha256": "85B23C2251236CBFC477C9682D5951578F4B89EC78C13CA3EC4725AA5CAA6028",
+  "workDirectory": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\derived\\20260923-173452-9c3578e2",
+  "wrapperRuns": [
+    {
+      "mode": "doctor",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26",
+      "ok": true
+    },
+    {
+      "mode": "run-script",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173454-a8e5d8d0",
+      "ok": true
+    },
+    {
+      "mode": "export",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173455-436968f2",
+      "ok": true
+    },
+    {
+      "mode": "export",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173455-9e48c3a1",
+      "ok": true
+    },
+    {
+      "mode": "export",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173456-70e85d78",
+      "ok": true
+    },
+    {
+      "mode": "export",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173457-f1792c28",
+      "ok": true
+    },
+    {
+      "mode": "export",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173457-e06d1ccf",
+      "ok": true
+    },
+    {
+      "mode": "export",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173458-5f3eb50b",
+      "ok": true
+    },
+    {
+      "mode": "export",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173458-1ec41fca",
+      "ok": true
+    },
+    {
+      "mode": "export",
+      "run_dir": "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173459-a6c29eaf",
+      "ok": true
+    }
+  ],
+  "note": "Generated variants only. The editable source PNG is never overwritten."
+}

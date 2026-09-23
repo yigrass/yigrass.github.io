@@ -1,0 +1,4 @@
+﻿2026-09-23T17:34:56.4089181+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets profile_mode=Isolated
+2026-09-23T17:34:56.4321790+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\derived\20260923-173452-9c3578e2\arrow-left.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\assets\pixel-ui\v1.3.0\generated\arrow-left.png
+2026-09-23T17:34:56.6179562+08:00	INFO	finish step=export pid=22396 exit=0 seconds=0.177
+2026-09-23T17:34:56.6640816+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-173456-70e85d78\result.json

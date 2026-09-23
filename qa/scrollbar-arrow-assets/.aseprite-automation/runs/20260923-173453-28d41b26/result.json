@@ -1,0 +1,49 @@
+﻿{
+    "ok":  true,
+    "mode":  "doctor",
+    "aseprite_version":  "Aseprite 1.3.18.1-x64",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26",
+    "lua_trace":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\doctor.trace.log",
+    "aseprite_file":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\doctor.aseprite",
+    "gif_file":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\doctor.gif",
+    "roundtrip_png":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\doctor-roundtrip.png",
+    "residual_process_ids":  [
+
+                             ],
+    "steps":  [
+                  {
+                      "step":  "version",
+                      "pid":  19764,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.207,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\version.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\version.stderr.log"
+                  },
+                  {
+                      "step":  "lua-create",
+                      "pid":  23852,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.17,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\lua-create.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\lua-create.stderr.log"
+                  },
+                  {
+                      "step":  "gif-export",
+                      "pid":  7788,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.16,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\gif-export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\gif-export.stderr.log"
+                  },
+                  {
+                      "step":  "gif-roundtrip",
+                      "pid":  10420,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.162,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\gif-roundtrip.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\scrollbar-arrow-assets\\.aseprite-automation\\runs\\20260923-173453-28d41b26\\gif-roundtrip.stderr.log"
+                  }
+              ]
+}

@@ -1,0 +1,4 @@
+﻿2026-09-23T15:22:49.9453873+08:00	INFO	mode=run-script workspace=D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets profile_mode=Isolated
+2026-09-23T15:22:49.9627732+08:00	INFO	start step=lua-script args=-b --script-param output=D:/01_SmallProjects/yigrass.github.io/art/pixel-ui/v1.3.0 --script D:\01_SmallProjects\yigrass.github.io\art\pixel-ui\v1.3.0\create-arrow.lua
+2026-09-23T15:22:50.1583605+08:00	INFO	finish step=lua-script pid=28840 exit=-1 seconds=0.186
+2026-09-23T15:22:50.2245359+08:00	ERROR	Aseprite step 'lua-script' failed with exit code -1. See D:\01_SmallProjects\yigrass.github.io\qa\scrollbar-arrow-assets\.aseprite-automation\runs\20260923-152249-ca682e02\lua-script.stderr.log

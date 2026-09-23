@@ -13,22 +13,21 @@ a{color:#000080;text-underline-offset:3px}
 /* Native scroll behavior, with square Windows 95 controls in Chromium/WebKit. */
 @supports selector(::-webkit-scrollbar){
   *{scrollbar-width:auto;scrollbar-color:auto}
-  ::-webkit-scrollbar{width:var(--statusbar-size);height:16px;background:#dfdfdf}
+  ::-webkit-scrollbar{width:var(--statusbar-size);height:var(--statusbar-size);background:#dfdfdf}
   ::-webkit-scrollbar-track{background:#dfdfdf url("pixel-ui/dither.png") repeat;image-rendering:pixelated}
   ::-webkit-scrollbar-thumb{min-width:16px;min-height:16px;border:0;border-radius:0;background:var(--silver);box-shadow:var(--raised)}
-  ::-webkit-scrollbar-button{display:none;width:16px;height:16px;border:0;border-radius:0;background-color:var(--silver);background-repeat:no-repeat;background-position:center;background-size:16px 16px;box-shadow:var(--raised);image-rendering:pixelated}
+  ::-webkit-scrollbar-button{display:none;width:var(--statusbar-size);height:var(--statusbar-size);border:0;border-radius:0;background-color:var(--silver);background-repeat:no-repeat;background-position:center;background-size:15px 15px;box-shadow:var(--raised);image-rendering:pixelated}
   ::-webkit-scrollbar-button:decrement:start,::-webkit-scrollbar-button:increment:end{display:block}
-  ::-webkit-scrollbar-button:vertical{width:var(--statusbar-size)}
-  ::-webkit-scrollbar-button:active{box-shadow:var(--sunken);background-position:1px 1px}
+  ::-webkit-scrollbar-button:active{box-shadow:var(--sunken);background-position:calc(50% + 1px) calc(50% + 1px)}
   ::-webkit-scrollbar-corner{background:var(--silver)}
-  ::-webkit-scrollbar-button:vertical:decrement{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(0%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
-  ::-webkit-scrollbar-button:vertical:decrement:disabled{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(0%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23fff%22%20transform%3D%22translate(1%201)%22%2F%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23808080%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
-  ::-webkit-scrollbar-button:vertical:increment{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(180%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
-  ::-webkit-scrollbar-button:vertical:increment:disabled{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(180%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23fff%22%20transform%3D%22translate(1%201)%22%2F%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23808080%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
-  ::-webkit-scrollbar-button:horizontal:decrement{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(270%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
-  ::-webkit-scrollbar-button:horizontal:decrement:disabled{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(270%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23fff%22%20transform%3D%22translate(1%201)%22%2F%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23808080%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
-  ::-webkit-scrollbar-button:horizontal:increment{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(90%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
-  ::-webkit-scrollbar-button:horizontal:increment:disabled{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20shape-rendering%3D%22crispEdges%22%3E%3Cg%20transform%3D%22rotate(90%208%208)%22%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23fff%22%20transform%3D%22translate(1%201)%22%2F%3E%3Cpath%20d%3D%22M7%205h1v1h1v1h1v1h1v1H4V8h1V7h1V6h1z%22%20fill%3D%22%23808080%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
+  ::-webkit-scrollbar-button:vertical:decrement{background-image:url("pixel-ui/v1.3.0/scrollbar-arrow-up.png")}
+  ::-webkit-scrollbar-button:vertical:decrement:disabled{background-image:url("pixel-ui/v1.3.0/generated/arrow-up-disabled.png")}
+  ::-webkit-scrollbar-button:vertical:increment{background-image:url("pixel-ui/v1.3.0/generated/arrow-down.png")}
+  ::-webkit-scrollbar-button:vertical:increment:disabled{background-image:url("pixel-ui/v1.3.0/generated/arrow-down-disabled.png")}
+  ::-webkit-scrollbar-button:horizontal:decrement{background-image:url("pixel-ui/v1.3.0/generated/arrow-left.png")}
+  ::-webkit-scrollbar-button:horizontal:decrement:disabled{background-image:url("pixel-ui/v1.3.0/generated/arrow-left-disabled.png")}
+  ::-webkit-scrollbar-button:horizontal:increment{background-image:url("pixel-ui/v1.3.0/generated/arrow-right.png")}
+  ::-webkit-scrollbar-button:horizontal:increment:disabled{background-image:url("pixel-ui/v1.3.0/generated/arrow-right-disabled.png")}
 }
 /* Engines without scrollbar pseudo-elements keep native controls and matching colors. */
 @supports not selector(::-webkit-scrollbar){
