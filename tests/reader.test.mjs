@@ -43,9 +43,15 @@ test('book/volume README precede chapters; branches and whole directory collapse
   app.click(doc(app, 'volume-a', 1)); await settle();
   assert.equal(app.history.length, before);
   const toggle = body.querySelector('.reader-directory-toggle');
+  assert.equal(toggle.textContent, '<<'); assert.equal(toggle.querySelector('img'), null);
+  article(app).scrollTop = 120;
   app.click(toggle); assert.equal(body.querySelector('.reader-sidebar').hidden, true);
+  assert.equal(toggle.textContent, '>>'); assert.equal(toggle.getAttribute('aria-label'), '显示目录');
+  assert.equal(article(app).scrollTop, 120);
   assert.match(article(app).textContent, /第一卷序/);
   app.click(toggle); assert.equal(body.querySelector('.reader-sidebar').hidden, false);
+  assert.equal(toggle.textContent, '<<'); assert.equal(toggle.getAttribute('aria-label'), '收起目录');
+  assert.equal(article(app).scrollTop, 120);
   app.click(doc(app, null)); await settle();
   assert.equal(app.get('reader-group-story-a-book').hidden, true);
   assert.match(article(app).textContent, /书的介绍/);
@@ -72,22 +78,57 @@ test('direct chapter entry, safe Markdown rendering, shared icon, chapter links 
   app.history.go(1); await settle(); assert.equal(app.location.pathname, base + 'second/'); assert.match(text.textContent, /第二章正文/);
 });
 
-test('keyboard and edge buttons skip README across volumes and respect active window, menus and boundaries', async () => {
+test('keyboard and menu-bar buttons skip README across volumes and respect active window, menus and boundaries', async () => {
   const app = await mount('https://example.test' + base + 'second/', undefined, { responses }); await app.ready();
   const press = key => app.window.fire('keydown', { key });
   assert.equal(press('ArrowRight').defaultPrevented, true); await settle();
   assert.equal(app.location.pathname, base + 'third/');
-  assert.equal(app.win('story-a').querySelector('.reader-edge-next').querySelector('button').disabled, true);
+  assert.equal(app.win('story-a').querySelector('.reader-next').disabled, true);
   assert.equal(press('ArrowRight').defaultPrevented, undefined);
-  app.click(app.win('story-a').querySelector('.reader-edge-previous').querySelector('button')); await settle();
+  app.click(app.win('story-a').querySelector('.reader-previous')); await settle();
   assert.equal(app.location.pathname, base + 'second/');
   app.click(app.get('start-button')); press('ArrowRight'); assert.equal(app.location.pathname, base + 'second/');
   app.click(app.get('start-button')); app.menu('settings'); press('ArrowRight');
   assert.equal(app.location.pathname, '/system-settings/'); assert.equal(content(app).getDocumentId(), 'second');
   app.click(app.tab('project-story-a'));
   app.window.fire('keydown', { key: 'ArrowRight', ctrlKey: true }); assert.equal(app.location.pathname, base + 'second/');
-  await content(app).navigateDocument('first'); assert.equal(app.win('story-a').querySelector('.reader-edge-previous').querySelector('button').disabled, true);
+  await content(app).navigateDocument('first'); assert.equal(app.win('story-a').querySelector('.reader-previous').disabled, true);
   assert.ok(Number.parseFloat(article(app).style['--reader-scroll-space']) > 800);
+});
+
+test('reader placeholder menus switch without flipping chapters, dismiss predictably and release their listeners', async () => {
+  const app = await mount('https://example.test' + base + 'second/', undefined, { responses }); await app.ready();
+  const body = app.win('story-a'), bar = body.querySelector('.reader-menubar');
+  const [file, view] = bar.querySelectorAll('.reader-menu-trigger');
+  const [filePopup, viewPopup] = bar.querySelectorAll('.reader-menu-popup');
+  const press = key => app.window.fire('keydown', { key });
+  const before = app.history.length;
+  assert.deepEqual([file.textContent, view.textContent], ['文件', '查看']);
+  assert.equal(body.querySelector('.reader-edge'), null);
+  assert.equal(bar.querySelectorAll('.reader-page-arrow').length, 2);
+  for (const popup of [filePopup, viewPopup]) {
+    assert.equal(popup.hidden, true); assert.equal(popup.textContent, '功能开发中');
+    assert.equal(popup.querySelector('button').disabled, true);
+  }
+  app.click(file); assert.equal(filePopup.hidden, false); assert.equal(file.getAttribute('aria-expanded'), 'true');
+  assert.equal(press('ArrowRight').defaultPrevented, true); await settle();
+  assert.equal(filePopup.hidden, true); assert.equal(viewPopup.hidden, false);
+  assert.equal(app.location.pathname, base + 'second/'); assert.equal(app.history.length, before);
+  press('ArrowLeft'); assert.equal(filePopup.hidden, false); assert.equal(viewPopup.hidden, true);
+  press('Escape'); assert.equal(filePopup.hidden, true); assert.equal(app.document.activeElement, file);
+  press('ArrowDown'); assert.equal(filePopup.hidden, false);
+  press('Tab'); assert.equal(filePopup.hidden, true);
+  app.click(view); assert.equal(viewPopup.hidden, false);
+  app.click(view); assert.equal(viewPopup.hidden, true);
+  app.click(file); app.click(article(app)); assert.equal(filePopup.hidden, true);
+  app.click(view); app.click(app.get('start-button')); assert.equal(viewPopup.hidden, true);
+  app.click(app.get('start-button'));
+  app.click(file); app.click(bar.querySelector('.reader-next')); await settle();
+  assert.equal(filePopup.hidden, true); assert.equal(app.location.pathname, base + 'third/');
+  const listeners = app.document.events.pointerdown.length;
+  app.click(body.querySelector('.control-close'));
+  assert.equal(app.document.events.pointerdown.length, listeners - 1);
+  press('ArrowLeft'); assert.equal(app.location.pathname, '/');
 });
 
 test('late loads never replace a newer chapter or a closed window; failed chapter can be retried', async () => {

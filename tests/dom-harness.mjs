@@ -35,6 +35,7 @@ export async function mount(href = "https://example.test/", baseURI = "https://e
     getAttribute(key) { return this.attributes[key] ?? null; }
     removeAttribute(key) { delete this.attributes[key]; }
     addEventListener(type, listener) { (this.events[type] ||= []).push(listener); }
+    removeEventListener(type, listener) { this.events[type] = (this.events[type] || []).filter(item => item !== listener); }
     contains(node) { return this === node || this.children.some(child => child.contains(node)); }
     matches(selector) { return selector.startsWith("#") ? this.id === selector.slice(1) : selector.startsWith(".") ? this.classList.contains(selector.slice(1)) : this.tag === selector; }
     closest(selector) { for (let node = this; node; node = node.parentNode) if (node.matches(selector)) return node; return null; }

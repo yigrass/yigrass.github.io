@@ -8,6 +8,7 @@ import { createHash } from 'node:crypto';
 import { build, projectRoot } from '../scripts/build.mjs';
 import { createPreviewServer } from '../scripts/dev.mjs';
 import { assertOwnedDirectory } from '../scripts/lib/files.mjs';
+import { siteConfig } from '../src/config/site.js';
 
 test('dist serves all deep entries, module imports and release bytes; maintenance paths are absent', async t => {
   const result = await build();
@@ -30,7 +31,7 @@ test('dist serves all deep entries, module imports and release bytes; maintenanc
   assert.equal(index[0].reader.documents.length, 8);
   assert.equal(index[0].iconPath, 'releases/story-a/images/sword.png');
   assert.equal((await fetch(new URL('file-explorer', base), { redirect: 'manual' })).status, 301);
-  const asset = 'assets/wallpapers/ocean-capsule-pixelart-v2.png';
+  const asset = siteConfig.wallpaper;
   assert.deepEqual(await fs.readFile(path.join(projectRoot, 'dist', asset)), await fs.readFile(path.join(projectRoot, asset)));
 });
 test('clean input copy builds without art or other projects; invalid release preserves previous dist', async t => {

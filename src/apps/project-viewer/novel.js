@@ -1,9 +1,11 @@
 import { create, pixelIcon } from '../../shared/dom.js';
 import { novelDocuments } from '../../shared/novel/model.js';
 import { renderMarkdown } from '../../shared/novel/markdown.js';
+import { createReaderMenu } from './reader-menu.js';
 
 export function renderNovel(body, release, root, setStatus, signal, options) {
   body.classList.add('novel-body');
+  const menu = createReaderMenu(release.id);
   const documents = novelDocuments(release), chapters = documents.filter(item => item.kind === 'chapter');
   const layout = create('div', 'reader-layout');
   const sidebar = create('nav', 'reader-sidebar');
@@ -12,20 +14,21 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
   const pane = create('div', 'reader-pane');
   const article = create('article', 'novel-chapter');
   article.tabIndex = 0;
-  const toggle = create('button', 'classic-button reader-directory-toggle');
+  const toggle = create('button', 'reader-directory-toggle');
   toggle.type = 'button'; toggle.setAttribute('aria-controls', sidebar.id);
-  const toggleIcon = pixelIcon('v1.1.0/back'); toggle.append(toggleIcon);
+  const toggleMark = create('span'); toggleMark.setAttribute('aria-hidden', 'true');
+  toggle.append(toggleMark);
   function toggleDirectory() {
     sidebar.hidden = !sidebar.hidden;
     layout.classList.toggle('is-directory-hidden', sidebar.hidden);
     toggle.setAttribute('aria-expanded', String(!sidebar.hidden));
     toggle.setAttribute('aria-label', sidebar.hidden ? '显示目录' : '收起目录');
     toggle.title = sidebar.hidden ? '显示目录' : '收起目录';
-    toggleIcon.src = `assets/pixel-ui/v1.1.0/${sidebar.hidden ? 'forward' : 'back'}.png`;
+    toggleMark.textContent = sidebar.hidden ? '>>' : '<<';
   }
   sidebar.hidden = !matchMedia('(max-width:640px)').matches;
   toggleDirectory(); toggle.addEventListener('click', toggleDirectory);
-  pane.append(article); layout.append(sidebar, pane, toggle); body.append(layout);
+  pane.append(toggle, article); layout.append(sidebar, pane); body.append(menu.element, layout);
 
   let selected, requestId = 0, disposed = false;
   const buttons = new Map(), branches = new Map();
@@ -71,12 +74,14 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
     return null;
   }
   function flip(direction) { const next = neighbor(direction); if (next) show(next.id); }
-  const edges = [-1, 1].map(direction => {
-    const edge = create('div', `reader-edge reader-edge-${direction < 0 ? 'previous' : 'next'}`);
-    const button = create('button', 'classic-button reader-page-arrow'); button.type = 'button';
+  const separator = create('span', 'reader-menu-separator'); separator.setAttribute('aria-hidden', 'true');
+  menu.element.append(separator);
+  const pageButtons = [-1, 1].map(direction => {
+    const button = create('button', `classic-button reader-page-arrow reader-${direction < 0 ? 'previous' : 'next'}`); button.type = 'button';
     button.setAttribute('aria-label', direction < 0 ? '上一章' : '下一章');
+    button.title = direction < 0 ? '上一章' : '下一章';
     button.append(pixelIcon(`v1.1.0/${direction < 0 ? 'back' : 'forward'}`));
-    button.addEventListener('click', () => flip(direction)); edge.append(button); pane.append(edge);
+    button.addEventListener('click', () => { menu.close(); flip(direction); }); menu.element.append(button);
     return { button, direction };
   });
   function updateScrollSpace() {
@@ -100,7 +105,8 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
     for (const [key, entries] of buttons) for (const button of entries) {
       if (key === id) button.setAttribute('aria-current', 'location'); else button.removeAttribute('aria-current');
     }
-    for (const { button, direction } of edges) button.disabled = !neighbor(direction);
+    menu.close();
+    for (const { button, direction } of pageButtons) button.disabled = !neighbor(direction);
     options.onNavigate(id, mode);
     article.setAttribute('aria-label', item.title);
     article.setAttribute('aria-busy', 'true'); article.scrollTop = 0;
@@ -123,6 +129,7 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
   }
   function keyboard(event) {
     if (!options.isActive() || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey || event.isComposing || !document.querySelector('#start-menu').hidden) return;
+    if (menu.handleKey(event) || menu.isOpen()) return;
     if (event.target?.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target?.tagName)) return;
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
     const direction = event.key === 'ArrowLeft' ? -1 : 1;
@@ -131,6 +138,6 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
   window.addEventListener('keydown', keyboard);
   return {
     ready: show(options.initialDocumentId, 'restore'), navigate: show,
-    dispose: () => { disposed = true; requestId++; resize?.disconnect(); window.removeEventListener('resize', updateScrollSpace); window.removeEventListener('keydown', keyboard); }
+    dispose: () => { disposed = true; requestId++; menu.dispose(); resize?.disconnect(); window.removeEventListener('resize', updateScrollSpace); window.removeEventListener('keydown', keyboard); }
   };
 }
