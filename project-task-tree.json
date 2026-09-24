@@ -13,14 +13,31 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "novel-reader-template-completed",
+    "deliveryState": "industrial-wallpaper-preview-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "User reviews the two-volume reader demo and adopts the portable novel release v2 contract in producer projects",
+    "nextAction": "User reviews the industrial wallpaper, then supplies the deferred novel reader feedback",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-24",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "industrial-wallpaper-preview", "name": "Industrial Wallpaper Preview", "parent": "personal-website", "status": "completed",
+      "dependencies": ["dithered-wallpaper-edges"],
+      "returnPoint": "Personal Website / Review industrial wallpaper",
+      "note": "User selects a new wallpaper while deferring reader feedback. Used the unique existing art/backgrounds/industrial_gray.jpg, 3840x2160, copied unchanged into runtime assets. Centered contain, #2d2f2d fill and dithering retained. No Git writes or remote operations.",
+      "completedOn": "2026-09-24",
+      "evidence": ["qa/industrial-wallpaper-preview.md"],
+      "completedWork": ["Updated configuration and CSS wallpaper references with unchanged source bytes", "Verified original/runtime/dist SHA-256, unchanged dither module, successful build and HTTP image response", "Inspected the actual browser preview and preserved contain sizing, center position, fill and dithered borders"]
+    },
+    {
+      "id": "local-preview-recovery", "name": "Local Preview Recovery", "parent": "personal-website", "status": "completed",
+      "dependencies": ["novel-reader-template"],
+      "returnPoint": "Personal Website / Review novel reader template",
+      "note": "Direct loopback connection was refused. Restarted the existing preview as a hidden background Node process; home, chapter route, parser module and chapter Markdown return HTTP 200. Previous process exit reason remains unknown. No application edits, Git writes or remote operations.",
+      "completedOn": "2026-09-24",
+      "evidence": ["qa/local-preview-recovery/review.md"]
+    },
     {
       "id": "novel-reader-template", "name": "Novel Reader Template", "parent": "personal-website", "status": "completed",
       "dependencies": ["novel-release-contract"],

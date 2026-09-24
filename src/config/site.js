@@ -6,7 +6,7 @@ export const siteConfig = {
   menuBrand: "yigrass",
   menuLabels: { profile: "我的电脑", works: "资源管理器", settings: "系统设置" },
   applicationRoutes: { profile: "my-computer", works: "file-explorer", settings: "system-settings" },
-  wallpaper: "assets/wallpapers/ocean-capsule-pixelart-v2.png",
+  wallpaper: "assets/wallpapers/industrial-gray.jpg",
   wallpaperPosition: "center center",
   themeColor: "#2d2f2d", // 壁纸周围填充、边缘抖动过渡及加载前的桌面底色。
   defaults: { themeId: "retro-ink", menuTransparency: 0, customCursor: false, floatingStars: false },

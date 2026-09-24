@@ -83,7 +83,7 @@ npm.cmd run validate:novel -- releases/story-a story-a
 
 系统设置提供五套预设：95's、95's（异化，默认）、深渊、苔痕和幽涧。选中后同步更新窗口、开始菜单、任务栏、按钮和滚动条；预设与自定义折叠项保留，自定义仍为灰色“功能开发中”。设置显示控件背景、内容背景和标题栏的 RGB 色值及色块。开始菜单与任务栏共用底色透明度，其他设置包括像素光标和漂浮星星；浏览器允许时保存偏好，减少动态效果的系统偏好会停用星星动画。
 
-壁纸、深灰填充和 dithering 不随主题改变。背景仍是 assets/wallpapers/ocean-capsule-pixelart-v2.png，3840×2160，采用 contain 完整居中显示，阴影填充 #2d2f2d。src/desktop/wallpaper.js 仅在显示层添加 2 CSS 像素的有序抖动边缘，原图字节不变。
+壁纸、深灰填充和 dithering 不随主题改变。当前背景为 assets/wallpapers/industrial-gray.jpg，3840×2160，采用 contain 完整居中显示，阴影填充 #2d2f2d。src/desktop/wallpaper.js 仅在显示层添加 2 CSS 像素的有序抖动边缘，原图字节不变。
 
 横竖滚动条均为 20 像素，四个箭头按钮均为 20×20，状态栏保留 25 像素。箭头唯一图像编辑入口是 assets/pixel-ui/v1.3.0/scrollbar-arrow-up.png；修改后运行 scripts/generate-scrollbar-arrows.ps1，通过既有 Aseprite 启动器生成旋转及禁用版本。工具代码位于 scripts/pixel-ui/，不依赖 art；网站构建无需 Aseprite。
 

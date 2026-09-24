@@ -33,7 +33,7 @@ a{color:var(--link);text-underline-offset:3px}
 @supports not selector(::-webkit-scrollbar){
   *{scrollbar-width:auto;scrollbar-color:var(--silver) var(--track)}
 }
-#desktop{position:fixed;inset:0 0 var(--taskbar-height);background-color:var(--desktop);background-image:url("../../assets/wallpapers/ocean-capsule-pixelart-v2.png");background-size:contain;background-position:center;background-repeat:no-repeat;overflow:hidden}
+#desktop{position:fixed;inset:0 0 var(--taskbar-height);background-color:var(--desktop);background-image:url("../../assets/wallpapers/industrial-gray.jpg");background-size:contain;background-position:center;background-repeat:no-repeat;overflow:hidden}
 #wallpaper-edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 #windows{position:absolute;inset:0;pointer-events:none}
 .classic-button{background:var(--silver);box-shadow:var(--raised);min-height:32px;padding:5px 12px}
