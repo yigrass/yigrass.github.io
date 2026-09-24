@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { validateNovel, listFiles, safeRelative, decodeText, fingerprint } from '../../contracts/novel-release-v1/validate.mjs';
+import { validateNovel, listFiles, safeRelative, decodeText, fingerprint } from '../../contracts/novel-release-v2/validate.mjs';
 
 export async function validateReleases(root, projects) {
   if (!Array.isArray(projects)) throw new Error('Project catalog must be an array');

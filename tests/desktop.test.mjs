@@ -24,11 +24,11 @@ app.menu("works");
 check(app.location.pathname === paths.works, "Explorer has an application URL");
 check(!/小说|游戏|实用工具/.test(app.get("window-works").textContent), "Explorer exposes literal drive names without internal categories");
 app.drive("a");
-check(app.location.pathname === paths.a && app.entry("Story-A.txt").href === "https://example.test" + paths.story, "Drive A and its file have hierarchical addresses");
-const event = app.click(app.entry("Story-A.txt"));
+check(app.location.pathname === paths.a && app.entry("桑海志怪.txt").href === "https://example.test" + paths.story, "Drive A and its file have hierarchical addresses");
+const event = app.click(app.entry("桑海志怪.txt"));
 await app.ready();
 const story = app.win("story-a"), body = story.querySelector(".window-body");
-check(event.defaultPrevented && app.location.pathname === paths.story && body.querySelector(".novel-chapter").textContent.trim() === "施工中。", "Story opens in the same desktop with literal file name");
+check(event.defaultPrevented && app.location.pathname === paths.story && body.querySelector(".novel-chapter").textContent.includes("海的另一边"), "Story opens in the same desktop with literal file name");
 body.scrollTop = 37; story.style.width = "603px";
 app.click(story.querySelector(".control-min"));
 check(story.hidden && app.location.pathname === paths.a, "Minimize returns to Explorer's remembered drive");
@@ -72,8 +72,8 @@ for (const id of ["c", "h"]) {
   check(app.location.pathname === paths[id] && app.get("window-works").querySelector(".explorer-empty"), "Empty drive has a direct address: " + id);
 }
 app.drive("a");
-check(!app.click(app.entry("Story-A.txt"), { ctrlKey: true }).defaultPrevented, "Modified clicks keep native new-tab behavior");
-app.click(app.entry("Story-A.txt"));
+check(!app.click(app.entry("桑海志怪.txt"), { ctrlKey: true }).defaultPrevented, "Modified clicks keep native new-tab behavior");
+app.click(app.entry("桑海志怪.txt"));
 check(app.win("story-a") === story && app.get("windows").children.filter(node => node.id === story.id).length === 1, "Opening an existing file reuses one window");
 app.click(story.querySelector(".control-close"));
 app.click(app.get("window-works").querySelector(".control-close"));
@@ -81,7 +81,7 @@ app.menu("works");
 check(app.location.pathname === paths.works && app.get("explorer-address").value === "", "Reopening closed Explorer resets to its root");
 
 const historyApp = await mount();
-historyApp.menu("works"); historyApp.drive("a"); historyApp.click(historyApp.entry("Story-A.txt"));
+historyApp.menu("works"); historyApp.drive("a"); historyApp.click(historyApp.entry("桑海志怪.txt"));
 historyApp.menu("works"); historyApp.drive("g"); historyApp.click(historyApp.entry("Game-B.exe"));
 const gameDOM = historyApp.win("game-b");
 for (const expected of [paths.g, paths.story, paths.a, paths.works, "/"]) {
@@ -144,7 +144,7 @@ check(crypto.createHash("sha256").update(fs.readFileSync(path.join(root, "assets
 const themed = await mount();
 check(themed.document.documentElement.dataset.theme === "retro-ink", "Default remains 95's（异化）");
 check(themed.document.documentElement.style["--title-active"] === "#202020", "Default title bar remains ink black");
-themed.menu("works"); themed.drive("a"); themed.click(themed.entry("Story-A.txt")); themed.menu("profile"); themed.menu("settings");
+themed.menu("works"); themed.drive("a"); themed.click(themed.entry("桑海志怪.txt")); themed.menu("profile"); themed.menu("settings");
 const settings = themed.get("window-settings"), storyNode = themed.win("story-a");
 const initialUrl = themed.location.href, initialHistory = themed.history.length;
 const radios = settings.querySelectorAll(".theme-radio");

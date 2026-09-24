@@ -21,9 +21,14 @@ test('dist serves all deep entries, module imports and release bytes; maintenanc
     assert.equal(entryBase.href, base);
     for (const match of html.matchAll(/(?:src|href)="((?:assets|app)\/[^"#]+)"/g)) assert.equal((await fetch(new URL(match[1], entryBase))).status, 200, match[1]);
   }
-  for (const route of ['src/index.html', 'art/pixel-ui/README.md', 'qa/task-transitions.jsonl', 'scripts/build.mjs', 'contracts/novel-release-v1/validate.mjs', 'project-task-tree.json', '.git/config', 'novels/story-a/', 'games/game-b/', '../README.md', '%2e%2e%5cREADME.md']) assert.equal((await fetch(new URL(route, base))).status, 404, route);
+  for (const route of ['src/index.html', 'art/pixel-ui/README.md', 'qa/task-transitions.jsonl', 'scripts/build.mjs', 'contracts/novel-release-v2/validate.mjs', 'project-task-tree.json', '.git/config', 'novels/story-a/', 'games/game-b/', '../README.md', '%2e%2e%5cREADME.md']) assert.equal((await fetch(new URL(route, base))).status, 404, route);
   const main = await fetch(new URL('app/main.js', base)); assert.match(main.headers.get('content-type'), /javascript/);
-  const text = await fetch(new URL('releases/story-a/chapters/placeholder.txt', base)); assert.equal((await text.text()).trim(), '施工中。');
+  const text = await fetch(new URL('releases/story-a/chapters/chapter-1.md', base)); assert.match(await text.text(), /第一章 · 借火/);
+  assert.ok(result.routes.includes('file-explorer/a-floppy-disk/story-a/chapter-2/'));
+  assert.ok(result.routes.includes('file-explorer/a-floppy-disk/story-a/volume-2/'));
+  const index = await (await fetch(new URL('catalog/projects.json', base))).json();
+  assert.equal(index[0].reader.documents.length, 8);
+  assert.equal(index[0].iconPath, 'releases/story-a/images/sword.png');
   assert.equal((await fetch(new URL('file-explorer', base), { redirect: 'manual' })).status, 301);
   const asset = 'assets/wallpapers/ocean-capsule-pixelart-v2.png';
   assert.deepEqual(await fs.readFile(path.join(projectRoot, 'dist', asset)), await fs.readFile(path.join(projectRoot, asset)));
@@ -38,7 +43,7 @@ test('clean input copy builds without art or other projects; invalid release pre
   assert.equal(run().status, 0);
   await assert.rejects(fs.access(path.join(fixture, 'art')));
   const entry = path.join(fixture, 'dist/index.html'), before = await fs.readFile(entry);
-  await fs.unlink(path.join(fixture, 'releases/story-a/chapters/placeholder.txt'));
+  await fs.unlink(path.join(fixture, 'releases/story-a/chapters/chapter-1.md'));
   assert.notEqual(run().status, 0);
   assert.deepEqual(await fs.readFile(entry), before);
   await assert.rejects(assertOwnedDirectory(fixture, '../art'), /Unsafe/);

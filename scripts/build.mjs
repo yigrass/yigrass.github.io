@@ -4,15 +4,17 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { siteConfig } from '../src/config/site.js';
 import { createDesktopRouteCatalog } from '../src/routing/catalog.js';
-import { listFiles } from '../contracts/novel-release-v1/validate.mjs';
+import { listFiles } from '../contracts/novel-release-v2/validate.mjs';
+import { receivedProjects } from '../src/shared/novel/model.js';
 import { validateReleases } from './lib/releases.mjs';
 import { assertOwnedDirectory, writeFile } from './lib/files.mjs';
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 
 export async function build() {
   const projects = JSON.parse(await fs.readFile(path.join(projectRoot, 'catalog/projects.json'), 'utf8'));
-  const catalog = createDesktopRouteCatalog({ ...siteConfig, works: projects });
   const releases = await validateReleases(projectRoot, projects);
+  const runtimeProjects = receivedProjects(projects, releases);
+  const catalog = createDesktopRouteCatalog({ ...siteConfig, works: runtimeProjects });
   const sourceFiles = await listFiles(path.join(projectRoot, 'src'));
   const assetFiles = await listFiles(path.join(projectRoot, 'assets'));
   const output = await assertOwnedDirectory(projectRoot, 'dist');
@@ -22,7 +24,8 @@ export async function build() {
   try {
     for (const file of sourceFiles) if (file !== 'index.html') await writeFile(stage, `app/${file}`, await fs.readFile(path.join(projectRoot, 'src', file)));
     for (const file of assetFiles) await writeFile(stage, `assets/${file}`, await fs.readFile(path.join(projectRoot, 'assets', file)));
-    await writeFile(stage, 'catalog/projects.json', JSON.stringify(projects, null, 2) + '\n');
+    await writeFile(stage, 'app/shared/novel/markdown-profile.js', await fs.readFile(path.join(projectRoot, 'contracts/novel-release-v2/markdown.mjs')));
+    await writeFile(stage, 'catalog/projects.json', JSON.stringify(runtimeProjects, null, 2) + '\n');
     for (const release of releases) for (const file of release.files) {
       const bytes = await fs.readFile(path.join(projectRoot, release.project.release, file.path));
       if (createHash('sha256').update(bytes).digest('hex') !== file.sha256) throw new Error(`Release changed while building: ${file.path}`);

@@ -1,10 +1,20 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "kind": "novel",
   "id": "story-a",
-  "title": "Story-A",
+  "title": "桑海志怪",
   "status": "ongoing",
-  "chapters": [
-    { "id": "placeholder", "title": "Story-A", "file": "chapters/placeholder.txt" }
+  "icon": "images/sword.png",
+  "readme": { "file": "README.md" },
+  "volumes": [
+    { "id": "volume-1", "title": "第一卷 · 雾渡", "readme": { "file": "volumes/volume-1/README.md" }, "chapters": [
+      { "id": "chapter-1", "title": "第一章 · 借火", "file": "chapters/chapter-1.md" },
+      { "id": "chapter-2", "title": "第二章 · 夜航簿", "file": "chapters/chapter-2.md" },
+      { "id": "chapter-3", "title": "第三章 · 铜铃", "file": "chapters/chapter-3.md" }
+    ] },
+    { "id": "volume-2", "title": "第二卷 · 山中来信", "readme": { "file": "volumes/volume-2/README.md" }, "chapters": [
+      { "id": "chapter-4", "title": "第四章 · 石阶", "file": "chapters/chapter-4.md" },
+      { "id": "chapter-5", "title": "第五章 · 春水", "file": "chapters/chapter-5.md" }
+    ] }
   ]
 }

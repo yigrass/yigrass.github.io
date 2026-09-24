@@ -8,6 +8,6 @@
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
     "test": "node scripts/check.mjs",
-    "validate:novel": "node contracts/novel-release-v1/validate.mjs"
+    "validate:novel": "node contracts/novel-release-v2/validate.mjs"
   }
 }

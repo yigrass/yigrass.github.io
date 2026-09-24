@@ -9,7 +9,7 @@ import { createProfile } from '../apps/my-computer/index.js';
 import { createExplorer } from '../apps/file-explorer/index.js';
 import { createSettings } from '../apps/system-settings/index.js';
 import { renderProject } from '../apps/project-viewer/index.js';
-import { projectCategories, projectWindowId } from '../apps/registry.js';
+import { projectIcon, projectWindowId, projectDocumentRoute } from '../apps/registry.js';
 
 export function bootDesktop(config) {
   const siteRoot = new URL('.', document.baseURI);
@@ -28,8 +28,10 @@ export function bootDesktop(config) {
   function syncAddress(mode = 'replace') {
     const id = manager.getActiveId();
     const drive = id === 'works' ? manager.getWindow('works')?.content?.getLocation() : null;
+    const documentId = manager.getWindow(id)?.content?.getDocumentId?.();
+    const projectId = id?.startsWith('project-') ? id.slice('project-'.length) : null;
     document.title = id ? `${titleOf(id)} — ${config.siteTitle}` : config.siteTitle;
-    if (!restoringAddress) desktopRoutes.sync(drive ? `drive-${drive}` : id, mode);
+    if (!restoringAddress) desktopRoutes.sync(drive ? `drive-${drive}` : projectId ? projectDocumentRoute(projectId, documentId) : id, mode);
   }
   function openProject(id) {
     if (!desktopRoutes.getProject(id)) return;
@@ -44,8 +46,13 @@ export function bootDesktop(config) {
   for (const project of desktopRoutes.projects) {
     const id = projectWindowId(project.id);
     windowTypes[id] = {
-      title: project.title, icon: projectCategories[project.category].icon,
-      render: (body, setStatus) => renderProject(body, project, { setStatus, activate: () => manager.activate(id) }),
+      title: project.title, icon: projectIcon(project),
+      render: (body, setStatus) => renderProject(body, project, {
+        setStatus, activate: () => manager.activate(id), isActive: () => manager.getActiveId() === id,
+        initialDocumentId: desktopRoutes.current()?.windowId === id ? desktopRoutes.current().documentId || null : null,
+        address: documentId => desktopRoutes.address(projectDocumentRoute(project.id, documentId)),
+        onNavigate: mode => { if (manager.getActiveId() === id) syncAddress(mode); }
+      }),
       status: () => '就绪'
     };
   }
@@ -58,6 +65,7 @@ export function bootDesktop(config) {
       if (route) {
         manager.openWindow(route.windowId);
         if (route.windowId === 'works') manager.getWindow('works').content.navigate(route.driveId || null, 'replace');
+        else manager.getWindow(route.windowId)?.content?.navigateDocument?.(route.documentId || null, 'restore');
       } else manager.hideAll();
     } finally { restoringAddress = false; }
     syncAddress();

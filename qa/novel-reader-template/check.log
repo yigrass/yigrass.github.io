@@ -1,0 +1,49 @@
+Built dist: 17 desktop pages, 2 received releases.
+Built dist: 17 desktop pages, 2 received releases.
+✔ dist serves all deep entries, module imports and release bytes; maintenance paths are absent (3658.151ms)
+✔ clean input copy builds without art or other projects; invalid release preserves previous dist (516.1445ms)
+✔ built release receipts match every published package file (3.698ms)
+(node:31436) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Desktop regression assertions: 231
+✔ desktop windows, routes, themes and persistent state after module migration (484.7059ms)
+(node:23192) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ book/volume README precede chapters; branches and whole directory collapse without changing the reading window (43.807ms)
+✔ direct chapter entry, safe Markdown rendering, shared icon, chapter links and desktop history retain reader state (15.5615ms)
+✔ keyboard and edge buttons skip README across volumes and respect active window, menus and boundaries (17.5132ms)
+✔ late loads never replace a newer chapter or a closed window; failed chapter can be retried (24.2671ms)
+✔ two novel windows keep independent chapter URLs and keyboard listeners (13.9825ms)
+✔ Markdown profile excludes code-block links and supports documented basic blocks (1.0409ms)
+✔ current release supports 15 to 16 chapters and source revisions without retaining old files (52.7017ms)
+✔ novel v2 rejects missing chapter (6.9317ms)
+✔ novel v2 rejects duplicate chapter route (10.9273ms)
+✔ novel v2 rejects volume chapter route collision (10.8815ms)
+✔ novel v2 rejects duplicate README file (7.3537ms)
+✔ novel v2 rejects missing book README (7.27ms)
+✔ novel v2 rejects missing volume README (7.9973ms)
+✔ novel v2 rejects private draft (8.3644ms)
+✔ novel v2 rejects path traversal (16.6906ms)
+✔ novel v2 rejects TXT chapter (5.5569ms)
+✔ novel v2 rejects TXT README (5.0226ms)
+✔ novel v2 rejects legacy schema (6.2939ms)
+✔ novel v2 rejects unsupported configuration (13.4676ms)
+✔ novel v2 rejects no volumes (6.3616ms)
+✔ novel v2 rejects no chapters (5.0895ms)
+✔ novel v2 rejects empty Markdown (7.5535ms)
+✔ novel v2 rejects invalid UTF-8 (6.5592ms)
+✔ novel v2 rejects unpublished document link (8.7556ms)
+✔ novel v2 rejects false PNG icon (5.379ms)
+✔ Markdown images resolve from package root; published document links and reused images validate (10.1547ms)
+✔ standalone v2 contract works outside website source; bundled two-volume five-chapter example validates (114.8713ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5529.7515
+Generated task view is current.
+Task controls passed.
+Source, release, built-site and task-control checks passed.

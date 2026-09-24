@@ -1,0 +1,115 @@
+{
+  "valid": true,
+  "id": "example-book",
+  "volumes": 2,
+  "chapters": 5,
+  "manifest": {
+    "schemaVersion": 2,
+    "kind": "novel",
+    "id": "example-book",
+    "title": "桑海志怪",
+    "status": "ongoing",
+    "icon": "images/sword.png",
+    "readme": {
+      "file": "README.md"
+    },
+    "volumes": [
+      {
+        "id": "volume-1",
+        "title": "第一卷 · 雾渡",
+        "readme": {
+          "file": "volumes/volume-1/README.md"
+        },
+        "chapters": [
+          {
+            "id": "chapter-1",
+            "title": "第一章 · 借火",
+            "file": "chapters/chapter-1.md"
+          },
+          {
+            "id": "chapter-2",
+            "title": "第二章 · 夜航簿",
+            "file": "chapters/chapter-2.md"
+          },
+          {
+            "id": "chapter-3",
+            "title": "第三章 · 铜铃",
+            "file": "chapters/chapter-3.md"
+          }
+        ]
+      },
+      {
+        "id": "volume-2",
+        "title": "第二卷 · 山中来信",
+        "readme": {
+          "file": "volumes/volume-2/README.md"
+        },
+        "chapters": [
+          {
+            "id": "chapter-4",
+            "title": "第四章 · 石阶",
+            "file": "chapters/chapter-4.md"
+          },
+          {
+            "id": "chapter-5",
+            "title": "第五章 · 春水",
+            "file": "chapters/chapter-5.md"
+          }
+        ]
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 482,
+      "sha256": "b19a0d3ae1c0a6966324ae4a7c5e555d53a52daa9c5dcb1b334e8e5cd21c1c24"
+    },
+    {
+      "path": "chapters/chapter-1.md",
+      "bytes": 424,
+      "sha256": "b4d4ab8bc4571d105a91b7cc2f446a04afc6794ab593505ef7124e179d349dad"
+    },
+    {
+      "path": "chapters/chapter-2.md",
+      "bytes": 5948,
+      "sha256": "20b185c3a5faed8f3d0062bc5b91d7c5307cfd7dca1717cd9d1f3b7c4db6cca5"
+    },
+    {
+      "path": "chapters/chapter-3.md",
+      "bytes": 281,
+      "sha256": "d7eac08e0793668429a34a3aa87b41c5b4c8e1244eeedf551966d32348fdbe71"
+    },
+    {
+      "path": "chapters/chapter-4.md",
+      "bytes": 345,
+      "sha256": "ff1d1c03df24c311c8116bf165e0a7dde66db2dc6dfe2d812f993cf99b309114"
+    },
+    {
+      "path": "chapters/chapter-5.md",
+      "bytes": 310,
+      "sha256": "811bc548418de7b7b0b157f7bb699b0c868ff89e0906d52049e4879fc862a62e"
+    },
+    {
+      "path": "images/sword.png",
+      "bytes": 1183,
+      "sha256": "ca77919d5e2a3fc48d05410ed6584bd9e205e3a013295c73d161138dad88b552"
+    },
+    {
+      "path": "release.json",
+      "bytes": 943,
+      "sha256": "2d315e70ca5c881f1c92604dd11137440b88f3f70fb22bcc71f958d83e6ae543"
+    },
+    {
+      "path": "volumes/volume-1/README.md",
+      "bytes": 324,
+      "sha256": "a35149e05df0052165c5649d947df6815999afcc0d0ecbfd446f908bbe576398"
+    },
+    {
+      "path": "volumes/volume-2/README.md",
+      "bytes": 194,
+      "sha256": "8c53b3ac9c48820525523156ac44bb208af641fecdc7420c6b7e1bc77466667f"
+    }
+  ],
+  "digest": "b33f83c450035093a2768e0d35814125c064857665f18e8f5e3f4f826e610979"
+}

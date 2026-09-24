@@ -26,7 +26,7 @@ npm.cmd run build
 | `catalog/projects.json` | 网站中的文件名、所属磁盘、地址名及成品位置 | Git 管理；构建复制 |
 | `releases/<project-id>/` | 从独立项目接收的完整当前成品 | Git 管理；构建按目录接入 |
 | `assets/` | 网站自身的壁纸、系统图标等素材 | Git 管理；构建复制 |
-| `contracts/novel-release-v1/` | 可带到小说项目使用的成品约定、Schema、校验器和示例 | Git 管理；不发布到网站 |
+| `contracts/novel-release-v2/` | 可带到小说项目使用的成品约定、Schema、校验器和示例 | Git 管理；构建只取其中的 Markdown 解析模块，其余不发布 |
 | `art/` | 本地美术原稿和实验文件 | 忽略；不参与构建 |
 | `dist/` | 自动生成的完整静态网站 | 忽略；发布此目录中的内容 |
 | `scripts/`、`tests/`、`docs/`、`qa/` | 工具、当前检查、维护说明和历史验收记录 | Git 管理；不发布到网站 |
@@ -41,9 +41,11 @@ npm.cmd run build
 
 作品登记在 `catalog/projects.json`。`id` 是唯一标识，`title` 是界面显示的完整文件名，`driveId` 是所属磁盘，`slug` 是该盘下的公开地址名，`release` 固定为 `releases/<id>/`。内部 `category` 取 novel、game 或 utility，用来选择图标及接入类型，不出现在公开地址中。外部链接可用 url 代替 slug 和 release，继续在新标签页打开。
 
-当前 Story-A.txt 与 Game-B.exe 仍是“施工中。”演示，没有真实作品内容。前者从小说成品读取正文，后者在窗口内加载独立网页成品及原有光盘图标。新增作品时提供成品并登记目录，构建自动生成桌面入口，不手写新的桌面 HTML，也不把其他项目的开发源码放进 src。
+当前 A 盘的桑海志怪.txt 是两卷五章的虚构演示作品，第二章为长文本，另有整书和两卷的 README；沿用 story-a 地址名。Game-B.exe 仍是“施工中。”网页成品演示。新增作品时提供成品并登记目录，构建自动生成桌面入口，不手写新的桌面 HTML，也不把其他项目的开发源码放进 src。
 
-小说成品规则见 [Novel Release Contract v1](contracts/novel-release-v1/README.md)。源头项目按约定导出自己的 dist；将其内容完整接入 releases 下的对应目录。每章只有当前文件，release.json 始终描述完整的当前公开章节，数组顺序即阅读顺序。追加、修订、撤下均在源头处理后重新导出。可以先删除网站中该小说的成品目录再整目录复制，或使用自行编写的替换工具；不能留下旧版本多出的文件。本轮提供校验器，没有额外实现自动删除或导入命令。
+小说成品规则见 [Novel Release Contract v2](contracts/novel-release-v2/README.md)。源头项目按约定导出自己的 dist；将其内容完整接入 releases 下的对应目录。所有章节和 README 使用 Markdown，至少有一卷，整书和每卷都有 README。每章只有当前文件，release.json 始终描述完整的当前公开内容，卷数组及其章节数组决定阅读顺序。追加、修订、撤下均在源头处理后重新导出。可以先删除网站中该小说的成品目录再整目录复制，或使用自行编写的替换工具；不能留下旧版本多出的文件。当前提供校验器，没有额外实现自动删除或导入命令。v1 已退出活动支持，旧约定 ZIP 仅作为历史交付保留。
+
+通用阅读器采用目录和正文双栏，目录可向左收起，窄屏默认收起。整书、卷别和章节可直接访问，README 总是排列在所属层级最前面。作品图标来自成品，在 A 盘、标题栏、任务栏和目录书名处共用；书本开合、信息及 TXT 文件图标由网站提供。正文支持约定的 Markdown 子集，默认排版跟随桌面主题。左右边缘出现无文字翻页箭头，移出后淡出一秒，左右方向键也可跨卷翻章；正文能滚动到最后一行位于顶部。每书内部样式配置和个性化阅读器留待后续开发。
 
 ```powershell
 npm.cmd run validate:novel -- releases/story-a story-a
@@ -68,10 +70,12 @@ npm.cmd run validate:novel -- releases/story-a story-a
 | C 盘 | `/file-explorer/c-local-disk/` |
 | G 盘 | `/file-explorer/g-cd-rom/` |
 | H 盘 | `/file-explorer/h-flash-drive/` |
-| Story-A.txt | `/file-explorer/a-floppy-disk/story-a/` |
+| 桑海志怪.txt / 整书 README | `/file-explorer/a-floppy-disk/story-a/` |
+| 第一卷 README | `/file-explorer/a-floppy-disk/story-a/volume-1/` |
+| 第一章 | `/file-explorer/a-floppy-disk/story-a/chapter-1/` |
 | Game-B.exe | `/file-explorer/g-cd-rom/game-b/` |
 
-前台窗口决定页面地址。开始菜单浮层和最大化不改变地址；最小化保留实例，关闭移除实例，两者按照下一个前台窗口更新地址，没有可见窗口才回到主页。任务栏切换不重建窗口。正式打开新应用或项目、进入磁盘或向上返回增加浏览历史；聚焦、最小化和还原替换当前地址，并保留正式导航的后退入口。前进、后退恢复对应窗口，返回主页会最小化全部窗口。直接访问或刷新深层地址只打开对应窗口，不恢复整个旧桌面。
+前台窗口及其当前文档决定页面地址。开始菜单浮层和最大化不改变地址；最小化保留实例，关闭移除实例，两者按照下一个前台窗口更新地址，没有可见窗口才回到主页。任务栏切换不重建窗口，保留小说所选章节和滚动位置。正式打开新应用或项目、选择章节或 README、进入磁盘或向上返回增加浏览历史；聚焦、最小化和还原替换当前地址，并保留正式导航的后退入口。前进、后退恢复对应窗口和文档，返回主页会最小化全部窗口。直接访问或刷新深层地址只打开对应窗口及所选章节，不恢复整个旧桌面。
 
 宽屏支持标题栏拖动和四边、四角缩放；最小化及最大化还原保留本次尺寸，关闭再开恢复默认尺寸。窄屏窗口占据主要内容区，边框缩放停用。窗口状态不跨刷新保存。
 

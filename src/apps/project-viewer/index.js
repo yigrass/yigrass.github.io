@@ -1,10 +1,15 @@
 import { create } from '../../shared/dom.js';
 import { renderNovel } from './novel.js';
 
-export function renderProject(body, project, { setStatus, activate }) {
+export function renderProject(body, project, { setStatus, activate, isActive, initialDocumentId = null, address, onNavigate }) {
   body.classList.add('project-body');
   const controller = new AbortController();
   let cleanup = () => {}, notifyVisibility = () => {}, visible = true;
+  let reader, selectedDocumentId = initialDocumentId;
+  function navigateDocument(id, mode = 'push') {
+    selectedDocumentId = id;
+    return reader?.navigate(id, mode);
+  }
   const root = new URL(project.release, document.baseURI);
   body.append(create('p', '', '正在加载…'));
   const ready = (async () => {
@@ -15,7 +20,10 @@ export function renderProject(body, project, { setStatus, activate }) {
       if (controller.signal.aborted) return;
       body.replaceChildren();
       if (release.kind === 'novel') {
-        const reader = renderNovel(body, release, root, setStatus, controller.signal);
+        reader = renderNovel(body, release, root, setStatus, controller.signal, {
+          icon: project.iconPath, initialDocumentId: selectedDocumentId, isActive, address,
+          onNavigate: (id, mode) => { selectedDocumentId = id; if (mode !== 'restore') onNavigate(mode); }
+        });
         cleanup = reader.dispose;
         await reader.ready;
       } else if (release.kind === 'web') {
@@ -43,5 +51,5 @@ export function renderProject(body, project, { setStatus, activate }) {
       setStatus('加载失败');
     }
   })();
-  return { ready, setVisible: value => { visible = value; notifyVisibility(value); }, dispose: () => { controller.abort(); cleanup(); } };
+  return { ready, navigateDocument, getDocumentId: () => selectedDocumentId, setVisible: value => { visible = value; notifyVisibility(value); }, dispose: () => { controller.abort(); cleanup(); } };
 }

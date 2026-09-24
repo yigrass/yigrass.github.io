@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import { siteConfig } from '../src/config/site.js';
 import { themes } from '../src/themes/presets.js';
+import { receivedProjects } from '../src/shared/novel/model.js';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 export async function mount(href = "https://example.test/", baseURI = "https://example.test/", options = {}) {
@@ -25,6 +26,7 @@ export async function mount(href = "https://example.test/", baseURI = "https://e
     set textContent(value) { this._text = String(value); this.replaceChildren(); }
     get textContent() { return this._text + this.children.map(child => child.textContent).join(""); }
     get childElementCount() { return this.children.length; }
+    get tagName() { return this.tag.toUpperCase(); }
     append(...items) { for (const item of items) { item.remove(); this.children.push(item); item.parentNode = this; } }
     prepend(item) { item.remove(); this.children.unshift(item); item.parentNode = this; }
     remove() { if (this.parentNode) this.parentNode.children = this.parentNode.children.filter(child => child !== this); this.parentNode = null; }
@@ -103,7 +105,7 @@ export async function mount(href = "https://example.test/", baseURI = "https://e
     pushState(state, title, url) { this.write(state, url, true); },
     go(delta) { const next = cursor + delta; if (next < 0 || next >= stack.length) return; cursor = next; location.href = stack[cursor].href; for (const fn of windowEvents.popstate || []) fn({ state: this.state }); }
   };
-  const window = { location, history, removeEventListener(type, fn) { windowEvents[type] = (windowEvents[type] || []).filter(item => item !== fn); }, addEventListener(type, fn) { (windowEvents[type] ||= []).push(fn); } };
+  const window = { location, history, removeEventListener(type, fn) { windowEvents[type] = (windowEvents[type] || []).filter(item => item !== fn); }, addEventListener(type, fn) { (windowEvents[type] ||= []).push(fn); }, fire(type, options = {}) { const event = { target: document.activeElement, preventDefault() { this.defaultPrevented = true; }, ...options }; for (const listener of windowEvents[type] || []) listener(event); return event; } };
   let stored = options.rawStorage ?? (options.saved ? JSON.stringify(options.saved) : null);
   const localStorage = { getItem() { if (options.storageUnavailable) throw Error("Storage denied"); return stored; }, setItem(key, value) { if (options.storageUnavailable) throw Error("Storage denied"); stored = value; } };
   const fetch = async url => {
@@ -113,16 +115,19 @@ export async function mount(href = "https://example.test/", baseURI = "https://e
     try { const bytes = await fsp.readFile(path.join(root, relative), 'utf8'); return { ok: true, json: async () => JSON.parse(bytes), text: async () => bytes }; }
     catch { return { ok: false, status: 404 }; }
   };
-  const context = vm.createContext({ window, document, URL, localStorage, fetch, AbortController, setTimeout, matchMedia: () => ({ matches: false, addEventListener() {} }), requestAnimationFrame: () => 1, cancelAnimationFrame() {}, setInterval() {} });
+  const context = vm.createContext({ window, document, URL, localStorage, fetch, AbortController, setTimeout, getComputedStyle: () => ({ lineHeight: '30.4px', paddingBottom: '24px' }), matchMedia: () => ({ matches: false, addEventListener() {} }), requestAnimationFrame: () => 1, cancelAnimationFrame() {}, setInterval() {} });
   const modules = new Map();
   function getModule(file) {
+    if (file === path.join(root, 'src/shared/novel/markdown-profile.js')) file = path.join(root, 'contracts/novel-release-v2/markdown.mjs');
     if (!modules.has(file)) modules.set(file, new vm.SourceTextModule(fs.readFileSync(file, 'utf8'), { context, identifier: file }));
     return modules.get(file);
   }
   const entryModule = getModule(path.join(root, 'src/desktop/bootstrap.js'));
   await entryModule.link((specifier, parent) => getModule(path.resolve(path.dirname(parent.identifier), specifier)));
   await entryModule.evaluate();
-  const config = structuredClone({ ...siteConfig, works: JSON.parse(read('catalog/projects.json')) });
+  const projects = options.projects || JSON.parse(read('catalog/projects.json'));
+  const releases = projects.filter(project => project.category === 'novel').map(project => ({ project, manifest: JSON.parse(options.responses?.[project.release + 'release.json'] || read(project.release + 'release.json')) }));
+  const config = structuredClone({ ...siteConfig, works: receivedProjects(projects, releases) });
   const manager = entryModule.namespace.bootDesktop(config);
   const ready = () => Promise.all(config.works.map(project => manager.getWindow('project-' + project.id)?.content?.ready));
   const click = (node, options = {}) => { assert.ok(node, "click target exists"); node.fire("pointerdown", options); node.focus(); return node.fire("click", options); };

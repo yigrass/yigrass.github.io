@@ -13,14 +13,34 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "pages-workflow-maintenance-completed",
+    "deliveryState": "novel-reader-template-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "User commits and pushes the updated workflow, then starts a new manual Pages run to verify the warning cleanup",
+    "nextAction": "User reviews the two-volume reader demo and adopts the portable novel release v2 contract in producer projects",
     "repositoryIntegrated": true,
-    "lastUpdated": "2026-09-23",
+    "lastUpdated": "2026-09-24",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "novel-reader-template", "name": "Novel Reader Template", "parent": "personal-website", "status": "completed",
+      "dependencies": ["novel-release-contract"],
+      "returnPoint": "Personal Website / Review novel reader template",
+      "note": "Implemented the requested generic reader and two-volume demo; per-book visual configuration is a later requirement. Preserved desktop navigation semantics. No Git writes or remote operations.",
+      "completedOn": "2026-09-24",
+      "evidence": ["qa/novel-reader-template/review.md", "qa/novel-reader-template/check.log", "qa/novel-reader-template/novel-release-v2.zip"],
+      "completedWork": [
+        "Implemented collapsible book-volume-chapter navigation, README pages, unified book icon, edge/keyboard chapter navigation and scrolling beyond the final line",
+        "Generated chapter and volume deep links with continuous desktop history, preserved window state and a two-volume five-chapter Markdown demo",
+        "Delivered portable novel-v2 contract, schema, validator, Markdown profile and hash-verified 14-file ZIP; retired active v1 support while preserving the first delivery ZIP",
+        "Passed 31 tests including 231 desktop assertions, decoded four pixel icons, verified packaged contract and inspected desktop/narrow browser behavior"
+      ]
+    },
+    {
+      "id": "novel-reader-customization", "name": "Novel Reader Customization", "parent": "personal-website", "status": "pending",
+      "dependencies": ["novel-reader-template"],
+      "returnPoint": "Personal Website / Define novel reader customization",
+      "note": "Future user goal: internal per-book typography, spacing and visual treatment, with potential individualized readers. No end-user configuration requested; define the artifact configuration contract before implementing."
+    },
     {
       "id": "pages-workflow-maintenance",
       "name": "Pages Workflow Maintenance",
@@ -147,8 +167,8 @@
       "parent": null,
       "status": "in_progress",
       "dependencies": [],
-      "returnPoint": "Personal Website / Review Pages workflow maintenance",
-      "note": "MVP remains completed. Source and Release Separation and Novel Release Contract remain completed. User reports successful Pages deployment; Pages Workflow Maintenance is now completed locally. User handles Git and a new manual deployment to verify updated workflow behavior."
+      "returnPoint": "Personal Website / Review novel reader template",
+      "note": "MVP remains completed. User accepted Pages Workflow Maintenance. Novel Reader Template is completed locally with a new portable v2 contract; per-book customization is pending. User handles Git and deployment."
     },
     {
       "id": "qq-space-mvp",

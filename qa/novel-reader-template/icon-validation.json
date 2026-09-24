@@ -1,0 +1,38 @@
+[
+  {
+    "name": "sword",
+    "width": 16,
+    "height": 16,
+    "frames": 1,
+    "opaquePixels": 84,
+    "transparentPixels": 172,
+    "sha256": "CA77919D5E2A3FC48D05410ED6584BD9E205E3A013295C73D161138DAD88B552"
+  },
+  {
+    "name": "book-open",
+    "width": 16,
+    "height": 16,
+    "frames": 1,
+    "opaquePixels": 200,
+    "transparentPixels": 56,
+    "sha256": "0E57DCB74AE99E7561ECAEFC544F6703619F0DB08366B1CD5B8D83C0BB00952C"
+  },
+  {
+    "name": "book-closed",
+    "width": 16,
+    "height": 16,
+    "frames": 1,
+    "opaquePixels": 174,
+    "transparentPixels": 82,
+    "sha256": "46C29EA45B11A49FF606129CE99003B984CB34323AA9E20E057C4AE035E275AF"
+  },
+  {
+    "name": "information",
+    "width": 16,
+    "height": 16,
+    "frames": 1,
+    "opaquePixels": 162,
+    "transparentPixels": 94,
+    "sha256": "826FCD5539A67EE0DB33DA4B214612FBDFF3E7EDCE099FE2A458B690879464D3"
+  }
+]

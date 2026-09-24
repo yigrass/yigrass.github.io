@@ -1,5 +1,5 @@
 import { $, create, safeURL, pixelIcon, announce, rgbChannels } from '../../shared/dom.js';
-import { projectCategories, projectWindowId } from '../registry.js';
+import { projectCategories, projectWindowId, projectIcon } from '../registry.js';
 export function createExplorer({ config, desktopRoutes, titleOf, getActiveId, syncAddress, openProject }) {
   function worksContent(body, setStatus) {
     body.classList.add("explorer-body");
@@ -123,7 +123,7 @@ export function createExplorer({ config, desktopRoutes, titleOf, getActiveId, sy
           }
           tile.title = `打开${name}${project.internal ? "" : "（新标签页）"}`;
           tile.setAttribute("aria-label", tile.title);
-          tile.append(pixelIcon(categories[project.category].icon, "drive-icon"), create("span", "", name));
+          tile.append(pixelIcon(projectIcon(project), "drive-icon"), create("span", "", name));
           grid.append(tile);
         }
         content.append(grid);

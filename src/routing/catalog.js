@@ -27,8 +27,11 @@ export const createDesktopRouteCatalog = (config) => {
     if (!drive || !["novel", "game", "utility"].includes(project.category) || typeof project.title !== "string" || !project.title.trim()) throw new Error("Invalid project: " + project.id);
     const id = "project-" + segment(project.id);
     add({ id, windowId: id, projectId: project.id, driveId: project.driveId, path: drive.path + segment(project.slug) + "/" });
+    for (const document of project.reader?.documents || []) {
+      if (document.id === null) continue;
+      add({ id: `${id}/document/${segment(document.id)}`, windowId: id, projectId: project.id, documentId: document.id, path: byId.get(id).path + segment(document.id) + '/' });
+    }
     projects.push({ ...project, title: project.title.trim() });
   }
   return { entries, projects, byId, byPath };
 };
-
