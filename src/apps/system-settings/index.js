@@ -1,4 +1,4 @@
-import { $, create, safeURL, pixelIcon, announce, rgbChannels } from '../../shared/dom.js';
+import { create, pixelIcon, announce, rgbChannels } from '../../shared/dom.js';
 import { themes } from '../../themes/presets.js';
 export function createSettings({ preferences, applyPreferences }) {
   function settingsContent(body) {

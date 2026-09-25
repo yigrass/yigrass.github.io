@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it';
 
 // Same parser family as VS Code; site styling and supported plugins remain independent.
-export const markdown = new MarkdownIt({ html: false, linkify: true, typographer: false, breaks: false });
+const markdown = new MarkdownIt({ html: false, linkify: true, typographer: false, breaks: false });
 export const parseMarkdown = text => markdown.parse(text, {});
 export function headingTitle(text) {
   const tokens = parseMarkdown(text);

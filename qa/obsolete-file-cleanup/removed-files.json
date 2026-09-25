@@ -1,0 +1,17 @@
+[
+  {
+    "path": "assets/pixel-ui/profile.png",
+    "bytes": 1185,
+    "sha256": "c6c348f0f829d277483fb46a2824c9c0c3f153887543c40832a41c850126d5ae"
+  },
+  {
+    "path": "assets/pixel-ui/v1.4.0/information.png",
+    "bytes": 1183,
+    "sha256": "826fcd5539a67ee0db33da4b214612fbdff3e7edce099fe2a458b690879464d3"
+  },
+  {
+    "path": "assets/pixel-ui/v1.4.0/sword.png",
+    "bytes": 1183,
+    "sha256": "ca77919d5e2a3fc48d05410ed6584bd9e205e3a013295c73d161138dad88b552"
+  }
+]

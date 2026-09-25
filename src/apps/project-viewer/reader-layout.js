@@ -1,5 +1,5 @@
 import { create } from '../../shared/dom.js';
-export const readerSizes = { directory: 220, directoryMin: 160, readingMin: 240, divider: 2, frame: 14 };
+const readerSizes = { directory: 220, directoryMin: 160, readingMin: 240, divider: 2, frame: 14 };
 export function createReaderLayout(layout, sidebar, pane, onMinimumWidth) {
   const { directory, directoryMin, readingMin, divider, frame } = readerSizes;
   let preferredWidth = directory, dragging = null;

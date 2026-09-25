@@ -128,9 +128,7 @@ body.is-resizing,body.is-resizing *{cursor:var(--resize-cursor)!important;user-s
 .drive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;padding:16px 2px;align-content:start}
 .drive-tile{display:flex;flex-direction:column;align-items:center;gap:10px;justify-content:flex-start;padding:12px 5px;background:var(--field);font-size:.8125rem;line-height:1.5;min-width:0;min-height:102px;overflow-wrap:anywhere}.drive-tile:hover{background:var(--hover)}.drive-tile:focus-visible{background:var(--accent);color:var(--accent-text);outline:1px dotted var(--edge-light);outline-offset:-4px}.drive-tile:active{background:var(--accent);color:var(--accent-text)}
 .drive-icon{width:32px;height:32px}.explorer-empty{display:grid;place-items:center;flex:1;min-height:90px;color:var(--empty);font-size:.875rem;text-align:center}
-.drive-purpose{font-size:.75rem;color:var(--muted)}.drive-tile:focus-visible .drive-purpose,.drive-tile:active .drive-purpose{color:inherit}
-.explorer-category{margin-left:auto;font-size:.75rem;color:var(--muted);white-space:nowrap}.project-tile{color:var(--ink);text-decoration:none}
-.project-preview-icon{width:64px;height:64px;margin-top:20px}
+.project-tile{color:var(--ink);text-decoration:none}
 #effects{position:absolute;inset:0;pointer-events:none;z-index:1100;overflow:hidden}.floating-star{position:absolute;left:0;top:0;width:16px;height:16px}
 @media (pointer:fine){body.custom-cursor,body.custom-cursor *{cursor:url("../../assets/pixel-ui/cursor-2x.png") 0 0,auto}}
 @media (pointer:fine){body.custom-cursor .resize-n{cursor:n-resize}body.custom-cursor .resize-e{cursor:e-resize}body.custom-cursor .resize-s{cursor:s-resize}body.custom-cursor .resize-w{cursor:w-resize}body.custom-cursor .resize-ne{cursor:ne-resize}body.custom-cursor .resize-se{cursor:se-resize}body.custom-cursor .resize-sw{cursor:sw-resize}body.custom-cursor .resize-nw{cursor:nw-resize}}
@@ -196,7 +194,6 @@ body.is-resizing,body.is-resizing *{cursor:var(--resize-cursor)!important;user-s
 .reader-document:hover{outline:1px dashed var(--focus);outline-offset:-1px}
 .reader-document[aria-current="location"]:hover{outline-color:var(--accent-text)}
 .reader-document span{font-size:12px}
-.reader-tree>.reader-tree-row{font-weight:bold}
 .reader-directory-toggle{position:absolute;left:0;top:0;z-index:2;width:var(--scrollbar-size);height:92px;padding:0;border:0;border-radius:0;background:var(--silver);box-shadow:none;clip-path:polygon(0 0,100% 0,100% calc(100% - var(--scrollbar-size)),0 100%);transition:none;animation:none;user-select:none}
 .reader-directory-toggle>span{display:grid;place-items:center;position:absolute;inset:0 0 var(--scrollbar-size);font:12px/16px Consolas,monospace;white-space:nowrap;pointer-events:none}
 /* A mask follows all four trapezoid edges, including the diagonal; color follows the theme. */

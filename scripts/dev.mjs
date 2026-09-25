@@ -42,7 +42,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     try { await build(); } catch (error) { console.error(`Build failed; previous dist retained: ${error.message}`); }
     finally { running = false; if (pending) { pending = false; await rebuild(); } }
   }
-  const watchers = ['src', 'assets', 'catalog', 'releases', 'contracts'].map(dir => fs.watch(path.join(projectRoot, dir), { recursive: true }, () => { clearTimeout(timer); timer = setTimeout(rebuild, 150); }));
+  const watchers = ['src', 'assets', 'catalog', 'releases'].map(dir => fs.watch(path.join(projectRoot, dir), { recursive: true }, () => { clearTimeout(timer); timer = setTimeout(rebuild, 150); }));
   const stop = () => { clearTimeout(timer); watchers.forEach(watcher => watcher.close()); server.close(() => process.exit(0)); };
   process.on('SIGINT', stop); process.on('SIGTERM', stop);
 }

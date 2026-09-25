@@ -14,7 +14,7 @@ export function novelDocuments(release) {
     { id: null, kind: 'readme', title: release.title, file: release.readme.file, volumeId: null },
     ...release.volumes.flatMap(volume => [
       { id: volume.id, kind: 'readme', title: volume.title, file: volume.readme.file, volumeId: volume.id, volumeTitle: volume.title },
-      ...volume.chapters.map(chapter => ({ ...chapter, id: `${volume.id}/${chapter.id}`, chapterId: chapter.id, kind: 'chapter', volumeId: volume.id, volumeTitle: volume.title }))
+      ...volume.chapters.map(chapter => ({ ...chapter, id: `${volume.id}/${chapter.id}`, kind: 'chapter', volumeId: volume.id, volumeTitle: volume.title }))
     ])
   ];
 }

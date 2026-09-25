@@ -1,4 +1,4 @@
-import { $, create, safeURL, pixelIcon, announce, rgbChannels } from '../../shared/dom.js';
+import { create, safeURL, pixelIcon } from '../../shared/dom.js';
 export function createProfile({ config, titleOf }) {
   function profileContent(body) {
     body.classList.add("properties-body");

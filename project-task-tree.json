@@ -13,14 +13,38 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "release-package-layout-refinement-completed",
+    "deliveryState": "obsolete-file-cleanup-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review release package layout",
+    "nextAction": "Review cleanup and received-content naming",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-25",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "obsolete-file-cleanup",
+      "name": "Obsolete File Cleanup",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "release-package-layout-refinement"
+      ],
+      "returnPoint": "Personal Website / Review cleanup and received-content naming",
+      "note": "User authorizes removal of obsolete parser and unused repository code/files. Confirm the hand-written parser is already retired; preserve the active markdown-it adapter, local art, current artifacts and immutable QA. Audit assets/modules/styles/tooling, remove confirmed dead items, rebuild and verify. Recommend alternatives to releases/ without choosing a directory rename for the user. No Git writes or remote operations.",
+      "completedOn": "2026-09-25",
+      "evidence": [
+        "qa/obsolete-file-cleanup/review.md",
+        "qa/obsolete-file-cleanup/check.log",
+        "qa/obsolete-file-cleanup/audit.json",
+        "qa/obsolete-file-cleanup/removed-files.json"
+      ],
+      "completedWork": [
+        "Confirmed the original Markdown parser is absent and retained the active markdown-it adapter",
+        "Removed three obsolete or duplicate assets, unused imports/exports/metadata/styles and an irrelevant dev watcher",
+        "Passed 20 tests including 231 desktop assertions, audited all 25 reachable source modules and rebuilt dist; local preview returns HTTP 200",
+        "Recommended content or works naming without renaming releases; preserved local art and immutable QA"
+      ]
+    },
     {
       "id": "release-package-layout-refinement",
       "name": "Release Package Layout Refinement",

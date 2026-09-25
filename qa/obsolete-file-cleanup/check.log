@@ -1,0 +1,38 @@
+Built dist: 17 desktop pages, 2 received releases.
+Built dist: 17 desktop pages, 2 received releases.
+✔ dist serves all deep entries, module imports and release bytes; maintenance paths are absent (3732.2683ms)
+✔ clean input copy builds without art or other projects; invalid release preserves previous dist (989.5279ms)
+✔ built release receipts match every published package file (2.8571ms)
+(node:19984) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Desktop regression assertions: 231
+✔ desktop windows, routes, themes and persistent state after module migration (858.0737ms)
+(node:25640) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ book and volume titles open their README while only plus/minus controls fold the tree (55.4843ms)
+✔ direct chapter entry, safe Markdown rendering, shared icon, chapter links and desktop history retain reader state (25.2569ms)
+✔ keyboard and menu-bar buttons skip README across volumes and respect active window, menus and boundaries (25.9094ms)
+✔ reader placeholder menus switch without flipping chapters, dismiss predictably and release their listeners (22.5894ms)
+✔ late loads never replace a newer chapter or a closed window; failed chapter can be retried (46.0682ms)
+✔ two novel windows keep independent chapter URLs and keyboard listeners (28.0372ms)
+✔ markdown-it supports nested blocks, tables, strikeout and real H1 parsing (21.8432ms)
+✔ directory resizing respects pane minima, consumes arrow keys and resets after reopening (22.5104ms)
+✔ progress counts the viewport bottom, ignores overscroll space and only blocks copying in the reader (23.4618ms)
+✔ identical chapter IDs in separate volumes have distinct content, links and history (23.3983ms)
+✔ single current manifest supports additions and replacements in the fixed text hierarchy (36.0697ms)
+✔ fixed README discovery, producer IDs and H1 titles preserve manifest order over filesystem order (20.5799ms)
+✔ receiver does not validate producer metadata, naming, duplicates, unused files or prose (8.3237ms)
+✔ multiple chapter images stay scoped and retain their names and bytes (9.5027ms)
+✔ ordinary missing fixed files and filesystem escapes still stop receiving (10.6622ms)
+✔ portable v4 contract example has exactly four root entries and no configurable document paths (5.9529ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6495.3852
+Generated task view is current.
+Task controls passed.
+Source, release, built-site and task-control checks passed.

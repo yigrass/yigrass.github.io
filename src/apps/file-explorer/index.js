@@ -1,4 +1,4 @@
-import { $, create, safeURL, pixelIcon, announce, rgbChannels } from '../../shared/dom.js';
+import { create, safeURL, pixelIcon } from '../../shared/dom.js';
 import { projectCategories, projectWindowId, projectIcon } from '../registry.js';
 import { statusText } from '../../shared/status.js';
 export function createExplorer({ config, desktopRoutes, titleOf, getActiveId, syncAddress, openProject }) {

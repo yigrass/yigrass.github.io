@@ -1,0 +1,10 @@
+{
+  "entry": "src/main.js",
+  "sourceModuleCount": 25,
+  "reachableModuleCount": 25,
+  "unreachableModules": [],
+  "remainingAssetCount": 34,
+  "removedAssetsAbsentFromSourceAndDist": true,
+  "oldParserAbsent": true,
+  "scope": "Current source/imports/styles/assets, build/dev/test scripts, dependencies and current contract; art and immutable QA preserved"
+}

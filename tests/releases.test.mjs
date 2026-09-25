@@ -14,7 +14,7 @@ async function fixture(t, count = 1) {
   const directory = path.join(site, 'releases/book');
   await fs.mkdir(path.join(directory, 'text/case-greedy'), { recursive: true });
   await fs.mkdir(path.join(directory, 'images/book'), { recursive: true });
-  await fs.copyFile(path.join(root, 'assets/pixel-ui/v1.4.0/sword.png'), path.join(directory, 'images/book/icon.png'));
+  await fs.copyFile(path.join(root, 'contracts/novel-release-v4/example/images/book/sword.png'), path.join(directory, 'images/book/icon.png'));
   await fs.writeFile(path.join(directory, 'README.md'), '# 整书简介');
   await fs.writeFile(path.join(directory, 'text/case-greedy/README.md'), '# 卷简介');
   const manifest = { schemaVersion: 4, kind: 'novel', id: 'producer-book', icon: 'images/book/icon.png', volumes: [{ id: 'case-greedy', chapters: [] }] };
