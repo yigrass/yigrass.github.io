@@ -6,23 +6,23 @@ import { parseMarkdown, headingTitle } from '../src/shared/novel/parser.js';
 import { readingProgress } from '../src/apps/project-viewer/reader-layout.js';
 const settle = () => new Promise(resolve => setImmediate(resolve));
 const base = '/file-explorer/a-floppy-disk/story-a/';
-const manifest = { schemaVersion: 3, kind: 'novel', id: 'story-a', title: '阅读测试', icon: 'images/icon.png', readme: { file: 'README.md' }, volumes: [
-  { id: 'volume-a', title: '第一卷', readme: { file: 'volumes/a.md' }, chapters: [
-    { id: 'first', title: '第一章', file: 'chapters/first.md' },
-    { id: 'second', title: '第二章', file: 'chapters/second.md' }
+const manifest = { schemaVersion: 4, kind: 'novel', id: 'story-a', title: '阅读测试', icon: 'images/book/icon.png', volumes: [
+  { id: 'volume-a', title: '第一卷', chapters: [
+    { id: 'first', title: '第一章' },
+    { id: 'second', title: '第二章' }
   ] },
-  { id: 'volume-b', title: '第二卷', readme: { file: 'volumes/b.md' }, chapters: [
-    { id: 'third', title: '第三章', file: 'chapters/third.md' }
+  { id: 'volume-b', title: '第二卷', chapters: [
+    { id: 'third', title: '第三章' }
   ] }
 ] };
 const responses = {
   'releases/story-a/release.json': JSON.stringify(manifest),
-  'releases/story-a/README.md': '# 书的介绍\n\n从 [第一章](chapters/first.md) 开始。',
-  'releases/story-a/volumes/a.md': '# 第一卷序\n\n卷一的介绍。',
-  'releases/story-a/volumes/b.md': '# 第二卷序\n\n卷二的介绍。',
-  'releases/story-a/chapters/first.md': '# 第一章\n\n第一段**强调**。\n\n![海边](images/scene.png)\n\n<script>只是文字</script>\n\n[危险](javascript:alert)\n\n[继续](chapters/second.md)',
-  'releases/story-a/chapters/second.md': '# 第二章\n\n第二章正文。',
-  'releases/story-a/chapters/third.md': '# 第三章\n\n第三章正文。'
+  'releases/story-a/README.md': '# 书的介绍\n\n从 [第一章](text/volume-a/first.md) 开始。',
+  'releases/story-a/text/volume-a/README.md': '# 第一卷序\n\n卷一的介绍。',
+  'releases/story-a/text/volume-b/README.md': '# 第二卷序\n\n卷二的介绍。',
+  'releases/story-a/text/volume-a/first.md': '# 第一章\n\n第一段**强调**。\n\n![海边](images/volume-a/first/scene.png)\n\n<script>只是文字</script>\n\n[危险](javascript:alert)\n\n[继续](text/volume-a/second.md)',
+  'releases/story-a/text/volume-a/second.md': '# 第二章\n\n第二章正文。',
+  'releases/story-a/text/volume-b/third.md': '# 第三章\n\n第三章正文。'
 };
 const doc = (app, id, index = 0) => app.win('story-a').querySelectorAll('.reader-document').filter(item => item.dataset.documentId === (id || ''))[index];
 const article = app => app.win('story-a').querySelector('.novel-chapter');
@@ -72,11 +72,12 @@ test('direct chapter entry, safe Markdown rendering, shared icon, chapter links 
   assert.equal(app.location.pathname, base + 'volume-a/first/');
   assert.equal(text.querySelector('strong').textContent, '强调');
   assert.equal(text.querySelector('img').alt, '海边');
+  assert.equal(text.querySelector('img').src, 'https://example.test/releases/story-a/images/volume-a/first/scene.png');
   assert.equal(text.querySelector('script'), null);
   assert.match(text.textContent, /<script>只是文字<\/script>/);
   assert.equal(text.querySelectorAll('a').length, 1);
   assert.equal(body.querySelector('.title-icon').src, doc(app, null).querySelector('img').src);
-  assert.equal(body.querySelector('.title-icon').src, 'releases/story-a/images/icon.png');
+  assert.equal(body.querySelector('.title-icon').src, 'releases/story-a/images/book/icon.png');
   app.click(text.querySelector('a')); await settle();
   assert.equal(app.location.pathname, base + 'volume-a/second/');
   text.scrollTop = 123;
@@ -143,7 +144,7 @@ test('reader placeholder menus switch without flipping chapters, dismiss predict
 test('late loads never replace a newer chapter or a closed window; failed chapter can be retried', async () => {
   let resolve;
   const pending = new Promise(done => { resolve = done; });
-  const app = await mount('https://example.test' + base + 'volume-a/first/', undefined, { responses: { ...responses, 'releases/story-a/chapters/second.md': () => pending } }); await app.ready();
+  const app = await mount('https://example.test' + base + 'volume-a/first/', undefined, { responses: { ...responses, 'releases/story-a/text/volume-a/second.md': () => pending } }); await app.ready();
   const slow = content(app).navigateDocument('volume-a/second');
   await content(app).navigateDocument('volume-b/third');
   resolve({ ok: true, text: async () => '迟到的第二章' }); await slow;
@@ -153,7 +154,7 @@ test('late loads never replace a newer chapter or a closed window; failed chapte
   assert.equal(app.win('story-a'), null); app.window.fire('keydown', { key: 'ArrowRight' }); assert.equal(app.location.pathname, '/');
 
   let failed = true;
-  const second = await mount('https://example.test' + base + 'volume-a/second/', undefined, { responses: { ...responses, 'releases/story-a/chapters/second.md': () => ({ ok: !failed, text: async () => '# 恢复后的正文' }) } }); await second.ready();
+  const second = await mount('https://example.test' + base + 'volume-a/second/', undefined, { responses: { ...responses, 'releases/story-a/text/volume-a/second.md': () => ({ ok: !failed, text: async () => '# 恢复后的正文' }) } }); await second.ready();
   assert.ok(article(second).querySelector('.project-error')); failed = false;
   await content(second).navigateDocument('volume-a/second'); assert.match(article(second).textContent, /恢复后的正文/);
 });
@@ -216,7 +217,7 @@ test('progress counts the viewport bottom, ignores overscroll space and only blo
 
 test('identical chapter IDs in separate volumes have distinct content, links and history', async () => {
   const data = structuredClone(manifest); data.volumes[1].chapters[0].id = 'first';
-  const app = await mount('https://example.test' + base + 'volume-a/first/', undefined, { responses: { ...responses, 'releases/story-a/release.json': JSON.stringify(data) } }); await app.ready();
+  const app = await mount('https://example.test' + base + 'volume-a/first/', undefined, { responses: { ...responses, 'releases/story-a/release.json': JSON.stringify(data), 'releases/story-a/text/volume-b/first.md': responses['releases/story-a/text/volume-b/third.md'] } }); await app.ready();
   app.click(doc(app, 'volume-b/first')); await settle();
   assert.equal(app.location.pathname, base + 'volume-b/first/'); assert.match(article(app).textContent, /第三章正文/);
   app.history.go(-1); await settle(); assert.equal(app.location.pathname, base + 'volume-a/first/'); assert.match(article(app).textContent, /第一段/);

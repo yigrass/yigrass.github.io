@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import { siteConfig } from '../src/config/site.js';
 import { themes } from '../src/themes/presets.js';
-import { receivedProjects } from '../src/shared/novel/model.js';
+import { receivedProjects, novelFiles } from '../src/shared/novel/model.js';
 import { readNovel } from '../scripts/lib/releases.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -130,7 +130,7 @@ export async function mount(href = "https://example.test/", baseURI = "https://e
   await entryModule.evaluate();
   const projects = options.projects || JSON.parse(read('catalog/projects.json'));
   const releases = await Promise.all(projects.filter(project => project.category === 'novel').map(async project => {
-    const manifest = JSON.parse(options.responses?.[project.release + 'release.json'] || read(project.release + 'release.json'));
+    const manifest = novelFiles(JSON.parse(options.responses?.[project.release + 'release.json'] || read(project.release + 'release.json')));
     const manifestDocuments = [manifest.readme, ...manifest.volumes.flatMap(volume => [volume.readme, ...volume.chapters])];
     const received = await readNovel(project.release, async file => {
       const response = options.responses?.[project.release + file];

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Novel Release v4 — fixed package layout",
+  "description": "Producer-side contract. The website does not execute this schema or validate naming, duplicates, ordering or content. Root contains text/, images/, README.md and release.json.",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "id", "icon", "volumes"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 4 },
+    "kind": { "const": "novel" },
+    "id": { "$ref": "#/$defs/segment" },
+    "icon": { "type": "string", "pattern": "^images/book/.+", "description": "Package-relative book icon. The filename and supported image extension are producer-owned." },
+    "status": { "type": "string" },
+    "volumes": { "type": "array", "minItems": 1, "description": "Authoritative volume order. Do not sort by ID or filesystem order.", "items": { "$ref": "#/$defs/volume" } }
+  },
+  "$defs": {
+    "segment": { "type": "string", "minLength": 1, "description": "Producer-owned single URL and filesystem path segment, with no numeric requirement. The producer owns uniqueness and filesystem safety." },
+    "chapter": {
+      "type": "object", "required": ["id"], "additionalProperties": false,
+      "properties": { "id": { "$ref": "#/$defs/segment", "description": "Chapter file is text/<volume-id>/<chapter-id>.md. ID omits .md; README is reserved for the volume introduction." } }
+    },
+    "volume": {
+      "type": "object", "required": ["id", "chapters"], "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/segment", "description": "Volume directory name. Introduction is always text/<volume-id>/README.md." },
+        "chapters": { "type": "array", "description": "Authoritative chapter order within this volume.", "items": { "$ref": "#/$defs/chapter" } }
+      }
+    }
+  }
+}

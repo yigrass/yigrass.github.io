@@ -13,14 +13,37 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "reader-navigation-release-contract-completed",
+    "deliveryState": "release-package-layout-refinement-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review reader navigation and release contract",
+    "nextAction": "Review release package layout",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-25",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "release-package-layout-refinement",
+      "name": "Release Package Layout Refinement",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "reader-navigation-release-contract"
+      ],
+      "returnPoint": "Personal Website / Review release package layout",
+      "note": "User refines the novel artifact layout: exactly text, images, README.md and release.json at root; fixed book/volume README paths; producer IDs name text and scoped image paths while manifest array order remains authoritative. Update receiver and demo with a successor contract, explain VS Code parser/styles/extensions. Preserve reader UI and immutable prior QA; no Git writes or remote operations.",
+      "completedOn": "2026-09-25",
+      "evidence": [
+        "qa/release-package-layout-refinement/review.md",
+        "qa/release-package-layout-refinement/check.log",
+        "qa/release-package-layout-refinement/novel-release-v4.zip",
+        "qa/release-package-layout-refinement/contract-package.json"
+      ],
+      "completedWork": [
+        "Fixed the four-entry novel package root, scoped text/images and implicit README/chapter paths while preserving producer array order and public routes",
+        "Migrated the demo and delivered a hash-verified 12-file v4 contract ZIP with clear Markdown parser/style/extension boundaries",
+        "Passed 20 tests, 231 desktop assertions, task controls and actual browser checks for chapter, book/volume README, links and moved icons"
+      ]
+    },
     {
       "id": "reader-navigation-release-contract",
       "name": "Reader Navigation and Release Contract",

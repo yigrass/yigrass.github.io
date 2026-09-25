@@ -2,10 +2,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { listFiles, withinDirectory, fingerprint } from './files.mjs';
 import { headingTitle } from '../../src/shared/novel/parser.js';
+import { novelFiles } from '../../src/shared/novel/model.js';
 
 // Read producer data as supplied. Naming, order and content validation belong upstream.
 export async function readNovel(directory, read = file => fs.readFile(withinDirectory(directory, file), 'utf8')) {
-  const manifest = JSON.parse(await read('release.json'));
+  const manifest = novelFiles(JSON.parse(await read('release.json')));
   const title = async file => headingTitle(await read(file));
   return { ...manifest, title: await title(manifest.readme.file), volumes: await Promise.all(manifest.volumes.map(async volume => ({
     ...volume, title: await title(volume.readme.file),

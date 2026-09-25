@@ -1,4 +1,14 @@
 // Producer IDs are opaque path segments; array order is the reading order.
+export function novelFiles(release) {
+  return {
+    ...release, readme: { file: 'README.md' },
+    volumes: release.volumes.map(volume => ({
+      ...volume, readme: { file: `text/${volume.id}/README.md` },
+      chapters: volume.chapters.map(chapter => ({ ...chapter, file: `text/${volume.id}/${chapter.id}.md` }))
+    }))
+  };
+}
+
 export function novelDocuments(release) {
   return [
     { id: null, kind: 'readme', title: release.title, file: release.readme.file, volumeId: null },

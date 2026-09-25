@@ -23,7 +23,7 @@ src/
 catalog/projects.json         作品在网站中的身份与接入位置
 releases/<id>/                独立作品的当前发布成品
 assets/                      网站自己的上线图片
-contracts/novel-release-v3/   可独立复制的小说成品合同、生产者 Schema 与示例
+contracts/novel-release-v4/   可独立复制的小说成品合同、生产者 Schema 与示例
 scripts/                     构建、预览、检查、素材工具
 tests/                       随源码维护的当前回归测试
 docs/                        维护文档和生成任务视图
@@ -34,7 +34,7 @@ dist/                        忽略的完整发布产物
 
 网站中没有按作品划分的开发源码目录。小说项目负责写作、修订和导出，游戏项目负责玩法、资源和自己的构建。网站依赖接收后的成品字节，不依赖生产项目所在盘符、源码目录、开发分支或构建工具。修改作品内容须回到源头，再重新接入最终成品。
 
-网站目录决定虚拟磁盘和成品位置，小说自己的 release.json 提供原样使用的书/卷/章标识、图标、文档路径与数组顺序。小说 manifest 规则以 [合同](../contracts/novel-release-v3/README.md) 及生产者用 Schema 为准；网站不运行 Schema 或小说业务校验。构建读取各文档第一个 H1，生成运行时目录中的书名、iconPath 和 reader 索引，不在手写 catalog/projects.json 重复登记章节或标题。小说根 README、各卷 README 和实际章节共享同一个窗口实例。文档内部标识采用卷 ID/章 ID，因此不同卷可以使用相同章 ID。
+网站目录决定虚拟磁盘和成品位置，小说自己的 release.json 提供原样使用的书/卷/章标识、图标与数组顺序。成品固定采用 text/、images/、README.md、release.json 四项根目录；shared/novel/model.js 的 novelFiles 统一定义各级 README 和正文的固定定位，不扫描目录排序。小说 manifest 规则以 [合同](../contracts/novel-release-v4/README.md) 及生产者用 Schema 为准；网站不运行 Schema 或小说业务校验。构建读取各文档第一个 H1，生成运行时目录中的书名、iconPath 和 reader 索引，不在手写 catalog/projects.json 重复登记章节或标题。小说根 README、各卷 README 和实际章节共享同一个窗口实例。文档内部标识采用卷 ID/章 ID，因此不同卷可以使用相同章 ID。
 
 用户明确批准小说只保留当前正文和一份 release.json，可在接收源头修订导出后整套替换，不保留版本目录。构建生成本次文件的 SHA-256 收据，提供对实际字节的识别，不构成历史发布库。独立项目之间不自动相互写入：源头只导出自己的 dist，接入网站是单独步骤。
 
