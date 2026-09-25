@@ -4,15 +4,15 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { siteConfig } from '../src/config/site.js';
 import { createDesktopRouteCatalog } from '../src/routing/catalog.js';
-import { listFiles } from '../contracts/novel-release-v2/validate.mjs';
+import { build as bundle } from 'esbuild';
 import { receivedProjects } from '../src/shared/novel/model.js';
-import { validateReleases } from './lib/releases.mjs';
-import { assertOwnedDirectory, writeFile } from './lib/files.mjs';
+import { receiveReleases } from './lib/releases.mjs';
+import { assertOwnedDirectory, writeFile, listFiles } from './lib/files.mjs';
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 
 export async function build() {
   const projects = JSON.parse(await fs.readFile(path.join(projectRoot, 'catalog/projects.json'), 'utf8'));
-  const releases = await validateReleases(projectRoot, projects);
+  const releases = await receiveReleases(projectRoot, projects);
   const runtimeProjects = receivedProjects(projects, releases);
   const catalog = createDesktopRouteCatalog({ ...siteConfig, works: runtimeProjects });
   const sourceFiles = await listFiles(path.join(projectRoot, 'src'));
@@ -24,7 +24,12 @@ export async function build() {
   try {
     for (const file of sourceFiles) if (file !== 'index.html') await writeFile(stage, `app/${file}`, await fs.readFile(path.join(projectRoot, 'src', file)));
     for (const file of assetFiles) await writeFile(stage, `assets/${file}`, await fs.readFile(path.join(projectRoot, 'assets', file)));
-    await writeFile(stage, 'app/shared/novel/markdown-profile.js', await fs.readFile(path.join(projectRoot, 'contracts/novel-release-v2/markdown.mjs')));
+    const bundled = await bundle({ entryPoints: [path.join(projectRoot, 'src/shared/novel/parser.js')], outfile: path.join(stage, 'app/shared/novel/parser.js'), bundle: true, format: 'esm', platform: 'browser', target: 'es2022', metafile: true });
+    const packages = new Set(Object.keys(bundled.metafile.inputs).filter(file => file.includes('node_modules/')).map(file => file.split('node_modules/').at(-1).split('/')[0]));
+    for (const name of packages) {
+      const directory = path.join(projectRoot, 'node_modules', name);
+      for (const file of await fs.readdir(directory)) if (/^(license|notice|copying)(\.|$)/i.test(file)) await writeFile(stage, `licenses/${name}/${file}`, await fs.readFile(path.join(directory, file)));
+    }
     await writeFile(stage, 'catalog/projects.json', JSON.stringify(runtimeProjects, null, 2) + '\n');
     for (const release of releases) for (const file of release.files) {
       const bytes = await fs.readFile(path.join(projectRoot, release.project.release, file.path));
@@ -38,7 +43,7 @@ export async function build() {
       await writeFile(stage, route + 'index.html', html);
     }
     await writeFile(stage, '.nojekyll', '');
-    await writeFile(stage, 'release-integrity.json', JSON.stringify(releases.map(({ project, manifest, ...record }) => ({ id: project.id, contract: `${manifest.kind}-v${manifest.schemaVersion}`, ...record })), null, 2) + '\n');
+    await writeFile(stage, 'release-integrity.json', JSON.stringify(releases.map(({ project, manifest, ...record }) => ({ id: manifest.id, release: project.release, contract: `${manifest.kind}-v${manifest.schemaVersion}`, ...record })), null, 2) + '\n');
     // Check local references after assembling the actual output, before replacing dist.
     for (const file of sourceFiles.filter(file => file.endsWith('.js'))) {
       const code = await fs.readFile(path.join(stage, 'app', file), 'utf8');
@@ -61,7 +66,7 @@ export async function build() {
     await fs.rm(output, { recursive: true, force: true });
     await fs.rename(stage, output);
     console.log(`Built dist: ${catalog.byPath.size + 1} desktop pages, ${releases.length} received releases.`);
-    return { routes: ['', ...catalog.byPath.keys()], releases: releases.map(item => ({ id: item.project.id, digest: item.digest })) };
+    return { routes: ['', ...catalog.byPath.keys()], releases: releases.map(item => ({ id: item.manifest.id, digest: item.digest })) };
   } catch (error) { await fs.rm(stage, { recursive: true, force: true }); throw error; }
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

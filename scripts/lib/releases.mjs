@@ -1,28 +1,27 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { validateNovel, listFiles, safeRelative, decodeText, fingerprint } from '../../contracts/novel-release-v2/validate.mjs';
+import { listFiles, withinDirectory, fingerprint } from './files.mjs';
+import { headingTitle } from '../../src/shared/novel/parser.js';
 
-export async function validateReleases(root, projects) {
-  if (!Array.isArray(projects)) throw new Error('Project catalog must be an array');
-  const ids = new Set(), results = [];
+// Read producer data as supplied. Naming, order and content validation belong upstream.
+export async function readNovel(directory, read = file => fs.readFile(withinDirectory(directory, file), 'utf8')) {
+  const manifest = JSON.parse(await read('release.json'));
+  const title = async file => headingTitle(await read(file));
+  return { ...manifest, title: await title(manifest.readme.file), volumes: await Promise.all(manifest.volumes.map(async volume => ({
+    ...volume, title: await title(volume.readme.file),
+    chapters: await Promise.all(volume.chapters.map(async chapter => ({ ...chapter, title: await title(chapter.file) })))
+  }))) };
+}
+export async function receiveReleases(root, projects) {
+  const results = [];
   for (const project of projects) {
-    if (!/^[a-z][a-z0-9-]*$/.test(project.id) || ids.has(project.id)) throw new Error(`Invalid or duplicate project: ${project.id}`);
-    ids.add(project.id);
-    if (!project.slug) {
-      if (!/^https?:\/\//.test(project.url || '')) throw new Error(`Invalid external project URL: ${project.id}`);
-      continue;
-    }
-    if (project.release !== `releases/${project.id}/`) throw new Error(`Release must be releases/${project.id}/`);
-    const directory = path.join(root, project.release);
-    if (project.category === 'novel') results.push({ project, ...await validateNovel(directory, project.id) });
-    else {
-      const files = await listFiles(directory);
-      const manifest = JSON.parse(decodeText(await fs.readFile(path.join(directory, 'release.json')), 'release.json'));
-      if (manifest.schemaVersion !== 1 || manifest.kind !== 'web' || manifest.id !== project.id || typeof manifest.title !== 'string' || !manifest.title.trim()) throw new Error(`Invalid web release: ${project.id}`);
-      safeRelative(manifest.entry);
-      if (!manifest.entry.endsWith('.html') || !files.includes(manifest.entry)) throw new Error(`Missing HTML entry: ${project.id}`);
-      results.push({ project, manifest, ...await fingerprint(directory, files) });
-    }
+    if (!project.release) continue;
+    const releaseRoot = path.join(root, 'releases');
+    const directory = withinDirectory(releaseRoot, path.relative(releaseRoot, withinDirectory(root, project.release)));
+    const files = await listFiles(directory);
+    const manifest = project.category === 'novel' ? await readNovel(directory) : JSON.parse(await fs.readFile(path.join(directory, 'release.json'), 'utf8'));
+    if (manifest.kind === 'web') withinDirectory(directory, manifest.entry);
+    results.push({ project, manifest, ...await fingerprint(directory, files) });
   }
   return results;
 }

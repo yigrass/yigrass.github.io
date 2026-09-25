@@ -2,12 +2,17 @@ import { create, pixelIcon } from '../../shared/dom.js';
 import { novelDocuments } from '../../shared/novel/model.js';
 import { renderMarkdown } from '../../shared/novel/markdown.js';
 import { createReaderMenu } from './reader-menu.js';
+import { createReaderLayout, readingProgress } from './reader-layout.js';
+import { statusText } from '../../shared/status.js';
+
+const treeIcons = { volumeOpen: 'v1.4.0/book-open', volumeClosed: 'v1.4.0/book-closed', chapter: 'v1.2.0/text-file' };
 
 export function renderNovel(body, release, root, setStatus, signal, options) {
   body.classList.add('novel-body');
   const menu = createReaderMenu(release.id);
-  const documents = novelDocuments(release), chapters = documents.filter(item => item.kind === 'chapter');
+  const documents = novelDocuments(release);
   const layout = create('div', 'reader-layout');
+  const viewport = create('div', 'reader-layout-viewport');
   const sidebar = create('nav', 'reader-sidebar');
   sidebar.id = `reader-directory-${release.id}`;
   sidebar.setAttribute('aria-label', `${release.title}目录`);
@@ -18,6 +23,7 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
   toggle.type = 'button'; toggle.setAttribute('aria-controls', sidebar.id);
   const toggleMark = create('span'); toggleMark.setAttribute('aria-hidden', 'true');
   toggle.append(toggleMark);
+  const split = createReaderLayout(layout, sidebar, pane, options.setMinimumWidth);
   function toggleDirectory() {
     sidebar.hidden = !sidebar.hidden;
     layout.classList.toggle('is-directory-hidden', sidebar.hidden);
@@ -25,10 +31,11 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
     toggle.setAttribute('aria-label', sidebar.hidden ? '显示目录' : '收起目录');
     toggle.title = sidebar.hidden ? '显示目录' : '收起目录';
     toggleMark.textContent = sidebar.hidden ? '>>' : '<<';
+    split.update();
   }
   sidebar.hidden = !matchMedia('(max-width:640px)').matches;
   toggleDirectory(); toggle.addEventListener('click', toggleDirectory);
-  pane.append(toggle, article); layout.append(sidebar, pane); body.append(menu.element, layout);
+  pane.append(toggle, article); viewport.append(layout); body.append(menu.element, viewport);
 
   let selected, requestId = 0, disposed = false;
   const buttons = new Map(), branches = new Map();
@@ -44,26 +51,24 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
     const li = create('li'), row = create('div', 'reader-tree-row'), children = create('ul', 'reader-tree-group');
     children.id = `reader-group-${release.id}-${id || 'book'}`;
     const expand = create('button', 'tree-expand'); expand.type = 'button'; expand.setAttribute('aria-controls', children.id);
-    const label = documentButton(id, title, icon, () => { setExpanded(children.hidden); show(id, 'push', true); });
+    const label = documentButton(id, title, icon, () => show(id, 'push', true));
     function setExpanded(expanded) {
       children.hidden = !expanded; expand.textContent = expanded ? '−' : '+';
       expand.setAttribute('aria-expanded', String(expanded));
       expand.setAttribute('aria-label', `${expanded ? '收起' : '展开'}${title}`);
-      if (id) label.querySelector('img').src = `assets/pixel-ui/v1.4.0/book-${expanded ? 'open' : 'closed'}.png`;
+      if (id) label.querySelector('img').src = `assets/pixel-ui/${expanded ? treeIcons.volumeOpen : treeIcons.volumeClosed}.png`;
     }
     setExpanded(true); expand.addEventListener('click', () => setExpanded(children.hidden));
     row.append(expand, label); li.append(row, children); parent.append(li); branches.set(id, setExpanded);
-    const readme = create('li', 'reader-tree-leaf');
-    readme.append(documentButton(id, 'README.md', 'v1.4.0/information')); children.append(readme);
     return children;
   }
   const tree = create('ul', 'reader-tree');
   const book = branch(tree, null, release.title, options.icon);
   for (const volume of release.volumes) {
-    const group = branch(book, volume.id, volume.title, 'v1.4.0/book-open');
+    const group = branch(book, volume.id, volume.title, treeIcons.volumeOpen);
     for (const chapter of volume.chapters) {
       const item = create('li', 'reader-tree-leaf');
-      item.append(documentButton(chapter.id, chapter.title, 'v1.2.0/text-file')); group.append(item);
+      item.append(documentButton(`${volume.id}/${chapter.id}`, chapter.title, treeIcons.chapter)); group.append(item);
     }
   }
   sidebar.append(tree);
@@ -84,6 +89,12 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
     button.addEventListener('click', () => { menu.close(); flip(direction); }); menu.element.append(button);
     return { button, direction };
   });
+  function updateProgress() {
+    const prose = article.querySelector('.novel-prose'), item = documents.find(document => document.id === selected);
+    if (!prose || !item || disposed) return;
+    const percentage = readingProgress((article.scrollTop || 0) + article.clientHeight, prose.scrollHeight);
+    setStatus(statusText(release.title, item.volumeTitle, item.kind === 'chapter' ? item.title : 'README', `${percentage}%`));
+  }
   function updateScrollSpace() {
     if (disposed) return;
     const prose = article.querySelector('.novel-prose');
@@ -92,10 +103,14 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
     const lineHeight = Number.parseFloat(style.lineHeight) || 30;
     const bottom = Number.parseFloat(style.paddingBottom) || 0;
     article.style.setProperty('--reader-scroll-space', `${Math.max(0, article.clientHeight - lineHeight - bottom)}px`);
+    updateProgress();
   }
   const resize = typeof ResizeObserver === 'function' ? new ResizeObserver(updateScrollSpace) : null;
   resize?.observe(article);
   window.addEventListener('resize', updateScrollSpace);
+  article.addEventListener('scroll', updateProgress);
+  article.addEventListener('load', updateScrollSpace, true);
+  for (const type of ['copy', 'cut', 'selectstart', 'dragstart']) article.addEventListener(type, event => event.preventDefault());
 
   async function show(id, mode = 'push', preserveBranches = false) {
     const item = documents.find(document => document.id === id);
@@ -108,10 +123,11 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
     menu.close();
     for (const { button, direction } of pageButtons) button.disabled = !neighbor(direction);
     options.onNavigate(id, mode);
+    const previousProse = article.querySelector('.novel-prose'); if (previousProse) resize?.unobserve(previousProse);
     article.setAttribute('aria-label', item.title);
     article.setAttribute('aria-busy', 'true'); article.scrollTop = 0;
     article.replaceChildren(create('p', 'reader-loading', '正在加载…'));
-    setStatus(`${release.title} · ${item.title}`);
+    setStatus(statusText(release.title, item.volumeTitle, item.kind === 'chapter' ? item.title : 'README', '0%'));
     try {
       const response = await fetch(new URL(item.file, root), { signal, cache: 'no-store' });
       if (!response.ok) throw new Error('正文暂时无法读取');
@@ -120,14 +136,14 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
       const prose = renderMarkdown(text, { root, documents, navigate: (target, intent) => intent === 'address' ? options.address(target) : show(target) });
       const space = create('div', 'reader-scroll-space'); space.setAttribute('aria-hidden', 'true');
       article.replaceChildren(prose, space); article.scrollTop = 0;
+      resize?.observe(prose);
       updateScrollSpace();
-      const number = chapters.findIndex(chapter => chapter.id === id);
-      setStatus(`${release.title} · ${number < 0 ? item.volumeId ? `${item.title} · README` : 'README' : `${number + 1} / ${chapters.length} 章 · ${item.title}`}`);
     } catch (error) {
       if (!signal.aborted && !disposed && request === requestId) { article.replaceChildren(create('p', 'project-error reader-loading', `${error.message}。请重新选择此条目。`)); setStatus('正文加载失败'); }
     } finally { if (request === requestId) article.removeAttribute('aria-busy'); }
   }
   function keyboard(event) {
+    if (options.isActive() && (article.contains(event.target) || event.target === body) && (event.ctrlKey || event.metaKey) && !event.altKey && !event.shiftKey && ['c', 'x', 'a', 'Insert'].includes(event.key?.length === 1 ? event.key.toLowerCase() : event.key)) { event.preventDefault(); return; }
     if (!options.isActive() || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey || event.isComposing || !document.querySelector('#start-menu').hidden) return;
     if (menu.handleKey(event) || menu.isOpen()) return;
     if (event.target?.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target?.tagName)) return;
@@ -138,6 +154,6 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
   window.addEventListener('keydown', keyboard);
   return {
     ready: show(options.initialDocumentId, 'restore'), navigate: show,
-    dispose: () => { disposed = true; requestId++; menu.dispose(); resize?.disconnect(); window.removeEventListener('resize', updateScrollSpace); window.removeEventListener('keydown', keyboard); }
+    dispose: () => { disposed = true; requestId++; split.dispose(); menu.dispose(); resize?.disconnect(); window.removeEventListener('resize', updateScrollSpace); window.removeEventListener('keydown', keyboard); }
   };
 }

@@ -16,7 +16,7 @@ export const createDesktopRoutes = ({ config, baseURI, location, history }) => {
     let path;
     {
       if (url.origin !== root.origin || !url.pathname.startsWith(root.pathname)) return null;
-      path = url.pathname.slice(root.pathname.length);
+      path = decodeURIComponent(url.pathname.slice(root.pathname.length));
     }
     path = path.replace(/index\.html$/, "");
     if (path && !path.endsWith("/")) path += "/";

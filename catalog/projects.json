@@ -1,11 +1,8 @@
 [
   {
-    "id": "story-a",
-    "title": "桑海志怪.txt",
     "category": "novel",
     "driveId": "a",
-    "slug": "story-a",
-    "release": "releases/story-a/"
+    "release": "releases/sh-tales/"
   },
   {
     "id": "game-b",

@@ -2,12 +2,19 @@
   "name": "yigrass-desktop",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
-    "test": "node scripts/check.mjs",
-    "validate:novel": "node contracts/novel-release-v2/validate.mjs"
+    "test": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "markdown-it": "15.0.2"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   }
 }

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 3,
+  "kind": "novel",
+  "id": "sh-tales",
+  "status": "ongoing",
+  "icon": "images/sword.png",
+  "readme": {
+    "file": "README.md"
+  },
+  "volumes": [
+    {
+      "id": "case-01",
+      "readme": {
+        "file": "volumes/volume-1/README.md"
+      },
+      "chapters": [
+        {
+          "id": "ep-01",
+          "file": "chapters/chapter-1.md"
+        },
+        {
+          "id": "ep-02",
+          "file": "chapters/chapter-2.md"
+        },
+        {
+          "id": "ep-05",
+          "file": "chapters/chapter-3.md"
+        }
+      ]
+    },
+    {
+      "id": "case-02",
+      "readme": {
+        "file": "volumes/volume-2/README.md"
+      },
+      "chapters": [
+        {
+          "id": "prologue",
+          "file": "chapters/chapter-4.md"
+        },
+        {
+          "id": "ep-05",
+          "file": "chapters/chapter-5.md"
+        }
+      ]
+    }
+  ]
+}

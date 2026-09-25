@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { siteConfig } from '../src/config/site.js';
 import { themes } from '../src/themes/presets.js';
 import { receivedProjects } from '../src/shared/novel/model.js';
+import { readNovel } from '../scripts/lib/releases.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 export async function mount(href = "https://example.test/", baseURI = "https://example.test/", options = {}) {
@@ -69,6 +70,7 @@ export async function mount(href = "https://example.test/", baseURI = "https://e
     get offsetTop() { return Number.parseFloat(this.style.top) || 0; }
     get clientWidth() { return 1440; }
     get clientHeight() { return 900; }
+    get scrollHeight() { return 1800; }
     getClientRects() { return this.hidden ? [] : [{}]; }
     getContext() { return null; }
     hasPointerCapture() { return false; }
@@ -119,7 +121,7 @@ export async function mount(href = "https://example.test/", baseURI = "https://e
   const context = vm.createContext({ window, document, URL, localStorage, fetch, AbortController, setTimeout, getComputedStyle: () => ({ lineHeight: '30.4px', paddingBottom: '24px' }), matchMedia: () => ({ matches: false, addEventListener() {} }), requestAnimationFrame: () => 1, cancelAnimationFrame() {}, setInterval() {} });
   const modules = new Map();
   function getModule(file) {
-    if (file === path.join(root, 'src/shared/novel/markdown-profile.js')) file = path.join(root, 'contracts/novel-release-v2/markdown.mjs');
+    if (file === path.join(root, 'src/shared/novel/parser.js')) file = path.join(root, 'dist/app/shared/novel/parser.js');
     if (!modules.has(file)) modules.set(file, new vm.SourceTextModule(fs.readFileSync(file, 'utf8'), { context, identifier: file }));
     return modules.get(file);
   }
@@ -127,7 +129,18 @@ export async function mount(href = "https://example.test/", baseURI = "https://e
   await entryModule.link((specifier, parent) => getModule(path.resolve(path.dirname(parent.identifier), specifier)));
   await entryModule.evaluate();
   const projects = options.projects || JSON.parse(read('catalog/projects.json'));
-  const releases = projects.filter(project => project.category === 'novel').map(project => ({ project, manifest: JSON.parse(options.responses?.[project.release + 'release.json'] || read(project.release + 'release.json')) }));
+  const releases = await Promise.all(projects.filter(project => project.category === 'novel').map(async project => {
+    const manifest = JSON.parse(options.responses?.[project.release + 'release.json'] || read(project.release + 'release.json'));
+    const manifestDocuments = [manifest.readme, ...manifest.volumes.flatMap(volume => [volume.readme, ...volume.chapters])];
+    const received = await readNovel(project.release, async file => {
+      const response = options.responses?.[project.release + file];
+      if (typeof response === 'string') return response;
+      // Delayed/error runtime responses still have a previously built title index.
+      if (typeof response === 'function') return '# ' + (manifestDocuments.find(item => item.file === file)?.title || '测试文档');
+      return read(project.release + file);
+    });
+    return { project, manifest: received };
+  }));
   const config = structuredClone({ ...siteConfig, works: receivedProjects(projects, releases) });
   const manager = entryModule.namespace.bootDesktop(config);
   const ready = () => Promise.all(config.works.map(project => manager.getWindow('project-' + project.id)?.content?.ready));

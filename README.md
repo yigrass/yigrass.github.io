@@ -6,9 +6,10 @@ Meet me here.
 
 ## 开发和检查
 
-需要 Node.js 24 或更新版本及 PowerShell 7（完整检查使用项目已有的任务控制脚本）。当前没有第三方 npm 依赖，无需执行 npm install。Windows PowerShell 中使用 npm.cmd；其他环境使用 npm。
+需要 Node.js 24 或更新版本及 PowerShell 7（完整检查使用项目已有的任务控制脚本）。首次使用或更新依赖后执行 npm ci，按 package-lock.json 安装固定版本的 markdown-it 和构建工具 esbuild。Windows PowerShell 中使用 npm.cmd；其他环境使用 npm。
 
 ```powershell
+npm.cmd ci --ignore-scripts
 npm.cmd run dev
 npm.cmd run check
 npm.cmd run build
@@ -16,17 +17,18 @@ npm.cmd run build
 
 预览地址为 `http://127.0.0.1:4173/`，只提供 `dist/` 内容。修改源码、目录配置或成品后自动重新构建，刷新浏览器查看；若构建失败，控制台显示错误并保留之前的有效产物。换端口可运行 `npm.cmd run dev -- --port 4174`。不再提供直接双击 HTML 的 file:// 预览或旧片段路由。
 
-`check` 检查源码语法、作品成品、真实构建产物、桌面交互和任务控制。桌面自动化用例通过模拟 DOM 执行实际模块，不代替真实浏览器的布局与视觉验收。`test` 是同一完整检查的入口。`build` 校验输入后重建 `dist/`，不会自动执行 Git 操作或发布。
+`check` 检查源码语法、成品接入行为、真实构建产物、桌面交互和任务控制。桌面自动化用例通过模拟 DOM 执行实际模块，不代替真实浏览器的布局与视觉验收。`test` 是同一完整检查的入口。`build` 读取成品、构建索引并重建 `dist/`，不会自动执行 Git 操作或发布，也不执行小说业务校验。
 
 ## 目录边界
 
 | 目录 | 内容 | Git / 发布 |
 | --- | --- | --- |
 | `src/` | 网站 HTML 模板、桌面、系统应用、路由、主题和通用作品展示器 | Git 管理；代码进入 `dist/app/` |
-| `catalog/projects.json` | 网站中的文件名、所属磁盘、地址名及成品位置 | Git 管理；构建复制 |
+| `catalog/projects.json` | 所属磁盘、成品位置及非小说作品的显示信息 | Git 管理；构建派生完整目录 |
 | `releases/<project-id>/` | 从独立项目接收的完整当前成品 | Git 管理；构建按目录接入 |
 | `assets/` | 网站自身的壁纸、系统图标等素材 | Git 管理；构建复制 |
-| `contracts/novel-release-v2/` | 可带到小说项目使用的成品约定、Schema、校验器和示例 | Git 管理；构建只取其中的 Markdown 解析模块，其余不发布 |
+| `contracts/novel-release-v3/` | 可带到小说项目使用的成品约定、生产者用 Schema 和示例 | Git 管理；不参与构建、不发布 |
+| `node_modules/` | 根据锁文件安装的开发依赖 | 忽略；只将阅读器所需代码打包进 dist，并保留许可证 |
 | `art/` | 本地美术原稿和实验文件 | 忽略；不参与构建 |
 | `dist/` | 自动生成的完整静态网站 | 忽略；发布此目录中的内容 |
 | `scripts/`、`tests/`、`docs/`、`qa/` | 工具、当前检查、维护说明和历史验收记录 | Git 管理；不发布到网站 |
@@ -39,19 +41,17 @@ npm.cmd run build
 
 `src/config/site.js` 配置个人资料、菜单文字、磁盘、默认设置和壁纸。`src/themes/presets.js` 是主题颜色的唯一编辑入口，公共样式在 `src/styles/desktop.css`。系统应用分别位于 `src/apps/my-computer/`、`file-explorer/`、`system-settings/`，通用作品展示器位于 `src/apps/project-viewer/`。
 
-作品登记在 `catalog/projects.json`。`id` 是唯一标识，`title` 是界面显示的完整文件名，`driveId` 是所属磁盘，`slug` 是该盘下的公开地址名，`release` 固定为 `releases/<id>/`。内部 `category` 取 novel、game 或 utility，用来选择图标及接入类型，不出现在公开地址中。外部链接可用 url 代替 slug 和 release，继续在新标签页打开。
+作品登记在 `catalog/projects.json`。内部 `category` 取 novel、game 或 utility，用来选择接入类型，不出现在公开地址中。小说只登记 category、driveId 和 release；书标识由成品清单提供，书名从整书 README 的 H1 读取，磁盘显示时加上 .txt。非小说作品继续在目录登记 id、完整显示文件名 title、所属磁盘 driveId、地址段 slug 和成品位置 release。release 指向 releases 下的当前成品目录。外部链接用 url 代替 slug 和 release，在新标签页打开。
 
-当前 A 盘的桑海志怪.txt 是两卷五章的虚构演示作品，第二章为长文本，另有整书和两卷的 README；沿用 story-a 地址名。Game-B.exe 仍是“施工中。”网页成品演示。新增作品时提供成品并登记目录，构建自动生成桌面入口，不手写新的桌面 HTML，也不把其他项目的开发源码放进 src。
+当前 A 盘的桑海志怪.txt 是两卷五章的虚构演示作品，第二章为长文本，另有整书和两卷的 README；使用生产者提供的 sh-tales、case-01/case-02 和卷内章节标识。Game-B.exe 仍是“施工中。”网页成品演示。新增作品时提供成品并登记目录，构建自动生成桌面入口，不手写新的桌面 HTML，也不把其他项目的开发源码放进 src。
 
-小说成品规则见 [Novel Release Contract v2](contracts/novel-release-v2/README.md)。源头项目按约定导出自己的 dist；将其内容完整接入 releases 下的对应目录。所有章节和 README 使用 Markdown，至少有一卷，整书和每卷都有 README。每章只有当前文件，release.json 始终描述完整的当前公开内容，卷数组及其章节数组决定阅读顺序。追加、修订、撤下均在源头处理后重新导出。可以先删除网站中该小说的成品目录再整目录复制，或使用自行编写的替换工具；不能留下旧版本多出的文件。当前提供校验器，没有额外实现自动删除或导入命令。v1 已退出活动支持，旧约定 ZIP 仅作为历史交付保留。
+小说成品规则见 [Novel Release Contract v3](contracts/novel-release-v3/README.md)。源头项目按约定导出自己的 dist；将其内容完整接入 releases 下的对应目录。追加、修订、撤下均在源头处理后重新导出。可以先删除网站中该小说的成品目录再整目录复制，或使用自行编写的替换工具；不能留下旧版本多出的文件。网站不提供小说校验器或自动导入命令，标识、排序、H1 标题及内容正确性均由生产者负责。旧合同只保留历史交付 ZIP，不再参与运行。
 
-通用阅读器采用目录和正文双栏，目录通过贴在细分隔线右侧、顶部齐平的梯形页签收起或展开，窄屏默认收起。页签与滚动条同宽（当前 20px），底边为 45° 斜线，单行 << / >> 位于短边中点；悬停、按住或键盘聚焦时显示虚线轮廓，没有凹凸效果或动画。整书、卷别和章节可直接访问，README 总是排列在所属层级最前面。作品图标来自成品，在 A 盘、标题栏、任务栏和目录书名处共用；书本开合、信息及 TXT 文件图标由网站提供。正文支持约定的 Markdown 子集，默认排版跟随桌面主题。标题栏下的菜单栏依次为“文件”“查看”、短分隔线与两个无文字翻章箭头；菜单目前仅显示灰色的“功能开发中”。翻章箭头始终可见，到达边界时禁用；默认左右方向键也可跨卷翻章，菜单展开时则用于切换菜单。正文能滚动到最后一行位于顶部。书签、用户显示偏好和自定义快捷键留待后续开发，每书内部样式配置与个性化阅读器仍是独立的后续目标。
+通用阅读器采用目录和正文双栏，目录通过贴在细分隔线右侧、顶部齐平的 20px 梯形页签收起或展开，窄屏默认收起。目录默认宽 220px，可拖动细分隔线调整；两栏最小值和分隔线宽度统一定义在 src/apps/project-viewer/reader-layout.js。关闭后重开恢复默认宽度，最小化不重置。目录长标题单行省略，按钮、选中高亮及悬停虚线随内容收紧。书名和卷名直接打开对应 README，加减号单独折叠；README 不再作为文件行出现。作品图标来自成品，在 A 盘、标题栏、任务栏和目录书名处共用；当前卷别和章节图标集中在 novel.js 的 treeIcons，等待后续替换。
 
-```powershell
-npm.cmd run validate:novel -- releases/story-a story-a
-```
+正文使用 markdown-it 解析，支持表格、多级列表等语法，按桌面主题排版；依赖已打包在本站，访客不连接第三方 CDN。标题栏下保留“文件”“查看”占位菜单及无文字前后翻章按钮，默认左右方向键也可跨卷翻章。正文能滚动到最后一行位于顶部。状态栏显示书名、卷名、章名和大致阅读百分比，使用带空格的 ASCII 竖线分隔；百分比按视口底部相对正文高度计算，不计末尾滚动留白。阅读区阻止普通选中和复制快捷键，仅作为最低限度门槛，公开 Markdown 仍可被获取。书签、用户显示偏好、自定义快捷键、目录宽度记忆与每书视觉配置留待后续开发。
 
-校验不修改输入。构建时自动运行同一校验，缺失章节、重复标识、非法路径、无效 UTF-8 或未引用的额外文件会使构建失败。当前成品的 SHA-256 清单自动写入 dist/release-integrity.json；这是本次部署的内容摘要，不是章节历史版本目录。用户已明确允许小说成品整套替换，网站不保存可供阅读的旧版本；Git 历史仍遵循普通提交行为。
+构建按清单原样读取标识与数组顺序，不猜测或校验编号，不按标题或文件名排序。它保留文件系统边界保护；缺失文件、不可读取的结构或非法 JSON 会产生正常读取错误。包内文件全部复制，包括未引用文件。当前成品的 SHA-256 清单自动写入 dist/release-integrity.json；这是本次部署的内容摘要，不是章节历史版本目录。用户已明确允许小说成品整套替换；Git 历史仍遵循普通提交行为。
 
 网页成品当前通过 release.json 的 `schemaVersion: 1`、`kind: web`、id、title 和 entry 登记；entry 指向包内 HTML。图片、脚本、样式等应在该成品目录内，并适应子目录部署。构建保留其字节，不运行该项目的构建器。窗口内 iframe 保留独立页面布局，嵌入自己信任的作品；它不构成同源代码之间的安全隔离。隐藏和还原时发送 desktop-visibility 消息，作品自行实现暂停、恢复；网站不能保证任意游戏自动暂停。需要后端服务的作品须另外部署后端。
 
@@ -70,9 +70,9 @@ npm.cmd run validate:novel -- releases/story-a story-a
 | C 盘 | `/file-explorer/c-local-disk/` |
 | G 盘 | `/file-explorer/g-cd-rom/` |
 | H 盘 | `/file-explorer/h-flash-drive/` |
-| 桑海志怪.txt / 整书 README | `/file-explorer/a-floppy-disk/story-a/` |
-| 第一卷 README | `/file-explorer/a-floppy-disk/story-a/volume-1/` |
-| 第一章 | `/file-explorer/a-floppy-disk/story-a/chapter-1/` |
+| 桑海志怪.txt / 整书 README | `/file-explorer/a-floppy-disk/sh-tales/` |
+| 第一卷 README | `/file-explorer/a-floppy-disk/sh-tales/case-01/` |
+| 第一章 | `/file-explorer/a-floppy-disk/sh-tales/case-01/ep-01/` |
 | Game-B.exe | `/file-explorer/g-cd-rom/game-b/` |
 
 前台窗口及其当前文档决定页面地址。开始菜单浮层和最大化不改变地址；最小化保留实例，关闭移除实例，两者按照下一个前台窗口更新地址，没有可见窗口才回到主页。任务栏切换不重建窗口，保留小说所选章节和滚动位置。正式打开新应用或项目、选择章节或 README、进入磁盘或向上返回增加浏览历史；聚焦、最小化和还原替换当前地址，并保留正式导航的后退入口。前进、后退恢复对应窗口和文档，返回主页会最小化全部窗口。直接访问或刷新深层地址只打开对应窗口及所选章节，不恢复整个旧桌面。
@@ -91,7 +91,7 @@ npm.cmd run validate:novel -- releases/story-a story-a
 
 仅发布 dist 内的内容，公开地址不增加 dist 或 src 前缀。GitHub Pages 原先从分支根目录发布的设置需要由用户改为 GitHub Actions，否则新结构不会按预期上线。
 
-用户提交并推送本地修改后，在仓库 Settings → Pages 中将 Source 设为 GitHub Actions；再到 Actions 手动运行 Publish desktop website。工作流先检查并构建，再上传 dist 部署。它只有 workflow_dispatch 触发，不配置 push 自动发布；无需把 dist 提交到 Git。工作流位于 .github/workflows/pages.yml，机制参见 [GitHub 官方说明](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
+用户提交并推送本地修改后，在仓库 Settings → Pages 中将 Source 设为 GitHub Actions；再到 Actions 手动运行 Publish desktop website。工作流先通过 npm ci 安装锁定依赖，再检查、构建并上传 dist 部署。它只有 workflow_dispatch 触发，不配置 push 自动发布；无需把 dist 提交到 Git。工作流位于 .github/workflows/pages.yml，机制参见 [GitHub 官方说明](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
 
 代理只准备和检查本地文件，远端设置、推送与发布由用户手工处理。本次本地构建通过不代表远端已发布。
 

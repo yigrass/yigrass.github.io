@@ -16,7 +16,7 @@ const paths = {
   profile: "/my-computer/", settings: "/system-settings/", works: "/file-explorer/",
   a: "/file-explorer/a-floppy-disk/", c: "/file-explorer/c-local-disk/",
   g: "/file-explorer/g-cd-rom/", h: "/file-explorer/h-flash-drive/",
-  story: "/file-explorer/a-floppy-disk/story-a/", game: "/file-explorer/g-cd-rom/game-b/"
+  story: "/file-explorer/a-floppy-disk/sh-tales/", game: "/file-explorer/g-cd-rom/game-b/"
 };
 const app = await mount();
 check(app.get("windows").children.length === 0 && app.location.pathname === "/", "Home opens a bare desktop");
@@ -27,13 +27,13 @@ app.drive("a");
 check(app.location.pathname === paths.a && app.entry("桑海志怪.txt").href === "https://example.test" + paths.story, "Drive A and its file have hierarchical addresses");
 const event = app.click(app.entry("桑海志怪.txt"));
 await app.ready();
-const story = app.win("story-a"), body = story.querySelector(".window-body");
+const story = app.win("sh-tales"), body = story.querySelector(".window-body");
 check(event.defaultPrevented && app.location.pathname === paths.story && body.querySelector(".novel-chapter").textContent.includes("海的另一边"), "Story opens in the same desktop with literal file name");
 body.scrollTop = 37; story.style.width = "603px";
 app.click(story.querySelector(".control-min"));
 check(story.hidden && app.location.pathname === paths.a, "Minimize returns to Explorer's remembered drive");
-app.click(app.tab("project-story-a"));
-check(app.location.pathname === paths.story && app.win("story-a") === story && body.scrollTop === 37 && story.style.width === "603px", "Taskbar restore preserves DOM, scroll and dimensions");
+app.click(app.tab("project-sh-tales"));
+check(app.location.pathname === paths.story && app.win("sh-tales") === story && body.scrollTop === 37 && story.style.width === "603px", "Taskbar restore preserves DOM, scroll and dimensions");
 let count = app.history.length;
 app.click(story.querySelector(".control-max")); app.click(story.querySelector(".control-max"));
 check(app.history.length === count && app.location.pathname === paths.story, "Maximize does not navigate");
@@ -44,10 +44,10 @@ check(app.location.pathname === paths.a, "Existing Explorer restores its locatio
 app.drive("g"); app.click(app.entry("Game-B.exe"));
 await app.ready();
 const game = app.win("game-b");
-check(app.location.pathname === paths.game && app.win("story-a") === story && !story.hidden, "Game and story coexist in the same desktop");
+check(app.location.pathname === paths.game && app.win("sh-tales") === story && !story.hidden, "Game and story coexist in the same desktop");
 check(game.querySelector(".project-frame").src === "https://example.test/releases/game-b/index.html", "Game loads the standalone received web release");
 count = app.history.length;
-app.click(app.tab("project-story-a")); app.click(app.tab("project-game-b"));
+app.click(app.tab("project-sh-tales")); app.click(app.tab("project-game-b"));
 check(app.history.length === count && app.location.pathname === paths.game && app.win("game-b") === game, "Window focus replaces URL without adding history or reloading");
 app.click(game.querySelector(".control-min"));
 check(app.location.pathname === paths.story && story.classList.contains("is-active"), "Minimize follows the next foreground project");
@@ -74,7 +74,7 @@ for (const id of ["c", "h"]) {
 app.drive("a");
 check(!app.click(app.entry("桑海志怪.txt"), { ctrlKey: true }).defaultPrevented, "Modified clicks keep native new-tab behavior");
 app.click(app.entry("桑海志怪.txt"));
-check(app.win("story-a") === story && app.get("windows").children.filter(node => node.id === story.id).length === 1, "Opening an existing file reuses one window");
+check(app.win("sh-tales") === story && app.get("windows").children.filter(node => node.id === story.id).length === 1, "Opening an existing file reuses one window");
 app.click(story.querySelector(".control-close"));
 app.click(app.get("window-works").querySelector(".control-close"));
 app.menu("works");
@@ -115,7 +115,7 @@ for (const route of catalog.entries) {
     check(router.current()?.id === route.id && fresh.document.baseURI === base, "Restore keeps deep route and stable assets: " + mode + " " + route.path);
   }
 }
-for (const route of ["novels/story-a/", "games/game-b/"]) {
+for (const route of ["novels/sh-tales/", "games/game-b/"]) {
   check(!catalog.byPath.has(route) && !fs.existsSync(path.join(root, route + "index.html")), "Old route and entry removed: " + route);
 }
 const indexEntry = await mount("https://example.test" + paths.a + "index.html");
@@ -130,7 +130,6 @@ for (const [route, entry] of catalog.byPath) {
 for (const mutate of [
   cfg => { cfg.explorer.drives[0].slug = "../outside"; },
   cfg => { cfg.works[0].driveId = "missing"; },
-  cfg => { cfg.works.push({ ...cfg.works[0], id: "duplicate" }); },
   cfg => { cfg.applicationRoutes.settings = "my-computer"; }
 ]) {
   const cfg = JSON.parse(JSON.stringify(app.config)); mutate(cfg);
@@ -145,7 +144,7 @@ const themed = await mount();
 check(themed.document.documentElement.dataset.theme === "retro-ink", "Default remains 95's（异化）");
 check(themed.document.documentElement.style["--title-active"] === "#202020", "Default title bar remains ink black");
 themed.menu("works"); themed.drive("a"); themed.click(themed.entry("桑海志怪.txt")); themed.menu("profile"); themed.menu("settings");
-const settings = themed.get("window-settings"), storyNode = themed.win("story-a");
+const settings = themed.get("window-settings"), storyNode = themed.win("sh-tales");
 const initialUrl = themed.location.href, initialHistory = themed.history.length;
 const radios = settings.querySelectorAll(".theme-radio");
 check(radios.length === 5, "Settings provides exactly five theme presets");
@@ -162,7 +161,7 @@ for (const theme of themed.themes) {
   for (const [token, value] of Object.entries(theme.colors)) assert.equal(style["--" + token], value, theme.name + " " + token);
   check(radios.filter(input => input.checked).length === 1 && radio.parentNode.classList.contains("is-selected"), "Theme selector stays synchronized: " + theme.name);
   check(themed.saved().themeId === theme.id && themed.location.href === initialUrl && themed.history.length === initialHistory, "Theme persists without navigating: " + theme.name);
-  check(themed.win("story-a") === storyNode && style["--desktop"] === originalFill && themed.get("desktop").style.backgroundImage === originalImage, "Theme preserves open windows and wallpaper: " + theme.name);
+  check(themed.win("sh-tales") === storyNode && style["--desktop"] === originalFill && themed.get("desktop").style.backgroundImage === originalImage, "Theme preserves open windows and wallpaper: " + theme.name);
 }
 themed.click(themed.get("theme-custom-toggle"));
 check(themed.get("theme-presets-panel").hidden && !themed.get("theme-custom-panel").hidden && themed.get("theme-custom-panel").textContent === "功能开发中", "Custom disclosure exposes only the unavailable placeholder");
@@ -194,6 +193,7 @@ for (const theme of themed.themes.filter(theme => theme.scheme === "dark")) {
   check(true, "Night theme foreground contrast verified: " + theme.name);
 }
 const defined = new Set([...css.matchAll(/(--[\w-]+):/g)].map(match => match[1]));
+for (const match of read('src/apps/project-viewer/reader-layout.js').matchAll(/setProperty\('(--[\w-]+)'/g)) defined.add(match[1]);
 for (const match of css.matchAll(/var\((--[\w-]+)\)/g)) assert.ok(defined.has(match[1]) || match[1] === "--resize-cursor", "CSS variable defined: " + match[1]);
 check(!/legacyRoutes/.test(read("src/config/site.js") + read("src/routing/catalog.js")), "No legacy route compatibility remains in runtime configuration or router");
 check(css.includes("rgb(var(--shell-rgb) / var(--shell-alpha))") && css.includes(".window.is-active .titlebar{background:var(--title-active)}") && css.includes("background:var(--content)") && css.includes("background:var(--field)"), "Theme colors reach shell, titlebars and content surfaces");

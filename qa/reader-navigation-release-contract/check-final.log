@@ -1,0 +1,37 @@
+Built dist: 17 desktop pages, 2 received releases.
+Built dist: 17 desktop pages, 2 received releases.
+✔ dist serves all deep entries, module imports and release bytes; maintenance paths are absent (3780.8855ms)
+✔ clean input copy builds without art or other projects; invalid release preserves previous dist (955.2998ms)
+✔ built release receipts match every published package file (3.3026ms)
+(node:24268) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Desktop regression assertions: 231
+✔ desktop windows, routes, themes and persistent state after module migration (891.9952ms)
+(node:20736) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ book and volume titles open their README while only plus/minus controls fold the tree (59.8903ms)
+✔ direct chapter entry, safe Markdown rendering, shared icon, chapter links and desktop history retain reader state (26.6123ms)
+✔ keyboard and menu-bar buttons skip README across volumes and respect active window, menus and boundaries (25.7417ms)
+✔ reader placeholder menus switch without flipping chapters, dismiss predictably and release their listeners (24.0507ms)
+✔ late loads never replace a newer chapter or a closed window; failed chapter can be retried (45.2037ms)
+✔ two novel windows keep independent chapter URLs and keyboard listeners (27.1267ms)
+✔ markdown-it supports nested blocks, tables, strikeout and real H1 parsing (21.6226ms)
+✔ directory resizing respects pane minima, consumes arrow keys and resets after reopening (22.7238ms)
+✔ progress counts the viewport bottom, ignores overscroll space and only blocks copying in the reader (23.0971ms)
+✔ identical chapter IDs in separate volumes have distinct content, links and history (22.9585ms)
+✔ single current manifest supports chapter additions and source replacements with byte receipts (44.0452ms)
+✔ producer IDs, array order and first Markdown H1 are received without inference (7.713ms)
+✔ receiver does not validate producer metadata, naming, duplicates, unused files or prose (11.6665ms)
+✔ ordinary read failures and filesystem escapes still stop receiving (10.0709ms)
+✔ portable v3 contract example carries two volumes, duplicate scoped IDs and Markdown only (5.2621ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6569.7543
+Generated task view is current.
+Task controls passed.
+Source, release, built-site and task-control checks passed.

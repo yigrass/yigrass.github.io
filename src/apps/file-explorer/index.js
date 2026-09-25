@@ -1,5 +1,6 @@
 import { $, create, safeURL, pixelIcon, announce, rgbChannels } from '../../shared/dom.js';
 import { projectCategories, projectWindowId, projectIcon } from '../registry.js';
+import { statusText } from '../../shared/status.js';
 export function createExplorer({ config, desktopRoutes, titleOf, getActiveId, syncAddress, openProject }) {
   function worksContent(body, setStatus) {
     body.classList.add("explorer-body");
@@ -143,7 +144,7 @@ export function createExplorer({ config, desktopRoutes, titleOf, getActiveId, sy
         }
         content.append(grid);
       }
-      setStatus(`${drive ? entries.length : drives.length} 个对象${drive ? ` · ${drive.letter}:\\` : ""}`);
+      setStatus(statusText(`${drive ? entries.length : drives.length} 个对象`, drive ? `${drive.letter}:\\` : ''));
       if (restoreFocus) content.focus({ preventScroll: true });
     }
     render();

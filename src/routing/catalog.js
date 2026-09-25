@@ -5,14 +5,14 @@ export const createDesktopRouteCatalog = (config) => {
     if (typeof value !== "string" || !/^[a-z][a-z0-9-]*$/.test(value)) throw new Error("Invalid route segment: " + value);
     return value;
   };
-  const addPath = (path, entry) => {
-    if (!/^(?:[a-z][a-z0-9-]*\/)+$/.test(path) || byPath.has(path)) throw new Error("Invalid or duplicate route: " + path);
+  const addPath = (path, entry, producer = false) => {
+    if (!producer && (!/^(?:[a-z][a-z0-9-]*\/)+$/.test(path) || byPath.has(path))) throw new Error('Invalid system route: ' + path);
     byPath.set(path, entry);
   };
-  const add = (entry) => {
-    if (byId.has(entry.id)) throw new Error("Duplicate route id: " + entry.id);
+  const add = (entry, producer = false) => {
+    if (!producer && byId.has(entry.id)) throw new Error('Duplicate system route id: ' + entry.id);
     byId.set(entry.id, entry);
-    addPath(entry.path, entry);
+    addPath(entry.path, entry, producer);
     entries.push(entry);
   };
   for (const id of ["profile", "works", "settings"]) {
@@ -25,11 +25,11 @@ export const createDesktopRouteCatalog = (config) => {
     if (!project.slug) continue; // External links do not create local entry pages.
     const drive = byId.get("drive-" + project.driveId);
     if (!drive || !["novel", "game", "utility"].includes(project.category) || typeof project.title !== "string" || !project.title.trim()) throw new Error("Invalid project: " + project.id);
-    const id = "project-" + segment(project.id);
-    add({ id, windowId: id, projectId: project.id, driveId: project.driveId, path: drive.path + segment(project.slug) + "/" });
+    const id = "project-" + project.id;
+    add({ id, windowId: id, projectId: project.id, driveId: project.driveId, path: drive.path + project.slug + "/" }, true);
     for (const document of project.reader?.documents || []) {
       if (document.id === null) continue;
-      add({ id: `${id}/document/${segment(document.id)}`, windowId: id, projectId: project.id, documentId: document.id, path: byId.get(id).path + segment(document.id) + '/' });
+      add({ id: `${id}/document/${document.id}`, windowId: id, projectId: project.id, documentId: document.id, path: byId.get(id).path + document.id + '/' }, true);
     }
     projects.push({ ...project, title: project.title.trim() });
   }

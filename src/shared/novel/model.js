@@ -1,17 +1,17 @@
-// Runtime index is derived from a validated received release during the build.
+// Producer IDs are opaque path segments; array order is the reading order.
 export function novelDocuments(release) {
   return [
     { id: null, kind: 'readme', title: release.title, file: release.readme.file, volumeId: null },
     ...release.volumes.flatMap(volume => [
-      { id: volume.id, kind: 'readme', title: volume.title, file: volume.readme.file, volumeId: volume.id },
-      ...volume.chapters.map(chapter => ({ ...chapter, kind: 'chapter', volumeId: volume.id }))
+      { id: volume.id, kind: 'readme', title: volume.title, file: volume.readme.file, volumeId: volume.id, volumeTitle: volume.title },
+      ...volume.chapters.map(chapter => ({ ...chapter, id: `${volume.id}/${chapter.id}`, chapterId: chapter.id, kind: 'chapter', volumeId: volume.id, volumeTitle: volume.title }))
     ])
   ];
 }
 export function receivedProjects(projects, releases) {
   return projects.map(project => {
-    const release = releases.find(item => item.project.id === project.id)?.manifest;
+    const release = releases.find(item => item.project.release === project.release)?.manifest;
     if (release?.kind !== 'novel') return project;
-    return { ...project, iconPath: project.release + release.icon, reader: { title: release.title, documents: novelDocuments(release).map(({ file, ...document }) => document) } };
+    return { ...project, id: release.id, slug: release.id, title: `${release.title}.txt`, iconPath: project.release + release.icon, reader: { ...release, documents: novelDocuments(release) } };
   });
 }

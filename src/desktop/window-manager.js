@@ -76,15 +76,15 @@ export function createWindowManager({ windowTypes, titleOf, menuBrand, onAddress
     element.style.left = `${Math.max(0, Math.min(element.offsetLeft, desktop.clientWidth - width))}px`;
     element.style.top = `${Math.max(0, Math.min(element.offsetTop, desktop.clientHeight - height))}px`;
   }
-  function resizedBounds(origin, direction, dx, dy, bounds) {
+  function resizedBounds(origin, direction, dx, dy, bounds, minimumWidth = 380) {
     const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
     const right = origin.left + origin.width;
     const bottom = origin.top + origin.height;
     let { left, top, width, height } = origin;
-    if (direction.includes("e")) width = clamp(width + dx, Math.min(380, bounds.width - left), bounds.width - left);
+    if (direction.includes("e")) width = clamp(width + dx, Math.min(minimumWidth, bounds.width - left), bounds.width - left);
     if (direction.includes("s")) height = clamp(height + dy, Math.min(240, bounds.height - top), bounds.height - top);
     if (direction.includes("w")) {
-      left = Math.round(clamp(left + dx, 0, Math.max(0, right - 380)));
+      left = Math.round(clamp(left + dx, 0, Math.max(0, right - minimumWidth)));
       width = right - left;
     }
     if (direction.includes("n")) {
@@ -122,7 +122,7 @@ export function createWindowManager({ windowTypes, titleOf, menuBrand, onAddress
       });
       handle.addEventListener("pointermove", (event) => {
         if (!resizing || event.pointerId !== resizing.pointerId) return;
-        const next = resizedBounds(resizing.origin, direction, event.clientX - resizing.x, event.clientY - resizing.y, { width: desktop.clientWidth, height: desktop.clientHeight });
+        const next = resizedBounds(resizing.origin, direction, event.clientX - resizing.x, event.clientY - resizing.y, { width: desktop.clientWidth, height: desktop.clientHeight }, openWindows.get(id)?.minimumWidth);
         Object.entries(next).forEach(([key, value]) => { element.style[key] = `${value}px`; });
       });
       const finish = (event) => { if (event.pointerId === resizing?.pointerId) cancel(); };
@@ -209,9 +209,11 @@ export function createWindowManager({ windowTypes, titleOf, menuBrand, onAddress
     activate(id, true, routeMode);
     announce(`已打开${titleOf(id)}`);
   }
+  const availableWindowWidth = () => Math.max(0, desktop.clientWidth - (matchMedia('(max-width:640px)').matches ? 12 : 0));
   window.addEventListener("resize", () => {
-    for (const { element, cancelResize } of openWindows.values()) {
+    for (const { element, cancelResize, minimumWidth } of openWindows.values()) {
       cancelResize();
+      if (minimumWidth) element.style.minWidth = `${Math.min(minimumWidth, availableWindowWidth())}px`;
       if (!element.hidden) fitWindow(element);
     }
   });
@@ -221,5 +223,12 @@ export function createWindowManager({ windowTypes, titleOf, menuBrand, onAddress
     }
     activateRemaining(); start.focus();
   }
-  return { openWindow, activate, hideAll, getActiveId: () => activeId, hasWindow: id => openWindows.has(id), getWindow: id => openWindows.get(id) };
+  function setMinimumWidth(id, width) {
+    const entry = openWindows.get(id);
+    if (!entry) return;
+    entry.minimumWidth = width;
+    entry.element.style.minWidth = `${Math.min(width, availableWindowWidth())}px`;
+    fitWindow(entry.element);
+  }
+  return { openWindow, activate, hideAll, setMinimumWidth, getActiveId: () => activeId, hasWindow: id => openWindows.has(id), getWindow: id => openWindows.get(id) };
 }

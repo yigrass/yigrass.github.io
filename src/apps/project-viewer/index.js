@@ -1,7 +1,7 @@
 import { create } from '../../shared/dom.js';
 import { renderNovel } from './novel.js';
 
-export function renderProject(body, project, { setStatus, activate, isActive, initialDocumentId = null, address, onNavigate }) {
+export function renderProject(body, project, { setStatus, activate, isActive, initialDocumentId = null, address, onNavigate, setMinimumWidth }) {
   body.classList.add('project-body');
   const controller = new AbortController();
   let cleanup = () => {}, notifyVisibility = () => {}, visible = true;
@@ -16,12 +16,12 @@ export function renderProject(body, project, { setStatus, activate, isActive, in
     try {
       const response = await fetch(new URL('release.json', root), { signal: controller.signal, cache: 'no-store' });
       if (!response.ok) throw new Error('作品文件暂时无法读取');
-      const release = await response.json();
+      const release = project.reader || await response.json();
       if (controller.signal.aborted) return;
       body.replaceChildren();
       if (release.kind === 'novel') {
         reader = renderNovel(body, release, root, setStatus, controller.signal, {
-          icon: project.iconPath, initialDocumentId: selectedDocumentId, isActive, address,
+          icon: project.iconPath, initialDocumentId: selectedDocumentId, isActive, address, setMinimumWidth,
           onNavigate: (id, mode) => { selectedDocumentId = id; if (mode !== 'restore') onNavigate(mode); }
         });
         cleanup = reader.dispose;

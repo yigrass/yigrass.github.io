@@ -1,37 +1,40 @@
-// The build copies the portable contract parser beside this module.
-import { parseMarkdown } from './markdown-profile.js';
+import { parseMarkdown } from './parser.js';
 import { create } from '../dom.js';
 
 export function renderMarkdown(text, { root, documents, navigate }) {
   const result = create('div', 'novel-prose');
-  function inline(parent, nodes) {
-    for (const node of nodes) {
+  // markdown-it owns all syntax parsing; this adapter creates DOM nodes and
+  // connects published-document links to the existing desktop window.
+  function render(parent, tokens) {
+    const stack = [parent];
+    for (const token of tokens) {
+      if (token.hidden) continue;
+      if (token.type === 'inline') { render(stack.at(-1), token.children); continue; }
+      if (token.nesting === -1) { stack.pop(); continue; }
       let element;
-      if (node.type === 'image') {
-        element = create('img', 'chapter-illustration'); element.src = new URL(node.target.value, root).href; element.alt = node.alt; element.loading = 'lazy';
-      } else if (node.type === 'link') {
-        const document = documents.find(item => item.file === node.target.value);
-        if (node.target.kind === 'local' && !document) { element = create('span'); }
-        else {
-          element = create('a');
-          element.href = document ? navigate(document.id, 'address') : node.target.value;
-          if (document) element.addEventListener('click', event => { if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey) { event.preventDefault(); navigate(document.id); } });
-          else { element.target = '_blank'; element.rel = 'noopener noreferrer'; }
+      if (token.type === 'text' || token.type === 'softbreak') element = create('span', '', token.type === 'softbreak' ? '\n' : token.content);
+      else if (token.type === 'fence' || token.type === 'code_block') { element = create('pre'); element.append(create('code', token.info ? `language-${token.info.split(/\s/)[0]}` : '', token.content)); }
+      else if (token.type === 'code_inline') element = create('code', '', token.content);
+      else if (token.type === 'image') {
+        element = create('img', 'chapter-illustration'); element.src = new URL(token.attrGet('src'), root).href;
+        element.alt = token.content; element.loading = 'lazy'; element.draggable = false;
+      } else {
+        element = create(token.tag || 'span');
+        for (const [key, value] of token.attrs || []) element.setAttribute(key, value);
+        if (token.tag === 'a') {
+          const target = new URL(token.attrGet('href'), root);
+          const linkedDocument = documents.find(item => new URL(item.file, root).href === target.href.split('#')[0]);
+          element.href = linkedDocument ? navigate(linkedDocument.id, 'address') + target.hash : target.href;
+          if (linkedDocument) element.addEventListener('click', event => {
+            if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey) { event.preventDefault(); navigate(linkedDocument.id); }
+          });
+          else if (target.origin !== root.origin) { element.target = '_blank'; element.rel = 'noopener noreferrer'; }
         }
-        inline(element, node.children);
-      } else if (node.type === 'break') element = create('br');
-      else if (node.children) { element = create(node.type === 'strong' ? 'strong' : 'em'); inline(element, node.children); }
-      else element = create(node.type === 'code' ? 'code' : 'span', '', node.text);
-      parent.append(element);
+      }
+      stack.at(-1).append(element);
+      if (token.nesting === 1) stack.push(element);
     }
   }
-  for (const node of parseMarkdown(text)) {
-    const tags = { paragraph: 'p', quote: 'blockquote', rule: 'hr', pre: 'pre' };
-    const element = create(node.type === 'heading' ? `h${node.level}` : node.type === 'list' ? (node.ordered ? 'ol' : 'ul') : tags[node.type]);
-    if (node.type === 'list') { if (node.ordered) element.start = node.start; for (const item of node.items) { const li = create('li'); inline(li, item); element.append(li); } }
-    else if (node.type === 'pre') element.append(create('code', '', node.text));
-    else if (node.children) inline(element, node.children);
-    result.append(element);
-  }
+  render(result, parseMarkdown(text));
   return result;
 }

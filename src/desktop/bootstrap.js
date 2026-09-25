@@ -51,6 +51,7 @@ export function bootDesktop(config) {
         setStatus, activate: () => manager.activate(id), isActive: () => manager.getActiveId() === id,
         initialDocumentId: desktopRoutes.current()?.windowId === id ? desktopRoutes.current().documentId || null : null,
         address: documentId => desktopRoutes.address(projectDocumentRoute(project.id, documentId)),
+        setMinimumWidth: width => manager.setMinimumWidth(id, width),
         onNavigate: mode => { if (manager.getActiveId() === id) syncAddress(mode); }
       }),
       status: () => '就绪'

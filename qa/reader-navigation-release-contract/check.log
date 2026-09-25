@@ -1,0 +1,58 @@
+Built dist: 17 desktop pages, 2 received releases.
+Built dist: 17 desktop pages, 2 received releases.
+✔ dist serves all deep entries, module imports and release bytes; maintenance paths are absent (3803.8193ms)
+✔ clean input copy builds without art or other projects; invalid release preserves previous dist (939.9517ms)
+✔ built release receipts match every published package file (3.4586ms)
+(node:11100) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ desktop windows, routes, themes and persistent state after module migration (891.2424ms)
+(node:18400) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ book and volume titles open their README while only plus/minus controls fold the tree (55.6317ms)
+✔ direct chapter entry, safe Markdown rendering, shared icon, chapter links and desktop history retain reader state (25.3626ms)
+✔ keyboard and menu-bar buttons skip README across volumes and respect active window, menus and boundaries (25.5767ms)
+✔ reader placeholder menus switch without flipping chapters, dismiss predictably and release their listeners (22.6453ms)
+✔ late loads never replace a newer chapter or a closed window; failed chapter can be retried (45.4013ms)
+✔ two novel windows keep independent chapter URLs and keyboard listeners (27.7915ms)
+✔ markdown-it supports nested blocks, tables, strikeout and real H1 parsing (22.2103ms)
+✔ directory resizing respects pane minima, consumes arrow keys and resets after reopening (23.1121ms)
+✔ progress counts the viewport bottom, ignores overscroll space and only blocks copying in the reader (23.2168ms)
+✔ identical chapter IDs in separate volumes have distinct content, links and history (23.0638ms)
+✔ single current manifest supports chapter additions and source replacements with byte receipts (37.5263ms)
+✔ producer IDs, array order and first Markdown H1 are received without inference (7.3511ms)
+✔ receiver does not validate producer metadata, naming, duplicates, unused files or prose (10.8439ms)
+✔ ordinary read failures and filesystem escapes still stop receiving (19.5848ms)
+✔ portable v3 contract example carries two volumes, duplicate scoped IDs and Markdown only (5.1355ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6562.1888
+
+✖ failing tests:
+
+test at tests\desktop.test.mjs:12:1
+✖ desktop windows, routes, themes and persistent state after module migration (891.2424ms)
+  AssertionError [ERR_ASSERTION]: CSS variable defined: --reader-directory-min
+      at TestContext.<anonymous> (file:///D:/01_SmallProjects/yigrass.github.io/tests/desktop.test.mjs:196:64)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+file:///D:/01_SmallProjects/yigrass.github.io/scripts/check.mjs:10
+  if (result.status !== 0) throw new Error(`Check failed: ${command} ${args.join(' ')}`);
+                                 ^
+
+Error: Check failed: C:\Users\a\AppData\Local\Programs\nodejs\node-v24.19.0-win-x64\node.exe --experimental-vm-modules --test --test-concurrency=1 tests/build.test.mjs tests/desktop.test.mjs tests/reader.test.mjs tests/releases.test.mjs
+    at run (file:///D:/01_SmallProjects/yigrass.github.io/scripts/check.mjs:10:34)
+    at file:///D:/01_SmallProjects/yigrass.github.io/scripts/check.mjs:17:1
+
+Node.js v24.19.0

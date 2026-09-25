@@ -13,78 +13,173 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "reader-directory-tab-implementation-completed",
+    "deliveryState": "reader-navigation-release-contract-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "User reviews the implemented directory tab and supplies further reader feedback",
+    "nextAction": "Review reader navigation and release contract",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-25",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
     {
-      "id": "reader-directory-tab-implementation", "name": "Reader Directory Tab Implementation", "parent": "personal-website", "status": "completed",
-      "dependencies": ["reader-directory-tab-trapezoid-mockup"],
+      "id": "reader-navigation-release-contract",
+      "name": "Reader Navigation and Release Contract",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "reader-directory-tab-implementation",
+        "novel-release-contract"
+      ],
+      "returnPoint": "Personal Website / Review reader navigation and release contract",
+      "note": "User requests producer-owned hierarchical routes and order without content validation, H1 tree titles, hidden README entries, separate fold actions, resizable compact directory and content-sized selection, status progress with spaced ASCII pipes, and a basic reading-area copy barrier. User approved markdown-it migration. New icons remain deferred; preserve existing tab, menus and desktop behavior. No Git writes or remote operations.",
+      "completedOn": "2026-09-25",
+      "evidence": [
+        "qa/reader-navigation-release-contract/review.md",
+        "qa/reader-navigation-release-contract/check-verified.log",
+        "qa/reader-navigation-release-contract/novel-release-v3.zip",
+        "qa/reader-navigation-release-contract/contract-package.json"
+      ],
+      "completedWork": [
+        "Bundled markdown-it, producer-owned volume/chapter routes and H1 titles without receiver content validation",
+        "Implemented resizable compact directory, separate fold controls, content-sized selection, spaced-pipe progress and basic copy deterrence",
+        "Delivered byte-verified v3 contract ZIP and passed 19 tests, 231 desktop assertions and real-browser layout/interaction checks"
+      ]
+    },
+    {
+      "id": "reader-directory-tab-implementation",
+      "name": "Reader Directory Tab Implementation",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "reader-directory-tab-trapezoid-mockup"
+      ],
       "returnPoint": "Personal Website / Review reader directory tab",
       "note": "Implemented the approved original thin divider, top-aligned 20px trapezoid with 45-degree bottom edge, double chevrons centered on the short vertical side and dashed hover/press/focus contour without bevel or animation. Existing reader behavior and prior mockups preserved. No Git writes or remote operations.",
       "completedOn": "2026-09-25",
-      "evidence": ["qa/reader-directory-tab-implementation/review.md", "qa/reader-directory-tab-implementation/check.log"],
-      "completedWork": ["Replaced the wide rail with an overlay trapezoid tab in the reading margin", "Matched scrollbar width and aligned the double chevrons to the short-side midpoint", "Passed all 32 tests including 231 desktop assertions; browser verified geometry, dashed contour, release state and keyboard interaction"]
+      "evidence": [
+        "qa/reader-directory-tab-implementation/review.md",
+        "qa/reader-directory-tab-implementation/check.log"
+      ],
+      "completedWork": [
+        "Replaced the wide rail with an overlay trapezoid tab in the reading margin",
+        "Matched scrollbar width and aligned the double chevrons to the short-side midpoint",
+        "Passed all 32 tests including 231 desktop assertions; browser verified geometry, dashed contour, release state and keyboard interaction"
+      ]
     },
     {
-      "id": "reader-directory-tab-trapezoid-mockup", "name": "Reader Directory Tab Trapezoid Mockup", "parent": "personal-website", "status": "completed",
-      "dependencies": ["reader-directory-tab-mockup"],
+      "id": "reader-directory-tab-trapezoid-mockup",
+      "name": "Reader Directory Tab Trapezoid Mockup",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "reader-directory-tab-mockup"
+      ],
       "returnPoint": "Personal Website / Review reader directory tab trapezoid mockup",
       "note": "Delivered a successor drawing with one centered row of double chevrons, top flush, no curves and a trapezoid with a 45-degree bottom edge. Browser verified both states. Visual proposal only; previous mockup and application files preserved.",
       "completedOn": "2026-09-25",
-      "evidence": ["qa/reader-directory-tab-trapezoid-mockup.md"]
+      "evidence": [
+        "qa/reader-directory-tab-trapezoid-mockup.md"
+      ]
     },
     {
-      "id": "reader-directory-tab-mockup", "name": "Reader Directory Tab Mockup", "parent": "personal-website", "status": "completed",
-      "dependencies": ["reader-menu-navigation"],
+      "id": "reader-directory-tab-mockup",
+      "name": "Reader Directory Tab Mockup",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "reader-menu-navigation"
+      ],
       "returnPoint": "Personal Website / Review reader directory tab mockup",
       "note": "User corrects the directory toggle: retain the previous thin divider and make the button a vertical browser-shaped tab. Delivered an interactive visual proposal only; implementation awaits user review. Application files and prior work preserved.",
       "completedOn": "2026-09-25",
-      "evidence": ["qa/reader-directory-tab-mockup.md"]
+      "evidence": [
+        "qa/reader-directory-tab-mockup.md"
+      ]
     },
     {
-      "id": "reader-menu-navigation", "name": "Reader Menu and Navigation", "parent": "personal-website", "status": "completed",
-      "dependencies": ["novel-reader-template"],
+      "id": "reader-menu-navigation",
+      "name": "Reader Menu and Navigation",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "novel-reader-template"
+      ],
       "returnPoint": "Personal Website / Review reader menu and navigation",
       "note": "Replaced edge chapter controls with a Notepad-style menu bar, File/View placeholders and wider arrow-only chapter buttons. Used a flush vertical character tab for the directory. Preserved routes, Markdown, default keyboard navigation and overscroll. No Git writes or remote operations.",
       "completedOn": "2026-09-25",
-      "evidence": ["qa/reader-menu-navigation/review.md", "qa/reader-menu-navigation/check.log", "qa/reader-menu-navigation/check-final.log"],
-      "completedWork": ["Implemented menu lifecycle and keyboard handling, 60x28 chapter buttons and a 30px vertical directory tab", "Passed all 32 tests including 231 desktop assertions; repaired the existing wallpaper-byte test to follow current configuration", "Inspected narrow, ordinary and maximized browser layouts, menu behavior, cross-volume navigation and final-line overscroll; restored default viewport"]
+      "evidence": [
+        "qa/reader-menu-navigation/review.md",
+        "qa/reader-menu-navigation/check.log",
+        "qa/reader-menu-navigation/check-final.log"
+      ],
+      "completedWork": [
+        "Implemented menu lifecycle and keyboard handling, 60x28 chapter buttons and a 30px vertical directory tab",
+        "Passed all 32 tests including 231 desktop assertions; repaired the existing wallpaper-byte test to follow current configuration",
+        "Inspected narrow, ordinary and maximized browser layouts, menu behavior, cross-volume navigation and final-line overscroll; restored default viewport"
+      ]
     },
     {
-      "id": "reader-bookmarks-preferences", "name": "Reader Bookmarks and Preferences", "parent": "personal-website", "status": "pending",
-      "dependencies": ["reader-menu-navigation"],
+      "id": "reader-bookmarks-preferences",
+      "name": "Reader Bookmarks and Preferences",
+      "parent": "personal-website",
+      "status": "pending",
+      "dependencies": [
+        "reader-menu-navigation"
+      ],
       "returnPoint": "Personal Website / Define reader bookmarks and preferences",
       "note": "Future scope from the reader feedback: bookmarks and saved progress in File; end-user text preferences in View; customizable chapter shortcuts. These are separate from the existing per-book internal customization task. Current menus remain placeholders."
     },
     {
-      "id": "industrial-wallpaper-preview", "name": "Industrial Wallpaper Preview", "parent": "personal-website", "status": "completed",
-      "dependencies": ["dithered-wallpaper-edges"],
+      "id": "industrial-wallpaper-preview",
+      "name": "Industrial Wallpaper Preview",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "dithered-wallpaper-edges"
+      ],
       "returnPoint": "Personal Website / Review industrial wallpaper",
       "note": "User selects a new wallpaper while deferring reader feedback. Used the unique existing art/backgrounds/industrial_gray.jpg, 3840x2160, copied unchanged into runtime assets. Centered contain, #2d2f2d fill and dithering retained. No Git writes or remote operations.",
       "completedOn": "2026-09-24",
-      "evidence": ["qa/industrial-wallpaper-preview.md"],
-      "completedWork": ["Updated configuration and CSS wallpaper references with unchanged source bytes", "Verified original/runtime/dist SHA-256, unchanged dither module, successful build and HTTP image response", "Inspected the actual browser preview and preserved contain sizing, center position, fill and dithered borders"]
+      "evidence": [
+        "qa/industrial-wallpaper-preview.md"
+      ],
+      "completedWork": [
+        "Updated configuration and CSS wallpaper references with unchanged source bytes",
+        "Verified original/runtime/dist SHA-256, unchanged dither module, successful build and HTTP image response",
+        "Inspected the actual browser preview and preserved contain sizing, center position, fill and dithered borders"
+      ]
     },
     {
-      "id": "local-preview-recovery", "name": "Local Preview Recovery", "parent": "personal-website", "status": "completed",
-      "dependencies": ["novel-reader-template"],
+      "id": "local-preview-recovery",
+      "name": "Local Preview Recovery",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "novel-reader-template"
+      ],
       "returnPoint": "Personal Website / Review novel reader template",
       "note": "Direct loopback connection was refused. Restarted the existing preview as a hidden background Node process; home, chapter route, parser module and chapter Markdown return HTTP 200. Previous process exit reason remains unknown. No application edits, Git writes or remote operations.",
       "completedOn": "2026-09-24",
-      "evidence": ["qa/local-preview-recovery/review.md"]
+      "evidence": [
+        "qa/local-preview-recovery/review.md"
+      ]
     },
     {
-      "id": "novel-reader-template", "name": "Novel Reader Template", "parent": "personal-website", "status": "completed",
-      "dependencies": ["novel-release-contract"],
+      "id": "novel-reader-template",
+      "name": "Novel Reader Template",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": [
+        "novel-release-contract"
+      ],
       "returnPoint": "Personal Website / Review novel reader template",
       "note": "Implemented the requested generic reader and two-volume demo; per-book visual configuration is a later requirement. Preserved desktop navigation semantics. No Git writes or remote operations.",
       "completedOn": "2026-09-24",
-      "evidence": ["qa/novel-reader-template/review.md", "qa/novel-reader-template/check.log", "qa/novel-reader-template/novel-release-v2.zip"],
+      "evidence": [
+        "qa/novel-reader-template/review.md",
+        "qa/novel-reader-template/check.log",
+        "qa/novel-reader-template/novel-release-v2.zip"
+      ],
       "completedWork": [
         "Implemented collapsible book-volume-chapter navigation, README pages, unified book icon, edge/keyboard chapter navigation and scrolling beyond the final line",
         "Generated chapter and volume deep links with continuous desktop history, preserved window state and a two-volume five-chapter Markdown demo",
@@ -93,8 +188,13 @@
       ]
     },
     {
-      "id": "novel-reader-customization", "name": "Novel Reader Customization", "parent": "personal-website", "status": "pending",
-      "dependencies": ["novel-reader-template"],
+      "id": "novel-reader-customization",
+      "name": "Novel Reader Customization",
+      "parent": "personal-website",
+      "status": "pending",
+      "dependencies": [
+        "novel-reader-template"
+      ],
       "returnPoint": "Personal Website / Define novel reader customization",
       "note": "Future user goal: internal per-book typography, spacing and visual treatment, with potential individualized readers. No end-user configuration requested; define the artifact configuration contract before implementing."
     },
@@ -103,11 +203,15 @@
       "name": "Pages Workflow Maintenance",
       "parent": "personal-website",
       "status": "completed",
-      "dependencies": ["source-release-separation"],
+      "dependencies": [
+        "source-release-separation"
+      ],
       "returnPoint": "Personal Website / Review Pages workflow maintenance",
       "note": "User reports successful Pages deployment with Node 20 deprecation warnings and ubuntu-latest migration notices. Official manifests verified; local configuration maintenance complete. A new user-run deployment is the external verification step. No Git writes or remote operations.",
       "completedOn": "2026-09-23",
-      "evidence": ["qa/pages-workflow-maintenance.md"],
+      "evidence": [
+        "qa/pages-workflow-maintenance.md"
+      ],
       "completedWork": [
         "Updated configure-pages to v6, upload-pages-artifact to v5 and deploy-pages to v5; verified Node 24 runtime including the pinned indirect upload action",
         "Pinned both hosted jobs to Ubuntu 24.04 while preserving manual triggering, permissions, build command and dist deployment",

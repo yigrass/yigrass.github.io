@@ -3,64 +3,76 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { spawnSync } from 'node:child_process';
-import { validateNovel } from '../contracts/novel-release-v2/validate.mjs';
-import { assertOwnedDirectory } from '../scripts/lib/files.mjs';
+import { readNovel, receiveReleases } from '../scripts/lib/releases.mjs';
+import { assertOwnedDirectory, withinDirectory } from '../scripts/lib/files.mjs';
+import { novelDocuments } from '../src/shared/novel/model.js';
 const root = fileURLToPath(new URL('../', import.meta.url));
 async function fixture(t, count = 1) {
   const work = await assertOwnedDirectory(root, '.test-work'); await fs.mkdir(work, { recursive: true });
-  const directory = await fs.mkdtemp(path.join(work, 'novel-'));
-  t.after(async () => { if (!directory.startsWith(work + path.sep)) throw Error('Unsafe fixture'); await fs.rm(directory, { recursive: true, force: true }); });
-  for (const dir of ['chapters', 'images']) await fs.mkdir(path.join(directory, dir));
-  await fs.copyFile(path.join(root, 'assets/pixel-ui/v1.4.0/sword.png'), path.join(directory, 'images/icon.png'));
+  const site = await fs.mkdtemp(path.join(work, 'novel-'));
+  t.after(async () => { if (!site.startsWith(work + path.sep)) throw Error('Unsafe fixture'); await fs.rm(site, { recursive: true, force: true }); });
+  const directory = path.join(site, 'releases/book'); await fs.mkdir(path.join(directory, 'chapters'), { recursive: true });
   await fs.writeFile(path.join(directory, 'README.md'), '# 整书简介');
   await fs.writeFile(path.join(directory, 'volume.md'), '# 卷简介');
-  const manifest = { schemaVersion: 2, kind: 'novel', id: 'test-book', title: '测试小说', status: 'ongoing', icon: 'images/icon.png', readme: { file: 'README.md' }, volumes: [{ id: 'volume-one', title: '第一卷', readme: { file: 'volume.md' }, chapters: [] }] };
-  async function add(number) { const chapter = { id: `chapter-${number}`, title: `第${number}章`, file: `chapters/chapter-${number}.md` }; manifest.volumes[0].chapters.push(chapter); await fs.writeFile(path.join(directory, chapter.file), `# ${chapter.title}\n\n第一段。\n\n第二段。`); }
+  const manifest = { schemaVersion: 3, kind: 'novel', id: 'producer-book', icon: 'icon.png', readme: { file: 'README.md' }, volumes: [{ id: 'case-greedy', readme: { file: 'volume.md' }, chapters: [] }] };
+  async function add(number) { const chapter = { id: `ep-${number}`, file: `chapters/text-${number}.md` }; manifest.volumes[0].chapters.push(chapter); await fs.writeFile(path.join(directory, chapter.file), `# 第${number}章\n\n当前正文。`); }
   const save = () => fs.writeFile(path.join(directory, 'release.json'), JSON.stringify(manifest));
+  const receive = async () => (await receiveReleases(site, [{ category: 'novel', release: 'releases/book/' }]))[0];
   for (let index = 1; index <= count; index++) await add(index);
-  await save(); return { directory, manifest, add, save, first: manifest.volumes[0].chapters[0] };
+  await save(); return { site, directory, manifest, add, save, receive, first: manifest.volumes[0].chapters[0] };
 }
-test('current release supports 15 to 16 chapters and source revisions without retaining old files', async t => {
-  const f = await fixture(t, 15), before = await validateNovel(f.directory);
+
+test('single current manifest supports chapter additions and source replacements with byte receipts', async t => {
+  const f = await fixture(t, 15), before = await f.receive();
   await f.add(16); await f.save();
-  const appended = await validateNovel(f.directory); assert.equal(appended.manifest.volumes[0].chapters.length, 16);
+  const appended = await f.receive(); assert.equal(appended.manifest.volumes[0].chapters.length, 16);
   for (const file of before.files.filter(file => file.path !== 'release.json')) assert.equal(appended.files.find(item => item.path === file.path).sha256, file.sha256);
-  await fs.writeFile(path.join(f.directory, 'chapters/chapter-5.md'), '源头重新导出的最终文本。');
-  const revised = await validateNovel(f.directory); assert.equal(revised.files.length, 20); assert.notEqual(revised.digest, appended.digest);
+  await fs.writeFile(path.join(f.directory, 'chapters/text-5.md'), '# 改过的标题\n\n源头重新导出的最终文本。');
+  const revised = await f.receive(); assert.equal(revised.files.length, 19); assert.notEqual(revised.digest, appended.digest);
+  assert.equal(revised.manifest.volumes[0].chapters[4].title, '改过的标题');
 });
-for (const [name, mutate, message] of [
-  ['missing chapter', async f => fs.unlink(path.join(f.directory, f.first.file)), /ENOENT/],
-  ['duplicate chapter route', async f => { f.manifest.volumes[0].chapters.push({ ...f.first }); await f.save(); }, /Duplicate document route/],
-  ['volume chapter route collision', async f => { f.first.id = 'volume-one'; await f.save(); }, /Duplicate document route/],
-  ['duplicate README file', async f => { f.manifest.readme.file = 'volume.md'; await f.save(); }, /Duplicate document file/],
-  ['missing book README', async f => { delete f.manifest.readme; await f.save(); }, /missing readme/],
-  ['missing volume README', async f => { delete f.manifest.volumes[0].readme; await f.save(); }, /missing readme/],
-  ['private draft', async f => fs.writeFile(path.join(f.directory, 'draft.md'), 'not public'), /Unreferenced/],
-  ['path traversal', async f => { f.first.file = 'chapters/sub/../../secret.md'; await f.save(); }, /Unsafe package path/],
-  ['TXT chapter', async f => { f.first.file = 'chapters/first.txt'; await f.save(); }, /invalid format/],
-  ['TXT README', async f => { f.manifest.readme.file = 'README.txt'; await f.save(); }, /invalid format/],
-  ['legacy schema', async f => { f.manifest.schemaVersion = 1; await f.save(); }, /expected 2/],
-  ['unsupported configuration', async f => { f.manifest.reader = {}; await f.save(); }, /unknown field/],
-  ['no volumes', async f => { f.manifest.volumes = []; await f.save(); }, /at least 1/],
-  ['no chapters', async f => { f.manifest.volumes[0].chapters = []; await f.save(); }, /at least 1/],
-  ['empty Markdown', async f => fs.writeFile(path.join(f.directory, f.first.file), ' \r\n'), /Empty Markdown/],
-  ['invalid UTF-8', async f => fs.writeFile(path.join(f.directory, f.first.file), Buffer.from([0xc3, 0x28])), /Invalid UTF-8/],
-  ['unpublished document link', async f => fs.writeFile(path.join(f.directory, f.first.file), '[草稿](chapters/draft.md)'), /published Markdown/],
-  ['false PNG icon', async f => fs.writeFile(path.join(f.directory, 'images/icon.png'), 'fake'), /signature/]
-]) test(`novel v2 rejects ${name}`, async t => { const f = await fixture(t); await mutate(f); await assert.rejects(validateNovel(f.directory), message); });
-test('Markdown images resolve from package root; published document links and reused images validate', async t => {
+
+test('producer IDs, array order and first Markdown H1 are received without inference', async t => {
+  const f = await fixture(t, 2);
+  f.manifest.title = '不能覆盖 H1'; f.first.id = 'prologue'; f.manifest.volumes[0].chapters.reverse();
+  f.manifest.volumes.push({ id: 'case-01', title: '不能覆盖 H1', readme: { file: 'volume.md' }, chapters: [{ ...f.first }] });
+  await f.save();
+  const { manifest } = await f.receive();
+  assert.equal(manifest.id, 'producer-book'); assert.equal(manifest.title, '整书简介');
+  assert.deepEqual(novelDocuments(manifest).map(item => item.id), [null, 'case-greedy', 'case-greedy/ep-2', 'case-greedy/prologue', 'case-01', 'case-01/prologue']);
+  assert.deepEqual(manifest.volumes.map(volume => volume.title), ['卷简介', '卷简介']);
+  assert.equal(manifest.volumes[0].chapters[0].file, 'chapters/text-2.md');
+});
+
+test('receiver does not validate producer metadata, naming, duplicates, unused files or prose', async t => {
   const f = await fixture(t);
-  await fs.writeFile(path.join(f.directory, f.first.file), '# 图\n\n![宝剑](images/icon.png)\n\n[书](README.md)');
-  assert.equal((await validateNovel(f.directory)).files.length, 5);
-  await fs.writeFile(path.join(f.directory, f.first.file), '![图](images/missing.png)');
-  await assert.rejects(validateNovel(f.directory), /ENOENT/);
+  f.manifest.extra = { producer: true }; f.first.id = '没有数字';
+  f.manifest.volumes[0].chapters.push({ ...f.first });
+  await fs.writeFile(path.join(f.directory, f.first.file), '没有 H1 的正文');
+  await fs.writeFile(path.join(f.directory, 'extra.md'), '也会随成品复制'); await f.save();
+  const result = await f.receive();
+  assert.equal(result.manifest.volumes[0].chapters.length, 2);
+  assert.equal(result.manifest.volumes[0].chapters[0].id, '没有数字');
+  assert.equal(result.manifest.volumes[0].chapters[0].title, '');
+  assert.deepEqual(result.manifest.extra, { producer: true });
+  assert.ok(result.files.find(file => file.path === 'extra.md'));
 });
-test('standalone v2 contract works outside website source; bundled two-volume five-chapter example validates', async t => {
-  const f = await fixture(t), tool = path.join(f.directory, 'contract');
-  await fs.cp(path.join(root, 'contracts/novel-release-v2'), tool, { recursive: true });
-  const result = spawnSync(process.execPath, [path.join(tool, 'validate.mjs'), path.join(tool, 'example'), 'example-book'], { encoding: 'utf8' });
-  assert.equal(result.status, 0, result.stderr);
-  const report = JSON.parse(result.stdout); assert.equal(report.volumes, 2); assert.equal(report.chapters, 5); assert.equal(report.files.length, 10);
-  await assert.rejects(validateNovel(path.join(tool, 'example'), 'wrong-book'), /Expected novel id/);
+
+test('ordinary read failures and filesystem escapes still stop receiving', async t => {
+  const f = await fixture(t);
+  assert.throws(() => withinDirectory(f.directory, '../outside.md'), /escapes directory/);
+  f.first.file = '../outside.md'; await f.save(); await assert.rejects(f.receive(), /escapes directory/);
+  f.first.file = 'absent.md'; await f.save(); await assert.rejects(f.receive(), /ENOENT/);
+  await fs.writeFile(path.join(f.directory, 'release.json'), '{invalid'); await assert.rejects(f.receive(), SyntaxError);
+});
+
+test('portable v3 contract example carries two volumes, duplicate scoped IDs and Markdown only', async () => {
+  const directory = path.join(root, 'contracts/novel-release-v3/example');
+  const manifest = await readNovel(directory), documents = novelDocuments(manifest);
+  assert.equal(manifest.schemaVersion, 3); assert.equal(manifest.volumes.length, 2);
+  assert.equal(documents.filter(item => item.kind === 'chapter').length, 5);
+  assert.ok(documents.some(item => item.id === 'case-01/ep-05')); assert.ok(documents.some(item => item.id === 'case-02/ep-05'));
+  for (const item of documents) assert.ok(item.file.endsWith('.md'));
+  const schema = JSON.parse(await fs.readFile(path.join(directory, '../release.schema.json'), 'utf8'));
+  assert.equal(schema.properties.schemaVersion.const, 3);
 });
