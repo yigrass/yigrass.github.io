@@ -11,7 +11,7 @@ async function fixture(t, count = 1) {
   const work = await assertOwnedDirectory(root, '.test-work'); await fs.mkdir(work, { recursive: true });
   const site = await fs.mkdtemp(path.join(work, 'novel-'));
   t.after(async () => { if (!site.startsWith(work + path.sep)) throw Error('Unsafe fixture'); await fs.rm(site, { recursive: true, force: true }); });
-  const directory = path.join(site, 'releases/book');
+  const directory = path.join(site, 'content/book');
   await fs.mkdir(path.join(directory, 'text/case-greedy'), { recursive: true });
   await fs.mkdir(path.join(directory, 'images/book'), { recursive: true });
   await fs.copyFile(path.join(root, 'contracts/novel-release-v4/example/images/book/sword.png'), path.join(directory, 'images/book/icon.png'));
@@ -20,7 +20,7 @@ async function fixture(t, count = 1) {
   const manifest = { schemaVersion: 4, kind: 'novel', id: 'producer-book', icon: 'images/book/icon.png', volumes: [{ id: 'case-greedy', chapters: [] }] };
   async function add(number) { const chapter = { id: number === 1 ? 'prologue' : `ep-${number}` }; manifest.volumes[0].chapters.push(chapter); await fs.writeFile(path.join(directory, 'text/case-greedy', chapter.id + '.md'), `# 第${number}章\n\n当前正文。`); }
   const save = () => fs.writeFile(path.join(directory, 'release.json'), JSON.stringify(manifest));
-  const receive = async () => (await receiveReleases(site, [{ category: 'novel', release: 'releases/book/' }]))[0];
+  const receive = async () => (await receiveReleases(site, [{ category: 'novel', release: 'content/book/' }]))[0];
   for (let index = 1; index <= count; index++) await add(index);
   await save(); return { site, directory, manifest, add, save, receive, first: manifest.volumes[0].chapters[0] };
 }

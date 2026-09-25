@@ -25,7 +25,7 @@ npm.cmd run build
 | --- | --- | --- |
 | `src/` | 网站 HTML 模板、桌面、系统应用、路由、主题和通用作品展示器 | Git 管理；代码进入 `dist/app/` |
 | `catalog/projects.json` | 所属磁盘、成品位置及非小说作品的显示信息 | Git 管理；构建派生完整目录 |
-| `releases/<project-id>/` | 从独立项目接收的完整当前成品 | Git 管理；构建按目录接入 |
+| `content/<project-id>/` | 从独立项目接收的完整当前成品 | Git 管理；构建按目录接入 |
 | `assets/` | 网站自身的壁纸、系统图标等素材 | Git 管理；构建复制 |
 | `contracts/novel-release-v4/` | 可带到小说项目使用的成品约定、生产者用 Schema 和示例 | Git 管理；不参与构建、不发布 |
 | `node_modules/` | 根据锁文件安装的开发依赖 | 忽略；只将阅读器所需代码打包进 dist，并保留许可证 |
@@ -33,7 +33,7 @@ npm.cmd run build
 | `dist/` | 自动生成的完整静态网站 | 忽略；发布此目录中的内容 |
 | `scripts/`、`tests/`、`docs/`、`qa/` | 工具、当前检查、维护说明和历史验收记录 | Git 管理；不发布到网站 |
 
-完整结构和代码职责见 [Architecture](docs/ARCHITECTURE.md)。[初始目录计划](docs/SOURCE_LAYOUT_PLAN.md) 保留当时讨论，其 `src/projects/`、根 `content/` 设计已被后续明确的独立成品接入边界取代。实际结构以 Architecture 和当前源码为准。
+完整结构和代码职责见 [Architecture](docs/ARCHITECTURE.md)。[初始目录计划](docs/SOURCE_LAYOUT_PLAN.md) 保留当时讨论，其中按作品设置开发源码目录的方案已被后续明确的独立成品接入边界取代；当前 content/ 统一接收完整作品成品。实际结构以 Architecture 和当前源码为准。
 
 `art/` 已停止 Git 跟踪，本地内容保留；原稿需要另行备份。忽略规则不会清除既有 Git 历史。网站构建不读取 art，不运行 Aseprite，也不访问相邻作品的开发目录。
 
@@ -41,11 +41,11 @@ npm.cmd run build
 
 `src/config/site.js` 配置个人资料、菜单文字、磁盘、默认设置和壁纸。`src/themes/presets.js` 是主题颜色的唯一编辑入口，公共样式在 `src/styles/desktop.css`。系统应用分别位于 `src/apps/my-computer/`、`file-explorer/`、`system-settings/`，通用作品展示器位于 `src/apps/project-viewer/`。
 
-作品登记在 `catalog/projects.json`。内部 `category` 取 novel、game 或 utility，用来选择接入类型，不出现在公开地址中。小说只登记 category、driveId 和 release；书标识由成品清单提供，书名从整书 README 的 H1 读取，磁盘显示时加上 .txt。非小说作品继续在目录登记 id、完整显示文件名 title、所属磁盘 driveId、地址段 slug 和成品位置 release。release 指向 releases 下的当前成品目录。外部链接用 url 代替 slug 和 release，在新标签页打开。
+作品登记在 `catalog/projects.json`。内部 `category` 取 novel、game 或 utility，用来选择接入类型，不出现在公开地址中。小说只登记 category、driveId 和 release；书标识由成品清单提供，书名从整书 README 的 H1 读取，磁盘显示时加上 .txt。非小说作品继续在目录登记 id、完整显示文件名 title、所属磁盘 driveId、地址段 slug 和成品位置 release。release 指向 content 下的当前成品目录。外部链接用 url 代替 slug 和 release，在新标签页打开。
 
 当前 A 盘的桑海志怪.txt 是两卷五章的虚构演示作品，第二章为长文本，另有整书和两卷的 README；使用生产者提供的 sh-tales、case-01/case-02 和卷内章节标识。Game-B.exe 仍是“施工中。”网页成品演示。新增作品时提供成品并登记目录，构建自动生成桌面入口，不手写新的桌面 HTML，也不把其他项目的开发源码放进 src。
 
-小说成品规则见 [Novel Release Contract v4](contracts/novel-release-v4/README.md)。源头项目按约定导出自己的 dist，成品根目录只有 text/、images/、README.md 和 release.json；将其内容完整接入 releases 下的对应目录。正文和图片按卷／章分层，各级 README 按固定位置读取，不在清单重复登记路径，数组顺序独立于文件夹排序。追加、修订、撤下均在源头处理后重新导出。可以先删除网站中该小说的成品目录再整目录复制，或使用自行编写的替换工具；不能留下旧版本多出的文件。网站不提供小说校验器或自动导入命令，标识、排序、H1 标题及内容正确性均由生产者负责。旧合同只保留历史交付 ZIP，不再参与运行。
+小说成品规则见 [Novel Release Contract v4](contracts/novel-release-v4/README.md)。源头项目按约定导出自己的 dist，成品根目录只有 text/、images/、README.md 和 release.json；将其内容完整接入 content 下的对应目录。正文和图片按卷／章分层，各级 README 按固定位置读取，不在清单重复登记路径，数组顺序独立于文件夹排序。追加、修订、撤下均在源头处理后重新导出。可以先删除网站中该小说的成品目录再整目录复制，或使用自行编写的替换工具；不能留下旧版本多出的文件。网站不提供小说校验器或自动导入命令，标识、排序、H1 标题及内容正确性均由生产者负责。旧合同只保留历史交付 ZIP，不再参与运行。
 
 通用阅读器采用目录和正文双栏，目录通过贴在细分隔线右侧、顶部齐平的 20px 梯形页签收起或展开，窄屏默认收起。目录默认宽 220px，可拖动细分隔线调整；两栏最小值和分隔线宽度统一定义在 src/apps/project-viewer/reader-layout.js。关闭后重开恢复默认宽度，最小化不重置。目录长标题单行省略，按钮、选中高亮及悬停虚线随内容收紧。书名和卷名直接打开对应 README，加减号单独折叠；README 不再作为文件行出现。作品图标来自成品，在 A 盘、标题栏、任务栏和目录书名处共用；当前卷别和章节图标集中在 novel.js 的 treeIcons，等待后续替换。
 

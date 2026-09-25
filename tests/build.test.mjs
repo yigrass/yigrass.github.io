@@ -24,7 +24,7 @@ test('dist serves all deep entries, module imports and release bytes; maintenanc
   }
   for (const route of ['src/index.html', 'art/pixel-ui/README.md', 'qa/task-transitions.jsonl', 'scripts/build.mjs', 'contracts/novel-release-v4/README.md', 'project-task-tree.json', '.git/config', 'novels/story-a/', 'games/game-b/', '../README.md', '%2e%2e%5cREADME.md']) assert.equal((await fetch(new URL(route, base))).status, 404, route);
   const main = await fetch(new URL('app/main.js', base)); assert.match(main.headers.get('content-type'), /javascript/);
-  const text = await fetch(new URL('releases/sh-tales/text/case-01/ep-01.md', base)); assert.match(await text.text(), /第一章 · 借火/);
+  const text = await fetch(new URL('content/sh-tales/text/case-01/ep-01.md', base)); assert.match(await text.text(), /第一章 · 借火/);
   assert.ok(result.routes.includes('file-explorer/a-floppy-disk/sh-tales/case-01/ep-02/'));
   assert.ok(result.routes.includes('file-explorer/a-floppy-disk/sh-tales/case-02/'));
   assert.ok(result.routes.includes('file-explorer/a-floppy-disk/sh-tales/case-01/ep-05/'));
@@ -32,9 +32,9 @@ test('dist serves all deep entries, module imports and release bytes; maintenanc
   assert.equal((await fetch(new URL('licenses/markdown-it/LICENSE', base))).status, 200);
   const index = await (await fetch(new URL('catalog/projects.json', base))).json();
   assert.equal(index[0].reader.documents.length, 8);
-  assert.equal(index[0].iconPath, 'releases/sh-tales/images/book/sword.png');
+  assert.equal(index[0].iconPath, 'content/sh-tales/images/book/sword.png');
   assert.equal(index[0].reader.title, '桑海志怪');
-  assert.deepEqual((await fs.readdir(path.join(projectRoot, 'dist/releases/sh-tales'))).sort(), ['README.md', 'images', 'release.json', 'text']);
+  assert.deepEqual((await fs.readdir(path.join(projectRoot, 'dist/content/sh-tales'))).sort(), ['README.md', 'images', 'release.json', 'text']);
   assert.equal(index[0].reader.volumes[0].readme.file, 'text/case-01/README.md');
   assert.equal(index[0].reader.volumes[1].chapters[0].file, 'text/case-02/prologue.md');
   assert.equal((await fetch(new URL('file-explorer', base), { redirect: 'manual' })).status, 301);
@@ -45,13 +45,13 @@ test('clean input copy builds without art or other projects; invalid release pre
   const work = await assertOwnedDirectory(projectRoot, '.test-work'); await fs.mkdir(work, { recursive: true });
   const fixture = await fs.mkdtemp(path.join(work, 'site-'));
   t.after(async () => { if (!fixture.startsWith(work + path.sep)) throw Error('Unsafe fixture'); await fs.rm(fixture, { recursive: true, force: true }); });
-  for (const directory of ['src', 'catalog', 'releases', 'assets', 'scripts', 'node_modules']) await fs.cp(path.join(projectRoot, directory), path.join(fixture, directory), { recursive: true });
+  for (const directory of ['src', 'catalog', 'content', 'assets', 'scripts', 'node_modules']) await fs.cp(path.join(projectRoot, directory), path.join(fixture, directory), { recursive: true });
   await fs.copyFile(path.join(projectRoot, 'package.json'), path.join(fixture, 'package.json'));
   const run = () => spawnSync(process.execPath, ['scripts/build.mjs'], { cwd: fixture, encoding: 'utf8' });
   assert.equal(run().status, 0);
   await assert.rejects(fs.access(path.join(fixture, 'art')));
   const entry = path.join(fixture, 'dist/index.html'), before = await fs.readFile(entry);
-  await fs.unlink(path.join(fixture, 'releases/sh-tales/text/case-01/ep-01.md'));
+  await fs.unlink(path.join(fixture, 'content/sh-tales/text/case-01/ep-01.md'));
   assert.notEqual(run().status, 0);
   assert.deepEqual(await fs.readFile(entry), before);
   await assert.rejects(assertOwnedDirectory(fixture, '../art'), /Unsafe/);

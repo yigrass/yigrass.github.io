@@ -45,7 +45,7 @@ app.drive("g"); app.click(app.entry("Game-B.exe"));
 await app.ready();
 const game = app.win("game-b");
 check(app.location.pathname === paths.game && app.win("sh-tales") === story && !story.hidden, "Game and story coexist in the same desktop");
-check(game.querySelector(".project-frame").src === "https://example.test/releases/game-b/index.html", "Game loads the standalone received web release");
+check(game.querySelector(".project-frame").src === "https://example.test/content/game-b/index.html", "Game loads the standalone received web release");
 count = app.history.length;
 app.click(app.tab("project-sh-tales")); app.click(app.tab("project-game-b"));
 check(app.history.length === count && app.location.pathname === paths.game && app.win("game-b") === game, "Window focus replaces URL without adding history or reloading");

@@ -21,7 +21,7 @@ src/
   shared/novel/               小说文档索引、markdown-it 配置及 DOM 渲染适配
   styles/desktop.css          主题变量、桌面和应用样式
 catalog/projects.json         作品在网站中的身份与接入位置
-releases/<id>/                独立作品的当前发布成品
+content/<id>/                 独立作品的当前发布成品
 assets/                      网站自己的上线图片
 contracts/novel-release-v4/   可独立复制的小说成品合同、生产者 Schema 与示例
 scripts/                     构建、预览、检查、素材工具
@@ -58,7 +58,7 @@ Markdown 语法由第三方 markdown-it 提供；src/shared/novel/parser.js 是�
 
 build.mjs 读取网站源码、素材、目录登记和当前成品，按原始标识与顺序派生索引；不验证小说编号、查重、猜测排序或检查正文。输入读取完成后写入项目内 .dist-build 暂存目录，检查本站代码与样式引用后替换 dist。输入读取或构建失败保留旧的有效 dist。生成目录必须是项目的直接子目录，不接受目录链接；输入中的符号链接和越界文件路径会被拒绝。
 
-源码输出到 dist/app，素材到 dist/assets，派生目录和成品保留在 dist/catalog、dist/releases。首页及各应用、磁盘、作品、卷 README 和卷内章节入口由同一模板生成。contracts 完全不参与运行构建；art、docs、qa、tests、scripts、任务控制及 Git 元数据不发布。node_modules 根据锁文件安装，只有解析器所需依赖被打包及附带许可证，不整体发布。
+源码输出到 dist/app，素材到 dist/assets，派生目录和成品保留在 dist/catalog、dist/content。首页及各应用、磁盘、作品、卷 README 和卷内章节入口由同一模板生成。contracts 完全不参与运行构建；art、docs、qa、tests、scripts、任务控制及 Git 元数据不发布。node_modules 根据锁文件安装，只有解析器所需依赖被打包及附带许可证，不整体发布。
 
 dev.mjs 仅监听 127.0.0.1，并只提供 dist 内容。修改约定输入时重新构建；没有开发服务器专用的深层路由回退，预览直接使用实际静态入口，以便尽早发现静态部署问题。
 

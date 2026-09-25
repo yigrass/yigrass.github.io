@@ -2,7 +2,7 @@
   {
     "category": "novel",
     "driveId": "a",
-    "release": "releases/sh-tales/"
+    "release": "content/sh-tales/"
   },
   {
     "id": "game-b",
@@ -10,6 +10,6 @@
     "category": "game",
     "driveId": "g",
     "slug": "game-b",
-    "release": "releases/game-b/"
+    "release": "content/game-b/"
   }
 ]

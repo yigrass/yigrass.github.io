@@ -1,0 +1,35 @@
+{
+  "receivedFiles": 13,
+  "sourceAndPublishedBytesUnchanged": true,
+  "oldDirectoryAbsent": true,
+  "previewChecks": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/sh-tales/case-01/ep-02/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/g-cd-rom/game-b/",
+      "status": 200
+    },
+    {
+      "path": "/content/sh-tales/text/case-01/ep-02.md",
+      "status": 200
+    },
+    {
+      "path": "/content/sh-tales/images/book/sword.png",
+      "status": 200
+    },
+    {
+      "path": "/content/game-b/index.html",
+      "status": 200
+    },
+    {
+      "path": "/content/game-b/assets/icon.png",
+      "status": 200
+    }
+  ]
+}

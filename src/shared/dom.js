@@ -15,7 +15,7 @@ export const safeURL = (value) => {
 export const announce = (text) => { $("#announcer").textContent = text; };
 export const pixelIcon = (name, className = "") => {
   const icon = create("img", `pixel-icon ${className}`.trim());
-  icon.src = name.startsWith('releases/') ? name : `assets/pixel-ui/${name}.png`;
+  icon.src = name.startsWith('content/') ? name : `assets/pixel-ui/${name}.png`;
   icon.alt = "";
   icon.width = 16;
   icon.height = 16;

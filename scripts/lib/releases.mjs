@@ -17,7 +17,7 @@ export async function receiveReleases(root, projects) {
   const results = [];
   for (const project of projects) {
     if (!project.release) continue;
-    const releaseRoot = path.join(root, 'releases');
+    const releaseRoot = path.join(root, 'content');
     const directory = withinDirectory(releaseRoot, path.relative(releaseRoot, withinDirectory(root, project.release)));
     const files = await listFiles(directory);
     const manifest = project.category === 'novel' ? await readNovel(directory) : JSON.parse(await fs.readFile(path.join(directory, 'release.json'), 'utf8'));

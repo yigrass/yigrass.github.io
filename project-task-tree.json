@@ -13,14 +13,30 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "obsolete-file-cleanup-completed",
+    "deliveryState": "received-content-directory-rename-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review cleanup and received-content naming",
+    "nextAction": "Review received content directory",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-25",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "received-content-directory-rename",
+      "name": "Received Content Directory Rename",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": ["obsolete-file-cleanup"],
+      "returnPoint": "Personal Website / Review received content directory",
+      "note": "User selected content as the received-artifact directory name. Move releases to content without changing artifact bytes; update current paths, receiver boundary, icons, dev watcher, tests and maintenance/contract documentation. Preserve desktop page routes, release manifest format, local art and immutable historical QA. No compatibility alias, Git writes or remote operations.",
+      "completedOn": "2026-09-25",
+      "evidence": ["qa/received-content-directory-rename/review.md", "qa/received-content-directory-rename/check.log", "qa/received-content-directory-rename/before-files.json", "qa/received-content-directory-rename/verification.json"],
+      "completedWork": [
+        "Moved received artifacts to content and updated current runtime, build, dev, test and documentation references",
+        "Verified all 13 received files retain their original bytes in source and dist; preserved desktop routes and manifest format",
+        "Passed 20 tests including 231 desktop assertions and seven local preview HTTP checks; restarted content watcher"
+      ]
+    },
     {
       "id": "obsolete-file-cleanup",
       "name": "Obsolete File Cleanup",
