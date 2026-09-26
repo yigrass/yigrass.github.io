@@ -1,0 +1,27 @@
+Built dist: 24 desktop pages, 3 received releases.
+(node:2880) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "project": {
+    "id": "cacophony",
+    "title": "杂音",
+    "volumeCount": 1,
+    "chapterCount": 5,
+    "status": "ongoing"
+  },
+  "icon": {
+    "file": "images/book/mew-icon.png",
+    "width": 40,
+    "height": 40
+  },
+  "registeredInLiveCatalog": false,
+  "isolatedBuild": {
+    "passed": true,
+    "desktopPages": 24,
+    "receivedProjects": 3,
+    "candidatePages": 7,
+    "copiedFilesVerified": 9
+  },
+  "readerDocumentsChecked": 7,
+  "contentAndLiveCatalogUnchanged": true
+}

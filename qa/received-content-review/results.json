@@ -1,0 +1,193 @@
+{
+  "project": {
+    "id": "cacophony",
+    "title": "杂音",
+    "volumeCount": 1,
+    "chapterCount": 5,
+    "status": "ongoing"
+  },
+  "rootEntries": [
+    "README.md",
+    "images",
+    "release.json",
+    "text"
+  ],
+  "icon": {
+    "file": "images/book/mew-icon.png",
+    "width": 40,
+    "height": 40
+  },
+  "registeredInLiveCatalog": false,
+  "proposedCatalogEntry": {
+    "category": "novel",
+    "driveId": "a",
+    "release": "content/cacophony/"
+  },
+  "received": {
+    "files": [
+      {
+        "path": "README.md",
+        "bytes": 725,
+        "sha256": "60f4c7cef202125bf4cfcd2d4a747cc5956df692155641550ee021b9a5c0ade9"
+      },
+      {
+        "path": "images/book/mew-icon.png",
+        "bytes": 4107,
+        "sha256": "76ef22342378ebc3db30e12e2a084a978118a259551a4d55105da2c16b6bd036"
+      },
+      {
+        "path": "release.json",
+        "bytes": 450,
+        "sha256": "082e8c89ecf21dbb875c8aaaaef1a32dd6df2eb83f146595994609829dbc738a"
+      },
+      {
+        "path": "text/jht/00-mist.md",
+        "bytes": 9070,
+        "sha256": "6294e9f73022a5b410c01fd1f7889e7e9a696787f907e8c30083ba8fc35a9d6a"
+      },
+      {
+        "path": "text/jht/01-gust.md",
+        "bytes": 26800,
+        "sha256": "36380fae97b6efcf6edf94a1fc78dfcb65c6be463d38843a10a52fd5cf6950f8"
+      },
+      {
+        "path": "text/jht/02-bubble.md",
+        "bytes": 23032,
+        "sha256": "d038d184e4654316562aa4cc550e96ec5a6e4618ce3028631b0723d1f0e9f046"
+      },
+      {
+        "path": "text/jht/03-block.md",
+        "bytes": 25788,
+        "sha256": "95c84938f4181e0f4340418882f9b6af8753fef73b89169dd225282bfa33681c"
+      },
+      {
+        "path": "text/jht/04-water-pledge.md",
+        "bytes": 26421,
+        "sha256": "5a2155cc052a131862c2a16e70f277396c7f26cc3f254e53295dc7865207180b"
+      },
+      {
+        "path": "text/jht/README.md",
+        "bytes": 939,
+        "sha256": "e5094bded6be2217762b1c3b61316f4672788841892967252ea5efed201ee758"
+      }
+    ],
+    "digest": "d42b62fa9c16632ea5ceee3a97aa64da0447c7047a7be4e5ca018bdecc6b14c5"
+  },
+  "documents": [
+    {
+      "id": null,
+      "title": "杂音",
+      "file": "README.md",
+      "bytes": 725,
+      "paragraphs": 7,
+      "route": "file-explorer/a-floppy-disk/cacophony/"
+    },
+    {
+      "id": "jht",
+      "title": "露力丽的歌",
+      "file": "text/jht/README.md",
+      "bytes": 939,
+      "paragraphs": 12,
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/"
+    },
+    {
+      "id": "jht/00-mist",
+      "title": "JHT-00-白雾",
+      "file": "text/jht/00-mist.md",
+      "bytes": 9070,
+      "paragraphs": 69,
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/00-mist/"
+    },
+    {
+      "id": "jht/01-gust",
+      "title": "JHT-01-起风",
+      "file": "text/jht/01-gust.md",
+      "bytes": 26800,
+      "paragraphs": 306,
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/01-gust/"
+    },
+    {
+      "id": "jht/02-bubble",
+      "title": "JHT-02-泡沫",
+      "file": "text/jht/02-bubble.md",
+      "bytes": 23032,
+      "paragraphs": 235,
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/02-bubble/"
+    },
+    {
+      "id": "jht/03-block",
+      "title": "JHT-03-挡路",
+      "file": "text/jht/03-block.md",
+      "bytes": 25788,
+      "paragraphs": 287,
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/03-block/"
+    },
+    {
+      "id": "jht/04-water-pledge",
+      "title": "JHT-04-水之誓约",
+      "file": "text/jht/04-water-pledge.md",
+      "bytes": 26421,
+      "paragraphs": 325,
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/04-water-pledge/"
+    }
+  ],
+  "isolatedBuild": {
+    "passed": true,
+    "desktopPages": 24,
+    "receivedProjects": 3,
+    "candidatePages": 7,
+    "copiedFilesVerified": 9
+  },
+  "readerChecks": [
+    {
+      "route": "file-explorer/a-floppy-disk/cacophony/",
+      "titleLoaded": true,
+      "paragraphsRendered": 7,
+      "iconPathCorrect": true,
+      "manifestOrderPreserved": true
+    },
+    {
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/",
+      "titleLoaded": true,
+      "paragraphsRendered": 12,
+      "iconPathCorrect": true,
+      "manifestOrderPreserved": true
+    },
+    {
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/00-mist/",
+      "titleLoaded": true,
+      "paragraphsRendered": 69,
+      "iconPathCorrect": true,
+      "manifestOrderPreserved": true
+    },
+    {
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/01-gust/",
+      "titleLoaded": true,
+      "paragraphsRendered": 306,
+      "iconPathCorrect": true,
+      "manifestOrderPreserved": true
+    },
+    {
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/02-bubble/",
+      "titleLoaded": true,
+      "paragraphsRendered": 235,
+      "iconPathCorrect": true,
+      "manifestOrderPreserved": true
+    },
+    {
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/03-block/",
+      "titleLoaded": true,
+      "paragraphsRendered": 287,
+      "iconPathCorrect": true,
+      "manifestOrderPreserved": true
+    },
+    {
+      "route": "file-explorer/a-floppy-disk/cacophony/jht/04-water-pledge/",
+      "titleLoaded": true,
+      "paragraphsRendered": 325,
+      "iconPathCorrect": true,
+      "manifestOrderPreserved": true
+    }
+  ],
+  "contentAndLiveCatalogUnchanged": true
+}

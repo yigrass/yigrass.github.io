@@ -43,7 +43,7 @@ npm.cmd run build
 
 作品登记在 `catalog/projects.json`。内部 `category` 取 novel、game 或 utility，用来选择接入类型，不出现在公开地址中。小说只登记 category、driveId 和 release；书标识由成品清单提供，书名从整书 README 的 H1 读取，磁盘显示时加上 .txt。非小说作品继续在目录登记 id、完整显示文件名 title、所属磁盘 driveId、地址段 slug 和成品位置 release。release 指向 content 下的当前成品目录。外部链接用 url 代替 slug 和 release，在新标签页打开。
 
-当前 A 盘的桑海志怪.txt 是两卷五章的虚构演示作品，第二章为长文本，另有整书和两卷的 README；使用生产者提供的 sh-tales、case-01/case-02 和卷内章节标识。Game-B.exe 仍是“施工中。”网页成品演示。新增作品时提供成品并登记目录，构建自动生成桌面入口，不手写新的桌面 HTML，也不把其他项目的开发源码放进 src。
+当前 A 盘已接入正式作品杂音.txt，成品位于 content/cacophony/：书标识为 cacophony，首卷 jht 的展示标题为《露力丽的歌》，现有五章，使用成品提供的梦幻图标。桑海志怪.txt 保留为两卷五章的虚构演示作品，第二章为长文本，另有整书和两卷的 README；使用生产者提供的 sh-tales、case-01/case-02 和卷内章节标识。Game-B.exe 仍是“施工中。”网页成品演示。新增作品时提供成品并登记目录，构建自动生成桌面入口，不手写新的桌面 HTML，也不把其他项目的开发源码放进 src。
 
 小说成品规则见 [Novel Release Contract v4](contracts/novel-release-v4/README.md)。源头项目按约定导出自己的 dist，成品根目录只有 text/、images/、README.md 和 release.json；将其内容完整接入 content 下的对应目录。正文和图片按卷／章分层，各级 README 按固定位置读取，不在清单重复登记路径，数组顺序独立于文件夹排序。追加、修订、撤下均在源头处理后重新导出。可以先删除网站中该小说的成品目录再整目录复制，或使用自行编写的替换工具；不能留下旧版本多出的文件。网站不提供小说校验器或自动导入命令，标识、排序、H1 标题及内容正确性均由生产者负责。旧合同只保留历史交付 ZIP，不再参与运行。
 
@@ -70,6 +70,9 @@ npm.cmd run build
 | C 盘 | `/file-explorer/c-local-disk/` |
 | G 盘 | `/file-explorer/g-cd-rom/` |
 | H 盘 | `/file-explorer/h-flash-drive/` |
+| 杂音.txt / 整书 README | `/file-explorer/a-floppy-disk/cacophony/` |
+| 露力丽的歌 / 卷 README | `/file-explorer/a-floppy-disk/cacophony/jht/` |
+| JHT-00-白雾 | `/file-explorer/a-floppy-disk/cacophony/jht/00-mist/` |
 | 桑海志怪.txt / 整书 README | `/file-explorer/a-floppy-disk/sh-tales/` |
 | 第一卷 README | `/file-explorer/a-floppy-disk/sh-tales/case-01/` |
 | 第一章 | `/file-explorer/a-floppy-disk/sh-tales/case-01/ep-01/` |

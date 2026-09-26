@@ -1,0 +1,13 @@
+Built dist: 24 desktop pages, 3 received releases.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+[Error: EPERM: operation not permitted, unlink 'D:\01_SmallProjects\yigrass.github.io\.test-work\received-content-review-XuThkx\node_modules\@esbuild\win32-x64\esbuild.exe'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'unlink',
+  path: 'D:\\01_SmallProjects\\yigrass.github.io\\.test-work\\received-content-review-XuThkx\\node_modules\\@esbuild\\win32-x64\\esbuild.exe'
+}
+
+Node.js v24.19.0

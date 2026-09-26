@@ -1,0 +1,46 @@
+{
+  "bookId": "cacophony",
+  "title": "杂音.txt",
+  "drive": "a",
+  "publishedDocuments": 7,
+  "acceptedBytesPreserved": true,
+  "fileCount": 9,
+  "httpChecks": [
+    {
+      "path": "/file-explorer/a-floppy-disk/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/jht/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/jht/00-mist/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/jht/01-gust/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/jht/02-bubble/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/jht/03-block/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/jht/04-water-pledge/",
+      "status": 200
+    },
+    {
+      "path": "/content/cacophony/images/book/mew-icon.png",
+      "status": 200
+    }
+  ]
+}

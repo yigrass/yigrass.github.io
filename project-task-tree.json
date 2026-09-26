@@ -13,14 +13,46 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "received-content-directory-rename-completed",
+    "deliveryState": "cacophony-local-launch-ready",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review received content directory",
+    "nextAction": "Review Cacophony launch; user performs Git and Pages publication",
     "repositoryIntegrated": true,
-    "lastUpdated": "2026-09-25",
+    "lastUpdated": "2026-09-26",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "cacophony-launch",
+      "name": "Cacophony Launch",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": ["received-content-review"],
+      "returnPoint": "Personal Website / Review Cacophony launch",
+      "note": "User authorizes formal registration and launch of Cacophony. Add the accepted content/cacophony artifact to drive A, update current documentation, build and check the deployable dist, and open its local reader preview. Preserve received bytes and existing demo projects. Remote publishing and all Git writes remain user-operated under the global agreement; local readiness is the scope of agent completion.",
+      "completedOn": "2026-09-26",
+      "evidence": ["qa/cacophony-launch/review.md", "qa/cacophony-launch/check.log", "qa/cacophony-launch/verification.json", "qa/cacophony-launch/reader.png"],
+      "completedWork": [
+        "Registered Cacophony in drive A and documented its book, volume and chapter addresses",
+        "Built 24 desktop entries and passed 20 tests including 287 desktop assertions; nine accepted artifact files remain byte-identical",
+        "Verified A-drive launch, book and chapter reading and icons in the browser; opened local preview and handed remote publication to the user"
+      ]
+    },
+    {
+      "id": "received-content-review",
+      "name": "Received Content Review",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": ["received-content-directory-rename"],
+      "returnPoint": "Personal Website / Review received content findings",
+      "note": "User requests inspection of newly copied final content. Review cacophony using the current contract and existing receiver; verify a temporary registered build and reader loading. Preserve content bytes, live catalog, application source and historical QA. Report missing registration or integration findings. No producer business validator, Git writes or remote operations.",
+      "completedOn": "2026-09-26",
+      "evidence": ["qa/received-content-review/review.md", "qa/received-content-review/results.json", "qa/received-content-review/check-verified.log"],
+      "completedWork": [
+        "Reviewed the cacophony v4 artifact with one volume, five chapters and a 40px book icon; no package-level integration issue found",
+        "Verified seven pages and nine exact-byte resources in an isolated registered build, plus actual reader module loading for all documents",
+        "Reported missing live catalog registration; preserved content, source, live catalog and dist"
+      ]
+    },
     {
       "id": "received-content-directory-rename",
       "name": "Received Content Directory Rename",

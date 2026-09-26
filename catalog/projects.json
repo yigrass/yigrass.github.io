@@ -5,6 +5,11 @@
     "release": "content/sh-tales/"
   },
   {
+    "category": "novel",
+    "driveId": "a",
+    "release": "content/cacophony/"
+  },
+  {
     "id": "game-b",
     "title": "Game-B.exe",
     "category": "game",

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 4,
+  "kind": "novel",
+  "id": "cacophony",
+  "status": "ongoing",
+  "icon": "images/book/mew-icon.png",
+  "volumes": [
+    {
+      "id": "jht",
+      "chapters": [
+        {
+          "id": "00-mist"
+        },
+        {
+          "id": "01-gust"
+        },
+        {
+          "id": "02-bubble"
+        },
+        {
+          "id": "03-block"
+        },
+        {
+          "id": "04-water-pledge"
+        }
+      ]
+    }
+  ]
+}
