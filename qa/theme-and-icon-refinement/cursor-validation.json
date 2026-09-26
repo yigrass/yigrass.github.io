@@ -1,0 +1,22 @@
+[
+  {
+    "alpha": [
+      255,
+      0
+    ],
+    "width": 16,
+    "path": "assets/pixel-ui/cursor.png",
+    "sha256": "A1A87214796903E697411BC5C0B0D0C278D8B47AE8E14E9AB7E269C0489B4978",
+    "height": 16
+  },
+  {
+    "alpha": [
+      255,
+      0
+    ],
+    "width": 32,
+    "path": "assets/pixel-ui/cursor-2x.png",
+    "sha256": "98415B1021F18868277D478F7B47E4F741B207B4866B0430F5A0F68962CB2938",
+    "height": 32
+  }
+]

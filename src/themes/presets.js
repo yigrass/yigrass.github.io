@@ -24,7 +24,7 @@ const night = (frame, pane, text, title, selection, edge, shadow, inactive, mid,
 export const themes = [
   { id: "retro-blue", name: "95's", scheme: "light", colors: { ...classic, accent: "#000080", "title-active": "#000080", focus: "#000080" } },
   { id: "retro-ink", name: "95's（异化）", scheme: "light", colors: { ...classic } },
-  { id: "abyss", name: "深渊", scheme: "dark", colors: night("#454746", "#242726", "#e1e2dd", "#181b1a", "#59635d", "#757b76", "#101312", "#353a37", "#565d58", "#b7beb8", "#343c36") },
+  { id: "abyss", name: "墨染", scheme: "dark", colors: night("#454746", "#242726", "#e1e2dd", "#181b1a", "#59635d", "#757b76", "#101312", "#353a37", "#565d58", "#b7beb8", "#343c36") },
   { id: "moss", name: "苔痕", scheme: "dark", colors: night("#454e48", "#232b27", "#dce4d6", "#18251e", "#496351", "#7d8c7f", "#101a14", "#354238", "#5d6b60", "#b9c6b7", "#33463a") },
   { id: "ravine", name: "幽涧", scheme: "dark", colors: night("#424b55", "#222a33", "#dde3e8", "#17232f", "#485e73", "#7b8a99", "#10171f", "#333f4c", "#596979", "#b6c3cf", "#324251") }
 ];

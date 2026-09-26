@@ -1,0 +1,14 @@
+[
+  {
+    "file": "assets/pixel-ui/cursor.png",
+    "sha256": "a1a87214796903e697411bc5c0b0d0c278d8b47ae8e14e9ab7e269c0489b4978",
+    "previousSha256": "a1a87214796903e697411bc5c0b0d0c278d8b47ae8e14e9ab7e269c0489b4978",
+    "unchanged": true
+  },
+  {
+    "file": "assets/pixel-ui/cursor-2x.png",
+    "sha256": "98415b1021f18868277d478f7b47e4f741b207b4866b0430f5a0f68962cb2938",
+    "previousSha256": "98415b1021f18868277d478f7b47e4f741b207b4866b0430f5a0f68962cb2938",
+    "unchanged": true
+  }
+]

@@ -1,0 +1,21 @@
+﻿{
+    "ok":  true,
+    "mode":  "run-script",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-scale\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-scale",
+    "script":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\scale-cursor.lua",
+    "expected_paths":  [
+                           "D:/01_SmallProjects/yigrass.github.io/qa/theme-and-icon-refinement/cursor-scaled.aseprite"
+                       ],
+    "steps":  [
+                  {
+                      "step":  "lua-script",
+                      "pid":  32016,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.188,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-scale\\lua-script.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-scale\\lua-script.stderr.log"
+                  }
+              ]
+}

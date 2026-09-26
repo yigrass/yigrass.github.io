@@ -1,0 +1,4 @@
+﻿2026-09-26T23:18:43.3771855+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:18:43.3997043+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\cursor-scaled.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\cursor-final\export.png
+2026-09-26T23:18:43.5919060+08:00	INFO	finish step=export pid=24568 exit=0 seconds=0.184
+2026-09-26T23:18:43.6341759+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\cursor-final\result.json

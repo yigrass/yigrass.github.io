@@ -13,14 +13,25 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "demo-content-removal-completed",
+    "deliveryState": "theme-and-icon-refinement-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review demo cleanup; user publishes the updated website",
+    "nextAction": "Review theme and icon refinement; user publishes the updated website",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-26",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "theme-and-icon-refinement",
+      "name": "Theme and Icon Refinement",
+      "parent": "personal-website",
+      "status": "completed",
+      "completedOn": "2026-09-26",
+      "evidence": ["qa/theme-and-icon-refinement/review.md", "qa/theme-and-icon-refinement/check.log", "qa/theme-and-icon-refinement/cursor-final-validation.json", "qa/theme-and-icon-refinement/http-final.json"],
+      "dependencies": ["demo-content-removal"],
+      "returnPoint": "Personal Website / Review theme and icon refinement",
+      "note": "User requests name-only themes, renames the Abyss display label, replaces eight system/reader icons with supplied PNGs and regenerates the custom cursor from the updated Aseprite source. Copy source icons without artwork changes; use one static volume icon. Preserve local originals, received content, other UI behavior and historical QA. No Git writes or remote operations."
+    },
     {
       "id": "demo-content-removal",
       "name": "Demo Content Removal",

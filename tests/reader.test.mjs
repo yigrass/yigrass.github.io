@@ -41,12 +41,12 @@ test('book and volume titles open their README while only plus/minus controls fo
   const volumeToggle = body.querySelectorAll('.tree-expand')[1];
   app.click(volumeToggle);
   assert.equal(app.get('reader-group-story-a-volume-a').hidden, true);
-  assert.match(doc(app, 'volume-a').querySelector('img').src, /book-closed/);
+  assert.equal(doc(app, 'volume-a').querySelector('img').src, 'assets/pixel-ui/calming/notepad.png');
   app.click(doc(app, 'volume-a')); await settle();
   assert.equal(app.get('reader-group-story-a-volume-a').hidden, true);
   app.click(volumeToggle);
   assert.equal(app.get('reader-group-story-a-volume-a').hidden, false);
-  assert.match(doc(app, 'volume-a').querySelector('img').src, /book-open/);
+  assert.equal(doc(app, 'volume-a').querySelector('img').src, 'assets/pixel-ui/calming/notepad.png');
   const before = app.history.length;
   app.click(doc(app, 'volume-a')); await settle();
   assert.equal(app.history.length, before);

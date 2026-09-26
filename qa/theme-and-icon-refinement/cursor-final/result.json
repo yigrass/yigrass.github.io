@@ -1,0 +1,20 @@
+﻿{
+    "ok":  true,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-final\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-final",
+    "input":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-scaled.aseprite",
+    "output":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-final\\export.png",
+    "output_bytes":  189,
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  24568,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.184,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-final\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-final\\export.stderr.log"
+                  }
+              ]
+}

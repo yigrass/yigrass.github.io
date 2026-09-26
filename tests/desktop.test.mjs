@@ -163,9 +163,9 @@ const settings = themed.get("window-settings"), storyNode = themed.win("test-boo
 const initialUrl = themed.location.href, initialHistory = themed.history.length;
 const radios = settings.querySelectorAll(".theme-radio");
 check(radios.length === 5, "Settings provides exactly five theme presets");
-check(settings.querySelectorAll(".theme-name").map(node => node.textContent).join("|") === "95's|95's（异化）|深渊|苔痕|幽涧", "Preset names and order match the request");
+check(settings.querySelectorAll(".theme-name").map(node => node.textContent).join("|") === "95's|95's（异化）|墨染|苔痕|幽涧", "Preset names and order match the request");
 check(themed.get("theme-presets-toggle").getAttribute("aria-expanded") === "true" && themed.get("theme-custom-panel").hidden, "Current preset section starts expanded");
-check(settings.querySelectorAll(".theme-swatch").length === 15 && settings.textContent.includes("控件背景") && settings.textContent.includes("内容背景") && settings.textContent.includes("RGB(0, 0, 128)"), "Presets show labeled swatches and numeric RGB values including title bar");
+check(settings.querySelectorAll(".theme-option").every(row => row.textContent === row.querySelector(".theme-name").textContent) && settings.querySelectorAll(".theme-swatch").length === 0, "Presets show names only without palette details");
 const originalFill = themed.document.documentElement.style["--desktop"];
 const originalImage = themed.get("desktop").style.backgroundImage;
 const style = themed.document.documentElement.style;

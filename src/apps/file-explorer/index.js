@@ -11,7 +11,8 @@ export function createExplorer({ config, desktopRoutes, titleOf, getActiveId, sy
       .map((project) => ({ ...project, title: project.title.trim(), internal: Boolean(desktopRoutes.getProject(project.id)), url: desktopRoutes.getProject(project.id) ? desktopRoutes.address(projectWindowId(project.id)) : safeURL(project.url) }));
     const rootLabel = titleOf("profile");
     const driveLabel = (drive) => `${drive.label} (${drive.letter}:)`;
-    const driveIcon = (drive, className) => pixelIcon(drive.type === "flash-drive" ? "v1.2.0/flash-drive" : `v1.1.0/${["hard-disk", "floppy", "cdrom"].includes(drive.type) ? drive.type : "hard-disk"}`, className);
+    const driveIcons = { 'hard-disk': 'calming/drive', floppy: 'calming/flop_drive', cdrom: 'calming/cd_drive', 'flash-drive': 'v1.2.0/flash-drive' };
+    const driveIcon = (drive, className) => pixelIcon(driveIcons[drive.type] || driveIcons['hard-disk'], className);
     let currentLocation = null;
     const toolbar = create("div", "explorer-toolbar");
     toolbar.setAttribute("role", "group");
@@ -53,7 +54,7 @@ export function createExplorer({ config, desktopRoutes, titleOf, getActiveId, sy
     expand.setAttribute("aria-label", "收起驱动器列表");
     const rootButton = create("button", "tree-location");
     rootButton.type = "button";
-    rootButton.append(pixelIcon("v1.1.0/computer"), create("span", "", rootLabel));
+    rootButton.append(pixelIcon("calming/this_computer"), create("span", "", rootLabel));
     rootButton.addEventListener("click", () => navigate(null));
     treeRoot.append(expand, rootButton);
     const tree = create("ul", "explorer-drive-tree");
@@ -104,7 +105,7 @@ export function createExplorer({ config, desktopRoutes, titleOf, getActiveId, sy
       content.replaceChildren();
       content.setAttribute("aria-label", `${label}内容`);
       const caption = create("div", "explorer-location-heading");
-      caption.append(drive ? driveIcon(drive) : pixelIcon("v1.1.0/computer"), create("h1", "", label));
+      caption.append(drive ? driveIcon(drive) : pixelIcon("calming/this_computer"), create("h1", "", label));
       content.append(caption);
       if (drive && entries.length) {
         const grid = create("div", "drive-grid");

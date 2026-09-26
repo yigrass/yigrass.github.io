@@ -39,9 +39,9 @@ export function bootDesktop(config) {
     manager.openWindow(windowId, manager.hasWindow(windowId) ? 'replace' : 'push');
   }
   Object.assign(windowTypes, {
-    profile: { title: '我的电脑', icon: 'v1.1.0/computer', render: createProfile({ config, titleOf }), status: () => '个人系统属性' },
-    works: { title: '资源管理器', icon: 'works', render: createExplorer({ config, desktopRoutes, titleOf, getActiveId: manager.getActiveId, syncAddress, openProject }), status: () => `${config.explorer.drives.length} 个对象` },
-    settings: { title: '系统设置', icon: 'v1.1.0/control-panel', render: createSettings({ preferences, applyPreferences }), status: () => '设置即时生效，仅保存于此浏览器' }
+    profile: { title: '我的电脑', icon: 'calming/this_computer', render: createProfile({ config, titleOf }), status: () => '个人系统属性' },
+    works: { title: '资源管理器', icon: 'calming/folder_dark', render: createExplorer({ config, desktopRoutes, titleOf, getActiveId: manager.getActiveId, syncAddress, openProject }), status: () => `${config.explorer.drives.length} 个对象` },
+    settings: { title: '系统设置', icon: 'calming/tools', render: createSettings({ preferences, applyPreferences }), status: () => '设置即时生效，仅保存于此浏览器' }
   });
   for (const project of desktopRoutes.projects) {
     const id = projectWindowId(project.id);

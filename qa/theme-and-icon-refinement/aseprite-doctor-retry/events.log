@@ -1,0 +1,10 @@
+﻿2026-09-26T23:17:27.8029490+08:00	INFO	mode=doctor workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:17:27.8282558+08:00	INFO	start step=version args=--version
+2026-09-26T23:17:28.0191353+08:00	INFO	finish step=version pid=6272 exit=0 seconds=0.181
+2026-09-26T23:17:28.0276349+08:00	INFO	start step=lua-create args=-b --script-param trace=D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\aseprite-doctor-retry\doctor.trace.log --script-param output=D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\aseprite-doctor-retry\doctor.aseprite --script D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\aseprite-doctor-retry\doctor.lua
+2026-09-26T23:17:28.1994774+08:00	INFO	finish step=lua-create pid=4652 exit=0 seconds=0.17
+2026-09-26T23:17:28.2069862+08:00	INFO	start step=gif-export args=-b D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\aseprite-doctor-retry\doctor.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\aseprite-doctor-retry\doctor.gif
+2026-09-26T23:17:28.3721807+08:00	INFO	finish step=gif-export pid=12604 exit=0 seconds=0.164
+2026-09-26T23:17:28.3819457+08:00	INFO	start step=gif-roundtrip args=-b --oneframe D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\aseprite-doctor-retry\doctor.gif --save-as D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\aseprite-doctor-retry\doctor-roundtrip.png
+2026-09-26T23:17:28.5426677+08:00	INFO	finish step=gif-roundtrip pid=32096 exit=0 seconds=0.16
+2026-09-26T23:17:28.7994968+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\aseprite-doctor-retry\result.json

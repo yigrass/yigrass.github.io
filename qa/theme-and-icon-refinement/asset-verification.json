@@ -1,0 +1,54 @@
+{
+  "icons": [
+    {
+      "width": 512,
+      "height": 512,
+      "sha256": "345351B77BBAA2D8EE89FA0CF1DA362354ABFFA22A7C2DF6E7CF54CCEE3E5EB3",
+      "path": "assets\\pixel-ui\\calming\\cd_drive.png"
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "sha256": "D6B15CC84D33AF337CE8FD4649C5564CC9578B949F7B2159F66AF2C34FF36885",
+      "path": "assets\\pixel-ui\\calming\\drive.png"
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "sha256": "B73841F084573B044506088DF837E6EA30F1854E827BC4006AC2B84F098E0CB5",
+      "path": "assets\\pixel-ui\\calming\\flop_drive.png"
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "sha256": "9D0B382CC6A1B7775C27E20B74C6D69339525EE759360E2B69C3F6899F4887BB",
+      "path": "assets\\pixel-ui\\calming\\this_computer.png"
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "sha256": "FB0C74E75DEB7E91372FFFA6A49EDA6D9934D6649BB177414F35F9E8BD50D543",
+      "path": "assets\\pixel-ui\\calming\\folder_dark.png"
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "sha256": "400A63D7ABF0153D5EF6927A915B88EE9D9CF7D3C412AB64F2047CBAA431BFC2",
+      "path": "assets\\pixel-ui\\calming\\tools.png"
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "sha256": "C64B4B6222557B750ED7B9B5BAD4F5F65C5234D97F855BA69A45B626F59D81FE",
+      "path": "assets\\pixel-ui\\calming\\notepad.png"
+    },
+    {
+      "width": 512,
+      "height": 512,
+      "sha256": "E20171F806940DBCA86DA57F72B1DE4A5288E604E4FA49DCC3B2CD855BE529BB",
+      "path": "assets\\pixel-ui\\calming\\text_file.png"
+    }
+  ],
+  "protectedFilesUnchanged": 10,
+  "cursorNearestNeighbor2x": true
+}

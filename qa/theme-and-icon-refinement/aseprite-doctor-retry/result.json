@@ -1,0 +1,49 @@
+﻿{
+    "ok":  true,
+    "mode":  "doctor",
+    "aseprite_version":  "Aseprite 1.3.18.1-x64",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry",
+    "lua_trace":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\doctor.trace.log",
+    "aseprite_file":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\doctor.aseprite",
+    "gif_file":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\doctor.gif",
+    "roundtrip_png":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\doctor-roundtrip.png",
+    "residual_process_ids":  [
+
+                             ],
+    "steps":  [
+                  {
+                      "step":  "version",
+                      "pid":  6272,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.181,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\version.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\version.stderr.log"
+                  },
+                  {
+                      "step":  "lua-create",
+                      "pid":  4652,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.17,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\lua-create.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\lua-create.stderr.log"
+                  },
+                  {
+                      "step":  "gif-export",
+                      "pid":  12604,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.164,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\gif-export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\gif-export.stderr.log"
+                  },
+                  {
+                      "step":  "gif-roundtrip",
+                      "pid":  32096,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.16,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\gif-roundtrip.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\aseprite-doctor-retry\\gif-roundtrip.stderr.log"
+                  }
+              ]
+}

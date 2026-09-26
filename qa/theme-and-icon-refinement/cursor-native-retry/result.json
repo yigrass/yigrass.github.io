@@ -1,0 +1,20 @@
+﻿{
+    "ok":  true,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-native-retry\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-native-retry",
+    "input":  "D:\\01_SmallProjects\\yigrass.github.io\\art\\pixel-ui\\cursor.aseprite",
+    "output":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-native-retry\\export.png",
+    "output_bytes":  169,
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  25352,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.184,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-native-retry\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\theme-and-icon-refinement\\cursor-native-retry\\export.stderr.log"
+                  }
+              ]
+}

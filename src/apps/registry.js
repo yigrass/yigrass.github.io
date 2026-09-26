@@ -1,7 +1,7 @@
 export const projectCategories = {
-  novel: { icon: 'v1.2.0/text-file' },
-  game: { icon: 'v1.1.0/cdrom' },
-  utility: { icon: 'v1.1.0/control-panel' }
+  novel: { icon: 'calming/text_file' },
+  game: { icon: 'calming/cd_drive' },
+  utility: { icon: 'calming/tools' }
 };
 export const projectWindowId = id => `project-${id}`;
 export const projectIcon = project => project.iconPath || projectCategories[project.category].icon;

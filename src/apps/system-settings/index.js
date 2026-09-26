@@ -1,4 +1,4 @@
-import { create, pixelIcon, announce, rgbChannels } from '../../shared/dom.js';
+import { create, pixelIcon, announce } from '../../shared/dom.js';
 import { themes } from '../../themes/presets.js';
 export function createSettings({ preferences, applyPreferences }) {
   function settingsContent(body) {
@@ -6,7 +6,7 @@ export function createSettings({ preferences, applyPreferences }) {
     const heading = create("div", "settings-heading");
     const copy = create("div");
     copy.append(create("h1", "", "桌面外观"), create("p", "", "调整个人空间的显示方式。"));
-    heading.append(pixelIcon("v1.1.0/control-panel", "settings-icon"), copy);
+    heading.append(pixelIcon("calming/tools", "settings-icon"), copy);
     body.append(heading);
 
     const themeGroup = create("fieldset", "settings-group theme-group");
@@ -48,22 +48,7 @@ export function createSettings({ preferences, applyPreferences }) {
         expandThemeSection("presets");
         announce(`已应用主题：${theme.name}`);
       });
-      const details = create("span", "theme-option-details");
-      details.append(create("span", "theme-name", theme.name));
-      const palette = create("span", "theme-palette");
-      for (const [label, token] of [["控件背景", "silver"], ["内容背景", "content"], ["标题栏", "title-active"]]) {
-        const color = theme.colors[token];
-        const sample = create("span", "theme-color");
-        const swatch = create("span", "theme-swatch");
-        swatch.style.backgroundColor = color;
-        swatch.setAttribute("aria-hidden", "true");
-        const text = create("span", "theme-color-copy");
-        text.append(create("span", "theme-color-label", label), create("code", "", `RGB(${rgbChannels(color).join(", ")})`));
-        sample.append(swatch, text);
-        palette.append(sample);
-      }
-      details.append(palette);
-      row.append(input, details);
+      row.append(input, create("span", "theme-name", theme.name));
       presets.append(row);
     }
     const custom = themeSection("custom", "自定义");

@@ -1,0 +1,42 @@
+[
+  {
+    "sha256": "60F4C7CEF202125BF4CFCD2D4A747CC5956DF692155641550EE021B9A5C0ADE9",
+    "path": "content\\cacophony\\README.md"
+  },
+  {
+    "sha256": "082E8C89ECF21DBB875C8AAAAEF1A32DD6DF2EB83F146595994609829DBC738A",
+    "path": "content\\cacophony\\release.json"
+  },
+  {
+    "sha256": "76EF22342378EBC3DB30E12E2A084A978118A259551A4D55105DA2C16B6BD036",
+    "path": "content\\cacophony\\images\\book\\mew-icon.png"
+  },
+  {
+    "sha256": "6294E9F73022A5B410C01FD1F7889E7E9A696787F907E8C30083BA8FC35A9D6A",
+    "path": "content\\cacophony\\text\\jht\\00-mist.md"
+  },
+  {
+    "sha256": "36380FAE97B6EFCF6EDF94A1FC78DFCB65C6BE463D38843A10A52FD5CF6950F8",
+    "path": "content\\cacophony\\text\\jht\\01-gust.md"
+  },
+  {
+    "sha256": "D038D184E4654316562AA4CC550E96EC5A6E4618CE3028631B0723D1F0E9F046",
+    "path": "content\\cacophony\\text\\jht\\02-bubble.md"
+  },
+  {
+    "sha256": "95C84938F4181E0F4340418882F9B6AF8753FEF73B89169DD225282BFA33681C",
+    "path": "content\\cacophony\\text\\jht\\03-block.md"
+  },
+  {
+    "sha256": "5A2155CC052A131862C2A16E70F277396C7F26CC3F254E53295DC7865207180B",
+    "path": "content\\cacophony\\text\\jht\\04-water-pledge.md"
+  },
+  {
+    "sha256": "E5094BDED6BE2217762B1C3B61316F4672788841892967252EA5EFED201EE758",
+    "path": "content\\cacophony\\text\\jht\\README.md"
+  },
+  {
+    "sha256": "384348E1315D736F8B773828F3FED2C44829D5414EE0055861BEEE0D202C2B1E",
+    "path": "art\\pixel-ui\\cursor.aseprite"
+  }
+]

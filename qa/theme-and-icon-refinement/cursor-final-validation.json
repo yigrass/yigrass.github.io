@@ -1,0 +1,12 @@
+{
+  "nativeSha256": "2768C27EFAA50339D494BAE4AB26C2FC52104F38C0024E33465EB9B438BAAFBC",
+  "webSha256": "BF2AB660DD5FB7ECA0D553E43739F96C6A3D278BBE198214B7F9A8C678335D33",
+  "web": "32x32",
+  "frames": 1,
+  "alpha": [
+    255,
+    0
+  ],
+  "nearestNeighbor": true,
+  "native": "16x16"
+}

@@ -40,7 +40,7 @@ export function createProfile({ config, titleOf }) {
     }
     const header = create("div", "properties-heading");
     const avatarURL = safeURL(profile.avatar);
-    const avatar = avatarURL ? create("img", "property-avatar") : pixelIcon("v1.1.0/computer", "property-computer");
+    const avatar = avatarURL ? create("img", "property-avatar") : pixelIcon("calming/this_computer", "property-computer");
     if (avatarURL) { avatar.src = avatarURL; avatar.alt = `${profile.nickname || "个人"}的头像`; }
     const heading = create("div");
     heading.append(create("h1", "", titleOf("profile")), create("p", "", "个人系统属性"));

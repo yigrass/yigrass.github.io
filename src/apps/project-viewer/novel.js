@@ -5,7 +5,7 @@ import { createReaderMenu } from './reader-menu.js';
 import { createReaderLayout, readingProgress } from './reader-layout.js';
 import { statusText } from '../../shared/status.js';
 
-const treeIcons = { volumeOpen: 'v1.4.0/book-open', volumeClosed: 'v1.4.0/book-closed', chapter: 'v1.2.0/text-file' };
+const treeIcons = { volume: 'calming/notepad', chapter: 'calming/text_file' };
 
 export function renderNovel(body, release, root, setStatus, signal, options) {
   body.classList.add('novel-body');
@@ -56,7 +56,6 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
       children.hidden = !expanded; expand.textContent = expanded ? '−' : '+';
       expand.setAttribute('aria-expanded', String(expanded));
       expand.setAttribute('aria-label', `${expanded ? '收起' : '展开'}${title}`);
-      if (id) label.querySelector('img').src = `assets/pixel-ui/${expanded ? treeIcons.volumeOpen : treeIcons.volumeClosed}.png`;
     }
     setExpanded(true); expand.addEventListener('click', () => setExpanded(children.hidden));
     row.append(expand, label); li.append(row, children); parent.append(li); branches.set(id, setExpanded);
@@ -65,7 +64,7 @@ export function renderNovel(body, release, root, setStatus, signal, options) {
   const tree = create('ul', 'reader-tree');
   const book = branch(tree, null, release.title, options.icon);
   for (const volume of release.volumes) {
-    const group = branch(book, volume.id, volume.title, treeIcons.volumeOpen);
+    const group = branch(book, volume.id, volume.title, treeIcons.volume);
     for (const chapter of volume.chapters) {
       const item = create('li', 'reader-tree-leaf');
       item.append(documentButton(`${volume.id}/${chapter.id}`, chapter.title, treeIcons.chapter)); group.append(item);

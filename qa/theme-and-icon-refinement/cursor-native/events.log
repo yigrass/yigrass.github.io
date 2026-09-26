@@ -1,0 +1,4 @@
+﻿2026-09-26T23:00:25.3712936+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:00:25.3995202+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\art\pixel-ui\cursor.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\assets\pixel-ui\cursor.png
+2026-09-26T23:00:25.7266722+08:00	INFO	finish step=export pid=24792 exit=0 seconds=0.319
+2026-09-26T23:00:25.7790147+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\theme-and-icon-refinement\cursor-native\result.json
