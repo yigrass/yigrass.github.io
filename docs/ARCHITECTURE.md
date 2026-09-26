@@ -23,7 +23,7 @@ src/
 catalog/projects.json         作品在网站中的身份与接入位置
 content/<id>/                 独立作品的当前发布成品
 assets/                      网站自己的上线图片
-contracts/novel-release-v4/   可独立复制的小说成品合同、生产者 Schema 与示例
+contracts/novel-release-v4/   可独立复制的小说成品合同与生产者 Schema
 scripts/                     构建、预览、检查、素材工具
 tests/                       随源码维护的当前回归测试
 docs/                        维护文档和生成任务视图

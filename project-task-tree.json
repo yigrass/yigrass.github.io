@@ -13,14 +13,31 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "cacophony-local-launch-ready",
+    "deliveryState": "demo-content-removal-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review Cacophony launch; user performs Git and Pages publication",
+    "nextAction": "Review demo cleanup; user publishes the updated website",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-26",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "demo-content-removal",
+      "name": "Demo Content Removal",
+      "parent": "personal-website",
+      "status": "completed",
+      "dependencies": ["cacophony-launch"],
+      "returnPoint": "Personal Website / Review demo cleanup",
+      "note": "User authorizes complete removal of the fictional novel and game. Delete their received packages and duplicate novel contract sample; remove catalog, current documentation and published-output references. Replace regression dependencies with test-only in-memory data and generic build checks. Preserve accepted Cacophony bytes, reusable system assets, generic reader/web support and immutable historical QA. No Git writes or remote operations.",
+      "completedOn": "2026-09-26",
+      "evidence": ["qa/demo-content-removal/review.md", "qa/demo-content-removal/check.log", "qa/demo-content-removal/removed-files.json", "qa/demo-content-removal/verification.json"],
+      "completedWork": [
+        "Deleted 23 demo artifact and duplicate contract sample files, removed registration and current documentation references, and rebuilt without old entry pages",
+        "Decoupled desktop regression data from published works and made build coverage follow current catalog and manifest contents",
+        "Passed 19 tests including 197 desktop assertions; confirmed five removed URLs return 404 and formal artifact hashes remain unchanged",
+        "Browser confirms only Cacophony in drive A and empty drive G; preserved historical QA and left local preview running"
+      ]
+    },
     {
       "id": "cacophony-launch",
       "name": "Cacophony Launch",

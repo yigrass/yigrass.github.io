@@ -44,13 +44,13 @@ dist/
 
 ## 清单及顺序
 
-清单字段结构以 [release.schema.json](release.schema.json) 为准，Schema 供生产者按需要使用，网站不执行它。最小结构如下，完整两卷五章示例见 [example/release.json](example/release.json)。
+清单字段结构以 [release.schema.json](release.schema.json) 为准，Schema 供生产者按需要使用，网站不执行它。最小结构如下；这里只展示格式，不附带可发布的演示小说。
 
 ```json
 {
   "schemaVersion": 4,
   "kind": "novel",
-  "id": "sh-tales",
+  "id": "book-id",
   "icon": "images/book/sword.png",
   "volumes": [
     {
@@ -76,10 +76,10 @@ dist/
 
 | 页面 | 固定源文件 | 公开地址示例 |
 | --- | --- | --- |
-| 整书介绍 | `README.md` | `/file-explorer/a-floppy-disk/sh-tales/` |
-| 卷介绍 | `text/case-greedy/README.md` | `/file-explorer/a-floppy-disk/sh-tales/case-greedy/` |
-| 章节 | `text/case-greedy/ep-05.md` | `/file-explorer/a-floppy-disk/sh-tales/case-greedy/ep-05/` |
-| 另一卷同名章节 | `text/case-silent/ep-05.md` | `/file-explorer/a-floppy-disk/sh-tales/case-silent/ep-05/` |
+| 整书介绍 | `README.md` | `/file-explorer/a-floppy-disk/book-id/` |
+| 卷介绍 | `text/case-greedy/README.md` | `/file-explorer/a-floppy-disk/book-id/case-greedy/` |
+| 章节 | `text/case-greedy/ep-05.md` | `/file-explorer/a-floppy-disk/book-id/case-greedy/ep-05/` |
+| 另一卷同名章节 | `text/case-silent/ep-05.md` | `/file-explorer/a-floppy-disk/book-id/case-silent/ep-05/` |
 
 ## 标题和目录行为
 
@@ -121,4 +121,4 @@ VS Code 对样式、markdown-it 插件和预览脚本的划分参见 [官方扩�
 
 每章只保留当前发布文件，release.json 始终描述当前完整公开内容。增加第 16 章时，清单仍列出此前 15 章；源头修订或撤下后重新导出整包。接入时将源头 dist 的内容完整复制到网站 content/ 下对应成品目录，可以先删除旧成品目录再复制，避免遗留旧文件。网站接收目录名不决定书标识或书名。导出过程不得顺带写入网站；网站构建也不依赖生产者源码位置或执行生产者构建器。
 
-网站保留成品文件原始字节，并生成本次 SHA-256 收据；不另存可阅读的历史章节版本。示例保留两卷五章、跨卷重复 ep-05、非数字 prologue 和第二章长文本，可用于开发导出工具与测试接入。
+网站保留成品文件原始字节，并生成本次 SHA-256 收据；不另存可阅读的历史章节版本。导出工具可参照上面的目录和 JSON 片段实现，实际小说内容由生产者提供。

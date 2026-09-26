@@ -4,11 +4,25 @@ import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { mount } from './dom-harness.mjs';
+import { mount as mountDesktop } from './dom-harness.mjs';
+import { siteConfig } from '../src/config/site.js';
 import { createDesktopRouteCatalog } from '../src/routing/catalog.js';
 import { createDesktopRoutes } from '../src/routing/history.js';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+// In-memory fixtures exercise multiple project types without shipping fake works.
+const fixtureProjects = [
+  { category: 'novel', driveId: 'a', release: 'content/test-book/' },
+  { id: 'test-web', title: 'Test Web.exe', category: 'game', driveId: 'g', slug: 'test-web', release: 'content/test-web/' }
+];
+const fixtureResponses = {
+  'content/test-book/release.json': JSON.stringify({ schemaVersion: 4, kind: 'novel', id: 'test-book', icon: 'images/book/icon.png', volumes: [{ id: 'volume', chapters: [{ id: 'chapter' }] }] }),
+  'content/test-book/README.md': '# 测试文本\n\n用于窗口回归的正文。',
+  'content/test-book/text/volume/README.md': '# 测试卷\n\n卷介绍。',
+  'content/test-book/text/volume/chapter.md': '# 测试章\n\n章节正文。',
+  'content/test-web/release.json': JSON.stringify({ schemaVersion: 1, kind: 'web', id: 'test-web', title: 'Test Web', entry: 'index.html' })
+};
+const mount = (href, baseURI, options = {}) => mountDesktop(href, baseURI, { ...options, projects: fixtureProjects, responses: fixtureResponses });
 test('desktop windows, routes, themes and persistent state after module migration', async () => {
 const checks = [];
 const check = (condition, label) => { assert.ok(condition, label); checks.push(label); };
@@ -16,7 +30,7 @@ const paths = {
   profile: "/my-computer/", settings: "/system-settings/", works: "/file-explorer/",
   a: "/file-explorer/a-floppy-disk/", c: "/file-explorer/c-local-disk/",
   g: "/file-explorer/g-cd-rom/", h: "/file-explorer/h-flash-drive/",
-  story: "/file-explorer/a-floppy-disk/sh-tales/", game: "/file-explorer/g-cd-rom/game-b/"
+  story: "/file-explorer/a-floppy-disk/test-book/", game: "/file-explorer/g-cd-rom/test-web/"
 };
 const app = await mount();
 check(app.get("windows").children.length === 0 && app.location.pathname === "/", "Home opens a bare desktop");
@@ -24,16 +38,16 @@ app.menu("works");
 check(app.location.pathname === paths.works, "Explorer has an application URL");
 check(!/小说|游戏|实用工具/.test(app.get("window-works").textContent), "Explorer exposes literal drive names without internal categories");
 app.drive("a");
-check(app.location.pathname === paths.a && app.entry("桑海志怪.txt").href === "https://example.test" + paths.story, "Drive A and its file have hierarchical addresses");
-const event = app.click(app.entry("桑海志怪.txt"));
+check(app.location.pathname === paths.a && app.entry("测试文本.txt").href === "https://example.test" + paths.story, "Drive A and its file have hierarchical addresses");
+const event = app.click(app.entry("测试文本.txt"));
 await app.ready();
-const story = app.win("sh-tales"), body = story.querySelector(".window-body");
-check(event.defaultPrevented && app.location.pathname === paths.story && body.querySelector(".novel-chapter").textContent.includes("海的另一边"), "Story opens in the same desktop with literal file name");
+const story = app.win("test-book"), body = story.querySelector(".window-body");
+check(event.defaultPrevented && app.location.pathname === paths.story && body.querySelector(".novel-chapter").textContent.includes("用于窗口回归的正文"), "Story opens in the same desktop with literal file name");
 body.scrollTop = 37; story.style.width = "603px";
 app.click(story.querySelector(".control-min"));
 check(story.hidden && app.location.pathname === paths.a, "Minimize returns to Explorer's remembered drive");
-app.click(app.tab("project-sh-tales"));
-check(app.location.pathname === paths.story && app.win("sh-tales") === story && body.scrollTop === 37 && story.style.width === "603px", "Taskbar restore preserves DOM, scroll and dimensions");
+app.click(app.tab("project-test-book"));
+check(app.location.pathname === paths.story && app.win("test-book") === story && body.scrollTop === 37 && story.style.width === "603px", "Taskbar restore preserves DOM, scroll and dimensions");
 let count = app.history.length;
 app.click(story.querySelector(".control-max")); app.click(story.querySelector(".control-max"));
 check(app.history.length === count && app.location.pathname === paths.story, "Maximize does not navigate");
@@ -41,17 +55,17 @@ app.click(app.get("start-button"));
 check(app.location.pathname === paths.story, "Start menu overlay does not navigate");
 app.click(app.get("menu-items").children.find(node => node.dataset.window === "works"));
 check(app.location.pathname === paths.a, "Existing Explorer restores its location");
-app.drive("g"); app.click(app.entry("Game-B.exe"));
+app.drive("g"); app.click(app.entry("Test Web.exe"));
 await app.ready();
-const game = app.win("game-b");
-check(app.location.pathname === paths.game && app.win("sh-tales") === story && !story.hidden, "Game and story coexist in the same desktop");
-check(game.querySelector(".project-frame").src === "https://example.test/content/game-b/index.html", "Game loads the standalone received web release");
+const game = app.win("test-web");
+check(app.location.pathname === paths.game && app.win("test-book") === story && !story.hidden, "Game and story coexist in the same desktop");
+check(game.querySelector(".project-frame").src === "https://example.test/content/test-web/index.html", "Game loads the standalone received web release");
 count = app.history.length;
-app.click(app.tab("project-sh-tales")); app.click(app.tab("project-game-b"));
-check(app.history.length === count && app.location.pathname === paths.game && app.win("game-b") === game, "Window focus replaces URL without adding history or reloading");
+app.click(app.tab("project-test-book")); app.click(app.tab("project-test-web"));
+check(app.history.length === count && app.location.pathname === paths.game && app.win("test-web") === game, "Window focus replaces URL without adding history or reloading");
 app.click(game.querySelector(".control-min"));
 check(app.location.pathname === paths.story && story.classList.contains("is-active"), "Minimize follows the next foreground project");
-app.click(app.tab("project-game-b"));
+app.click(app.tab("project-test-web"));
 app.menu("settings");
 check(app.location.pathname === paths.settings, "Settings uses its own URL");
 app.click(app.get("window-settings").querySelector(".control-close"));
@@ -61,7 +75,7 @@ check(app.location.pathname === paths.profile, "My Computer uses its own URL");
 app.click(app.get("window-profile").querySelector(".control-min"));
 check(app.location.pathname === paths.game, "Minimizing My Computer restores the game");
 app.click(game.querySelector(".control-close"));
-check(app.location.pathname === paths.story && !app.win("game-b") && !app.tab("project-game-b"), "Closing game removes only its window");
+check(app.location.pathname === paths.story && !app.win("test-web") && !app.tab("project-test-web"), "Closing game removes only its window");
 app.click(story.querySelector(".control-min"));
 check(app.location.pathname === paths.g, "Explorer still remembers G after other applications");
 app.click(app.get("window-works").querySelector(".control-min"));
@@ -72,18 +86,18 @@ for (const id of ["c", "h"]) {
   check(app.location.pathname === paths[id] && app.get("window-works").querySelector(".explorer-empty"), "Empty drive has a direct address: " + id);
 }
 app.drive("a");
-check(!app.click(app.entry("桑海志怪.txt"), { ctrlKey: true }).defaultPrevented, "Modified clicks keep native new-tab behavior");
-app.click(app.entry("桑海志怪.txt"));
-check(app.win("sh-tales") === story && app.get("windows").children.filter(node => node.id === story.id).length === 1, "Opening an existing file reuses one window");
+check(!app.click(app.entry("测试文本.txt"), { ctrlKey: true }).defaultPrevented, "Modified clicks keep native new-tab behavior");
+app.click(app.entry("测试文本.txt"));
+check(app.win("test-book") === story && app.get("windows").children.filter(node => node.id === story.id).length === 1, "Opening an existing file reuses one window");
 app.click(story.querySelector(".control-close"));
 app.click(app.get("window-works").querySelector(".control-close"));
 app.menu("works");
 check(app.location.pathname === paths.works && app.get("explorer-address").value === "", "Reopening closed Explorer resets to its root");
 
 const historyApp = await mount();
-historyApp.menu("works"); historyApp.drive("a"); historyApp.click(historyApp.entry("桑海志怪.txt"));
-historyApp.menu("works"); historyApp.drive("g"); historyApp.click(historyApp.entry("Game-B.exe"));
-const gameDOM = historyApp.win("game-b");
+historyApp.menu("works"); historyApp.drive("a"); historyApp.click(historyApp.entry("测试文本.txt"));
+historyApp.menu("works"); historyApp.drive("g"); historyApp.click(historyApp.entry("Test Web.exe"));
+const gameDOM = historyApp.win("test-web");
 for (const expected of [paths.g, paths.story, paths.a, paths.works, "/"]) {
   historyApp.history.go(-1);
   check(historyApp.location.pathname === expected, "Back restores deliberate visit: " + expected);
@@ -93,7 +107,7 @@ for (const expected of [paths.works, paths.a, paths.story, paths.g, paths.game])
   historyApp.history.go(1);
   check(historyApp.location.pathname === expected, "Forward restores deliberate visit: " + expected);
 }
-check(historyApp.win("game-b") === gameDOM, "History navigation reuses existing project DOM");
+check(historyApp.win("test-web") === gameDOM, "History navigation reuses existing project DOM");
 historyApp.menu("works");
 historyApp.click(historyApp.get("window-works").querySelector(".explorer-tool"));
 check(historyApp.location.pathname === paths.works && historyApp.get("explorer-address").value === "", "Explorer Up returns to Explorer root");
@@ -115,12 +129,13 @@ for (const route of catalog.entries) {
     check(router.current()?.id === route.id && fresh.document.baseURI === base, "Restore keeps deep route and stable assets: " + mode + " " + route.path);
   }
 }
-for (const route of ["novels/sh-tales/", "games/game-b/"]) {
+for (const route of ["novels/test-book/", "games/test-web/"]) {
   check(!catalog.byPath.has(route) && !fs.existsSync(path.join(root, route + "index.html")), "Old route and entry removed: " + route);
 }
 const indexEntry = await mount("https://example.test" + paths.a + "index.html");
 check(indexEntry.location.pathname === paths.a, "Explicit index.html normalizes to directory URL");
-for (const [route, entry] of catalog.byPath) {
+const publishedCatalog = createDesktopRouteCatalog({ ...siteConfig, works: JSON.parse(read('dist/catalog/projects.json')) });
+for (const [route, entry] of publishedCatalog.byPath) {
   const page = read("dist/" + route + "index.html");
   check(page.includes('<base href="' + "../".repeat(route.split("/").filter(Boolean).length) + '">'), "Static page has correct root depth: " + route);
   check(page.replace(/<head>\s*<!-- Generated[^>]*-->\s*<base[^>]*>/, "<head>").replace(/\r/g, "") === read("src/index.html").replace(/\r/g, ""), "Static entry is the same complete desktop: " + route);
@@ -143,8 +158,8 @@ check(crypto.createHash("sha256").update(fs.readFileSync(path.join(root, "assets
 const themed = await mount();
 check(themed.document.documentElement.dataset.theme === "retro-ink", "Default remains 95's（异化）");
 check(themed.document.documentElement.style["--title-active"] === "#202020", "Default title bar remains ink black");
-themed.menu("works"); themed.drive("a"); themed.click(themed.entry("桑海志怪.txt")); themed.menu("profile"); themed.menu("settings");
-const settings = themed.get("window-settings"), storyNode = themed.win("sh-tales");
+themed.menu("works"); themed.drive("a"); themed.click(themed.entry("测试文本.txt")); themed.menu("profile"); themed.menu("settings");
+const settings = themed.get("window-settings"), storyNode = themed.win("test-book");
 const initialUrl = themed.location.href, initialHistory = themed.history.length;
 const radios = settings.querySelectorAll(".theme-radio");
 check(radios.length === 5, "Settings provides exactly five theme presets");
@@ -161,7 +176,7 @@ for (const theme of themed.themes) {
   for (const [token, value] of Object.entries(theme.colors)) assert.equal(style["--" + token], value, theme.name + " " + token);
   check(radios.filter(input => input.checked).length === 1 && radio.parentNode.classList.contains("is-selected"), "Theme selector stays synchronized: " + theme.name);
   check(themed.saved().themeId === theme.id && themed.location.href === initialUrl && themed.history.length === initialHistory, "Theme persists without navigating: " + theme.name);
-  check(themed.win("sh-tales") === storyNode && style["--desktop"] === originalFill && themed.get("desktop").style.backgroundImage === originalImage, "Theme preserves open windows and wallpaper: " + theme.name);
+  check(themed.win("test-book") === storyNode && style["--desktop"] === originalFill && themed.get("desktop").style.backgroundImage === originalImage, "Theme preserves open windows and wallpaper: " + theme.name);
 }
 themed.click(themed.get("theme-custom-toggle"));
 check(themed.get("theme-presets-panel").hidden && !themed.get("theme-custom-panel").hidden && themed.get("theme-custom-panel").textContent === "功能开发中", "Custom disclosure exposes only the unavailable placeholder");

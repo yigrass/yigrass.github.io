@@ -1,0 +1,117 @@
+[
+  {
+    "path": "content/sh-tales/README.md",
+    "bytes": 493,
+    "sha256": "e7862ec629ddb6713b2b10d541aaa754ba8e70ad067ad0fdc12e094256fb8bb9"
+  },
+  {
+    "path": "content/sh-tales/release.json",
+    "bytes": 529,
+    "sha256": "93c0d3dc14f7210dc5dda96b1767625d78bf26524d62a4574efacb947778e741"
+  },
+  {
+    "path": "content/sh-tales/images/book/sword.png",
+    "bytes": 1183,
+    "sha256": "ca77919d5e2a3fc48d05410ed6584bd9e205e3a013295c73d161138dad88b552"
+  },
+  {
+    "path": "content/sh-tales/text/case-01/ep-01.md",
+    "bytes": 431,
+    "sha256": "df567058c83d5124afa3af8a33370fa2623752a3296aed6918fe98db0eb70273"
+  },
+  {
+    "path": "content/sh-tales/text/case-01/ep-02.md",
+    "bytes": 6007,
+    "sha256": "301e771552da496a0368f5960489c8573421fa55f027139724ee03705d517f8d"
+  },
+  {
+    "path": "content/sh-tales/text/case-01/ep-05.md",
+    "bytes": 286,
+    "sha256": "0b59a21b2508242a3b8e118ccdd410bb4b6d771784f39ad77cefcc402383333a"
+  },
+  {
+    "path": "content/sh-tales/text/case-01/README.md",
+    "bytes": 331,
+    "sha256": "2aa6849a3db9fa4498dda530626be2a8f644d583b78f0eb3d9ea8d03f24a4c7d"
+  },
+  {
+    "path": "content/sh-tales/text/case-02/ep-05.md",
+    "bytes": 317,
+    "sha256": "fcf43fdb9ff49665e30de44bf92ba2181ba6e73e0e9e81f55f192108ffa858e4"
+  },
+  {
+    "path": "content/sh-tales/text/case-02/prologue.md",
+    "bytes": 352,
+    "sha256": "bf3a02f7fbd2bf91f089bc5ad2a796b6b7a5a02567cc9b8dac5913c5566bd190"
+  },
+  {
+    "path": "content/sh-tales/text/case-02/README.md",
+    "bytes": 199,
+    "sha256": "874669f3670481c7662e75da2922b509804f302b7204128930ecc406331bb635"
+  },
+  {
+    "path": "content/game-b/index.html",
+    "bytes": 410,
+    "sha256": "290f1f74d885966399077cb3a61e57863206deb51946216d174657e2b952ac8a"
+  },
+  {
+    "path": "content/game-b/release.json",
+    "bytes": 106,
+    "sha256": "613fe80d94789c1310dd060f8c57ebe97a105739729e82782a87ee3a72910a7e"
+  },
+  {
+    "path": "content/game-b/assets/icon.png",
+    "bytes": 1191,
+    "sha256": "82cfe82f5f6603a981241a5e58c739b831684c1db5db5d916071fd7137c68f23"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/README.md",
+    "bytes": 482,
+    "sha256": "243a37ad47ceea4af2263b6b5286771575a5ce1797ad30d8c60a3f8ecedf5e82"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/release.json",
+    "bytes": 529,
+    "sha256": "93c0d3dc14f7210dc5dda96b1767625d78bf26524d62a4574efacb947778e741"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/images/book/sword.png",
+    "bytes": 1183,
+    "sha256": "ca77919d5e2a3fc48d05410ed6584bd9e205e3a013295c73d161138dad88b552"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/text/case-01/ep-01.md",
+    "bytes": 424,
+    "sha256": "b4d4ab8bc4571d105a91b7cc2f446a04afc6794ab593505ef7124e179d349dad"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/text/case-01/ep-02.md",
+    "bytes": 5948,
+    "sha256": "20b185c3a5faed8f3d0062bc5b91d7c5307cfd7dca1717cd9d1f3b7c4db6cca5"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/text/case-01/ep-05.md",
+    "bytes": 281,
+    "sha256": "d7eac08e0793668429a34a3aa87b41c5b4c8e1244eeedf551966d32348fdbe71"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/text/case-01/README.md",
+    "bytes": 324,
+    "sha256": "7a0cb11ae32f7aaafe74cc82ab6419e1308af51933ae23b87df23264519ff8d1"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/text/case-02/ep-05.md",
+    "bytes": 310,
+    "sha256": "811bc548418de7b7b0b157f7bb699b0c868ff89e0906d52049e4879fc862a62e"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/text/case-02/prologue.md",
+    "bytes": 345,
+    "sha256": "ff1d1c03df24c311c8116bf165e0a7dde66db2dc6dfe2d812f993cf99b309114"
+  },
+  {
+    "path": "contracts/novel-release-v4/example/text/case-02/README.md",
+    "bytes": 194,
+    "sha256": "8c53b3ac9c48820525523156ac44bb208af641fecdc7420c6b7e1bc77466667f"
+  }
+]

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { readNovel, receiveReleases } from '../scripts/lib/releases.mjs';
+import { receiveReleases } from '../scripts/lib/releases.mjs';
 import { assertOwnedDirectory, withinDirectory } from '../scripts/lib/files.mjs';
 import { novelDocuments } from '../src/shared/novel/model.js';
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -14,7 +14,7 @@ async function fixture(t, count = 1) {
   const directory = path.join(site, 'content/book');
   await fs.mkdir(path.join(directory, 'text/case-greedy'), { recursive: true });
   await fs.mkdir(path.join(directory, 'images/book'), { recursive: true });
-  await fs.copyFile(path.join(root, 'contracts/novel-release-v4/example/images/book/sword.png'), path.join(directory, 'images/book/icon.png'));
+  await fs.copyFile(path.join(root, 'assets/pixel-ui/v1.2.0/text-file.png'), path.join(directory, 'images/book/icon.png'));
   await fs.writeFile(path.join(directory, 'README.md'), '# 整书简介');
   await fs.writeFile(path.join(directory, 'text/case-greedy/README.md'), '# 卷简介');
   const manifest = { schemaVersion: 4, kind: 'novel', id: 'producer-book', icon: 'images/book/icon.png', volumes: [{ id: 'case-greedy', chapters: [] }] };
@@ -88,20 +88,4 @@ test('ordinary missing fixed files and filesystem escapes still stop receiving',
   f.first.id = 'prologue'; await f.save();
   await fs.unlink(path.join(f.directory, 'text/case-greedy/README.md')); await assert.rejects(f.receive(), /ENOENT/);
   await fs.writeFile(path.join(f.directory, 'release.json'), '{invalid'); await assert.rejects(f.receive(), SyntaxError);
-});
-
-test('portable v4 contract example has exactly four root entries and no configurable document paths', async () => {
-  const directory = path.join(root, 'contracts/novel-release-v4/example');
-  assert.deepEqual((await fs.readdir(directory)).sort(), ['README.md','images','release.json','text']);
-  const raw = JSON.parse(await fs.readFile(path.join(directory, 'release.json'), 'utf8'));
-  assert.equal(Object.hasOwn(raw, 'readme'), false);
-  for (const volume of raw.volumes) { assert.equal(Object.hasOwn(volume, 'readme'), false); for (const chapter of volume.chapters) assert.deepEqual(Object.keys(chapter), ['id']); }
-  const manifest = await readNovel(directory), documents = novelDocuments(manifest);
-  assert.equal(manifest.schemaVersion, 4); assert.equal(manifest.volumes.length, 2);
-  assert.equal(documents.filter(item => item.kind === 'chapter').length, 5);
-  assert.ok(documents.some(item => item.id === 'case-01/ep-05')); assert.ok(documents.some(item => item.id === 'case-02/ep-05'));
-  for (const item of documents) assert.ok(item.file.endsWith('.md'));
-  const schema = JSON.parse(await fs.readFile(path.join(directory, '../release.schema.json'), 'utf8'));
-  assert.equal(schema.properties.schemaVersion.const, 4);
-  assert.equal(Object.hasOwn(schema.properties, 'readme'), false);
 });

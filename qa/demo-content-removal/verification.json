@@ -1,0 +1,53 @@
+{
+  "remainingProjects": [
+    "cacophony"
+  ],
+  "remainingContentDirectories": [
+    "cacophony"
+  ],
+  "receivedFilesRemoved": 23,
+  "formalContentHashesUnchanged": true,
+  "activeDemoReferenceScan": "passed",
+  "httpChecks": [
+    {
+      "path": "/file-explorer/a-floppy-disk/sh-tales/",
+      "status": 404
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/sh-tales/case-01/ep-01/",
+      "status": 404
+    },
+    {
+      "path": "/file-explorer/g-cd-rom/game-b/",
+      "status": 404
+    },
+    {
+      "path": "/content/sh-tales/release.json",
+      "status": 404
+    },
+    {
+      "path": "/content/game-b/index.html",
+      "status": 404
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/g-cd-rom/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/",
+      "status": 200
+    },
+    {
+      "path": "/file-explorer/a-floppy-disk/cacophony/jht/00-mist/",
+      "status": 200
+    },
+    {
+      "path": "/content/cacophony/images/book/mew-icon.png",
+      "status": 200
+    }
+  ]
+}
