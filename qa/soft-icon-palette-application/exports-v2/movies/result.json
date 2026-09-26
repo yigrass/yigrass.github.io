@@ -1,0 +1,20 @@
+﻿{
+    "ok":  true,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\movies\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\movies",
+    "input":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\sprites-v2\\movies.aseprite",
+    "output":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\png\\movies.png",
+    "output_bytes":  4444,
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  14332,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.19,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\movies\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\movies\\export.stderr.log"
+                  }
+              ]
+}

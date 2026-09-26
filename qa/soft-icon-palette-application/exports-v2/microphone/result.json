@@ -1,0 +1,20 @@
+﻿{
+    "ok":  true,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\microphone\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\microphone",
+    "input":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\sprites-v2\\microphone.aseprite",
+    "output":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\png\\microphone.png",
+    "output_bytes":  4156,
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  31428,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.219,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\microphone\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\microphone\\export.stderr.log"
+                  }
+              ]
+}

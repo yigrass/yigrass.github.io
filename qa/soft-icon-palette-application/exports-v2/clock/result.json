@@ -1,0 +1,20 @@
+﻿{
+    "ok":  true,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\clock\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\clock",
+    "input":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\sprites-v2\\clock.aseprite",
+    "output":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\png\\clock.png",
+    "output_bytes":  3077,
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  27316,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.203,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\clock\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\clock\\export.stderr.log"
+                  }
+              ]
+}

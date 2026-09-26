@@ -1,0 +1,20 @@
+﻿{
+    "ok":  true,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\3d_graphics_program\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\3d_graphics_program",
+    "input":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\sprites-v2\\3d_graphics_program.aseprite",
+    "output":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\png\\3d_graphics_program.png",
+    "output_bytes":  4311,
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  27040,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.183,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\3d_graphics_program\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\3d_graphics_program\\export.stderr.log"
+                  }
+              ]
+}

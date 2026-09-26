@@ -1,0 +1,20 @@
+﻿{
+    "ok":  true,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\audio_editor\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\audio_editor",
+    "input":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\sprites-v2\\audio_editor.aseprite",
+    "output":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\png\\audio_editor.png",
+    "output_bytes":  4087,
+    "steps":  [
+                  {
+                      "step":  "export",
+                      "pid":  27832,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.19,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\audio_editor\\export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports-v2\\audio_editor\\export.stderr.log"
+                  }
+              ]
+}

@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:15.4940504+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:15.5126946+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\audio_music_file.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\audio_music_file.png
+2026-09-26T23:45:15.7280992+08:00	INFO	finish step=export pid=25076 exit=0 seconds=0.205
+2026-09-26T23:45:15.7769706+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\audio_music_file\result.json

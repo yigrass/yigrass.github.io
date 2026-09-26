@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:21.1080351+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:21.1294261+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\contact_book.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\contact_book.png
+2026-09-26T23:45:21.3245415+08:00	INFO	finish step=export pid=5000 exit=0 seconds=0.186
+2026-09-26T23:45:21.3728593+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\contact_book\result.json

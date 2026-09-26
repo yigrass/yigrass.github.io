@@ -82,7 +82,7 @@ npm.cmd run build
 
 系统设置提供五套预设：95's、95's（异化，默认）、墨染、苔痕和幽涧。选中后同步更新窗口、开始菜单、任务栏、按钮和滚动条；预设与自定义折叠项保留，自定义仍为灰色“功能开发中”。预设列表只显示名称，点击即可直接查看实际配色。开始菜单与任务栏共用底色透明度，其他设置包括像素光标和漂浮星星；浏览器允许时保存偏好，减少动态效果的系统偏好会停用星星动画。
 
-系统与阅读器的新图标来自用户提供的 calming 图标集，发布文件位于 assets/pixel-ui/calming，按原始字节复制并以像素方式缩放。自定义光标源文件为本地 art/pixel-ui/cursor.aseprite，导出为 assets/pixel-ui/cursor.png 和两倍像素尺寸的 cursor-2x.png；网页使用后者，点击热点在左上角 (0, 0)。
+系统与阅读器的 calming 图标取自本地 art/pixel-ui/downloads/calming_icons_512x512_alter，其中全部 64 张已应用用户选定的 B 配色；原图保留在不带 _alter 的目录。调色已写入 PNG，处理参数和验收记录见 [Soft Icon Palette Application](qa/soft-icon-palette-application/review.md)。后续使用时从 _alter 复制所需图标到 assets/pixel-ui/calming，保持原名和像素缩放，无需再次调色；当前八张正式图标即取自这里。自定义光标源文件为本地 art/pixel-ui/cursor.aseprite，导出为 assets/pixel-ui/cursor.png 和两倍像素尺寸的 cursor-2x.png；网页使用后者，点击热点在左上角 (0, 0)。
 
 壁纸、深灰填充和 dithering 不随主题改变。当前背景为 assets/wallpapers/industrial-gray.jpg，3840×2160，采用 contain 完整居中显示，阴影填充 #2d2f2d。src/desktop/wallpaper.js 仅在显示层添加 2 CSS 像素的有序抖动边缘，原图字节不变。
 

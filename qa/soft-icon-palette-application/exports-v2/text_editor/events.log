@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:48.4623945+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:48.4831674+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\text_editor.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\text_editor.png
+2026-09-26T23:45:48.6836231+08:00	INFO	finish step=export pid=25772 exit=0 seconds=0.192
+2026-09-26T23:45:48.7327516+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\text_editor\result.json

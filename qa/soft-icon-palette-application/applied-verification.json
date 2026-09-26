@@ -1,0 +1,47 @@
+{
+  "alteredCount": 64,
+  "originalsUnchanged": 64,
+  "websiteIcons": [
+    {
+      "sha256": "FC57EABA5EDC4FD8B6DD79E60079167A313D5A179646D83C90B8F800A6579117",
+      "status": 200,
+      "name": "cd_drive.png"
+    },
+    {
+      "sha256": "881968387871D245BC280739887DF195F863CA74E84A266A67DA7CD14309DC8D",
+      "status": 200,
+      "name": "drive.png"
+    },
+    {
+      "sha256": "872537E717D3F075AB28D46FFDFCC3989AB7B910A10DBEDC7B17E6E0B9C7A94E",
+      "status": 200,
+      "name": "flop_drive.png"
+    },
+    {
+      "sha256": "FF7B70C621273309C96151F869F9813B9CD6A3074A0C41FACB113CC145BF9741",
+      "status": 200,
+      "name": "this_computer.png"
+    },
+    {
+      "sha256": "9A244E4B3A87256FFAB9063A8D35B11EE3178620A05244F47590DD98D7F33BD9",
+      "status": 200,
+      "name": "folder_dark.png"
+    },
+    {
+      "sha256": "965587CC2FF94AA4E90D1255B3FEB633D57584DABF0880162041A0F3E9F2E3FF",
+      "status": 200,
+      "name": "tools.png"
+    },
+    {
+      "sha256": "98EDB769DACEEA1C8096558E62001AB228FB513109BFC77E25F97F3D245AB7C9",
+      "status": 200,
+      "name": "notepad.png"
+    },
+    {
+      "sha256": "89A0DF2D86D5720F7C47789E228E5540D5E105436D3BF843B19F87D92368E77E",
+      "status": 200,
+      "name": "text_file.png"
+    }
+  ],
+  "source": "calming_icons_512x512_alter"
+}

@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:30.2933435+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:30.3141944+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\microphone.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\microphone.png
+2026-09-26T23:45:30.5509221+08:00	INFO	finish step=export pid=31428 exit=0 seconds=0.219
+2026-09-26T23:45:30.6055934+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\microphone\result.json

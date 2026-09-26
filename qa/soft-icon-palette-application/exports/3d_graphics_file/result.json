@@ -1,0 +1,11 @@
+﻿{
+    "ok":  false,
+    "mode":  "export",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports\\3d_graphics_file\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\exports\\3d_graphics_file",
+    "error":  "Cannot find path \u0027D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\sprites\\3d_graphics_file.aseprite\u0027 because it does not exist.",
+    "steps":  [
+
+              ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "B - Soft Gray",
+  "cssReference": "saturate(0.22) contrast(0.88) brightness(1.04)",
+  "colorSpace": "sRGB",
+  "saturation": 0.22,
+  "contrast": 0.88,
+  "brightness": 1.04,
+  "lumaWeights": [0.213, 0.715, 0.072],
+  "rounding": "nearest 8-bit integer after composition",
+  "alpha": "preserved",
+  "reference": "https://www.w3.org/TR/filter-effects-1/#feColorMatrixElement"
+}

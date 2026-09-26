@@ -1,0 +1,578 @@
+[
+  {
+    "name": "3d_graphics_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "d3cbca83e969bfd96e3e159815fa5eac49ed43451201d207ab502a0b9e8c651f"
+  },
+  {
+    "name": "3d_graphics_program.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "14b54e838d9b109aa6b86a2e6e4f97f7d13f8ede2cc5bbb1af2979b13bfc9a1d"
+  },
+  {
+    "name": "aseprite_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "87a9733ec951ae202812f0069456429db9953b21201d2c8fdd7ba4d4d210d727"
+  },
+  {
+    "name": "aseprite.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "25ab96df7b07bf2c82bb400e36b02d744d846cbc52886bd8f5fbcf0b18cfa352"
+  },
+  {
+    "name": "audio_editor.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "c52fb7a31a8a3c356ae1c8e817afc3f874e41ba60b38a5a0d722446680553b48"
+  },
+  {
+    "name": "audio_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "3a40405275dec61f34a5a0f1f9f2539af0c34538f36f895a8a388958c57b695e"
+  },
+  {
+    "name": "audio_music_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "1f24b4b8f7d795f98438ceae3a202dd5b112a361da2673ea8934b41ecbc6f889"
+  },
+  {
+    "name": "briefcase.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "66b0dc6f33a97d86b843386989c70ced6a44b2f74f678c12ddb663d14352c8e0"
+  },
+  {
+    "name": "calculator.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "6b36296427de08d6eb42fa8284410ecfcdc4ce3a4a96079980a37487c4880f57"
+  },
+  {
+    "name": "calendar.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "adc7265454812f6917bad084699056ecd4d1cc7177cdeb123d467629ea31cb24"
+  },
+  {
+    "name": "camera.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "2ee2e1a08a152e06b8c5b384bcc0c531133db9238727a634a254f22d14f6121e"
+  },
+  {
+    "name": "cd_drive.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "fc57eaba5edc4fd8b6dd79e60079167a313d5a179646d83c90b8f800a6579117"
+  },
+  {
+    "name": "chrome.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "4618d7c76da23f35d998c5302a2163cb410dc367bf98e709d22e6965126aa455"
+  },
+  {
+    "name": "clock.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "b0676b2a0a0d26e73a1ce91034455198391d23541a01252c9cf2d4010a29a5b4"
+  },
+  {
+    "name": "contact_book.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "ebb148f1ea474f10842995af138b6e58e0ba949b708354cea0fcf3dd0c51efe5"
+  },
+  {
+    "name": "discord.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "33d416f901e596b8f0cd8cb4d72e6a14e2bdb681df5af73c1209f9806b676010"
+  },
+  {
+    "name": "drive.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "881968387871d245bc280739887df195f863ca74e84a266a67da7cd14309dc8d"
+  },
+  {
+    "name": "firefox.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "3f021fe7b2f9b58a4c046b363d21260250b42d2e857e4036b3283c437bccf566"
+  },
+  {
+    "name": "flop_drive.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "872537e717d3f075ab28d46ffdfcc3989ab7b910a10dbedc7b17e6e0b9c7a94e"
+  },
+  {
+    "name": "folder_closed.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "c6a8c996451d229731e83e7d32595c1618f4a645d33a9fc033752606f7462683"
+  },
+  {
+    "name": "folder_dark.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "9a244e4b3a87256ffab9063a8d35b11ee3178620a05244f47590dd98d7f33bd9"
+  },
+  {
+    "name": "folder_open.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "b4147a30e17f607aefe86c17d82395a385210393a591bee342ca95be541086a2"
+  },
+  {
+    "name": "games.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "4a32a30bf5b27f016498bfed425a22d27e1c0246634e5a10ed6d392e2f9c68c8"
+  },
+  {
+    "name": "github.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "a89b4137456a37181c63547951c57995d54a24ce93e69647104af8b32baed726"
+  },
+  {
+    "name": "image_editor.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "a1c8008be1aff098d8797bcef0a424d954fca9422643848d1a6eef8131b4fd50"
+  },
+  {
+    "name": "image_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "a84081e3dccf58f913740b73fe97e15478db0be54d007949f040f157c6913e03"
+  },
+  {
+    "name": "mail.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "f4000a4521685ee815f2db8e80bdacd3f2ce2ebd9fc075109bffe3b52720e696"
+  },
+  {
+    "name": "microphone.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "427a590fca812379031e2c3f9f4a29df0947bed84580a0a3360c8e0951979e94"
+  },
+  {
+    "name": "minecraft.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "0a92b0b0f4f11c7189fff2ea34001c9fb27ebbd3ea01ebcb5a8892ef2081fe90"
+  },
+  {
+    "name": "movies.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "9737e388be7de7fe502ec98f2384228237d1c0f6d56fdd070ceb9bac778b77ed"
+  },
+  {
+    "name": "music.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "e40197d03c3b01c254203349faceb3620b7faabdb2478d05af836d0d76e827e3"
+  },
+  {
+    "name": "news.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "e8f28765c42af1161cabc19d295b590ac0b85a413fb0100a12431cae793cb79a"
+  },
+  {
+    "name": "notepad.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "98edb769daceea1c8096558e62001ab228fb513109bfc77e25f97f3d245ab7c9"
+  },
+  {
+    "name": "paint_alt.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "c5f740cd2fb9ae9bb3851348eb18117f2651f16739eed08ef75e3367a21f54c1"
+  },
+  {
+    "name": "paint.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "c16a1450831ac274bb86d55a834878492256d5a2129927418786bf267cade4f5"
+  },
+  {
+    "name": "parsec.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "1dc6de6ef8720b139ddaf418683d532e24b77f5c415739a73df6f0d1e74e1149"
+  },
+  {
+    "name": "password_manager.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "c799aef7c64a6d1c9b2413a42ad2de5702e92a665adf3b177b23a5be97e08435"
+  },
+  {
+    "name": "phone.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "c03b8a33de128bb6a31af5fb9a440e34367a50981cf00fc255219663d434272d"
+  },
+  {
+    "name": "printer.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "83a78efb3bcc54413a0d16bb6d3ab124cf1ca43a5db05cef483fed3434b64c89"
+  },
+  {
+    "name": "program.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "46e349dbdb135a76775277065f669bc865944243e7c52aaa77b53b25a6f27d45"
+  },
+  {
+    "name": "recycle_bin_empty.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "b2786197ef64654410f881cdae8c056a20dd33dc6144061d58b40f6e2350d82a"
+  },
+  {
+    "name": "recycle_bin_full.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "8426abd37eccc33054844fac7b671549392fc5e73fa66b730e55c9b74c69283d"
+  },
+  {
+    "name": "rich_text_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "96844927c574677e7eaddd4370f1fd3f5d7951c265ef21ed6a016e160a9042a2"
+  },
+  {
+    "name": "script_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "05a5b00098c03ee6cb1ddb5b619aaff1968d73f00a72b1f79b4f1075be051d1f"
+  },
+  {
+    "name": "search.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "db82e3f08c53c51b77d18633e5df014c40a1d4fbbcfa8d8383da013705dc87a7"
+  },
+  {
+    "name": "slack.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "436e54686eafa9dfa3577bed1394fb81284ce0573e3020da56f9158996abe011"
+  },
+  {
+    "name": "sounds.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "10d0a2b705b5e528c629469afb959b39613a3ed9546e722824c2304e4c7aec15"
+  },
+  {
+    "name": "spreadsheet_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "e0f3e5b123dd4767f797b9a0b8efe0ac454477c647a4c11b4a1a48970d906b2a"
+  },
+  {
+    "name": "spreadsheet_program.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "1bf2f20d718b2e1027eb9265927f361c3d9b514ffc008fc1137a5d4439075260"
+  },
+  {
+    "name": "stardew_valley.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "5b98b6fed5949a6c9843bc7f9186ec09d2ae17915096989cea5565d4fcb9b545"
+  },
+  {
+    "name": "steam.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "8b31acbdd818dad48fcd0ffbb6a4bb4351e9eb5672d89405b9bc913f6630e6c2"
+  },
+  {
+    "name": "sticky_note.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "5eb3f5d8f558566840af1fc46d38401aa6a431263fd20438d5ec5b63b423e3d5"
+  },
+  {
+    "name": "text_editor.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "97b187154e1d54c29076647ad84a08e3f1851edebb68c4e509b24620d2c600a7"
+  },
+  {
+    "name": "text_file_2.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "bc2bdde47f62c163da46f2c9b16eb5c05b8ca08d4f399a4e730cfa4c06d18d3b"
+  },
+  {
+    "name": "text_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "89a0df2d86d5720f7c47789e228e5540d5e105436d3bf843b19f87d92368e77e"
+  },
+  {
+    "name": "this_computer.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "ff7b70c621273309c96151f869f9813b9cd6a3074a0c41facb113cc145bf9741"
+  },
+  {
+    "name": "tools.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "965587cc2ff94aa4e90d1255b3feb633d57584dabf0880162041a0f3e9f2e3ff"
+  },
+  {
+    "name": "video_editor.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "ce046719eb814c8dce0d4738ab10f71347561041abb3dd909f39b9af6e7fa417"
+  },
+  {
+    "name": "video_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "3db66fbfa937d69df6449421a925337fa7d46c49094e8eccb98d26fc3a0275a7"
+  },
+  {
+    "name": "video_movie_editor.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "befc44a62b29daf39986fea88e0838aa90388003c7c4b6ef79a407ebddd8efb2"
+  },
+  {
+    "name": "vlc.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "b5c04a835b4456f2e76410812f98c62e2f8ff92a54f049f8570b89112ccb6802"
+  },
+  {
+    "name": "webpage_file.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "ac2199465370bda6479179ebdaea7d5cf0fe195508641282347049e4c579020e"
+  },
+  {
+    "name": "workspace.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "509bc4ceee30fb81fa131bdae6f99f2d177d8626187841736f4c17e96c8737ae"
+  },
+  {
+    "name": "world.png",
+    "width": 512,
+    "height": 512,
+    "frames": 1,
+    "alphaUnchanged": true,
+    "colorsVerified": true,
+    "sha256": "538d94348060a516e22084a4be23de3e877f1bd40183eaf4a8775798245de844"
+  }
+]

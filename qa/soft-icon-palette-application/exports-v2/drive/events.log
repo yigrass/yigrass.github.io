@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:22.5052817+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:22.5254790+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\drive.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\drive.png
+2026-09-26T23:45:22.7345145+08:00	INFO	finish step=export pid=25256 exit=0 seconds=0.2
+2026-09-26T23:45:22.7838381+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\drive\result.json

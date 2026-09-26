@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:47.0014666+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:47.0190788+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\steam.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\steam.png
+2026-09-26T23:45:47.2341540+08:00	INFO	finish step=export pid=14892 exit=0 seconds=0.202
+2026-09-26T23:45:47.2816290+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\steam\result.json

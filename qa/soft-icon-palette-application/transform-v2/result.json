@@ -1,0 +1,21 @@
+﻿{
+    "ok":  true,
+    "mode":  "run-script",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\transform-v2\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\transform-v2",
+    "script":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\soften-icons.lua",
+    "expected_paths":  [
+                           "D:/01_SmallProjects/yigrass.github.io/qa/soft-icon-palette-application/sprites-v2/processed.json"
+                       ],
+    "steps":  [
+                  {
+                      "step":  "lua-script",
+                      "pid":  1908,
+                      "exit_code":  0,
+                      "elapsed_seconds":  5.437,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\transform-v2\\lua-script.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\transform-v2\\lua-script.stderr.log"
+                  }
+              ]
+}

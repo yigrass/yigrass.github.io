@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:31.0405879+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:31.0621619+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\minecraft.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\minecraft.png
+2026-09-26T23:45:31.2546367+08:00	INFO	finish step=export pid=29948 exit=0 seconds=0.186
+2026-09-26T23:45:31.3055031+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\minecraft\result.json

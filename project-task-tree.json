@@ -13,14 +13,36 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "theme-and-icon-refinement-completed",
+    "deliveryState": "soft-icon-palette-application-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review theme and icon refinement; user publishes the updated website",
+    "nextAction": "Review softened website icons; user publishes when ready",
     "repositoryIntegrated": true,
     "lastUpdated": "2026-09-26",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "soft-icon-palette-application",
+      "name": "Soft Icon Palette Application",
+      "parent": "personal-website",
+      "status": "completed",
+      "completedOn": "2026-09-26",
+      "evidence": ["qa/soft-icon-palette-application/review.md","qa/soft-icon-palette-application/validated-outputs.json","qa/soft-icon-palette-application/applied-verification.json","qa/soft-icon-palette-application/build.log","qa/soft-icon-palette-application/desktop.png"],
+      "dependencies": ["icon-color-preview"],
+      "returnPoint": "Personal Website / Review softened icons",
+      "note": "User approves preview B and explicitly authorizes processing every icon in calming_icons_512x512_alter, then replacing the eight adopted website icons from those files. Bake the approved saturation, contrast and brightness into pixels, preserving dimensions and alpha. Protect original artwork directory, other art, accepted content, application source and historical QA. No Git writes or remote operations."
+    },
+    {
+      "id": "icon-color-preview",
+      "name": "Icon Color Preview",
+      "parent": "personal-website",
+      "status": "completed",
+      "completedOn": "2026-09-26",
+      "evidence": ["qa/icon-color-preview/review.md","qa/icon-color-preview/fragment.html","qa/icon-color-preview/source-hashes.json","qa/icon-color-preview/light.png","qa/icon-color-preview/dark.png"],
+      "dependencies": ["theme-and-icon-refinement"],
+      "returnPoint": "Personal Website / Review icon colors",
+      "note": "User requests softer versions of the eight new icons for approval before replacement. Compare deterministic display-only saturation and contrast filters against the original, at actual UI sizes on website backgrounds. Write only preview and task evidence; preserve production source, assets, received content, output and local originals. Do not apply a candidate without explicit approval."
+    },
     {
       "id": "theme-and-icon-refinement",
       "name": "Theme and Icon Refinement",

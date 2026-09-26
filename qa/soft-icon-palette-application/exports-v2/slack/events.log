@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:43.3197949+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:43.3401024+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\slack.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\slack.png
+2026-09-26T23:45:43.5555592+08:00	INFO	finish step=export pid=25380 exit=0 seconds=0.206
+2026-09-26T23:45:43.6032769+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\slack\result.json

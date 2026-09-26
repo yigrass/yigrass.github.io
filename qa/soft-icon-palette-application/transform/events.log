@@ -1,0 +1,4 @@
+﻿2026-09-26T23:43:51.2056597+08:00	INFO	mode=run-script workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:43:51.2218699+08:00	INFO	start step=lua-script args=-b --script-param input=D:/01_SmallProjects/yigrass.github.io/art/pixel-ui/downloads/calming_icons_512x512_alter --script-param output=D:/01_SmallProjects/yigrass.github.io/qa/soft-icon-palette-application/sprites --script-param config=D:/01_SmallProjects/yigrass.github.io/qa/soft-icon-palette-application/filter.json --script D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\soften-icons.lua
+2026-09-26T23:43:56.4316916+08:00	INFO	finish step=lua-script pid=4920 exit=0 seconds=5.2
+2026-09-26T23:43:56.4703032+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\transform\result.json

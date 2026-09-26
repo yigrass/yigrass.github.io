@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:46.2613839+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:46.2812196+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\stardew_valley.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\stardew_valley.png
+2026-09-26T23:45:46.5203616+08:00	INFO	finish step=export pid=28448 exit=0 seconds=0.223
+2026-09-26T23:45:46.5767822+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\stardew_valley\result.json

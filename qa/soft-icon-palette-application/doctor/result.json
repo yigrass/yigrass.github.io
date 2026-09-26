@@ -1,0 +1,49 @@
+﻿{
+    "ok":  true,
+    "mode":  "doctor",
+    "aseprite_version":  "Aseprite 1.3.18.1-x64",
+    "profile_mode":  "Isolated",
+    "profile_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\profile",
+    "run_dir":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor",
+    "lua_trace":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\doctor.trace.log",
+    "aseprite_file":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\doctor.aseprite",
+    "gif_file":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\doctor.gif",
+    "roundtrip_png":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\doctor-roundtrip.png",
+    "residual_process_ids":  [
+
+                             ],
+    "steps":  [
+                  {
+                      "step":  "version",
+                      "pid":  5712,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.197,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\version.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\version.stderr.log"
+                  },
+                  {
+                      "step":  "lua-create",
+                      "pid":  25040,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.161,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\lua-create.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\lua-create.stderr.log"
+                  },
+                  {
+                      "step":  "gif-export",
+                      "pid":  14524,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.162,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\gif-export.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\gif-export.stderr.log"
+                  },
+                  {
+                      "step":  "gif-roundtrip",
+                      "pid":  3428,
+                      "exit_code":  0,
+                      "elapsed_seconds":  0.151,
+                      "stdout":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\gif-roundtrip.stdout.log",
+                      "stderr":  "D:\\01_SmallProjects\\yigrass.github.io\\qa\\soft-icon-palette-application\\doctor\\gif-roundtrip.stderr.log"
+                  }
+              ]
+}

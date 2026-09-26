@@ -1,0 +1,4 @@
+﻿2026-09-26T23:45:34.6122851+08:00	INFO	mode=export workspace=D:\01_SmallProjects\yigrass.github.io profile_mode=Isolated
+2026-09-26T23:45:34.6329198+08:00	INFO	start step=export args=-b D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\sprites-v2\paint_alt.aseprite --save-as D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\png\paint_alt.png
+2026-09-26T23:45:34.8721180+08:00	INFO	finish step=export pid=23800 exit=0 seconds=0.21
+2026-09-26T23:45:34.9294771+08:00	INFO	success report=D:\01_SmallProjects\yigrass.github.io\qa\soft-icon-palette-application\exports-v2\paint_alt\result.json
