@@ -1,0 +1,165 @@
+{
+  "project": "yigrass.github.io",
+  "taskId": "prepublication-artifact-acceptance",
+  "date": "2026-11-07",
+  "decision": "accepted",
+  "scope": "Local contract and built-site acceptance; remote publication not performed",
+  "contract": {
+    "id": "novel-release-v4",
+    "schemaVersion": 4,
+    "files": [
+      {
+        "path": "README.md",
+        "bytes": 10365,
+        "sha256": "1930e8f2682744ad9d0b8d87c5532ffa54f89675bf7b3c1d7c19605d8017201a"
+      },
+      {
+        "path": "release.schema.json",
+        "bytes": 1889,
+        "sha256": "696e8b0bca83c924151dc9688dbe7ab895c8270deec6d23184e93593b6f21cc1"
+      }
+    ],
+    "digest": "584afcca7b0e1ea84c9f5476d81265e684a4363aec6e09b9582c37c5fcffc93b"
+  },
+  "artifact": {
+    "id": "cacophony",
+    "producer": "cacophony (manifest identity)",
+    "producerVersion": "unknown: not supplied",
+    "producerDigest": "unknown: not supplied",
+    "transferComparison": "not possible without producer receipt",
+    "root": "content/cacophony/",
+    "files": [
+      {
+        "path": "README.md",
+        "bytes": 725,
+        "sha256": "60f4c7cef202125bf4cfcd2d4a747cc5956df692155641550ee021b9a5c0ade9"
+      },
+      {
+        "path": "images/book/mew-icon.png",
+        "bytes": 4107,
+        "sha256": "76ef22342378ebc3db30e12e2a084a978118a259551a4d55105da2c16b6bd036"
+      },
+      {
+        "path": "release.json",
+        "bytes": 557,
+        "sha256": "06d30c675de7ebbc2588f69a73cee97577b46d242e682e361bf069f9eed59895"
+      },
+      {
+        "path": "text/jht/00-mist.md",
+        "bytes": 9070,
+        "sha256": "6294e9f73022a5b410c01fd1f7889e7e9a696787f907e8c30083ba8fc35a9d6a"
+      },
+      {
+        "path": "text/jht/01-gust.md",
+        "bytes": 26800,
+        "sha256": "36380fae97b6efcf6edf94a1fc78dfcb65c6be463d38843a10a52fd5cf6950f8"
+      },
+      {
+        "path": "text/jht/02-bubble.md",
+        "bytes": 23032,
+        "sha256": "d038d184e4654316562aa4cc550e96ec5a6e4618ce3028631b0723d1f0e9f046"
+      },
+      {
+        "path": "text/jht/03-block.md",
+        "bytes": 25788,
+        "sha256": "95c84938f4181e0f4340418882f9b6af8753fef73b89169dd225282bfa33681c"
+      },
+      {
+        "path": "text/jht/04-water-pledge.md",
+        "bytes": 26421,
+        "sha256": "5a2155cc052a131862c2a16e70f277396c7f26cc3f254e53295dc7865207180b"
+      },
+      {
+        "path": "text/jht/05-fire-pledge.md",
+        "bytes": 29208,
+        "sha256": "bc77c55353032ffce0c5fedb2f5f9b296bb3c6a60e0259dba0112b0267770a6d"
+      },
+      {
+        "path": "text/jht/06-worry-seed.md",
+        "bytes": 33699,
+        "sha256": "42232c5e4a8cc6f99f8e0db2e9c52ef9ff304593ddf4f7da7530b1fb056f54f2"
+      },
+      {
+        "path": "text/jht/README.md",
+        "bytes": 939,
+        "sha256": "e5094bded6be2217762b1c3b61316f4672788841892967252ea5efed201ee758"
+      }
+    ],
+    "digest": "9af90214580aeca5e56302cdeff7e60dd2278df34df2e6ac9d2b1f7733853954"
+  },
+  "schemaCoverage": "All assertion keywords present in supplied schema, via scoped evaluator; not a general JSON Schema validator",
+  "documents": [
+    {
+      "file": "README.md",
+      "title": "杂音"
+    },
+    {
+      "file": "text/jht/README.md",
+      "title": "露力丽的歌"
+    },
+    {
+      "file": "text/jht/00-mist.md",
+      "title": "JHT-00-白雾"
+    },
+    {
+      "file": "text/jht/01-gust.md",
+      "title": "JHT-01-起风"
+    },
+    {
+      "file": "text/jht/02-bubble.md",
+      "title": "JHT-02-泡沫"
+    },
+    {
+      "file": "text/jht/03-block.md",
+      "title": "JHT-03-挡路"
+    },
+    {
+      "file": "text/jht/04-water-pledge.md",
+      "title": "JHT-04-水之誓约"
+    },
+    {
+      "file": "text/jht/05-fire-pledge.md",
+      "title": "JHT-05-火之誓约"
+    },
+    {
+      "file": "text/jht/06-worry-seed.md",
+      "title": "JHT-06-烦恼种子"
+    }
+  ],
+  "chapterOrder": [
+    "jht/00-mist",
+    "jht/01-gust",
+    "jht/02-bubble",
+    "jht/03-block",
+    "jht/04-water-pledge",
+    "jht/05-fire-pledge",
+    "jht/06-worry-seed"
+  ],
+  "references": [],
+  "unreferenced": [],
+  "builtEntries": [
+    "/file-explorer/a-floppy-disk/cacophony/jht/00-mist/",
+    "/file-explorer/a-floppy-disk/cacophony/jht/01-gust/",
+    "/file-explorer/a-floppy-disk/cacophony/jht/02-bubble/",
+    "/file-explorer/a-floppy-disk/cacophony/jht/03-block/",
+    "/file-explorer/a-floppy-disk/cacophony/jht/04-water-pledge/",
+    "/file-explorer/a-floppy-disk/cacophony/jht/05-fire-pledge/",
+    "/file-explorer/a-floppy-disk/cacophony/jht/06-worry-seed/"
+  ],
+  "checks": [
+    "four root entries",
+    "manifest schema assertions",
+    "safe unique IDs",
+    "UTF-8 and H1",
+    "all local Markdown references",
+    "no extra files",
+    "exact dist bytes and SHA-256 receipt",
+    "all chapter entries and reader index",
+    "received bytes unchanged from HEAD"
+  ],
+  "limitations": [
+    "No independent producer version/digest supplied",
+    "No literary proofreading or remote deployment verification",
+    "No licenses/notices required by this contract; no rights audit performed"
+  ]
+}

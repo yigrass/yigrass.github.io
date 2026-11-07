@@ -13,14 +13,25 @@
     "checkerPath": "scripts/check-task-controls.ps1",
     "generatedViewPath": "docs/TASK_TREE.md",
     "eventLogPath": "qa/task-transitions.jsonl",
-    "deliveryState": "soft-icon-palette-application-completed",
+    "deliveryState": "prepublication-artifact-acceptance-completed",
     "developmentMode": "requirement-driven",
-    "nextAction": "Review softened website icons; user publishes when ready",
+    "nextAction": "Review local prepublication acceptance; user handles Git case rename and publication",
     "repositoryIntegrated": true,
-    "lastUpdated": "2026-09-26",
+    "lastUpdated": "2026-11-07",
     "note": "Task names are preserved. The user refined the visual direction from QQ Space to a Windows 95/98 desktop. Earlier discussion is retained in the conversation; this is the first file-backed snapshot."
   },
   "tasks": [
+    {
+      "id": "prepublication-artifact-acceptance",
+      "name": "Prepublication Review and Artifact Acceptance",
+      "parent": "personal-website",
+      "status": "completed",
+      "completedOn": "2026-11-07",
+      "dependencies": ["release-package-layout-refinement"],
+      "returnPoint": "Personal Website / Review prepublication acceptance",
+      "evidence": ["qa/prepublication-artifact-acceptance/review.md", "qa/prepublication-artifact-acceptance/acceptance.json", "qa/prepublication-artifact-acceptance/check-verified.log", "qa/prepublication-artifact-acceptance/skill-installation.json"],
+      "note": "User approved local prepublication checks, documentation naming and consolidation, producer-neutral artifact root and personal contract-driven acceptance skill. Preserve received bytes and historical evidence. No Git writes, remote operations, producer builds or artifact copying. Skill installation requires separate sandbox approval."
+    },
     {
       "id": "soft-icon-palette-application",
       "name": "Soft Icon Palette Application",

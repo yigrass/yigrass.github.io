@@ -1,6 +1,6 @@
 # Architecture
 
-本文件描述当前架构。最初的 [Source Layout Plan](SOURCE_LAYOUT_PLAN.md) 保留讨论历史；用户之后明确了独立作品只接收成品，以及小说只保留当前发布内容。本次实现采用这些后续决定。
+本文件是当前目录结构、模块职责和接入边界的唯一架构说明，反映已实施的源码／产物分离。迁移前的 [Source Layout Plan](../qa/prepublication-artifact-acceptance/source-layout-plan.md) 原文归档，仅用于历史溯源；其中 src/projects、分散作品素材及演示作品等方案已被实际实现取代。原计划相关的实施验收见 [Source and Release Separation](../qa/source-release-separation/review.md)。
 
 ## 目录与单一职责
 
@@ -36,7 +36,7 @@ dist/                        忽略的完整发布产物
 
 网站目录决定虚拟磁盘和成品位置，小说自己的 release.json 提供原样使用的书/卷/章标识、图标与数组顺序。成品固定采用 text/、images/、README.md、release.json 四项根目录；shared/novel/model.js 的 novelFiles 统一定义各级 README 和正文的固定定位，不扫描目录排序。小说 manifest 规则以 [合同](../contracts/novel-release-v4/README.md) 及生产者用 Schema 为准；网站不运行 Schema 或小说业务校验。构建读取各文档第一个 H1，生成运行时目录中的书名、iconPath 和 reader 索引，不在手写 catalog/projects.json 重复登记章节或标题。小说根 README、各卷 README 和实际章节共享同一个窗口实例。文档内部标识采用卷 ID/章 ID，因此不同卷可以使用相同章 ID。
 
-用户明确批准小说只保留当前正文和一份 release.json，可在接收源头修订导出后整套替换，不保留版本目录。构建生成本次文件的 SHA-256 收据，提供对实际字节的识别，不构成历史发布库。独立项目之间不自动相互写入：源头只导出自己的 dist，接入网站是单独步骤。
+用户明确批准小说只保留当前正文和一份 release.json，可在接收源头修订导出后整套替换，不保留版本目录。构建生成本次文件的 SHA-256 收据，提供对实际字节的识别，不构成历史发布库。独立项目之间不自动相互写入：生产者自行决定导出机制与位置，合同中的 `<artifact-root>/` 仅表示交付成品根目录。用户手动将完整成品拷入本站；接收检查是独立于生产和构建的常规动作，按 contracts/ 中适用合同检查并记录实际字节、合同身份、验收结果及缺失证据，不替生产者导出、复制或修正内容。网站接收目录不决定生产者的目录名。
 
 ## 窗口与内容生命周期
 

@@ -1,0 +1,2 @@
+PASS: flat frontmatter, supported fields, name, description, no scaffold placeholders
+Bundled quick_validate.py unavailable: runtime has no PyYAML. Equivalent checks applied to this flat format; no package installed.

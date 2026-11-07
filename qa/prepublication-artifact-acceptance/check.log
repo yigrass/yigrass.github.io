@@ -1,0 +1,62 @@
+
+> check
+> node scripts/check.mjs
+
+Built dist: 17 desktop pages, 1 received releases.
+Built dist: 17 desktop pages, 1 received releases.
+✖ dist serves all deep entries, module imports and release bytes; maintenance paths are absent (225.4047ms)
+✔ clean input copy builds without art or other projects; invalid input preserves previous dist (1159.0647ms)
+✔ built release receipts match every published package file (4.0501ms)
+Desktop regression assertions: 201
+(node:9724) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ desktop windows, routes, themes and persistent state after module migration (716.7458ms)
+(node:19384) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ book and volume titles open their README while only plus/minus controls fold the tree (58.071ms)
+✔ direct chapter entry, safe Markdown rendering, shared icon, chapter links and desktop history retain reader state (26.9424ms)
+✔ keyboard and menu-bar buttons skip README across volumes and respect active window, menus and boundaries (27.3804ms)
+✔ reader placeholder menus switch without flipping chapters, dismiss predictably and release their listeners (24.5725ms)
+✔ late loads never replace a newer chapter or a closed window; failed chapter can be retried (44.8606ms)
+✔ two novel windows keep independent chapter URLs and keyboard listeners (26.2825ms)
+✔ markdown-it supports nested blocks, tables, strikeout and real H1 parsing (27.5604ms)
+✔ directory resizing respects pane minima, consumes arrow keys and resets after reopening (23.573ms)
+✔ progress counts the viewport bottom, ignores overscroll space and only blocks copying in the reader (23.5298ms)
+✔ identical chapter IDs in separate volumes have distinct content, links and history (25.9482ms)
+✔ single current manifest supports additions and replacements in the fixed text hierarchy (51.6574ms)
+✔ fixed README discovery, producer IDs and H1 titles preserve manifest order over filesystem order (39.0602ms)
+✔ receiver does not validate producer metadata, naming, duplicates, unused files or prose (19.6644ms)
+✔ multiple chapter images stay scoped and retain their names and bytes (14.8904ms)
+✔ ordinary missing fixed files and filesystem escapes still stop receiving (23.2033ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3100.424
+
+✖ failing tests:
+
+test at tests\build.test.mjs:13:1
+✖ dist serves all deep entries, module imports and release bytes; maintenance paths are absent (225.4047ms)
+  [TypeError: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:7555
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 7555
+    }
+  }
+file:///D:/Projects/Web/yigrass.github.io/scripts/check.mjs:10
+  if (result.status !== 0) throw new Error(`Check failed: ${command} ${args.join(' ')}`);
+                                 ^
+
+Error: Check failed: C:\Users\a\AppData\Local\Programs\nodejs\node-v24.19.0-win-x64\node.exe --experimental-vm-modules --test --test-concurrency=1 tests/build.test.mjs tests/desktop.test.mjs tests/reader.test.mjs tests/releases.test.mjs
+    at run (file:///D:/Projects/Web/yigrass.github.io/scripts/check.mjs:10:34)
+    at file:///D:/Projects/Web/yigrass.github.io/scripts/check.mjs:17:1
+
+Node.js v24.19.0

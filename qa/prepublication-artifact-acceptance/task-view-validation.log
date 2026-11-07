@@ -1,0 +1,1 @@
+PASS: nested tree, markers, deterministic repeat, read-only check, paused state, duplicate/parent/cycle/reference rejection, stale-view detection, archived plan unchanged
